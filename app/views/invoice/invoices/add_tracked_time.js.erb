@@ -1,0 +1,6 @@
+// Replace content in lightbox div
+$("#main_lightbox_content").html("<%= escape_javascript(render(:partial => 'tracked_time_form', :locals => {:project => @project, :payment_profiles => @payment_profiles, :invoice_item_track => @invoice_item_track})) %>");
+
+// Open lightbox
+main_lightbox.change_height_to(370);
+main_lightbox.open();

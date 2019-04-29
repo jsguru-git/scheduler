@@ -1,0 +1,13 @@
+<%@page_title = 'Statements'%>
+<%@second_nav = account_settings_second_nav('statements')%>
+
+<div class="standard_two_col">
+    <div class="cell_1">
+
+        <%=raw @statement.html_view if @statement %>
+        <div class="clearing"></div>
+    </div>
+    <div class="cell_2">
+
+    </div>
+</div>

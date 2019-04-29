@@ -1,0 +1,86 @@
+<div class="standard_one_col">
+
+  <div class="cell_1">
+    <%= render :partial => 'shared/page_heading' %>
+
+    <div class="search_container">
+      <h3>Filter results</h3>
+
+      <%= form_tag project_utilisation_reports_projects_path, :method => :get  do %>
+        <div class="form_row">
+          <div class="form_text">
+            <%= label_tag :start_date %>
+          </div>
+            <div class="form_field date_cal_field_container">
+              <%= text_field_tag :start_date, @time_filters[:start_date].to_date, :class => 'datepicker number' %>
+            </div>
+            <div class="clearing"></div>
+          </div>
+          
+          <div class="form_row">
+            <div class="form_text">
+              <%= label_tag :end_date %>
+            </div>
+            <div class="form_field date_cal_field_container">
+              <%= text_field_tag :end_date, @time_filters[:end_date], :class => 'datepicker number' %>
+            </div>
+            <div class="clearing"></div>
+          </div>
+
+          <div class="form_row">
+            <div class="form_text">
+              <%= label_tag 'Group by' %>
+            </div>
+            <div class="form_field">
+              <%= radio_button_tag(:view, :clients, (true if params[:view] == 'clients' || params[:view].blank?)) %>
+              <%= label_tag(:view_client, 'Client') %>
+              <%= radio_button_tag(:view, :team, (true if params[:view] == 'team')) %>
+              <%= label_tag(:view_team, 'Team') %>
+            </div>
+            <div class="clearing"></div>
+          </div>
+
+          <% if params[:view] == 'clients' || params[:view].blank? %>
+            <div class="form_row">
+              <div class="form_text">
+                <%= label_tag 'Filter by client' %>
+              </div>
+              <div class="form_field">
+                <%= select_tag :client_id, options_for_select(@account.clients.order(:name).all.map(&:name).zip(@account.clients.order(:name).all.map(&:id)), params[:client_id]) %>
+              </div>
+              <div class="clearing">
+            </div>
+          <% end %>
+          
+          <div class="submit_container">
+            <%= submit_tag 'Filter now', :class => 'submit' %>
+          </div>
+        <% end %>
+      </div>
+    <% if params[:view].blank? || params[:view] == 'clients' %>
+      <%= render 'project_utilisation_clients_view' %>
+    <% elsif params[:view] == 'client' %>
+      <%= render 'project_utilisation_client_view' %>
+    <% elsif params[:view] == 'team' %>
+      <%= render 'project_utilisation_team_view' %>
+    <% end %>
+  </div>
+</div>
+
+
+<script>
+  $(document).ready(function() {
+    $('.project_link').click(function(event) {
+      var project_id = $(this).data('project-id');
+      $(".id_" + project_id).toggle();
+      return false;
+    });
+
+    $('#client_id').select2();
+
+    $( ".datepicker" ).datepicker({
+      dateFormat: 'yy-mm-dd',
+      firstDay: 1
+    });
+  });
+</script>

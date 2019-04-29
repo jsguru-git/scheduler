@@ -1,0 +1,36 @@
+<h3>Business working hours</h3>
+<div class="form_row">
+    <div class="form_text time_field">
+        <%=label_tag :working_day_start_time%>
+    </div>
+    <div class="form_field time_field">
+        <%=f.time_select :working_day_start_time, {:minute_step => 15}, :class => 'text'%>
+    </div>
+    <div class="clearing"></div>
+</div>
+
+<div class="form_row">
+    <div class="form_text time_field">
+        <%=label_tag :working_day_end_time%>
+    </div>
+    <div class="form_field time_field">
+        <%=f.time_select :working_day_end_time, {:minute_step => 15}, :class => 'text'%>
+    </div>
+    <div class="clearing"></div>
+</div>
+
+<div class="form_row">
+    <div class="form_text">
+        <%=label_tag :working_days%>
+    </div>
+    <div class="form_field">
+        <span class="short_inline_checkboxs"><%=f.check_box :sunday%> <%=f.label :sunday%></span>
+        <span class="short_inline_checkboxs"><%=f.check_box :monday%> <%=f.label :monday%></span>
+        <span class="short_inline_checkboxs"><%=f.check_box :tuesday%> <%=f.label :tuesday%></span>
+        <span class="short_inline_checkboxs"><%=f.check_box :wednesday%> <%=f.label :wednesday%></span>
+        <span class="short_inline_checkboxs"><%=f.check_box :thursday%> <%=f.label :thursday%></span>
+        <span class="short_inline_checkboxs"><%=f.check_box :friday%> <%=f.label :friday%></span>
+        <span class="short_inline_checkboxs"><%=f.check_box :saturday%> <%=f.label :saturday%></span>
+    </div>
+    <div class="clearing"></div>
+</div>

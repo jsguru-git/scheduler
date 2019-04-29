@@ -1,0 +1,115 @@
+<% @page_title = 'Combined pre payments' %>
+
+<div class="standard_one_col">
+    <div class="cell_1">
+        <%= render :partial => 'shared/page_heading' %>
+        
+        <div class="search_container">
+            <h3>Filter results</h3>
+
+            <%=form_tag combined_pre_payments_reports_invoices_path, :method => :get  do %>
+				<div class="form_row">
+                    <div class="form_text">
+                        <%=label_tag :client_id%>
+                    </div>
+                    <div class="form_field date_cal_field_container">
+                        <%=select_tag :client_id, options_for_select(@account.clients.name_ordered.collect {|p| [ p.name, p.id.to_s ] }, params[:client_id]), :include_blank => true%>
+                    </div>
+                    <div class="clearing"></div>
+                </div>
+
+				<div class="form_row">
+                    <div class="form_text">
+                        <%=label_tag :project_id%>
+                    </div>
+                    <div class="form_field date_cal_field_container">
+                        <%=select_tag :project_id, options_for_select(@account.projects.name_ordered.collect {|p| [ p.name, p.id.to_s ] }, params[:project_id]), :include_blank => true%>
+                    </div>
+                    <div class="clearing"></div>
+                </div>
+
+                <div class="form_row">
+                    <div class="form_text">
+                        <%=label_tag :start_date%>
+                    </div>
+                    <div class="form_field date_cal_field_container">
+                        <%=text_field_tag :start_date, @cal.start_date, :class => 'datepicker number'%>
+                        <%=image_tag '/assets/tool/icons/calendar_32.png', :size => '32x32', :class => 'cal_icon', :alt => 'Select start date'%>
+                    </div>
+                    <div class="clearing"></div>
+                </div>
+                
+                <div class="form_row">
+                    <div class="form_text">
+                        <%=label_tag :end_date%>
+                    </div>
+                    <div class="form_field date_cal_field_container">
+                        <%=text_field_tag :end_date, @cal.end_date, :class => 'datepicker number'%>
+                        <%=image_tag '/assets/tool/icons/calendar_32.png', :size => '32x32', :class => 'cal_icon', :alt => 'Select end date'%>
+                    </div>
+                    <div class="clearing"></div>
+                </div>
+
+                <div class="submit_container">
+                    <%= submit_tag 'Search now', :class => 'submit' %>
+                </div>
+                
+                <div class="month_switch">
+                    <div class="left">
+                        <%=link_to 'Previous month', combined_pre_payments_reports_invoices_path(:client_id => params[:client_id], :project_id => params[:project_id], :start_date => (@cal.start_date - 1.month).beginning_of_month, :end_date => (@cal.start_date - 1.month).end_of_month)%> 
+                    </div>
+                    <div class="right">
+                        <%=link_to 'Next month', combined_pre_payments_reports_invoices_path(:client_id => params[:client_id], :project_id => params[:project_id], :start_date => (@cal.start_date + 1.month).beginning_of_month, :end_date => (@cal.start_date + 1.month).end_of_month)%>
+                    </div>
+                    <div class="clearing"></div>
+                </div>
+                
+            <%end-%>
+        </div>
+
+        <div class='statistics'>
+            <div class='statistic'>
+                <% all_invoices = @results.collect { |p| p.invoices }.flatten %>
+                <div class='figure green'><%= formated_in_default_currency all_invoices.sum(&:total_amount_cents_exc_vat) %></div>
+                <div class='desc'>Total pre-paid</div>
+            </div>
+            <div class='statistic'>
+                <div class='figure blue'><%= formated_in_default_currency all_invoices.collect { |i| InvoiceUsage.amount_remaining_for(i) }.sum %></div>
+                <div class='desc'>Total allocated</div>
+            </div>
+        </div>
+        <div class='clearing'></div>
+
+        <div class="outline_container">
+            <table class="results_table">
+                <tr class="heading_table">
+                    <th>Client</th>
+                    <th>Project</th>
+                    <th>Pre-paid invoices</th>
+                    <th class="align_center">Total amount</th>
+                    <th class="align_center">Unallocated</th>
+					<th></th>
+                </tr>
+              
+				<%@results.each do |project| -%>
+   	     			<%=render :partial => 'combined_pre_payment_project', :locals => {:project => project}%>
+				<%end-%>
+            </table>
+        </div>
+
+        <%if @results.blank? -%>
+            <p class="no_content">No pre-payments have been found.</p>
+        <%end-%>
+    </div>
+</div>
+
+<script type="text/javascript">
+    // Datepicker for invoice cration
+    $( "#reportsinvoices_combined_pre_payments .datepicker" ).datepicker({ dateFormat: 'yy-mm-dd' });
+
+    $('#reportsinvoices_combined_pre_payments .cal_icon').click(function() {
+        var idx = $('#reportsinvoices_combined_pre_payments .cal_icon').index(this);
+        $('#reportsinvoices_combined_pre_payments .datepicker').eq(idx).trigger('focus');
+        return false;
+    });
+</script>

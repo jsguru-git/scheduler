@@ -1,0 +1,81 @@
+<% if @client.archived? %>
+    <% @page_title = 'Overview: ' + @client.name + ' (Archived)' %>
+<% else %>
+    <% @page_title = 'Overview: ' + @client.name %>
+<% end %>
+<% @second_nav = client_second_nav(@client, 'show') %>
+
+<div class="standard_two_col">
+    <div class="cell_1">
+        <%= render :partial => 'shared/page_heading' %>
+
+        <div class="introduction_area">
+            <div class="details">
+                Client: <span class="dark_green"><%= @client.name %></span>
+            </div>
+            <% if @client.internal? %>
+                <div class="details">
+                    <strong><%= @client.name %></strong> is internal.
+                </div>
+            <% end %>
+
+            <% if @client.address.present? %>
+                <div class="details">
+                    Address: <span class="dark_green"><%= @client.address %></span>
+                </div>
+            <% end %>
+
+            <% if @client.zipcode.present? %>
+                <div class="details">
+                    Zip / post code: <span class="dark_green"><%= @client.zipcode %></span>
+                </div>
+            <% end %>
+
+            <% if @client.phone.present? %>
+                <div class="details">
+                    Phone: <span class="dark_green"><%= @client.phone %></span>
+                </div>
+            <% end %>
+
+            <% if @client.fax.present? %>
+                <div class="details">
+                    Fax: <span class="dark_green"><%= @client.fax %></span>
+                </div>
+            <% end %>
+
+            <% if @client.email.present? %>
+                <div class="details">
+                    Email: <span class="dark_green"><%= @client.email %></span>
+                </div>
+            <% end %>
+        </div>
+
+        <% if @account.component_enabled?(1) %>
+            <%= render :partial => 'schedule/shared/people_scheduled', :locals => { :display_type        => 'client',
+                                                                                    :people_in_next_week => @people_in_next_week,
+                                                                                    :people_scheduled    => @people_scheduled } %>
+        <% end %>
+
+        <%if @account.component_enabled?(2) -%>
+            <%= render :partial => "track/shared/people_tracked", :locals => { :display_type      => 'client',
+                                                                               :tracked_this_week => @tracked_this_week,
+                                                                               :people_tracked    => @people_tracked } %>
+        <%end-%>
+
+    </div>
+    <% if policy(@client).update? %>
+        <div class="cell_2">
+        <div id="action_links">
+            <%= link_to raw('<span class="edit">Edit Client</span>'), edit_client_path(@client) %>
+            <% if !@client.archived? %>
+                <%= link_to raw('<span class="archive">Archive client</span>'), archive_client_path(@client), :method => :put, :data => { :confirm => 'Are you sure you want to archive this client?' } %>
+            <% else %>
+                <%= link_to raw('<span class="archive">Re-activate client</span>'), activate_client_path(@client), :method => :put, :data => { :confirm => 'Are you sure you want to re-activate this client?' } %>
+            <% end %>
+            <%= internal_external_toggle_button_helper(@client) %>
+            <div class="clearing"></div>
+        </div>
+    </div>
+    <% end %>
+    <div class="clearing"></div>
+</div>

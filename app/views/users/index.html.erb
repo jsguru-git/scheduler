@@ -1,0 +1,30 @@
+<% @page_title = 'Employees' %>
+<% @second_nav = people_second_nav(params[:action]) %>
+
+<div class="standard_two_col">
+    <div class="cell_1">
+        <%=render :partial => 'shared/page_heading'%>
+        
+        <%=render :partial => 'search_container', :locals => {:search_link => projects_path}%>
+        
+        <%=render :partial => 'shared/pagination/paginate', :object => @users%>
+
+        <ul class="inline_content_list">
+            <%@users.each do |user|%>
+                <%=render :partial => 'display_user', :locals => {:user => user}%>
+            <%end-%>
+        </ul>
+        <div class="clearing"></div>
+        <%=render :partial => 'shared/pagination/paginate', :object => @users%>
+
+    </div>
+    <div class="cell_2">
+        <div id="action_links">
+            <% if has_permission?('account_holder || administrator') %>
+                <%= link_to raw('<span class="add">Add Employee</span>'), new_user_url(:protocol => ssl_link) %>
+                <%= link_to raw('<span class="edit">View / update user permissions</span>'), edit_roles_users_url(:protocol => ssl_link) %>
+            <% end %>
+            <div class="clearing"></div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,35 @@
+<%background_image = project_comment.user.present? ? project_comment.user.gravatar_url(:size => 69, :secure => request.ssl?, :default => APP_CONFIG['gravatar']['default_asset_ssl_domain']+'/assets/tool/icons/user_69.png') : '/assets/tool/icons/user_69.png'%>
+
+<%=content_tag_for(:li, project_comment) do %>
+
+    <div class="name">
+        <%= avatar(project_comment.user, 80) %>
+        <%if project_comment.user.present? -%>
+            <span><%=project_comment.user.firstname%></span>
+            <span><%=project_comment.user.lastname%></span>
+        <%else-%>
+            <span>Person</span>
+            <span>Removed</span>
+        <%end-%>
+    </div>
+
+    <%=render :partial => 'comment_text', :locals => {:project => project, :project_comment => project_comment}%>
+
+    <%if editable%>
+        <div class="comment_links">
+            <%if can_edit?(project_comment)%>
+                <%=link_to 'Edit', edit_project_project_comment_path(project, project_comment), :remote => true, 'data-spinner' => "link_spinner_#{dom_id project_comment}", :class => 'small_edit_button'%> 
+                <%=link_to 'Remove', project_project_comment_path(project, project_comment), :method => :delete, :remote => true, :confirm => 'Are you sure you want to remove this comment?', 'data-spinner' => "link_spinner_#{dom_id project_comment}", :class => 'small_remove_button'%>&nbsp;<%=spinner_tag("link_spinner_#{dom_id project_comment}",)%>
+            <%end-%>
+        </div>
+    <%end-%>
+	<ul class="comment_replies comment_replies_to_<%=project_comment.id%>">
+		<%if project_comment.project_comment_replies.comemnt_date_order.present? -%>
+			<%project_comment.project_comment_replies.comemnt_date_order.each do |project_comment_reply| -%>
+				<%=render :partial => 'project_comments/display_project_comment', :locals => {:project => project, :project_comment => project_comment_reply, :editable => editable}%>
+			<%end-%>
+		<%end-%>
+	</ul>
+
+	
+<%end-%>

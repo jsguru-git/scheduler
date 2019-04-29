@@ -1,0 +1,6 @@
+// Replace content in lightbox div
+$("#main_lightbox_content").html("<%= escape_javascript(render(:partial => 'edit_activity', :locals => {:project => @project, :quote => @quote, :quote_activity => @quote_activity})) %>");
+
+// Open lightbox
+main_lightbox.change_height_to(380);
+main_lightbox.open();

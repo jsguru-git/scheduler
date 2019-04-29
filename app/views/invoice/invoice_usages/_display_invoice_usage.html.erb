@@ -1,0 +1,75 @@
+<%=content_tag_for :div, invoice do -%>
+
+    <div class="usage_cont">
+        <div class="usage_cont_left">
+            <div class="date_display">
+                <span class="month"><%=invoice.invoice_date.strftime('%^b')%></span>
+                <span class="day_with_year"><%=invoice.invoice_date.day%></span>
+                <span class="year"><%=invoice.invoice_date.year%></span>
+            </div>
+        </div>
+        
+        <div class="usage_cont_right">
+            <div class="details">
+                <div class="number">
+                    <span class="heading">Invoice number:</span>
+                    <span class="inovice_number"><%=link_to invoice.invoice_number, invoice_project_invoice_path(invoice.project, invoice)%></span>
+                </div>
+                <div class="details_row">
+                    <div class="detail_cell">
+                        <div class="figure"><%=invoice.total_amount_exc_vat_in_currency%></div>
+                        <div class="desc">Invoice<br/>amount</div>
+                        <div class="clearing"></div>
+                    </div>
+                    <div class="detail_cell">
+                        <div class="figure"><%=formated_in_provided_currency (reamining = InvoiceUsage.amount_remaining_for(invoice)), invoice.currency%></div>
+                        <div class="desc">Amount<br/>Un-allocated</div>
+                        <div class="clearing"></div>
+                    </div>
+                    <div class="button_cell action_links">
+                        <%if reamining > 0%>
+                            <%=link_to raw('<span class="track_color">Allocate amount</span>'), new_invoice_project_invoice_usage_path(:project_id => @project, :invoice_id => invoice.id, :from => 'project'), :remote => true%>
+                        <%end-%>
+                    </div>
+                    <div class="clearing"></div>
+                </div>
+                
+                <div class="usages">
+                    <%if invoice.invoice_usages.count > 0 -%>
+                        <h3>How has this money been allocated:</h3>
+                        <table class="results_table">
+                            <tr class="heading_table">
+                                <th>Name</th>
+                                <th class="align_center">Amount spent</th>
+                                <th class="align_center">Added by</th>
+                                <th class="align_center">Date</th>
+                                <th></th>
+                            </tr>
+                            <%invoice.invoice_usages.each do |invoice_usage| -%>
+                                <%unless invoice_usage.new_record? -%>
+                                    <%=content_tag_for :tr, invoice_usage do -%>
+                                        <td>
+                                            <%=link_to invoice_usage.name, edit_invoice_project_invoice_usage_path(:project_id => @project, :id => invoice_usage, :invoice_id => invoice.id), :remote => true, 'data-spinner' => "#{dom_id(invoice_usage)}_spinner"%>&nbsp;<%=spinner_tag("#{dom_id(invoice_usage)}_spinner")%>
+                                        </td>
+                                        <td class="align_center"><%=formated_in_provided_currency invoice_usage.amount_cents, invoice.currency%></td>
+                                        <td class="align_center">
+                                            <%=invoice_usage.user.name%>
+                                        </td>
+                                        <td class="align_center">
+                                            <%=fmt_long_date invoice_usage.allocated_at%>
+                                        </td>
+                                        <td class="remove_link">
+                                            <%=link_to 'Remove', invoice_project_invoice_usage_path(:project_id => @project, :id => invoice_usage, :invoice_id => invoice.id), :method => :delete, :confirm => 'Are you sure you would like to remove this usage?', :remote => true, 'data-spinner' => "#{dom_id(invoice_usage)}_spinner", :class => 'small_remove_button'%></td>
+                                    <%end-%>
+                                <%end-%>
+                            <%end-%>
+                        </table>
+                    <%end-%>
+                </div>
+                
+            </div>
+            
+        </div>
+    </div>
+
+<%end-%>

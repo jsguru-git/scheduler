@@ -1,0 +1,163 @@
+<div class="form_row">
+    <div class="form_text">
+        <%= f.label :name %>
+    </div>
+    <div class="form_field">
+        <%= f.text_field :name, :class => 'text' %><span class="required"> *</span>
+    </div>
+
+    <div class="clearing"></div>
+</div>
+
+<div class="form_row">
+    <div class="form_text">
+        <%= f.label (:project_code) do %>
+          <% "Project code".html_safe %>
+        <% end %>
+    </div>
+
+    <div class="form_field extra_short_field">
+        <%= f.text_field :project_code, :class => 'text' %>
+    </div>
+
+    <div class="clearing"></div>
+</div>
+
+<div class="form_row">
+    <div class="form_text">
+        <%=f.label :description%>
+    </div>
+    <div class="form_field">
+        <%=f.text_area :description, :class => 'text', :rows => 6%>
+    </div>
+    <div class="clearing"></div>
+</div>
+
+<div class="form_row" id="client_select_container">
+    <div class="form_text">
+        <%=f.label :client_id%>
+    </div>
+    <div class="form_field client_selection">
+        <span id="client_select"><%=render :partial => 'client_select'%></span>&nbsp;&nbsp;
+        <%=link_to image_tag('tool/icons/add_24.png', :alt => 'new', :size => '24x24', id: 'new_client_button'), new_client_path, :remote => true, :class => 'new_client', :title => 'Add new client', 'data-spinner' => 'new_client_spinner'%>&nbsp;<%=spinner_tag('new_client_spinner')%>
+    </div>
+    <div class="clearing"></div>
+</div>
+
+<div class="form_row">
+    <div class="form_text">
+        <%=f.label :business_owner_id%>
+    </div>
+    <div class="form_field">
+        <%= f.select :business_owner_id, @account.users.name_ordered.collect {|p| [ p.name, p.id ] }, { :include_blank => true } %>
+    </div>
+    <div class="clearing"></div>
+</div>
+
+
+<div class="form_row">
+    <div class="form_text">
+        <%=f.label :project_manager_id%>
+    </div>
+    <div class="form_field">
+        <%= f.select :project_manager_id, @account.users.name_ordered.collect {|p| [ p.name, p.id ] }, { :include_blank => true } %>
+    </div>
+    <div class="clearing"></div>
+</div>
+
+
+<div class="form_row">
+    <div class="form_text">
+        <%=f.label :team_id %>
+    </div>
+    <div class="form_field">
+        <%= f.select :team_id, @account.teams.name_ordered.collect {|p| [ p.name, p.id ] }, { :include_blank => true } %>
+    </div>
+    <div class="clearing"></div>
+</div>
+
+<div class="form_row">
+    <div class="form_text">
+        <%=f.label :current_rag_status %>
+    </div>
+    <div class="form_field">
+        <%= f.select :current_rag_status, SELECTIONS['rag_status'].sort.collect  {|key, value| [ value, key ] }, { :include_blank => false } %>
+    </div>
+    <div class="clearing"></div>
+</div>
+
+<div class="form_row">
+    <div class="form_text">
+        <%=f.label :expected_rag_status %>
+    </div>
+    <div class="form_field">
+        <%= f.select :expected_rag_status, SELECTIONS['rag_status'].sort.collect  {|key, value| [ value, key ] }, { :include_blank => false } %>
+    </div>
+    <div class="clearing"></div>
+</div>
+
+<div class="form_row">
+    <div class="form_text">
+        <%=f.label :color%>
+    </div>
+    <div class="form_field extra_short_field">
+        <%=f.text_field :color, :class => 'text'%>
+    </div>
+    <div class="clearing"></div>
+</div>
+
+<div class="form_row">
+    <div class="form_text">
+        <%=f.label :event_type, 'Type'%>
+    </div>
+    <div class="form_field">
+        <%=f.select :event_type, SELECTIONS['project_event_type'].collect {|key, value| [ value, key ] }%>
+    </div>
+    <div class="clearing"></div>
+</div>
+
+<%unless f.object.new_record? -%>
+    <div class="form_row">
+        <div class="form_text">
+            <%= f.label :project_status_overridden, 'Status Update' %>
+        </div>
+        <div class="form_field">
+            <%= f.label :project_status_overridden, 'Manual' %>
+            <%= f.radio_button :project_status_overridden, true, :checked => @project.project_status_overridden? %>
+            <%= f.label :project_status_overridden, 'Automatic' %>
+            <%= f.radio_button :project_status_overridden, false, :checked => !@project.project_status_overridden? %>
+        </div>
+        <div class="clearing"></div>
+    </div>
+    <div class="form_row">
+        <div class="form_text">
+          <%= f.label :project_status, 'Status' %>
+        </div>
+        <div class="form_field">
+            <%= f.select :project_status, options_for_select( Project::STATUSES.map { |s, v| [v, s] }, @project.project_status) %>
+        </div>
+        <div class="clearing"></div>
+    </div>
+<%end-%>
+
+<div class="form_row">
+    <div class="form_text">
+        <%=f.label :percentage_complete%>
+    </div>
+    <div class="form_field">
+        <%=f.text_field :percentage_complete, :class => 'small_number'%> %
+    </div>
+    <div class="clearing"></div>
+</div>
+
+<div class="form_row">
+    <div class="form_text">
+        <%=f.label :issue_tracker_id, 'Jira project key'%>
+    </div>
+    <div class="form_field">
+        <%=f.text_field :issue_tracker_id, :class => 'text'%>
+    </div>
+    <div class="clearing"></div>
+</div>
+
+

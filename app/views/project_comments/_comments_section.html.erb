@@ -1,0 +1,16 @@
+<h4 class="light_green">Comments</h4>
+<ul class="comment_list">
+    <%if document.document_comments.blank? -%>
+        <li class="no_comments">No comments for document</li>
+    <%else-%>
+        <%document.document_comments.each do |document_comment| -%>
+            <%=render :partial => 'document_comments/display_document_comment', :locals => {:project => project, :document => document, :document_comment => document_comment}%>
+        <%end-%>
+    <%end-%>
+</ul>
+
+<div class="comment_link_cont">
+<%=link_to 'New comment', nil, :class => 'new_comment_link', :style => 'display: none;'%>
+</div>
+
+<%=render :partial => 'document_comments/comment_form', :locals => {:project => project, :document => document, :document_comment => document.document_comments.new}%>

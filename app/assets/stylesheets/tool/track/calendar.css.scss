@@ -1,0 +1,255 @@
+/*====== Calendar ======*/
+
+@import 'icons';
+
+.force-scroll {
+  overflow-x: scroll;
+}
+
+.copy_timesheet {
+
+  input { cursor:pointer; }
+
+  .cal_icon {
+    cursor:pointer;
+    position:relative;
+    top:10px;
+    margin:0 20px 0 5px;
+  }
+}
+
+#track_calendar_container {
+
+  border:1px solid #ddd;
+
+  .day_container {
+    float: left;
+    width: 13%;
+  }
+
+/* title_grid */
+#title_grid {
+  height: 40px;
+  background: rgb(169, 191, 215) url(tool/track/date_bg.png) repeat-x right 0px;
+
+  .empty_container {
+    background: url(tool/track/date_bg_border.png) no-repeat right bottom;
+    height: 40px;
+    float: left;
+    width: 9%;
+  }
+
+  .today {
+    background: rgb(169, 191, 215) url(tool/track/date_bg_highlight.png) repeat-x right 0px;
+  }
+
+  .day_container {
+
+    .date_number {
+      background: url(tool/track/date_bg_border.png) no-repeat right top;
+      color: rgba(0,0,0,0.5);
+      text-transform: uppercase;
+      display: block;
+      font-size: 1em;
+      font-weight: bold;
+      margin: 0;
+      line-height: 40px;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .user_name {
+      background:url(tool/track/date_bg_border.png) no-repeat right top;
+      color: rgba(0,0,0,0.5);
+      text-transform: uppercase;
+      line-height: 40px;
+      text-align: center;
+      font-weight:bold;
+      display:block;
+    }
+
+  }
+
+}
+
+/* end title_grid */
+
+
+/* bottom_grid */
+#bottom_grid {
+  padding: 20px 0 0 0;
+  width: 100%;
+
+  .empty_container {
+    height: 58px;
+    float: left;
+    width: 9%;
+  }
+
+  .day_container {
+    margin: 0 0 20px 0;
+
+    .date_number {
+      color: #666;
+      display: block;
+      font-size: 1em;
+      font-weight: bold;
+      height: 30px;
+      padding: 10px 0 0 0;
+      text-align: center;
+    }
+
+    input[type=submit] {
+      display: block;
+      margin: 0 auto
+    }
+
+    .submitted {
+      background: url("tool/track/submitted.png") no-repeat center;
+      width: 100%;
+      height: 13px;
+    }
+  }
+}
+/* end bottom_grid */
+}
+
+.selector {
+  background: url("tool/track/down.png") no-repeat center right;
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  right: 20px;
+  top: 40%;
+  cursor:pointer;
+}
+
+@media only screen and (max-width : 1200px) {
+  .selector { display: none }
+}
+
+.select_options {
+  position: absolute;
+  background: #fff;
+  width: 100%;
+  max-width: 185px;
+  z-index: 999999;
+  border: 1px solid #ccc;
+  display:none;
+
+  ul {
+
+    a {
+      display: block;
+      padding: 10px;
+      background: #EEE;
+      text-decoration: none;
+      color: #666;
+      cursor:pointer;
+      &:hover {
+        background: #B3C9E1;
+      }
+
+    }
+
+  }
+
+}
+
+.header {
+  z-index: 99;
+}
+
+#track_calendar {
+  background: #FFFFFF;
+  background: lighten(desaturate(#ccc6ad,10%), 20%);
+  height: 600px;
+  position:relative;
+  overflow-y: scroll;
+  width: 100%;
+  z-index:0 !important;
+  -webkit-overflow-scrolling: touch;
+
+  .project_title { font-size: 12px; }
+  .task_title { font-size: 12px; opacity: 0.7 }
+
+  .modal_overlay {
+    background:url("tool/ajax/ajax_spinner.gif") no-repeat center 40%;
+    width:100%;
+    height:100%;
+    min-height:2000px;
+    overflow:hidden;
+    position:absolute;
+    top:0;
+    z-index:99;
+  }
+
+  .day_container {
+    float: left;
+    width: 13%;
+    max-width:185px;
+  }
+
+  .day_container:last-child {
+    width: 13%;
+    max-width:180px;
+  }
+
+  #timing_grid {
+    width: 100%;
+
+    #inner_timing_grid {
+      background: url("tool/track/backgrounds/track_time_back3.png") repeat-x left top;
+      height: 1440px;
+      overflow: visible;
+
+      #time_container_outer {
+        float: left;
+        height: 1440px;
+        text-align: right;
+        width: 9%;
+        position: relative;
+
+        .time_container_inner {
+          color: #999999;
+          font-size: 14px;
+          font-weight: bold;
+          height: 60px;
+          padding: 0 10px 0 0;
+        }
+
+      }
+
+      .day_container {
+        height: 1440px;
+      }
+
+    }
+
+  }
+
+}
+/*====== end Calendar ======*/
+
+.copy_timesheet p:nth-of-type(3) {
+  input {
+    margin-left:20px;
+  }
+}
+
+a.week_link {
+  height: 40px;
+  font-size: 24px;
+  position: absolute;
+  top: 360px;
+  color: #ccc;
+  &:hover { text-decoration: none; color: #777; }
+}
+
+#week_next {
+  right: -30px;
+}
+
+#week_prev {
+  left: -30px;
+}

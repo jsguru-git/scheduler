@@ -1,0 +1,35 @@
+<%@page_title = 'Your account details'%>
+<%@second_nav = account_settings_second_nav(params[:action])%>
+
+<div class="standard_two_col">
+    <div class="cell_1">
+        <%=render :partial => 'shared/page_heading'%>
+        
+        <div class="plan_change_container">
+            <%=render :partial => 'upgrade'%>
+        </div>
+
+        <div>
+            <%=render :partial => 'delete_account'%>
+        </div>
+    </div>
+
+    <div class="cell_2">
+        <%if @account.chargify_customer_id.blank?%>
+            <div class="side_container">
+                <%if @account.trial_expires_at > Time.now -%>
+                    <h3 class="padding_bottom_10 red_text">Trial expires in: <%=distance_of_time_in_words_to_now @account.trial_expires_at%></h3>
+                <%else-%>
+                    <h3 class="padding_bottom_10 red_text">Trial expires in the next few hours</h3>
+                <%end-%>
+                <p>To continue to use FleetSuite after your trial has expired, you need to add your payment details. Do this now using the <%=link_to 'secure payments page', @account.account_plan.chargify_hosted_signup_link(User.account_holder_for_account(@account))%>.<br/>If you do not do this, your account will automatically be cancelled.</p>
+            </div>
+        <%end-%>
+        
+        <div class="side_container">
+            <h3 class="padding_bottom_10">What happens if I upgrade, downgrade or cancel?</h3>
+            <p>You can upgrade or downgrade at any time and you will instantly be given access to the new plans features. If you cancel your account, it will be removed immediately and you will never be billed again.</p>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,19 @@
+<%=form_for [:quote, project, quote] do |f| -%>
+    <ul class="validation_errors"></ul>
+
+    <%=render :partial => 'core_details_form', :locals => {:project => project, :quote => quote, :v1_quotes => v1_quotes, :f => f}%>
+
+    <%=render :partial => 'activity_details_form', :locals => {:project => project, :quote => quote, :v1_quotes => v1_quotes, :f => f}%>
+
+    <%=render :partial => 'total_cost_form', :locals => {:project => project, :quote => quote, :f => f}%>
+
+    <%=f.submit 'Save changes', :class => 'submit'%>
+<%end-%>
+
+<%=render :partial => 'further_details_form', :locals => {:project => project, :quote => quote}%>
+
+<div class="action_links export_links">
+    <%=link_to raw('<span class="pdf_color">Export as pdf</span>'), quote_project_quote_path(:project_id => project, :id => quote, :format => 'pdf'), :target => '_blank'%>
+    <%=link_to raw('<span class="pdf_color">Export as rtf</span>'), quote_project_quote_path(:project_id => project, :id => quote, :format => 'rtf'), :target => '_blank'%>
+    <div class='clearing'></div>
+  </div>

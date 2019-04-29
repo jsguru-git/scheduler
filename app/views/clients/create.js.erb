@@ -1,0 +1,11 @@
+// Replace select
+$("#client_select").html("<%= escape_javascript(render(:partial => 'projects/client_select')) %>");
+
+// Open lightbox
+main_lightbox.close();
+
+// Select new option
+$("#project_client_id").val('<%=@client.id%>');
+
+// Highlight
+$('#client_select_container').effect("highlight", {}, 3000);

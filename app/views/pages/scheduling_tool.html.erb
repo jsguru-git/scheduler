@@ -1,0 +1,77 @@
+<%@page_title = 'Online Scheduling Tool - Organise Multiple Teams - FleetSuite Schedule'%>
+<%@page_description = "FleetSuite's online scheduling tool makes project management efficient and effective, offering an at-a-glance view of opportunities for increased productivity"%>
+<%@page_keywords = "scheduling tool, online scheduling tool"%>
+<%@second_nav = schedule_second_nav('home')%>
+
+<% content_for :title_bar do %>
+    <div class="mac_ipad_preview">
+    </div>
+<%end-%>
+
+<div class="outer_contaner" id="tour_features">
+    <div class="inner_container" id="tour_features_inner">
+        <h1 class="tool_title">Online Scheduling Tool - Feature Tour</h1>
+        
+        <ul class="feature_list">
+            <li class="pos_1">
+                <h2 class="blue_med_oswald_text">Overview</h2>
+                <p>An online scheduling tool offering an at-a-glance view of all team and user statuses. Administrators can effortlessly assess overall lead times as well as individual team and user capacity, quickly identifying the next available opportunity, leading to increased productivity.</p>
+            </li>
+            <li class="pos_2">
+                <h2 class="blue_med_oswald_text">Calendars</h2>
+                <p>Highly visual calendars with interactive drag-and-drop functionality make co-ordinating team and individual schedules easy and intuitive. Infinite scrolling enables you to plan projects well in advance for smooth and predictable delivery.</p>
+            </li>
+            <li class="pos_3">
+                <h2 class="blue_med_oswald_text">Users</h2>
+                <p>Set up user profiles and manage these as teams to reflect a real-world work environment. Easily assign activities to individuals using the scheduling tool for a detailed view of expected progress that also enables team members to clearly see their work plans and timescales.</p>
+            </li>
+            <li class="pos_4">
+                <h2 class="blue_med_oswald_text">Projects</h2>
+                <p>Tight integration between projects and user schedules enables automatic updates when projects are assigned. See how individual project schedules fit into the wider team or business plans or filter by project assignment for an immediate overview of who is working on what and when.</p>
+            </li>
+        </ul>
+        <div class="clearing"></div>
+        
+        <div class="core_intro">
+            <h1 class="core_title">Core features</h1>
+            <p class="small_light_shadow_text">The core features included as standard with all FleetSuite accounts<br/> make managing multiple projects, teams and tools simple and intuitive.</p>
+        </div>
+    </div>
+</div>
+
+<div class="outer_contaner" id="core_features_select">
+    <div class="inner_container" id="core_features_select_inner">
+        <div class="core_expand"></div>
+    </div>
+</div>
+
+<div class="outer_contaner" id="core_features_content">
+    <div class="inner_container" id="core_features_content_inner">
+        <ul class="four_col_list">
+            <li class="pos_1">
+                <h2 class="blue_small_oswald_text">Dashboards</h2>
+                <p>A visually engaging front page provides a high-level overview of all tasks and actions from across your chosen components.</p>
+            </li>
+            <li class="pos_2">
+                <h2 class="blue_small_oswald_text">Projects</h2>
+                <p>Create, edit and archive projects to maintain an up-to-date overview of activity, with easy access to more granular information as required.  </p>
+            </li>
+            <li class="pos_3">
+                <h2 class="blue_small_oswald_text">Teams & People</h2>
+                <p>Create profiles for users across your business so they can easily view and understand their own schedules and tasks.</p>
+            </li>
+            <li class="pos_4">
+                <h2 class="blue_small_oswald_text">Clients</h2>
+                <p>Connect distinct projects to specific clients for a joined-up view of your workload and added information for project teams.</p>
+            </li>
+        </ul>
+        <div class="clearing"></div>
+        
+        <span class="signup_button">
+            <%= link_to pricing_path(:from => 'schedule'), :class => 'pricing_and_signup_button' do %>
+                See Pricing &amp; Signup
+                <%= content_tag(:span, "30-Day Free Trial") %>
+            <% end %>
+        </span>
+    </div>
+</div>

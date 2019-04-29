@@ -1,0 +1,11 @@
+<h3 class="padding_top_30">Default currency</h3>
+<p>Please choose a default currency which you will enter all costs / figures into the system using.</p>
+<div class="form_row">
+    <div class="form_text">
+        <%=label_tag :default_currency%>
+    </div>
+    <div class="form_field">
+        <%=f.select :default_currency, supported_currencies(Money::Currency.table).sort.collect {|key, value| [ "#{value[:iso_code]} - #{value[:name]}", key ]}, :class => 'text'%>
+    </div>
+    <div class="clearing"></div>
+</div>

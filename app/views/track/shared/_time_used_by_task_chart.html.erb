@@ -1,0 +1,57 @@
+<% @google_chart = true %>
+<% @tracking_users, @tasks = Timing.time_tracked_group_by_task_and_user(project) %>
+<% if @tasks.present? %>
+  <% content_for :head_content do %>
+    <script type="text/javascript">
+      function drawVisualization1() {
+                
+        var data = new google.visualization.DataTable();
+                
+        // Headings
+        data.addColumn('string','Time');
+        <% @tracking_users.each_value do |value| %>
+          data.addColumn('number', '<%=escape_javascript(value[:name])%>');
+        <% end %>
+        data.addColumn('number','Estimate');
+                
+        // Data
+        <% @tasks.each_value do |task| %>
+          data.addRow(['<%= escape_javascript(task[:name]) %>'<% task[:users].each_value do |value| %>, { v:<%= value[:tracked_minutes] %>, f:'<%= value[:tracked_duration_in_hours] %>' }<% end %>, { v:<%= task[:estimate_minutes] %>, f:'<%= task[:estimate_duration_in_hours] %>' }]);
+        <% end %>
+                
+        var options = {
+          vAxis: {
+            title: "Time", 
+            titleTextStyle: { color: '#999999' },
+            textStyle: { color: '#FFFFFF' }
+          },
+          hAxis: {
+            title: "Tasks", 
+            titleTextStyle: { color: '#999999' },
+            textStyle: { color: '#666666' }
+          },
+          seriesType: "bars",
+          isStacked: true,
+          series: { <%= @tracking_users.length %>: { type: "steppedArea" } },
+          colors:["#CCDB81", "#B3C9E1", "#EBB165", "#E39191", "#E5D765", "#C8B3C1", "#86D0DA"],
+          legend: {
+            position: 'right', 
+            textStyle: { color: '#666666' }
+          },
+          legend: { position: 'none' },
+          chartArea: {
+            width: '95%'
+          }
+        };
+                
+        var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+      google.setOnLoadCallback(drawVisualization1);
+    </script>
+  <% end %>
+    
+  <div class="outer_chart_container">
+    <div id="chart_div" style="width: 100%; height: 480px;"></div>
+  </div>
+<% end %>

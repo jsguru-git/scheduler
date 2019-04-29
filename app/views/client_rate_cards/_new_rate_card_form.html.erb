@@ -1,0 +1,11 @@
+<h2>Set new client rate</h2>
+<%=form_for [client, client_rate_card], :remote => true, :html => { 'data-spinner' => 'new_client_rate_card_form_spinner'} do |f| -%>
+    <%=render :partial => 'shared/notifications/error_messages', :object => client_rate_card%>
+    
+    <%=render :partial => 'form', :locals => {:f => f, :rate_card => rate_card}%>
+    <%=f.hidden_field :rate_card_id%>
+    
+    <div class="submit_container">
+        <%= f.submit 'Save changes', :class => 'submit' %> <span class="small_text">or <%=link_to 'Cancel', client_client_rate_cards_path(client), :class => 'lightbox_close'%></span>&nbsp;<%=spinner_tag('new_client_rate_card_form_spinner')%>
+    </div>
+<%end-%>

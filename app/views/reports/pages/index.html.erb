@@ -1,0 +1,168 @@
+<% @page_title = 'Reports' %>
+
+<div class="standard_one_col">
+    <div class="cell_1">
+        <%= render :partial => 'shared/page_heading' %>
+	
+	
+		<%if has_permission?('account_holder || administrator')%>
+			<div id="select_section" class="js_show" style="display: none;">
+				<div class="select_container">
+					<%=select_tag :select, options_for_select( [['All types', ''], ['Clients', 'client'], ['Invoicing', 'invoicing'], ['Projects', 'projects'], ['Time', 'time']], params[:select])%>
+				</div>
+				<%=label_tag :select, 'Show:', :class => 'label_text'%>
+			</div>
+		<%end-%>
+		
+		<%if @account.component_enabled?(2) && @account.component_enabled?(4) && has_permission?('account_holder || administrator')%>
+			<div class="section" id="client">
+				<h3>Clients</h3>
+	
+				<div class="report_container">
+		            <div class="inner">
+		                <%=link_to 'Invoice client profit & loss', profit_and_loss_reports_clients_path%>
+		                <p>Compare the time tracked and the amount invoiced for each client.</p>
+		            </div>
+		        </div>
+				<div class="report_container">
+		            <div class="inner">
+		                <%=link_to 'Estimate client profit & loss', quote_profit_and_loss_reports_clients_path%>
+		                <p>Compare the time tracked and the amount estimated for each client.</p>
+		            </div>
+		        </div>
+				<div class="clearing"></div>
+			</div>
+		<%end-%>
+		
+		<div class="section_cont">
+			<%if @account.component_enabled?(4) && has_permission?('account_holder || administrator')%>
+				<div class="section" id="invoicing">
+					<h3>Invoicing</h3>
+	
+					<div class="report_container">
+			            <div class="inner">
+			                <%=link_to 'Payment predictions report', payment_predictions_reports_invoices_path%>
+			                <p>View what payments are predictions and what have been raised.</p>
+               
+			            </div>
+			        </div>
+       
+			        <div class="report_container">
+			            <div class="inner">
+			                <%=link_to 'Invoice status report', invoice_status_reports_invoices_path%>
+			                <p>Quickly view all raised invoices and filter by status.</p>
+               
+			            </div>
+			        </div>
+
+			        <div class="report_container">
+			            <div class="inner">
+			                <%=link_to 'Deleted invoices report', deletions_reports_invoices_path%>
+			                <p>View a summary of all deleted invoices.</p>
+			            </div>
+			        </div>
+			
+					<div class="report_container">
+			            <div class="inner">
+			                <%=link_to 'Payment stage rollovers', rollover_reports_payment_profiles_path%>
+			                <p>Lists any payment stages that their expected payment date has changed into a different month.</p>
+               
+			            </div>
+			        </div>
+			
+					<div class="report_container">
+			            <div class="inner">
+			                <%=link_to 'Normalised monthly invoicing', normalised_monthly_reports_invoices_path%>
+			                <p>View a summary of how pre-paid invoices has been assigned.</p>
+               
+			            </div>
+			        </div>
+			
+					<div class="report_container">
+			            <div class="inner">
+			                <%=link_to 'Combined project pre-payments', combined_pre_payments_reports_invoices_path %>
+			                <p>Track all project pre-payments.</p>
+			            </div>
+			        </div>
+			
+					<div class="report_container">
+			            <div class="inner">
+			                <%=link_to 'Project specific pre-payments', select_project_reports_pages_path(:path => invoice_project_invoice_usages_path(0) ), :class => 'select_project', :remote => true%>
+			                <p>Track specific project pre-payments.</p>
+			            </div>
+			        </div>
+
+			        <div class="clearing"></div>
+				</div>
+			<%end-%>
+			
+
+			<div class="section" id="projects">
+				<h3>Projects</h3>
+			
+				<% if @account.component_enabled?(3) && @account.component_enabled?(2) && has_permission?('account_holder || administrator') -%>
+	
+					<div class="report_container">
+			            <div class="inner">
+			                <%=link_to 'Project overview', overview_reports_projects_path%>
+			                <p>Gain an instant overview of each active project.</p>
+			            </div>
+			        </div>
+
+			    <div class="report_container">
+			    	<div class="inner">
+              <%= link_to 'Utilisation', project_utilisation_reports_projects_path %>
+              <p>Get an cost estimate in terms of the amount of time spent per project, client and team.</p>
+            </div>
+          </div>
+
+				<% end -%>
+				
+				<div class="report_container">
+		            <div class="inner">
+		                <%=link_to 'Project tracking', select_project_reports_pages_path(:path => track_project_path(0)), :class => 'select_project', :remote => true%>
+		                <p>View various reports on what time has been tracked to a given project.</p>
+		            </div>
+		        </div>
+		
+				<div class="report_container">
+		            <div class="inner">
+		                <%=link_to 'Percentage time', percentage_time_spent_reports_projects_path%>
+		                <p>Gain an instant overview of the percentage of time spent on a project.</p>
+		            </div>
+		        </div>
+		        
+		        <div class="report_container">
+		            <div class="inner">
+		                <%=link_to 'QA stats', select_project_reports_pages_path(:path => qa_stats_reports_project_path(0)), :class => 'select_project', :remote => true%>
+		                <p>View details of issues raised in Jira for a given project.</p>
+		            </div>
+		        </div>
+
+		        <div class="report_container">
+		            <div class="inner">
+		                <%= link_to 'Delivery forecast', forecast_reports_projects_path %>
+		                <p>Forecasted figures for the next three months.</p>
+		            </div>
+		        </div>
+				
+				<div class="clearing"></div>
+				
+			</div>
+			
+			<div class="section" id="time">
+				<h3>Time</h3>
+			
+				<div class="report_container">
+		            <div class="inner">
+		                <%=link_to 'Submitted time report', submitted_time_report_track_timings_path%>
+		                <p>View an employees submitted time for a given date range.</p>
+		            </div>
+		        </div>
+				<div class="clearing"></div>
+			</div>
+		
+		</div>
+    </div>
+</div>
+

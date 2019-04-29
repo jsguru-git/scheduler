@@ -1,0 +1,53 @@
+<% if @project.archived? %>
+  <% @page_title = 'Payment profile (Archived)' %>
+<% else %>
+  <% @page_title = 'Payment profile' %>
+<% end %>
+<% @second_nav = project_second_nav(@project, 'payment') %>
+
+<div class="standard_one_col">
+
+  <div class="cell_1">
+    <%= render partial: 'shared/page_heading' %>
+
+    <div class="action_links">
+      <% if policy(PaymentProfile).create? %>
+          <%= link_to raw('<span class="add_color">Add new payment stage</span>'), new_invoice_project_payment_profile_path(@project), remote: true %>
+        <% if @account.component_enabled?(1) %>
+            <%= link_to raw('<span class="schedule_color">Generate from schedule</span>'), generate_from_schedule_invoice_project_payment_profiles_path(@project), remote: true %>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div class="filter">
+      <%= form_tag '', method: :get do %>
+        <%= label_tag :stages, 'Show:', class: 'label' %>
+          <div class="select_container">
+            <%=select_tag :stages, options_for_select( [['All', 0], ['Not Invoiced', 1], ['Invoiced', 2]], params[:stages]), :class => 'submit_on_change'%>
+          </div>
+        <% end %>
+      </div>
+
+      <%= render partial: 'totals', locals: { project: @project } %>
+
+      <div class="outline_container">
+        <table class="results_table">
+          <tr class="heading_table">
+            <th>Payment date</th>
+            <th>Name</th>
+            <th>Service types</th>
+            <th class="align_center">Days</th>
+            <th class="align_center">Cost</th>
+            <th>Actions</th>
+          </tr>
+          <%= render partial: 'display_payment_profile', collection: @payment_profiles, locals: { project: @project } %>
+        </table>
+        <% if @payment_profiles.blank? %>
+          <div class="no_payment_stages">
+            <p>No payment profiles found.</p>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

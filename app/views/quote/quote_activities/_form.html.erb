@@ -1,0 +1,62 @@
+<div class="quote_activity_form">
+    <div  class="form_row">
+        <div class="form_text">
+            <%=f.label :name%>
+        </div>
+        <div class="form_field">
+            <%=f.text_field :name, :class => 'text'%><span class="required"> *</span>
+        </div>
+        <div class="clearing"></div>
+    </div>
+
+    <div  class="form_row">
+        <div class="form_text">
+            <%=f.label :rate_card_id, 'Service type'%>
+        </div>
+        <div class="form_field">
+            <%=f.select :rate_card_id, project.account.rate_cards.service_type_ordered.collect {|p| [ p.service_type, p.id ] }, { :include_blank => true }%><span class="required"> *</span>
+        </div>
+        <div class="clearing"></div>
+    </div>
+
+    <%= f.hidden_field :estimate_type, value: 0 %>
+
+    <div class="form_row">
+        <div class="form_text">
+            <%=f.label :estimate_scale%>
+        </div>
+        <div class="form_field">
+            <%=f.select :estimate_scale, SELECTIONS['estimation_scale'].collect {|key, value| [ value, key ] }%><span class="required"> *</span>
+        </div>
+        <div class="clearing"></div>
+    </div>
+
+    <div class="form_row">
+        <div class="form_text">
+            <%= f.label :max_estimated, 'Estimate', :class => 'type_label_exact' %>
+        </div>
+        <div class="form_field">
+            <%= f.text_field :max_estimated, :class => 'number' %> <span class="scale_name"><%= SELECTIONS['estimation_scale'][f.object.estimate_scale] %></span> <span class="required"> *</span>
+        </div>
+        <div class="clearing"></div>
+    </div>
+    
+    <div class="form_row">
+        <div class="form_text">
+            <%=f.label :discount_percentage, 'Discount'%>
+        </div>
+        <div class="form_field">
+            <%=f.text_field :discount_percentage, :class => 'number'%> %
+        </div>
+        <div class="clearing"></div>
+    </div>
+
+    <script type="text/javascript">
+        $('#quote_activity_estimate_scale').change(function() {
+            var unit = $('option:selected', this).text();
+            $('.scale_name').text(unit);
+        
+
+        });
+    </script>
+</div>

@@ -1,0 +1,13 @@
+<div class="further_details_section">
+    <h3 class="underline">Quote document layout</h3>
+    
+    <div class="action_links">
+        <%=spinner_tag("quote_section_new_spinner")%>&nbsp;<%=link_to raw('<span class="add_color">Add new section</span>'), quote_project_quote_quote_sections_path(project, quote), :method => :post, :remote => true, 'data-spinner' => "quote_section_new_spinner"%>
+    </div>
+    
+    <ul id="report_layout_list" data-update-url="<%=sort_quote_project_quote_quote_sections_path(project, quote)%>">
+        <%quote.quote_sections.position_ordered.each do |quote_section| -%>
+            <%=render :partial => 'quote/quote_sections/display_section', :locals => {:project=> project, :quote => quote, :quote_section => quote_section}%>
+        <%end-%>
+    </ul>
+</div>

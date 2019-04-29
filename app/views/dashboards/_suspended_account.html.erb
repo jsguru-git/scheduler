@@ -1,0 +1,14 @@
+<div class="standard_one_col">
+    <div class="cell_1">
+        <% if @account.account_suspended? && @account.trial_expires_at < Time.now && @account.chargify_customer_id.blank? -%>
+            <p class="large_text">Thanks for trailing FleetSuite, your trial has now expired and your account has been scheduled for deletion.</p>
+            <% if has_permission?('account_holder') -%>
+                <p class="large_text">If you still wish to use FleetSuite, please add your <%= link_to 'payment details', @account.account_plan.chargify_hosted_signup_link(User.account_holder_for_account(@account)) %> now and we will re-activate everything straight away.</p>
+            <% else -%>
+                <p class="large_text">If you still wish to use FleetSuite, please ask the account holder to update their payment details.</p>
+            <% end -%>
+        <% else -%>
+            <p class="large_text">Your account has been suspended, please get in <%=link_to 'touch', 'http://help.fleetsuite.com'%> if you have any questions.</p>
+        <% end -%>
+    </div>
+</div>

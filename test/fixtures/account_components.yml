@@ -1,0 +1,27 @@
+one:
+    id: 1
+    name: schedule
+    price_in_cents: 9900
+    chargify_component_number: 11015
+    description: test dsecription
+    
+two:
+    id: 2
+    name: track
+    price_in_cents: 9900
+    chargify_component_number: 12376
+    description: test dsecription
+    
+three:
+    id: 3
+    name: estimate
+    price_in_cents: 9900
+    chargify_component_number: 13465
+    description: test dsecription
+    
+four:
+    id: 4
+    name: invoice
+    price_in_cents: 9900
+    chargify_component_number: 13467
+    description: test dsecription

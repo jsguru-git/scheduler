@@ -1,0 +1,14 @@
+<%@page_title = 'Edit team'%>
+<% @second_nav = people_second_nav(params[:action]) %>
+
+<div class="standard_two_col">
+    <div class="cell_1">
+        <%=render :partial => 'shared/page_heading'%>
+        <%= render :partial => 'edit_team', :locals => {:team => @team}%>
+    </div>
+    <div class="cell_2">
+
+    </div>
+    <div class="clearing"></div>
+</div>
+

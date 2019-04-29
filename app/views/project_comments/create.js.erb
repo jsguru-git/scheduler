@@ -1,0 +1,20 @@
+<% if @project_comment.errors.present? -%>
+    $(".new_comment_container").html("<%= escape_javascript(render(:partial => 'project_comments/comment_form', :locals => {:project => @project, :project_comment => @project_comment})) %>");
+<% else -%>
+    // Reset form and remove any error messages
+    $(".new_comment_container").html("<%= escape_javascript(render(:partial => 'project_comments/comment_form', :locals => {:project => @project, :project_comment => ProjectComment.new})) %>");
+    $('.no_comments').remove();
+    
+    // Add comment to list
+    $("ul.comment_list").append("<%= escape_javascript(render(:partial => 'project_comments/display_project_comment', :locals => {:project => @project, :project_comment => @project_comment, :editable => true})) %>");
+    
+    // Hide all forms and show links
+    new_project_comment_creation.set_page_comments();
+	new_project_comment_creation.show_hide_reply_comments(null);
+    
+    // Highlight
+    $('#<%=dom_id(@project_comment)%> p').effect("highlight", {}, 3000);
+<% end -%>
+
+// Re-apply observers
+new_project_comment_creation.observe_comment_links();

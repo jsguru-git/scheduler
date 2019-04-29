@@ -1,0 +1,5 @@
+// Add comment to list
+$("#<%=dom_id @document_comment%>").replaceWith("<%= escape_javascript(render(:partial => 'document_comments/display_document_comment', :locals => {:project => @project, :document => @document, :document_comment => @document_comment})) %>");
+
+// Highlight
+$("#<%=dom_id @document_comment%> p").effect("highlight", {}, 3000);

@@ -1,0 +1,3 @@
+$('#<%=dom_id(@invoice)%>').replaceWith("<%= escape_javascript(render(:partial => 'display_invoice_usage', :locals => {:invoice => @invoice })) %>");
+
+main_notification.display_message('Usage has been successfully removed');

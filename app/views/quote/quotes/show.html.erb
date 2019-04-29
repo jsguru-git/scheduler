@@ -1,0 +1,51 @@
+<%@page_title = 'Quote: ' + @quote.display_title%>
+
+<%@second_nav = project_second_nav(@project, 'quote')%>
+
+<div class="standard_one_col">
+    <div class="cell_1" id="showing_quote">
+        <%=render :partial => 'shared/page_heading'%>
+        
+        <div class="quote_display">
+            
+            <div class="intro_section">
+                <%=link_to "See all '#{@project.name}' quotes", quote_project_quotes_path(@project), :class => 'project_list'%>
+            
+                <div class="even_container_split">
+                    <div class="col_1 col">
+                        <div class="form_row">
+                            <div class="form_text">
+                                Project
+                            </div>
+                            <div class="form_field label_text">
+                                <span class="green_text"><%=@project.name%></span>
+                            </div>
+                            <div class="clearing"></div>
+                        </div>
+                    </div>
+                    <div class="col_2 col">
+                        <%if @project.client.present?%>
+                            <div class="form_row">
+                                <div class="form_text">
+                                    Client
+                                </div>
+                                <div class="form_field label_text">
+                                    <%=@project.client.name%>
+                                </div>
+                                <div class="clearing"></div>
+                            </div>
+                        <%end-%>
+                    </div>
+                    <div class="clearing"></div>
+                </div>
+            </div>
+        
+            <%if @quote.editable?%>
+                <%=render :partial => 'edit_quote', :locals => {:project => @project, :quote => @quote, :v1_quotes => @v1_quotes}%>
+            <%else-%>
+                <%=render :partial => 'view_quote', :locals => {:project => @project, :quote => @quote, :v1_quotes => @v1_quotes}%>
+            <%end-%>
+        </div>
+    </div>
+</div>
+    

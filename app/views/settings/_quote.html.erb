@@ -1,0 +1,15 @@
+<p>All content that you enter below will become default content for each newly created quote. e.g. you may want a 'Disclaimer' section on each quote. You will then be able to choose to either leave the default in place, update the text or remove it on a quote by quote basis.</p>
+
+<div class="default_section">
+    <h3 class="underline">Quote default sections</h3>
+    
+    <div class="action_links">
+        <%=spinner_tag("new_quote_section")%>&nbsp;<%=link_to raw('<span class="add_color">Add new section</span>'), quote_default_sections_path, method: :post, remote: true, data: {spinner: "new_quote_section"}%>
+    </div>
+    
+    <ul id="layout_list" data-update-url="<%=sort_quote_default_sections_path%>">
+        <%@account.quote_default_sections.position_ordered.each do |quote_default_section| -%>
+            <%=render partial: 'quote_default_sections/display_section', locals: {account: @account, quote_default_section: quote_default_section}%>
+        <%end-%>
+    </ul>
+</div>

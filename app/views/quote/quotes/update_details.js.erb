@@ -1,0 +1,24 @@
+<%if params[:field].present? -%>
+    <%if params[:field] == 'extra_costs' -%>
+        // Update total cost
+        $('#total_cost_excl_cont').replaceWith("<%= escape_javascript(render(:partial => 'quote/quotes/total_cost_excl', :locals => {:quote => @quote})) %>");
+        $('#total_cost_incl_cont').replaceWith("<%= escape_javascript(render(:partial => 'quote/quotes/total_cost_incl', :locals => {:quote => @quote})) %>");
+        $('#total_report_currency_cont').replaceWith("<%= escape_javascript(render(:partial => 'quote/quotes/total_report_currency', :locals => {:quote => @quote})) %>");
+        $('#extra_cost_cont').replaceWith("<%= escape_javascript(render(:partial => 'quote/quotes/extra_cost_form', :locals => {:quote => @quote})) %>");
+        
+        // Show message
+        main_notification.display_message('Extra costs updated');
+        
+        // Close lightbox
+        main_lightbox.close();
+    <%else-%>
+        // Replace
+        $('#<%=dom_id(@quote)%>').replaceWith("<%= escape_javascript(render(:partial => 'display_quote', :locals => {:project => @project, :quote => @quote})) %>");
+
+        // Close lightbox
+        main_lightbox.close();
+
+        // Highlight
+        $('#<%=dom_id(@quote)%>').delay(200).effect("highlight", {}, 3000);
+    <%end-%>
+<%end-%>

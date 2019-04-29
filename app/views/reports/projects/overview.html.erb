@@ -1,0 +1,173 @@
+<% @page_title = 'Project overview' %>
+
+
+<div class="standard_one_col">
+
+    <div class="cell_1">
+        <%= render :partial => 'shared/page_heading' %>
+
+        <div class="search_container">
+            <h3>Filter results</h3>
+
+            <%=form_tag overview_reports_projects_path, :method => :get  do %>
+                <div class="form_row">
+
+                <div class="form_row">
+                    <div class="form_text">
+                        <%=label_tag :client_id%>
+                    </div>
+                    <div class="form_field">
+                        <%= select_tag :client_id,
+                            options_for_select(@account.clients.not_internal.name_ordered.collect { |p| [ p.name, p.id.to_s ] }, params[:client_id]),
+                            prompt: 'All clients' %>
+                    </div>
+                    <div class="clearing"></div>
+                </div>
+                
+                <div class="form_row">
+                    <div class="form_text">
+                        <%=label_tag :project_id%>
+                    </div>
+                    <div class="form_field">
+                        <%= select_tag :project_id,
+                                       options_for_select(@projects.name_ordered.collect { |p| [ p.name, p.id.to_s ] }, params[:project_id]),
+                                       prompt: 'All projects' %>
+                    </div>
+                    <div class="clearing"></div>
+                </div>
+                
+                <div class="form_row">
+                    <div class="form_text">
+                        <%=label_tag :project_manager_id%>
+                    </div>
+                    <div class="form_field">
+                        <%= select_tag :project_manager_id,
+                                       options_for_select(@project_managers.collect {|p| [ p.name, p.id.to_s ] }, params[:project_manager_id]),
+                                       :prompt => 'All Project Managers' %>
+                    </div>
+                    <div class="clearing"></div>
+                </div>
+                
+                <div class="submit_container">
+                    <%= submit_tag 'Filter', :class => 'submit' %>
+                </div>
+                
+            <%end-%>
+        </div>
+
+        <div class='statistics'>
+            <div class='statistic'>
+                <div class='figure red'><%= @projects.where(current_rag_status: 2).all.size %></div>
+                <div class='desc'>Red status</div>
+            </div>
+            <div class='statistic'>
+                <div class='figure orange'><%= @projects.where(current_rag_status: 1).all.size %></div>
+                <div class='desc'>Amber status</div>
+            </div>
+            <div class='statistic'>
+                <div class='figure green'><%= @projects.where(current_rag_status: 0).all.size %></div>
+                <div class='desc'>Green status</div>
+            </div>
+            <div class='statistic'>
+                <div class='figure blue'><%= @projects.all.size %></div>
+                <div class='desc'>In Progress</div>
+            </div>
+            <div class='statistic'>
+                <div class='figure purple'><%= formated_in_default_currency @projects.sum(&:total_project_cost_cents) %></div>
+                <div class='desc'>Total Budget</div>
+            </div>
+        </div>
+        <div class='clearing'></div>
+
+        <%= render :partial => 'shared/pagination/paginate', :object => @projects_paginated %>
+        <div class="outline_container">
+            <table class="results_table">
+                <tr class="heading_table">
+                    <th><%= sortable 'clients.name', 'Client' %></th>
+                    <th><%= sortable 'projects.name', 'Project' %></th>
+                    <th class="align_justify"><%= sortable 'project_manager.firstname', 'Project manager' %></th>
+                    <th class="align_justify"><%= sortable 'business_owner.firstname', 'Account owner' %></th>
+                    <th class="align_justify"><%= sortable 'projects.current_rag_status', 'Current status' %></th>
+                    <th class="align_justify"><%= sortable 'budget', 'Project budget' %></th>
+                    <% if @account.component_enabled?(3) -%>
+                        <th class="align_justify">Budget used</th>
+                    <% end -%>
+                    <th class="align_justify"><%= sortable 'projects.percentage_complete', 'Complete' %></th>
+                    <th class="align_justify">Scheduled Until</th>
+                    <th class="align_justify"><%= sortable 'comments', 'Comments' %></th>
+                    <th class="align_justify"><%= sortable 'phases.name', 'Phase' %></th>
+                    <% if @account.account_setting.issue_tracker_url.present? %>
+                        <th class="align_justify">QA tickets</th>
+                    <% end %>
+                </tr>
+                <% @projects_paginated.each do |project| %>
+
+                    <%= content_tag_for :tr, project do %>
+                        <td>
+                            <%= project.client.name if project.client_id.present? %>
+                        </td>
+                        <td>
+                            <%= link_to project.name, project_path(project) %>
+                        </td>
+                        <td class="align_center">
+                            <%= project.project_manager.name if project.project_manager_id.present? %>
+                        </td>
+                        <td class="align_center">
+                            <%= project.business_owner.name if project.business_owner_id.present? %>
+                        </td>
+                        <td class="align_center">
+                            <span class="<%= SELECTIONS['rag_status'][project.current_rag_status].downcase%>_text"><%=SELECTIONS['rag_status'][project.current_rag_status] %></span>
+                        </td>
+                        <td class="align_center">
+                            <%= formated_in_default_currency project.total_project_cost_cents %>
+                        </td>
+                        <% if @account.component_enabled?(3) %>
+                            <td class="align_center">
+                                <% if project.total_tracked == 0 %>
+                                    <span class="green_text">0%</span>
+                                <% elsif project.total_estimate == 0 %>
+                                    <span class="light_text">No estimate</span>
+                                <% else %>
+                                    <% percentage = ((project.total_tracked / project.total_estimate.to_f) * 100).round(1) %>
+                                    <span class="<%=percentage > 100 ? 'red_text' : 'green_text'%>"><%=percentage%>%</span>
+                                <% end %>
+                            </td>
+                        <% end %>
+                        <td class="align_center percentage_complete">
+                            <%=link_to number_to_percentage(project.percentage_complete, precision: 0), edit_percentage_complete_project_path(project), :remote => true%>
+                        </td>
+                        <td class="align_center">
+                            <% if project.entries.any? -%>
+                                <%=link_to fmt_long_date(project.entries.order(:end_date).last.end_date), schedule_project_path(project) %>
+                            <% end %>
+                        </td>
+                        <td class="align_center">
+                            <%if project.project_comments.length > 0%>
+                                <%=link_to project.project_comments.length, preview_project_project_comments_path(project), :remote => true, 'data-spinner' => "preview_#{dom_id(project)}"%>&nbsp;<%=spinner_tag("preview_#{dom_id(project)}")%>
+                            <%else-%>
+                                0
+                            <%end-%>
+                        </td>
+                        <td class="align_center">
+                            <%= project.phase.name if project.phase.present? %>
+                        </td>
+                        <% if @account.account_setting.issue_tracker_url.present? %>
+                            <td class="align_center">
+                                <% if project.qa_stats.present? %>
+                                    <%= link_to project.qa_stats.last.total_tickets, qa_stats_reports_project_path(project.id) %>
+                                    <% if project.qa_stats.last.ticket_breakdown[:status]['Resolved'].present? && project.qa_stats.last.ticket_breakdown[:status]['Closed'].present? %>
+                                        (<%= number_to_percentage ((project.qa_stats.last.ticket_breakdown[:status]['Resolved'].to_d + project.qa_stats.last.ticket_breakdown[:status]['Closed'].to_d) / project.qa_stats.last.total_tickets) * 100, precision: 0 %> Resolved / Closed)
+                                    <% end %>
+                                <% else %>
+                                    <%= link_to 'Enable', edit_project_path(project) %>
+                                <% end %>
+                            </td>
+                        <% end %>
+                    <%end-%>
+                <%end-%>
+            </table>
+        </div>
+        <%= render :partial => 'shared/pagination/paginate', :object => @projects_paginated %>
+    </div>
+</div>
+

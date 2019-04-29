@@ -1,0 +1,21 @@
+---
+oauth_drive_tokens_001:
+  id: 1
+  user_id: 1
+  provider_number: 0
+  access_token: ya29.AHES6ZSrci4_hPeK67uY8mQk6pzDUOa0FG3dVxv7-7NeSqM
+  refresh_token: 1/kGaCJ7nzR5Uo74iHYmx7uk5r-ZeQG7L1pNFP_Qa401I
+  client_number: 941357160201.apps.googleusercontent.com
+  expires_at: 2030-06-06 12:18:20
+  created_at: 2013-06-06 11:18:20
+  updated_at: 2013-06-06 11:18:20
+oauth_drive_tokens_002:
+  id: 2
+  user_id: 1
+  provider_number: 1
+  access_token: yazbi2PNNN3okAAAAAAAAAAU8F51EkeeFziBYq3tKXkWB4roA5msZ5A30N9JE6CpB
+  refresh_token: not_supported
+  client_number: 10856011
+  expires_at: 2013-06-06 12:18:20
+  created_at: 2013-06-06 11:18:20
+  updated_at: 2013-06-06 11:18:20

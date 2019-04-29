@@ -1,0 +1,78 @@
+<% @page_title = 'QA stats for ' + @project.name %>
+
+
+<div class="standard_one_col">
+    <div class="cell_1">
+        <%= render :partial => 'shared/page_heading' %>
+
+        <%=render :partial => 'shared/pagination/paginate', :object => @qa_stats%>
+        
+        <div class="outline_container">
+            <table class="results_table">
+                <tr class="heading_table">
+                    <th class="align_center date_col">Date</th>
+                    <th class="align_center">Total tickets</th>
+                    
+                    <% if @qa_stats.present? -%>
+                        <% if @status_headings.present? -%>
+                            <th class="align_center">|</th>
+                            <% @status_headings.each do |value| -%>
+                                <th class="align_center"><%=value%></th>
+                            <% end -%>
+                        <% end -%>
+                        
+                        <% if @priority_headings.present? -%>
+                            <th class="align_center">|</th>
+                            <% @priority_headings.each do |value| -%>
+                                <th class="align_center"><%=value%></th>
+                            <% end -%>
+                        <% end -%>
+                    <% end -%>
+                </tr>
+                
+                <%@qa_stats.each do |qa_stat| -%>
+                    <%=content_tag_for :tr, qa_stat do%>
+                        <td class="align_center">
+                            <%=fmt_long_date qa_stat.created_at%>
+                        </td>
+                        
+                        <td class="align_center">
+                            <%=qa_stat.total_tickets%>
+                        </td>
+                        
+                        <% if @status_headings.present? -%>
+                            <td class="align_center">|</td>
+                            <% @status_headings.each do |value| -%>
+                                <th class="align_center">
+                                    <%=qa_stat.ticket_breakdown[:status][value]%> 
+                                    <% if qa_stat.ticket_breakdown[:status][value].present? -%>
+                                        (<%=number_to_percentage (qa_stat.ticket_breakdown[:status][value].to_d / qa_stat.total_tickets) * 100, precision: 0%>)
+                                    <%- end %>
+                                </th>
+                            <% end -%>
+                        <% end -%>
+                        
+                        <% if @priority_headings.present? -%>
+                            <th class="align_center">|</th>
+                            <% @priority_headings.each do |value| -%>
+                                <th class="align_center">
+                                    <%=qa_stat.ticket_breakdown[:priority][value]%>
+                                    <% if qa_stat.ticket_breakdown[:priority][value].present? -%>
+                                        (<%=number_to_percentage (qa_stat.ticket_breakdown[:priority][value].to_d / qa_stat.total_tickets) * 100, precision: 0%>)
+                                    <%- end %>
+                                </th>
+                            <% end -%>
+                        <% end -%>
+                        
+                    <%end-%>
+                <%end-%>
+            </table>
+        </div>
+        
+        <div class="padding_top_30">
+            <%=render :partial => 'shared/pagination/paginate', :object => @qa_stats%>
+        </div>
+        <p class="padding_top_15">Stats are automatically pulled across at the end of a week if the project has an associated Jira key, its not closed and Jira login details have been entered into FleetSuite.</p>
+    </div>
+</div>
+

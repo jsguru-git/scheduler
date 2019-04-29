@@ -1,0 +1,120 @@
+<% @page_title = 'View invoice: ' + @invoice.invoice_number %>
+
+<% @second_nav = project_second_nav(@project, 'invoice') %>
+
+<div class="standard_one_col">
+
+    <div class="cell_1">
+
+        <%= render :partial => 'shared/page_heading' %>
+
+        <%=render :partial => 'show_invoice_options', :locals => {:invoice => @invoice, :project => @project}%>
+
+        <div class="invoice_container">
+            <div class="invoce_container_bottom">
+
+                <div class="invoice_row">
+                    <div class="left_section">
+                        <span class="invoice_heading">Invoice <%=@invoice.invoice_number%></span>
+                    </div>
+
+                    <div class="right_section">
+                        <div class="status_display">
+                        <strong>Status:</strong>&nbsp;&nbsp;<span class="status_<%=@invoice.invoice_status%>"><%=SELECTIONS['invoice_status'][@invoice.invoice_status]%></span>
+                        </div>
+                    </div>
+                    <div class="clearing"></div>
+                </div>
+
+                <div class="invoice_row">
+                    <div class="left_section">
+                        <%if @invoice.address.present? -%>
+                            <span class="section_heading">Address:</span>
+                            <%= simple_format @invoice.address %>
+                        <%end-%>
+
+                        <%if @invoice.email.present? -%>
+                            <span class="section_heading">Email:</span>
+                            <p><%= @invoice.email %></p>
+                        <%end-%>
+                        
+                        <%if @invoice.email.blank? && @invoice.address.blank? -%>&nbsp;<%end-%>
+                    </div>
+
+                    <div class="right_section">
+                        <ul class="details_list">
+                            <%if @invoice.invoice_date.present? -%><li><strong>Inv Date:</strong> <%= @invoice.invoice_date %></li><%end-%>
+                            <%if @invoice.due_on_date.present? -%><li><strong>Due Date:</strong> <%= @invoice.due_on_date %></li><%end-%>
+                            <li><strong>Invoice No:</strong> <%= @invoice.invoice_number %></li>
+                            <%if @invoice.terms.present? -%><li><strong>Terms:</strong> <%= @invoice.terms %></li><%end-%>
+                            <%if @invoice.po_number.present? -%><li><strong>Po No:</strong> <%= @invoice.po_number %></li><%end-%>
+							<%if @invoice.user.present? -%><li><strong>Raised by:</strong> <%= @invoice.user.name %></li><%end-%>
+                            <li><strong>Pre payment:</strong> <%= @invoice.pre_payment ? "Yes" : "No" %></li>
+                            <li><strong>Currency:</strong> <%= @invoice.currency.upcase %></li>
+                        </ul>
+                    </div>
+                    <div class="clearing"></div>
+                </div>
+
+                <div class="invoice_row">
+                    <table class="dashed_line_table">
+                        <tr class="heading_table">
+                            <th>Description</th>
+                            <th class="center_align">Qty</th>
+                            <th class="center_align">VAT</th>
+                            <th class="right_align">Amount</th>
+                        </tr>
+                        <% @invoice.invoice_items.each_with_index do |item| %>
+                            <tr>
+                                <td><%= item.name %></td>
+                                <td class="center_align"><%= item.quantity %></td>
+                                <td class="center_align"><%= item.vat ? "Yes" : "No" %></td>
+                                <td class="right_align"><%= formated_in_provided_currency item.amount_cents, @invoice.currency %></td>
+                            </tr>
+                        <% end %>
+                    </table>
+                </div>
+
+                <div class="last_invoice_row">
+                    <div class="left_section">
+                        <%if @invoice.payment_methods.present? -%>
+                            <span class="section_heading">Payment methods:</span>
+                            <%= simple_format @invoice.payment_methods %>
+                        <%end-%>
+                        <%if @invoice.payment_methods.present? && @invoice.notes.present? -%><br/><%end-%>
+                        <%if @invoice.notes.present? -%>
+                            <span class="section_heading">Notes:</span>
+                            <%= simple_format @invoice.notes %>
+                        <%end-%>
+                        &nbsp;
+                    </div>
+
+                    <div class="right_section">
+                        <ul>
+                            <li>
+                                <div class="title">Subtotal:</div>
+                                <div class="content"><%= @invoice.total_amount_exc_vat_in_currency %></div>
+                                <div class="clearing"></div>
+                            </li>
+                            <li>
+                                <div class="title">VAT <%= @invoice.vat_rate.to_i %>%:</div>
+                                <div class="content"><%=@invoice.amount_in_currency(@invoice.vat_amount_cents)%></div>
+                                <div class="clearing"></div>
+                            </li>
+                            <li>
+                                <div class="title">Total:</div>
+                                <div class="content"><%= @invoice.total_amount_inc_vat_in_currency %></div>
+                                <div class="clearing"></div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="clearing"></div>
+                </div>
+            </div>
+        </div>
+
+        <%=render :partial => 'show_invoice_options', :locals => {:invoice => @invoice, :project => @project}%>
+    </div>
+</div>
+
+

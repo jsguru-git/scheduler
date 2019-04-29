@@ -1,0 +1,75 @@
+<div class="padding_bottom_30">
+	<p>If you would like someone to receive an alert when you raise a new invoice (e.g. you accounts team), please enter their email address below.</p>
+	<div class="form_row">
+	    <div class="form_text">
+	        <%=f.label :invoice_alert_email, 'Email address'%>
+	    </div>
+	    <div class="form_field">
+	        <%=f.text_field :invoice_alert_email, :class => 'text'%>
+	        <p class="explicit_text">Comma separated email list.</p>
+	    </div>
+	    <div class="clearing"></div>
+	</div>
+</div>
+
+<div class="padding_bottom_30">
+	<p>If you would like someone to receive an alert when a payment profiles expected payment date changes month, enter their email address below.</p>
+	<div class="form_row">
+	    <div class="form_text">
+	        <%=f.label :rollover_alert_email, 'Email address'%>
+	    </div>
+	    <div class="form_field">
+	        <%=f.text_field :rollover_alert_email, :class => 'text'%>
+	        <p class="explicit_text">Comma separated email list.</p>
+	    </div>
+	    <div class="clearing"></div>
+	</div>
+</div>
+
+<div class="padding_bottom_30">
+	<p>By default, when a project uses 25%, 50%, 75% and 100% of its budget, the project manager will be emailed. If you would like additional people to receive all these alerts, please enter their email address below.</p>
+	<div class="form_row">
+	    <div class="form_text">
+	        <%=f.label :budget_warning_email, 'Email address'%>
+	    </div>
+	    <div class="form_field">
+	        <%=f.text_field :budget_warning_email, :class => 'text'%>
+	        <p class="explicit_text">Comma separated email list.</p>
+	    </div>
+	    <div class="clearing"></div>
+	</div>
+</div>
+
+
+<p>If you would like someone to receive an email outlining expected invoices based on payment profiles, please complete the details below.</p>
+
+<div class="form_row">
+    <div class="form_text">
+        <%=f.label :expected_invoice_mail_frequency, 'Frequency'%>
+    </div>
+    <div class="form_field">
+		<%= f.select :expected_invoice_mail_frequency, SELECTIONS['mail_frequency'].sort.collect  {|key, value| [ value, key ] }, { :include_blank => false } %>
+		
+		<div class="explicit_text">
+			<%if f.object.expected_invoice_mail_frequency == 0 -%>
+				Currently set to send every day.
+			<%elsif f.object.expected_invoice_mail_frequency == 1 -%>
+				Currently set to send at the beginning of every week.
+			<%elsif f.object.expected_invoice_mail_frequency == 2 -%>
+				Currently set to send at the beginning of every month.
+			<%end-%>
+		</div>
+    </div>
+    <div class="clearing"></div>
+</div>
+
+<div class="form_row">
+    <div class="form_text">
+        <%=f.label :expected_invoice_mail_email, 'Email address'%>
+    </div>
+    <div class="form_field">
+        <%=f.text_field :expected_invoice_mail_email, :class => 'text'%>
+        <p class="explicit_text">Comma separated email list.</p>
+    </div>
+    <div class="clearing"></div>
+</div>

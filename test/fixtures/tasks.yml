@@ -1,0 +1,248 @@
+---
+tasks_001:
+  id: 1
+  name: task with no feature
+  description: ''
+  project_id: 2
+  estimated_minutes: 730
+  estimate_scale: 1
+  created_at: 2012-08-15 13:56:38.000000000Z
+  updated_at: 2012-08-15 13:56:38.000000000Z
+  feature_id: !!null 
+  position: 1
+  count_towards_time_worked: true
+tasks_002:
+  id: 2
+  name: task with no feature2
+  description: ''
+  project_id: 2
+  estimated_minutes: 0
+  estimate_scale: 1
+  created_at: 2012-08-15 13:56:45
+  updated_at: 2012-08-15 13:56:45
+  feature_id: !!null 
+  position: 2
+  count_towards_time_worked: true
+tasks_003:
+  id: 3
+  name: task with no feature3
+  description: description
+  project_id: 2
+  estimated_minutes: 0
+  estimate_scale: 1
+  created_at: 2012-08-15 13:56:57
+  updated_at: 2012-08-15 13:56:57
+  feature_id: !!null 
+  position: 3
+  count_towards_time_worked: true
+tasks_004:
+  id: 4
+  name: task 1
+  description: ''
+  project_id: 2
+  estimated_minutes: 0
+  estimate_scale: 1
+  created_at: 2012-08-15 13:57:25
+  updated_at: 2012-08-15 13:57:25
+  feature_id: 1
+  position: 1
+  count_towards_time_worked: true
+tasks_005:
+  id: 5
+  name: Task 2
+  description: ''
+  project_id: 2
+  estimated_minutes: 0
+  estimate_scale: 1
+  created_at: 2012-08-15 13:57:33
+  updated_at: 2012-08-15 13:57:33
+  feature_id: 1
+  position: 2
+  count_towards_time_worked: true
+tasks_006:
+  id: 6
+  name: Task 3
+  description: ''
+  project_id: 2
+  estimated_minutes: 0
+  estimate_scale: 1
+  created_at: 2012-08-15 13:57:40
+  updated_at: 2012-08-15 13:57:40
+  feature_id: 1
+  position: 3
+  count_towards_time_worked: true
+tasks_007:
+  id: 7
+  name: Task 4
+  description: description
+  project_id: 2
+  estimated_minutes: 60
+  estimate_scale: 1
+  created_at: 2012-08-15 13:57:54
+  updated_at: 2012-08-15 13:57:54
+  feature_id: 3
+  position: 1
+  count_towards_time_worked: true
+tasks_008:
+    id: 8
+    name: Task 0
+    description: description
+    project_id: 7
+    estimated_minutes: 60
+    estimate_scale: 1
+    created_at: 2012-08-15 13:57:54
+    updated_at: 2012-08-15 13:57:54
+    feature_id:
+    position: 0
+    count_towards_time_worked: true
+tasks_009:
+    id: 9
+    name: Break
+    description:
+    project_id: 8
+    estimated_minutes: 0
+    estimate_scale: 1
+    created_at: 2012-08-15 13:57:54
+    updated_at: 2012-08-15 13:57:54
+    feature_id:
+    position: 0
+    count_towards_time_worked: false
+tasks_010:
+    id: 10
+    name: Lunch
+    description:
+    project_id: 8
+    estimated_minutes: 0
+    estimate_scale: 1
+    created_at: 2012-08-15 13:57:54
+    updated_at: 2012-08-15 13:57:54
+    feature_id:
+    position: 1
+    count_towards_time_worked: false
+tasks_011:
+    id: 11
+    name: Break
+    description:
+    project_id: 9
+    estimated_minutes: 0
+    estimate_scale: 1
+    created_at: 2012-08-15 13:57:54
+    updated_at: 2012-08-15 13:57:54
+    feature_id:
+    position: 0
+    count_towards_time_worked: false
+tasks_012:
+    id: 12
+    name: Lunch
+    description:
+    project_id: 9
+    estimated_minutes: 0
+    estimate_scale: 1
+    created_at: 2012-08-15 13:57:54
+    updated_at: 2012-08-15 13:57:54
+    feature_id:
+    position: 1
+    count_towards_time_worked: false
+tasks_013:
+    id: 13
+    name: Break
+    description:
+    project_id: 10
+    estimated_minutes: 0
+    estimate_scale: 1
+    created_at: 2012-08-15 13:57:54
+    updated_at: 2012-08-15 13:57:54
+    feature_id:
+    position: 0
+    count_towards_time_worked: false
+tasks_014:
+    id: 14
+    name: Lunch
+    description:
+    project_id: 10
+    estimated_minutes: 0
+    estimate_scale: 1
+    created_at: 2012-08-15 13:57:54
+    updated_at: 2012-08-15 13:57:54
+    feature_id:
+    position: 1
+    count_towards_time_worked: false
+tasks_015:
+    id: 15
+    name: Break
+    description:
+    project_id: 11
+    estimated_minutes: 0
+    estimate_scale: 1
+    created_at: 2012-08-15 13:57:54
+    updated_at: 2012-08-15 13:57:54
+    feature_id:
+    position: 0
+    count_towards_time_worked: false
+tasks_016:
+    id: 16
+    name: Lunch
+    description:
+    project_id: 11
+    estimated_minutes: 0
+    estimate_scale: 1
+    created_at: 2012-08-15 13:57:54
+    updated_at: 2012-08-15 13:57:54
+    feature_id:
+    position: 1
+    count_towards_time_worked: false
+tasks_017:
+  id: 17
+  name: task with no feature17
+  description: description
+  project_id: 2
+  estimated_minutes: 0
+  created_at: 2012-08-15 13:56:57
+  updated_at: 2012-08-15 13:56:57
+  feature_id: !!null
+  position: 10
+  count_towards_time_worked: true
+tasks_018:
+  id: 18
+  name: task with no feature18
+  description: description
+  project_id: 14
+  feature_id:
+  estimated_minutes: 20
+  created_at: 2012-08-15 13:56:57
+  updated_at: 2012-08-15 13:56:57
+  position: 0
+  count_towards_time_worked: true
+tasks_019:
+  id: 19
+  name: task with no feature19
+  description: description
+  project_id: 14
+  feature_id: 9
+  estimated_minutes: 70
+  created_at: 2012-08-15 13:56:57
+  updated_at: 2012-08-15 13:56:57
+  position: 1
+  count_towards_time_worked: true
+tasks_020:
+  id: 20
+  name: task with no feature20
+  description: description
+  project_id: 14
+  feature_id: 9
+  estimated_minutes: 60
+  created_at: 2012-08-15 13:56:57
+  updated_at: 2012-08-15 13:56:57
+  position: 3
+  count_towards_time_worked: true
+tasks_021:
+  id: 21
+  name: task with no feature21
+  description: description
+  project_id: 14
+  feature_id: 
+  estimated_minutes: 20
+  created_at: 2012-08-15 13:56:57
+  updated_at: 2012-08-15 13:56:57
+  position: 0
+  count_towards_time_worked: true

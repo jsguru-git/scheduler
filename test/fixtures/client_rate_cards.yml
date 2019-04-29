@@ -1,0 +1,10 @@
+one:
+    id: 1
+    rate_card_id: 1
+    client_id: 1
+    daily_cost_cents: 80000
+two:
+    id: 2
+    rate_card_id: 4
+    client_id: 1
+    daily_cost_cents: 40000

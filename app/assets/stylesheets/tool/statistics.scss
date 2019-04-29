@@ -1,0 +1,26 @@
+.statistics {
+    padding-bottom: 60px;
+    
+    .statistic {
+        float: left;
+        font-family: 'Oswald','arial narrow',arial,helvetica,sans-serif;
+        font-weight: 300;
+        height: 60px;
+        line-height: 1;
+        position: relative;
+        text-transform: uppercase;
+        margin-right: 100px;
+        
+        .figure {
+            display: inline-block;
+            font-size: 3.2em;
+        }
+        
+        .desc {
+            display: inline-block;
+            font-size: 1.4em;
+            margin: 0 20px 0 20px;
+        }
+    }
+    
+}

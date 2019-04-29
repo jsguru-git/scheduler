@@ -1,0 +1,30 @@
+<%=content_tag_for(:tr, display_payment_profile, :class => display_payment_profile.invoice_item.blank? ? '' : 'invoiced') do%>
+    <td class="expected_payment_date">
+        <span class="<%='red_text' if display_payment_profile.expected_payment_date < Date.today && display_payment_profile.invoice_item.blank? -%>">
+            <%=fmt_long_date display_payment_profile.expected_payment_date%>
+        </span>
+    </td>
+    <td><%=display_payment_profile.name%></td>
+    <td>
+        <%if display_payment_profile.invoice_item.blank? -%>
+            <%=link_to "#{display_payment_profile.service_type_percentage}% Complete", edit_service_types_invoice_project_payment_profile_path(project, display_payment_profile), :remote => true, :class => display_payment_profile.service_type_percentage == 100 ? '' : 'red_link'%>
+        <%else-%>
+            <%="#{display_payment_profile.service_type_percentage}% Complete"%>
+        <%end-%>
+    </td>
+    <td class="align_center">
+        <%if display_payment_profile.expected_minutes.present?%>
+            <%= display_payment_profile.expected_days%>
+        <%end-%>
+    </td>
+    <td class="align_center"><%=display_payment_profile.expected_cost_formatted%></td>
+    <td class="links">
+        <%if display_payment_profile.invoice_item.blank? -%>
+            <%=link_to 'Edit', edit_invoice_project_payment_profile_path(project, display_payment_profile), :remote => true, :class => 'edit_button'%> 
+            <%=link_to 'Remove', invoice_project_payment_profile_path(project, display_payment_profile), :method => :delete, :confirm => 'Are you sure you want to delete this payment stage?', :class => 'remove_button'%>
+            <div class="clearing"></div>
+        <%else -%>
+            <%=link_to 'View invoice', invoice_project_invoice_path(project,display_payment_profile.invoice_item.invoice_id), :class => 'go_button'%>
+        <%end-%>
+    </td>
+<%end-%>

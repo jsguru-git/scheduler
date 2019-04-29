@@ -1,0 +1,19 @@
+<p>Hi <%=@user.firstname%></p>
+
+<p>Thanks for joining <%=@site_name%>! We've now created your account, and you can get started straight away: <%= root_url(:subdomain => @account.site_address) %></p>
+
+<p>To help you on your way why not take these suggested next steps:</p>
+
+<p>- Add users to your account via your administrator profile: <%= users_url(:subdomain => @account.site_address) %><br/>
+- Group users into teams for easy schedule management: <%= teams_url(:subdomain => @account.site_address) %><br/>
+- Create projects, tied to specific clients, to show who's working on what: <%= projects_url(:subdomain => @account.site_address) %></p>
+
+</p>Remember our award-winning team is on hand to answer any questions so don't hesitate to get in touch by emailing info@fleetsuite.com.</p>
+
+<p>Thanks,<br/>
+Scott<br/>
+The FleetSuite Team<br/>
+---<br/>
+Get support: http://help.fleetsuite.com<br/>
+Follow us: https://twitter.com/fleet_suite<br/>
+Suggest new features: http://help.fleetsuite.com/forums</p>

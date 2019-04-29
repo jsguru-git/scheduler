@@ -1,0 +1,101 @@
+<%if @project.archived? -%>
+    <%@page_title = 'Overview (Archived)' %>
+<%else-%>
+    <%@page_title = 'Overview' %>
+<%end-%>
+<%@second_nav = project_second_nav(@project, params[:action])%>
+<div class="standard_two_col">
+    <div class="cell_1">
+        <%= render :partial => 'shared/page_heading' %>
+        
+        <div class="introduction_area">
+            <% if @project.client_id.present? %>
+                <p>
+                    Client: <span class="dark_green"><%= @project.client.name %></span>
+                </p>
+            <% end %>
+
+            <p>
+                Created on: <span class="dark_green"><%=fmt_long_date @project.created_at%></span>
+            </p>
+
+            <p>
+                Last updated on: <span class="dark_green"><%=fmt_long_date @project.updated_at%></span>
+            </p>
+
+            <p>
+                Estimated end date: <span class="dark_green"><%= fmt_long_date(@project.estimated_end_date) || 'Unable to calculate end date' %></span>
+            </p>
+
+            <% if @account.component_enabled?(1) %>
+                <p>
+                    Work starts on: <span class="dark_green"><%=fmt_long_date @project.schedule_start_date%></span>
+                </p>
+                <p>
+                    Number of scheduled people involved: <span class="dark_green"><%=@project.all_people_scheduled.length%></span>
+                </p>
+            <% end %>
+
+            <% if policy(@project).update? %>
+                <p>
+                    <%= form_for @project do |f| %>
+                        Status: <%= f.select :project_status, options_for_select( Project::STATUSES.map { |s, v| [v, s] }, @project.project_status) %>
+                    <% end %>
+                </p>
+            <% else %>
+                <p>Status: <span class="dark_green"><%= Project::STATUSES[@project.project_status.to_sym] %></span></p>
+            <% end %>
+
+            <p>
+                <% if current_user.is_account_holder_or_administrator? %>
+                    <%= form_for @project, method: :put do |f| %>
+                        Phase: <%= f.select :phase_id, options_for_select(@project.account.phases.map{ |k| [k.name, k.id]}, (@project.phase.id if @project.phase.present?)), include_blank: true %>
+                    <% end %>
+                <% else %>
+                    Phase: <%= @project.phase.present? ? @project.phase.name : '' %> 
+                <% end %>
+            </p>
+
+            <% if @project.description.present? %>
+                <div class="project_description">
+                    <%= simple_format @project.description %>
+                </div>
+            <% end %>
+        </div>
+        
+        <% if @account.component_enabled?(2) %>
+            <%= render partial: 'projects/burndown_summary' %>
+        <% end %>
+        
+        <%if @account.component_enabled?(1) -%>
+            <%=render :partial => 'schedule/shared/people_scheduled', :locals => {:display_type => 'project', :people_in_next_week => @people_in_next_week, :people_scheduled => @people_scheduled}%>
+        <%end-%>
+        
+        <%if @account.component_enabled?(2) -%>
+            <%=render :partial => "track/shared/people_tracked", :locals => {:display_type => 'project', :tracked_this_week => @tracked_this_week, :people_tracked => @people_tracked}%>
+        <%end-%>
+        
+    </div>
+
+    <div class="cell_2">
+
+        <% if has_permission?('account_holder || administrator') -%>
+            <%if @account.account_setting.common_project_id != @project.id -%>
+
+        <div id="action_links">
+            <%=link_to raw('<span class="edit">Edit project</span>'), edit_project_path(@project)%>
+            <div class="clearing"></div>
+        </div>
+        <%end-%>
+
+        <% end -%>
+
+    </div>
+</div>
+<script>
+  $(document).ready(function(){
+    $('select').change(function(){
+      $(this).parent('form').submit();
+    });
+  });
+</script>

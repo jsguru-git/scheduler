@@ -1,0 +1,28 @@
+<h1><%=@page_title = 'Admin - Accounts > Users'%></h1>
+
+<%=render :partial => 'shared/pagination/paginate', :object => @users%>
+<br/>
+<table>
+	<tr>
+		<th>ID</th>
+		<th>Name</th>
+		<th>Email</th>
+		<th>Account holder</th>
+		<th>Administrator</th>
+		<th>Last login at</th>
+		<th>Created at</th>
+	</tr>
+	<%for user in @users -%>
+		<tr>
+			<td><%=user.id%></td>
+			<td><%=h user.name%></td>
+			<td><%=mail_to h(user.email)%></td>
+			<td><%if has_permission?('account_holder', user) -%>Yes<%else-%>No<%end%></td>
+			<td><%if has_permission?('administrator', user) -%>Yes<%else-%>No<%end%></td>
+			<td><%=fmt_long_date user.last_login_at%></td>
+			<td><%=fmt_long_date user.created_at%></td>
+		</tr>
+	<%end-%>
+</table>
+<br/>
+<%=render :partial => 'shared/pagination/paginate', :object => @users%>

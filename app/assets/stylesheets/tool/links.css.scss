@@ -1,0 +1,348 @@
+a.standard_button_link,
+a.standard_button_link:link,
+a.standard_button_link:visited,
+a.standard_button_link:active,
+#action_links a,
+#action_links a:link,
+#action_links a:visited,
+#action_links a:active,
+.action_links a,
+.action_links a:link,
+.action_links a:visited,
+.action_links a:active {
+    background: #EAEAEA url(tool/links/standard_background.png) repeat-x left top;
+    border-color: #DDDDDD #BBBBBB #BBBBBB #DDDDDD;
+    border-radius: 0.2em;
+    -moz-border-radius: 0.2em;
+    -webkit-border-radius: 0.2em;
+    border-style: solid;
+    border-width: 1px;
+    color: #606060;
+    display: block;
+    margin: 0 0 15px 0;
+    padding: 6px 10px 3px 10px;
+    text-align: left;
+    text-decoration: none;
+    text-shadow: 0 1px #FFFFFF;
+}
+
+a.standard_button_link:hover,
+#action_links a:hover,
+.action_links a:hover {
+    border-color: #BBBBBB #BBBBBB #BBBBBB #BBBBBB;
+    color: #888888;
+    cursor: pointer;
+}
+
+#action_links,
+.action_links {
+
+    a span.add {
+        background: url(tool/links/action_link.png) no-repeat left top;
+        display: block;
+        padding-left: 20px;
+    }
+
+     a span.edit {
+        background: url(tool/links/action_link.png) no-repeat left -48px;
+        display: block;
+        padding-left: 20px;
+    }
+
+    a span.archive {
+        background: url(tool/links/action_link.png) no-repeat left -98px;
+        display: block;
+        padding-left: 20px;
+    }
+    
+    a span.add_color {
+        background: url(tool/links/action_link.png) no-repeat left -198px;
+        display: block;
+        padding-left: 20px;
+    }
+    
+    a span.schedule_color {
+        background: url(tool/links/action_link.png) no-repeat left -249px;
+        display: block;
+        padding-left: 20px;
+    }
+    
+    
+    a span.payment_profile_color {
+        background: url(tool/links/action_link.png) no-repeat left -349px;
+        display: block;
+        padding-left: 20px;
+    }
+    
+    
+    a span.track_color {
+        background: url(tool/links/action_link.png) no-repeat left -298px;
+        display: block;
+        padding-left: 20px;
+    }
+    
+    a span.paid_color {
+        background: url(tool/icons/invoice_status.png) no-repeat left -97px;
+        display: block;
+        padding-left: 30px;
+    }
+    
+    
+    a span.sent_color {
+        background: url(tool/icons/invoice_status.png) no-repeat left -50px;
+        display: block;
+        padding-left: 30px;
+    }
+    
+    a span.pdf_color {
+        background: url(tool/links/action_link.png) no-repeat left -399px;
+        display: block;
+        padding-left: 30px;
+    }
+    
+    a span.google_drive {
+        background: url(tool/links/action_link.png) no-repeat left -448px;
+        display: block;
+        padding-left: 25px;
+    }
+    
+    a span.copy_color {
+        background: url(tool/links/action_link.png) no-repeat left -501px;
+        display: block;
+        padding-left: 20px;
+    }
+    
+    a span.report_color {
+        background: url(tool/links/action_link.png) no-repeat left -549px;
+        display: block;
+        padding-left: 20px;
+    }
+
+	a span.dropbox {
+        background: url(tool/links/action_link.png) no-repeat left -598px;
+        display: block;
+        padding-left: 25px;
+    }
+    
+    a.light_text {
+        color: #999999;
+    }
+}
+
+a.standard_button_link span.add_color,
+a.standard_button_link:visited span.add_color,
+a.standard_button_link:active span.add_color {
+    background: url(tool/links/action_link.png) no-repeat left -198px;
+    display: block;
+    padding-left: 20px;
+}
+
+/*====== action buttons ======*/
+a.edit_button,
+a.edit_button:link,
+a.edit_button:visited,
+a.edit_button:active {
+    background: url(tool/icons/action_46.png) no-repeat left -50px;
+    display: block;
+    height: 46px;
+    text-indent: -4000px;
+    white-space: nowrap;
+    width: 46px;
+}
+
+a.small_edit_button,
+a.small_edit_button:link,
+a.small_edit_button:visited,
+a.small_edit_button:active {
+    background: url(tool/icons/action_46.png) no-repeat left -250px;
+    display: block;
+    height: 30px;
+    text-indent: -4000px;
+    white-space: nowrap;
+    width: 30px;
+}
+
+a.remove_button,
+a.remove_button:link,
+a.remove_button:visited,
+a.remove_button:active {
+    background: url(tool/icons/action_46.png) no-repeat left 0;
+    display: block;
+    height: 46px;
+    text-indent: -4000px;
+    white-space: nowrap;
+    width: 46px;
+}
+
+a.small_remove_button,
+a.small_remove_button:link,
+a.small_remove_button:visited,
+a.small_remove_button:active {
+    background: url(tool/icons/action_46.png) no-repeat left -200px;
+    display: block;
+    height: 30px;
+    text-indent: -4000px;
+    white-space: nowrap;
+    width: 30px;
+}
+
+a.archive_button,
+a.archive_button:link,
+a.archive_button:visited,
+a.archive_button:active {
+    background: url(tool/icons/action_46.png) no-repeat left -100px;
+    display: block;
+    height: 46px;
+    text-indent: -4000px;
+    white-space: nowrap;
+    width: 46px;
+}
+
+a.go_button,
+a.go_button:link,
+a.go_button:visited,
+a.go_button:active {
+    background: url(tool/icons/action_46.png) no-repeat left -392px;
+    display: block;
+    height: 46px;
+    text-indent: -4000px;
+    white-space: nowrap;
+    width: 46px;
+}
+/*====== end action buttons =======*/
+
+
+/*====== grey_link ======*/
+a.grey_link,
+a.grey_link:link,
+a.grey_link:visited,
+a.grey_link:active {
+    color: #606060;
+}
+
+a.grey_link:hover {
+    color: #499ED0;;
+}
+/*====== end grey_link ======*/
+
+
+/*====== large_blue_link ======*/
+a.large_blue_link,
+a.large_blue_link:link,
+a.large_blue_link:visited,
+a.large_blue_link:active {
+    color: #8DAACC;
+    font-family: 'arial narrow', arial, helvetica, sans-serif;
+    font-weight: 300;
+    font-size: 1.4em;
+    line-height: 1;
+    margin: 0;
+    padding: 0;
+    text-transform: uppercase;
+}
+
+a.large_blue_link:hover,
+.selected a.large_blue_link,
+.selected a.large_blue_link:link,
+.selected a.large_blue_link:visited,
+.selected a.large_blue_link:active {
+    color: #8DAACC;
+    text-decoration: underline;
+}
+/*====== end large_blue_link ======*/
+
+
+/*====== expandable_link ======*/
+a.expandable_link,
+a.expandable_link:link,
+a.expandable_link:visited,
+a.expandable_link:active,
+a.p_expandable_link,
+a.p_expandable_link:link,
+a.p_expandable_link:visited,
+a.p_expandable_link:active {
+    background: url(tool/icons/expand_sprite_30.png) no-repeat left 0;
+    cursor: pointer;
+    display: block;
+    height: 30px;
+    text-indent: -3000px;
+    white-space: nowrap;
+    width: 30px;
+}
+
+a.shrink_link,
+a.shrink_link:link,
+a.shrink_link:visited,
+a.shrink_link:active,
+a.p_shrink_link,
+a.p_shrink_link:link,
+a.p_shrink_link:visited,
+a.p_shrink_link:active {
+    background: url(tool/icons/expand_sprite_30.png) no-repeat left -100px;
+    cursor: pointer;
+    display: block;
+    height: 30px;
+    text-indent: -3000px;
+    white-space: nowrap;
+    width: 30px;
+}
+/*====== end expandable_link ======*/
+
+
+/*====== red_link ======*/
+a.red_link,
+a.red_link:link,
+a.red_link:visited,
+a.red_link:active,
+a.red_link:hover {
+    color: #E17B7B;
+}
+/*====== end red_link ======*/
+
+
+/*====== doc types ====== */
+a.pdf_link,
+a.pdf_link:link,
+a.pdf_link:visited,
+a.pdf_link:active {
+    background: url(tool/icons/doc_types_22_sprite.png) no-repeat left top;
+    display: inline-block;
+    height: 22px;
+    padding: 2px 0 0 25px;
+}
+/*====== end doc types ====== */
+
+
+/*====== large_grey_link ======*/
+a.large_grey_link,
+a.large_grey_link:link,
+a.large_grey_link:visited,
+a.large_grey_link:active {
+    color: #606060;
+    font-family: 'Oswald','arial narrow',arial,helvetica,sans-serif;
+    font-size: 1.8em;
+    font-weight: 300;
+    text-transform: uppercase;
+}
+
+a.large_grey_link:hover {
+    color: #499ED0;;
+}
+/*====== end grey_link ======*/
+
+/*====== calendar_link ======*/
+a.calendar_link {
+    text-decoration: none;
+}
+/*====== end calendar_link ======*/
+
+/* Sort links */
+a.asc {
+    background: url('/assets/tool/track/up.png') no-repeat right;
+    padding: 0 20px 0 0;
+}
+
+a.desc {
+    background: url('/assets/tool/track/down.png') no-repeat right;
+    padding: 0 20px 0 0;
+}

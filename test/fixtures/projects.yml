@@ -1,0 +1,254 @@
+---
+projects_001:
+  id: 1
+  name: Project 1
+  description: description here
+  archived: 0
+  account_id: 1
+  client_id: 1
+  created_at: 2012-05-15 08:29:33
+  updated_at: 2012-05-15 08:29:33
+  event_type: 0
+  color: '#CC3300'
+  team_id: 1
+  business_owner_id: 1
+  project_manager_id: 1
+  current_rag_status: 0
+  project_status: in_progress
+  percentage_complete: 0
+projects_002:
+  id: 2
+  name: No client or team project
+  description: description here
+  archived: 0
+  account_id: 1
+  client_id: 1
+  created_at: 2012-05-15 08:29:48
+  updated_at: 2012-05-15 08:29:48
+  event_type: 0
+  color: '#CC3300'
+  team_id: 1
+  business_owner_id: 1
+  project_manager_id:
+  current_rag_status: 0
+  project_status: in_progress
+  percentage_complete: 0
+  issue_tracker_id: arthurlyFS
+projects_003:
+  id: 3
+  name: Team project
+  description: description here
+  archived: 0
+  account_id: 1
+  client_id:  1
+  created_at: 2012-05-15 08:29:56
+  updated_at: 2012-05-15 08:29:56
+  event_type: 0
+  color: '#CC3300'
+  team_id:
+  business_owner_id:
+  project_manager_id:
+  current_rag_status: 0
+  project_status: in_progress
+  percentage_complete: 0
+projects_004:
+  id: 4
+  name: Client project
+  description: description here
+  archived: 1
+  account_id: 1
+  client_id: 1
+  created_at: 2012-05-15 08:30:05
+  updated_at: 2012-05-15 08:30:05
+  event_type: 0
+  color: '#CC3300'
+  team_id:
+  business_owner_id:
+  project_manager_id:
+  current_rag_status: 0
+  project_status: in_progress
+  percentage_complete: 0
+projects_005:
+  id: 5
+  name: Another project
+  description: Description here
+  archived: 0
+  account_id: 1
+  client_id: 2
+  created_at: 2012-05-15 08:30:34
+  updated_at: 2012-05-15 08:30:34
+  event_type: 0
+  color: '#CC3300'
+  team_id:
+  business_owner_id:
+  project_manager_id:
+  current_rag_status: 0
+  project_status: in_progress
+  percentage_complete: 0
+projects_006:
+  id: 6
+  name: Internal project
+  description: Description here
+  archived: 0
+  account_id: 1
+  client_id: 2
+  created_at: 2012-05-15 08:30:34
+  updated_at: 2012-05-15 08:30:34
+  event_type: 0
+  color: '#CC3300'
+  team_id:
+  business_owner_id:
+  project_manager_id:
+  current_rag_status: 0
+  project_status: in_progress
+  percentage_complete: 0
+projects_007:
+  id: 7
+  name: Internal project account 2
+  description: Description here
+  archived: 0
+  account_id: 2
+  client_id: 2
+  created_at: 2012-05-15 08:30:34
+  updated_at: 2012-05-15 08:30:34
+  event_type: 0
+  color: '#CC3300'
+  team_id:
+  business_owner_id:
+  project_manager_id:
+  current_rag_status: 0
+  project_status: in_progress
+  percentage_complete: 0
+projects_008:
+  id: 8
+  name: Absences & Leave1
+  description:
+  archived: 0
+  account_id: 1
+  client_id:
+  created_at: 2012-05-15 08:30:34
+  updated_at: 2012-05-15 08:30:34
+  event_type: 1
+  color: '#A9BFD7'
+  team_id:
+  business_owner_id:
+  project_manager_id:
+  current_rag_status: 0
+  project_status: in_progress
+  percentage_complete: 0
+projects_009:
+  id: 9
+  name: Absences & Leave2
+  description:
+  archived: 0
+  account_id: 2
+  client_id:
+  created_at: 2012-05-15 08:30:34
+  updated_at: 2012-05-15 08:30:34
+  event_type: 1
+  color: '#A9BFD7'
+  team_id:
+  business_owner_id:
+  project_manager_id:
+  current_rag_status: 0
+  project_status: in_progress
+  percentage_complete: 0
+projects_010:
+  id: 10
+  name: Absences & Leave3
+  description:
+  archived: 0
+  account_id: 3
+  client_id:
+  created_at: 2012-05-15 08:30:34
+  updated_at: 2012-05-15 08:30:34
+  event_type: 1
+  color: '#A9BFD7'
+  team_id:
+  business_owner_id:
+  project_manager_id:
+  current_rag_status: 0
+  project_status: in_progress
+  percentage_complete: 0
+projects_011:
+  id: 11
+  name: Absences & Leave4
+  description:
+  archived: 0
+  account_id: 4
+  client_id:
+  created_at: 2012-05-15 08:30:34
+  updated_at: 2012-05-15 08:30:34
+  event_type: 1
+  color: '#A9BFD7'
+  team_id:
+  business_owner_id:
+  project_manager_id:
+  current_rag_status: 0
+  project_status: in_progress
+projects_012:
+  id: 12
+  name: Project 12
+  description: description here
+  archived: 0
+  account_id: 1
+  client_id: 1
+  created_at: 2012-05-15 08:29:33
+  updated_at: 2012-05-15 08:29:33
+  event_type: 0
+  color: '#CC3300'
+  team_id:
+  business_owner_id:
+  project_manager_id:
+  current_rag_status: 0
+  project_status: in_progress
+  percentage_complete: 0
+projects_013:
+  id: 13
+  name: Project 13
+  description: description here
+  archived: 0
+  account_id: 1
+  client_id: 1
+  created_at: 2012-05-15 08:29:33
+  updated_at: 2012-05-15 08:29:33
+  event_type: 0
+  color: '#CC3300'
+  team_id:
+  business_owner_id:
+  project_manager_id:
+  current_rag_status: 0
+  project_status: in_progress
+  percentage_complete: 0
+projects_014:
+  id: 14
+  name: Project 14
+  description: description here
+  archived: 0
+  account_id: 1
+  client_id: 1
+  created_at: 2012-05-15 08:29:33
+  updated_at: 2012-05-15 08:29:33
+  event_type: 0
+  color: '#CC3300'
+  team_id:
+  business_owner_id:
+  project_manager_id:
+  current_rag_status: 0
+  project_status: in_progress
+projects_015:
+  id: 15
+  name: Project 15
+  description: description here
+  archived: 0
+  account_id: 1
+  client_id:
+  created_at: 2013-05-15 08:29:33
+  updated_at: 2013-05-15 08:29:33
+  event_type: 0
+  color: '#CC3300'
+  team_id:
+  business_owner_id:
+  project_manager_id:
+  current_rag_status: 0
+  project_status: in_progress

@@ -1,0 +1,45 @@
+<%if @project.archived? -%>
+    <%@page_title = 'Tracking (Archived)' %>
+<%else-%>
+    <%@page_title = 'Tracking' %>
+<%end-%>
+<%@second_nav = project_second_nav(@project, params[:action])%>
+
+<div class="standard_two_col">
+    <div class="cell_1">
+        <%=render :partial => 'shared/page_heading'%>
+
+        <%= render partial: 'projects/burndown_summary' %>
+
+        <%=render :partial => "track/shared/people_tracked", :locals => {:display_type => 'project', :tracked_this_week => @tracked_this_week, :people_tracked => @people_tracked}%>
+        
+        <%if @project.tasks.present? && @tracked_time != 0 -%>
+            <div id="chart_filter" class="simple_tabs inline_tabbed_area inline_tabbed_area_style_1">
+                <ul class="options">
+                    <li class="<%=active_generic_tab_class(0, 'chart_filter')%>"><%=link_to 'Burndown chart', track_project_path(:id => @project.id, :lead_filter => 0), :class => 'item_1', 'data-draw-visualization' => 'true'%></li>
+                    <li class="<%=active_generic_tab_class(1, 'chart_filter')%>"><%=link_to 'Task breakdown', track_project_path(:id => @project.id, :lead_filter => 1), :class => 'item_2', 'data-draw-visualization' => 'true'%></li>
+                </ul>
+                <div class="clearing"></div>
+                <div class="simple_tabs_content_container">
+                    <div class="inner_simple_tabs_content <%=active_generic_tab_class(0, 'chart_filter')%>">
+                        <%=render :partial => 'track/shared/burndown_chart', :locals => {:project => @project}%>
+                    </div>
+                    <div class="inner_simple_tabs_content <%=active_generic_tab_class(1, 'chart_filter')%>">
+                        <%=render :partial => 'track/shared/time_used_by_task_chart', :locals => {:project => @project}%>
+                    </div>
+                </div>
+            </div>
+        <%end-%>
+    </div>
+
+    <div class="cell_2">
+        <%if @account.account_setting.common_project_id != @project.id -%>
+        <%if has_permission?('account_holder || administrator') -%>
+        <div id="action_links">
+            <%=link_to raw('<span class="edit">Edit project</span>'), edit_project_path(@project)%>
+            <div class="clearing"></div>
+        </div>
+        <%end-%>
+        <%end-%>
+    </div>
+</div>

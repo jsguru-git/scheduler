@@ -1,0 +1,35 @@
+div.colorPicker-picker {
+  	height: 22px;
+	width: 22px;
+	cursor: pointer;
+  	background: url(tool/lib/color_picker/trigger.png) center no-repeat;
+	border: 0;
+	vertical-align: middle;
+	margin: 0 .25em;
+	display: inline-block;
+	outline: none;
+}
+
+div.colorPicker-palette {
+  width: 218px;
+  position: absolute;
+  border: 1px solid #ccc;
+  background-color: #EFEFEF;
+  padding: 10px;
+  z-index: 9999;
+}
+  div.colorPicker_hexWrap {display: none; }
+  div.colorPicker_hexWrap label {display: none;}
+div.colorPicker_hexWrap input { 
+	display: none;
+}
+
+div.colorPicker-swatch {
+  height: 21px;
+  width: 21px;
+  border: 1px solid #CCCCCC;
+  margin: 2px;
+  float: left;
+  cursor: pointer;
+  line-height: 12px;
+}

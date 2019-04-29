@@ -1,0 +1,5 @@
+<%= fields_for invoice_item_additional do |invoice_instance| %>
+    <% invoice_instance.fields_for :invoice_items do |invoice_item| %>
+        <%= render :partial => 'invoice_row_entry', :locals => {:invoice_item => invoice_item}%>
+    <%end%>
+<%end%>

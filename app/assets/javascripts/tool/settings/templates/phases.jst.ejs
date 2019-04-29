@@ -1,0 +1,2 @@
+<% var names = _.map(_.toArray(this.phasesCollection), function(phase) { return phase.get('name'); }); %>
+<input class="select2" value="<%= names.join(',') %>"></input>

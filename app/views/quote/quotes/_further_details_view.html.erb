@@ -1,0 +1,20 @@
+<div class="further_details_section">
+    <h3 class="underline">Quote document layout</h3>
+    
+    <ul class="report_layout_list_view">
+        <%quote.quote_sections.position_ordered.each do |quote_section| -%>
+            <%=content_tag_for :li, quote_section do%>
+                <%if quote_section.cost_section? -%>
+                    <div class="outline_container">
+                        <div class="section_container">
+                            <div class="cost_text">&nbsp;</div>
+                        </div>
+                    </div>
+                <%else-%>
+                    <h4><%=quote_section.title%></h4>
+                    <%=simple_format quote_section.title%>
+                <%end-%>
+            <%end-%>
+        <%end-%>
+    </ul>
+</div>

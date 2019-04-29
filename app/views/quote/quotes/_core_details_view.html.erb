@@ -1,0 +1,69 @@
+<div class="core_details_section">
+    <h3 class="underline">Quote details</h3>
+    
+    <div class="even_container_split">
+        <div class="col_1 col">
+
+            <div class="form_row">
+                <div class="form_text">
+                    Title
+                </div>
+                <div class="form_field label_text">
+                    <%=quote.display_title%>
+                </div>
+                <div class="clearing"></div>
+            </div>
+
+            <div class="form_row">
+                <div class="form_text">
+                    Version
+                </div>
+                <div class="form_field label_text">
+                    <%=quote.version_number%>
+                </div>
+                <div class="clearing"></div>
+            </div>
+
+
+            <div class="form_row">
+                <div class="form_text">
+                    Status
+                </div>
+                <div class="form_field label_text">
+                    <%=SELECTIONS['quote_status'][quote.quote_status]%>
+                </div>
+                <div class="clearing"></div>
+            </div>
+            
+        </div>
+        <div class="col_2 col">
+            <%if quote.user.present? -%>
+                <div class="form_row">
+                    <div class="form_text">
+                        Creator
+                    </div>
+                    <div class="form_field label_text">
+                        <%=quote.user.name%>
+                    </div>
+                    <div class="clearing"></div>
+                </div>
+            <%end-%>
+            
+            <%if quote.po_number.present? -%>
+                <div class="form_row">
+                    <div class="form_text">
+                        PO no
+                    </div>
+                    <div class="form_field label_text">
+                        <%=quote.po_number%>
+                    </div>
+                    <div class="clearing"></div>
+                </div>
+            <%end-%>
+
+        </div>
+        <div class="clearing"></div>
+    </div>
+    
+
+</div>

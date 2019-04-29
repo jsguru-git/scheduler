@@ -1,0 +1,26 @@
+<%background_image = document_comment.user.present? ? document_comment.user.gravatar_url(:size => 69, :secure => request.ssl?, :default => APP_CONFIG['gravatar']['default_asset_ssl_domain']+'/assets/tool/icons/user_69.png') : '/assets/tool/icons/user_69.png'%>
+
+<%=content_tag_for(:li, document_comment, :style => "background-image: url(#{background_image});") do %>
+    <div class="edit_comment_container">
+        <div class="name">
+            <%if document_comment.user.present? -%>
+                <span><%=document_comment.user.firstname%></span>
+                <span><%=document_comment.user.lastname%></span>
+            <%else-%>
+                <span>Person</span>
+                <span>Removed</span>
+            <%end-%>
+        </div>
+        <div class="comment_text">
+            <%=form_for [project, document, document_comment], :remote => true, :html => { 'data-spinner' => "edit_comment_spinner_#{dom_id(document)}"} do |f| %>
+                <%=render :partial => 'shared/notifications/error_messages', :object => document_comment%>
+
+                <%=f.text_area :comment, :class => 'text', :rows => 4%>
+                
+                <div class="right_controls">
+                    <%=f.submit 'Save changes'%> <span class="small_text">or <%=link_to 'Cancel', cancel_project_document_document_comment_path(project, document, document_comment), :remote => true,  'data-spinner' => "edit_comment_spinner_#{dom_id(document)}"%></span>&nbsp;<%=spinner_tag("edit_comment_spinner_#{dom_id(document)}")%>
+                </div>
+            <%end-%>
+        </div>
+    </div>
+<%end-%>

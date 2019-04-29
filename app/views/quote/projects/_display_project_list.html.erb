@@ -1,0 +1,15 @@
+<%= content_tag_for(:li, project) do %>
+  <span class="name">
+    <%= link_to truncate(project.name, :length => 35), quote_project_quotes_path(project), :class => 'grey_link' %>
+  </span>
+
+  <div class="info">
+    <div>
+      Quotes:
+      <span class="dark_green">
+        <%=project.quotes.v1_quotes.length%>
+      </span>
+    </div>
+  </div>
+  <div class="clearing"></div>
+<% end %>

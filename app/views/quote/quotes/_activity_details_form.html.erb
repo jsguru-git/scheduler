@@ -1,0 +1,36 @@
+<div class="activity_details_section">
+    <h3 class="underline">Activities</h3>
+    
+    <div class="outline_container">
+        <ul id="activity_list" data-update-url="<%=sort_quote_project_quote_quote_activities_path(project, quote)%>">
+            <li class="list_heading">
+                <div class="col_1">&nbsp;</div>
+                <div class="col_2">Name</div>
+                <div class="col_3">Service type</div>
+                <div class="col_4">Estimated time</div>
+                <div class="col_5">Cost</div>
+                <div class="clearing"></div>
+            </li>
+            <%quote.quote_activities.position_ordered.each do |quote_activity| -%>
+                <%=render :partial => 'quote/quote_activities/display_activity', :locals => {:quote_activity => quote_activity}%>
+            <%end-%>
+        </ul>
+    </div>
+    
+    <div class="action_links">
+        <%=link_to raw('<span class="add_color">Add activity</span>'), new_quote_project_quote_quote_activity_path(project, quote), :remote => true, 'data-spinner' => 'activity_link_spinner'%>
+        
+      <%=link_to raw('<span class="copy_color">Copy activities</span>'), copy_from_previous_quote_project_quote_path(project, quote), :method => :put, :confirm => 'This will remove any existing activities that you have entered below, do you want to continue?', 'data-spinner' => 'activity_link_spinner', :remote => true, :style => "#{!quote.new_quote? && quote.parent_quote.present? ? '' : 'display: none;'}", :id => 'copy_activity_button'%>
+    </div>
+
+    <div class="rate_card_link_cont">
+        <%=spinner_tag('activity_link_spinner')%>&nbsp;&nbsp;
+        <%if quote.project.client.present? -%>
+            <%=link_to 'View client rate card', client_client_rate_cards_path(quote.project.client)%>
+        <%else-%>
+            <%=link_to 'View default rate card', rate_cards_url(:protocol => ssl_link)%>
+        <%end-%>
+    </div>
+    <div class="clearing"></div>
+</div>
+

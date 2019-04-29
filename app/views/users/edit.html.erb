@@ -1,0 +1,131 @@
+<%if current_user.id == @user.id-%>
+    <%@page_title = 'Edit your personal information'%>
+<%else-%>
+    <%@page_title = 'Edit ' + @user.name%>
+<%end-%>
+
+<%if has_permission?('account_holder || administrator') &&  params[:controller] == 'users' -%>
+    <% @second_nav = people_second_nav(params[:action]) %>
+<%end-%>
+
+<% if params['controller'] == 'settings' %>
+    <% @second_nav = settings_second_nav('personal') %>
+<% end %>
+
+<% @user.password = nil %>
+<% @user.password_confirmation = nil %>
+
+<div class="standard_one_col">
+    <div class="cell_1">
+        <%=render :partial => 'shared/page_heading'%>
+        <%=form_for @user do |f|%>
+        
+            <div class="two_col_inline_container_heavy_left">
+                <div class="inline_left">
+
+                    <%if has_permission?('account_holder || administrator') -%>
+                        <h3 class="blue_heading sub_heading">Personal details</h3>
+                    <%end-%>
+
+                    <%=render :partial => 'shared/notifications/error_messages', :object => @user%>
+
+                    <div class="form_row">
+                        <div class="form_text">
+                            <%=f.label :firstname %><span class="required"> *</span>
+                        </div>
+                        <div class="form_field">
+                            <%=f.text_field :firstname, :class => 'text'%>
+                        </div>
+                        <div class="clearing"></div>
+                    </div>
+
+                    <div class="form_row">
+                        <div class="form_text">
+                            <%=f.label :lastname %>
+                        </div>
+                        <div class="form_field">
+                            <%=f.text_field :lastname, :class => 'text'%><span class="required"> *</span>
+                        </div>
+                        <div class="clearing"></div>
+                    </div>
+
+                    <div class="form_row">
+                        <div class="form_text">
+                            <%=f.label :email%>
+                        </div>
+                        <div class="form_field">
+                            <%=f.text_field :email, :class => 'text'%><span class="required"> *</span>
+                        </div>
+                        <div class="clearing"></div>
+                    </div>
+
+
+                    <div class="form_row">
+                        <div class="form_text">
+                            <%=f.label :password %>
+                        </div>
+                        <div class="form_field">
+                            <%=f.password_field :password, :class => 'text', :autocomplete => 'off'%>
+                        </div>
+                        <div class="clearing"></div>
+                    </div>
+
+                    <div class="form_row">
+                        <div class="form_text">
+                            <%=f.label :password_confirmation, 'Re-type password'%>
+                        </div>
+                        <div class="form_field">
+                            <%=f.password_field :password_confirmation, :class => 'text', :autocomplete => 'off'%>
+                        </div>
+                        <div class="clearing"></div>
+                    </div>
+                    
+                    <div class="form_row">
+                        <div class="form_text">
+                            <%=f.label :time_zone%>
+                        </div>
+                        <div class="form_field">
+                            <%=f.time_zone_select :time_zone, nil, :default => "UTC" , :class => 'text'%>
+                        </div>
+                        <div class="clearing"></div>
+                    </div>
+
+                    <div class="form_row">
+                        <div class="form_text">
+                            <%=f.label :archived%>
+                        </div>
+                        <div class="form_field">
+                            <%=f.check_box :archived%>
+                        </div>
+                        <div class="clearing"></div>
+                    </div>
+    
+                    <%if current_user.id == @user.id-%>
+                        <div class="gravatar_instructions" style="background-image: url(<%= @user.gravatar_url(:secure => request.ssl?, :size => 50)%>);">
+                            Change your avatar at <%=link_to 'gravatar.com', 'http://www.gravatar.com', :target => '_blank'%> and your image will refresh within an hour.<br/>
+                            We’re using <%=h @user.email%>.
+                        </div>
+                    <%end-%>
+                    
+                    <div class="submit_container">
+                        <%=f.submit 'Save changes', :class => 'submit'%>
+                        <span class="small_text">or
+                            <%if has_permission?('account_holder || administrator') -%>
+                                <%=link_to 'Cancel', users_path%>
+                            <%else-%>
+                                <%=link_to 'Cancel', root_path%>
+                            <%end-%>
+                        </span>
+                    </div>
+                
+                </div>
+                <div class="inline_right">
+                    <%=render :partial => 'users/team_list', :locals => {:user => @user}%>
+                </div>
+                <div class="clearing"></div>
+            </div>
+        <%end%>
+
+    </div>
+
+</div>

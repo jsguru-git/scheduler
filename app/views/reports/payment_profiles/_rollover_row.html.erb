@@ -1,0 +1,14 @@
+<tr id='<%= dom_id(payment_profile_rollover) %>'>
+  <td><%= fmt_long_date payment_profile_rollover.created_at %></td>
+  <td><%= payment_profile_rollover.user.try(:name) %></td>
+  <td>
+    <% if payment_profile_rollover.payment_profile.present? %>
+      <%= link_to payment_profile_rollover.payment_profile.name, invoice_project_payment_profiles_path(payment_profile_rollover.project) %>
+    <% else %>
+      Has been removed
+    <% end %>
+  </td>
+  <td><%= fmt_long_date payment_profile_rollover.old_expected_payment_date %></td>
+  <td><%= fmt_long_date payment_profile_rollover.new_expected_payment_date %></td>
+  <td><%= payment_profile_rollover.reason_for_date_change %></td>
+</tr>

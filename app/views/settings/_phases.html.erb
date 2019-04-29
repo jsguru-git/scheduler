@@ -1,0 +1,14 @@
+<h3 class="padding_top_30">Project phases</h3>
+<div class="form_row">
+  <div class="form_text">
+    <%= label_tag 'Add/Remove phases' %>
+  </div>
+  <div class="form_field">
+    <div id="phases_view"></div>
+  </div>
+</div>
+<div class="clearing"></div>
+
+<script>
+  var phases = new phasesView({ el: $('#phases_view') });
+</script>

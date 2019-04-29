@@ -1,0 +1,19 @@
+<div class="people_involved_container" name="people_involved">
+    <div class="col_1">
+        <span class="large_blue_narrow">Tracked this week</span>
+        <%if tracked_this_week.present? -%>
+            <%for user in tracked_this_week -%><%= avatar(user, 80) %><%end-%>
+        <%else-%>
+        <p>No one has submitted tracked time to this <%=display_type%> this week.</p>
+        <%end-%>
+    </div>
+    <div class="col_2">
+        <span class="large_blue_narrow">Everyone tracked</span>
+        <%if people_tracked.present? -%>
+            <%for user in people_tracked -%><%= avatar(user, 80) %><%end-%>
+        <%else-%>
+        <p>No one has submitted tracked time to this <%=display_type%>.</p>
+        <%end-%>
+    </div>
+    <div class="clearing"></div>
+</div>

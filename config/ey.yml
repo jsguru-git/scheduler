@@ -1,0 +1,9 @@
+environments: 
+  uat:
+    precompile_assets: true
+
+  TEST:
+    precompile_assets: true
+
+  Production:
+    precompile_assets: true

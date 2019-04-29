@@ -1,0 +1,52 @@
+<p>Hi</p>
+
+<p>A new invoice has just been raised for the project <%=@invoice.project.name%>. You can view a short description of this invoice below or view the invoice within your FleetSuite account at <%=invoice_project_invoice_url(:subdomain => @account.site_address, :id => @invoice.id, :project_id => @invoice.project_id)%></p>
+
+<table>
+    <tr>
+        <td style="font-weight: bold; padding-right: 15px;">Invoice number</td>
+        <td><%=@invoice.invoice_number%></td>
+    </tr>
+   
+    <%if @invoice.user.present? -%>
+        <tr>
+            <td style="font-weight: bold; padding-right: 15px;">Raised by</td>
+            <td><%=@invoice.user.name%></td>
+        </tr>
+    <%end-%>
+
+    <%if @invoice.project.client.present? -%>
+        <tr>
+            <td style="font-weight: bold; padding-right: 15px;">Client</td>
+            <td><%=@invoice.project.client.name%></td>
+        </tr>
+    <%end-%>
+    <%if @invoice.project.team.present? -%>
+        <tr>
+            <td style="font-weight: bold; padding-right: 15px;">Project team</td>
+            <td><%=@invoice.project.team.name%></td>
+        </tr>
+    <%end-%>
+    <%if @invoice.po_number.present? -%>
+        <tr>
+            <td style="font-weight: bold; padding-right: 15px;">PO number</td>
+            <td><%=@invoice.po_number%></td>
+        </tr>
+    <%end-%>
+    <tr>
+        <td style="font-weight: bold; padding-right: 15px;">Amount (excl vat)</td>
+        <td><%=@invoice.amount_in_currency(@invoice.total_amount_cents_exc_vat)%></td>
+    </tr>
+</table>
+
+<p>You may also view all raised invoices in one report at <%=invoice_status_reports_invoices_url(:subdomain => @account.site_address)%></p>
+
+<p>If you would like to un-subscribe form these emails, you may remove your email address from your FleetSuite settings.</p>
+
+<p>Thanks,<br/>
+The FleetSuite Team<br/>
+---<br/>
+Get support: http://help.fleetsuite.com<br/>
+Follow us: https://twitter.com/fleet_suite<br/>
+Suggest new features: http://help.fleetsuite.com/forums</p>
+

@@ -1,0 +1,9 @@
+<%if @second_nav -%>
+    <div id="second_nav">
+        <ul>
+            <% @second_nav.each do |nav| -%>
+                <li class="<%=nav[:class]%>"><%=link_to raw("<span>#{nav[:title]}</span>"), nav[:url], id: "#{ nav[:title].downcase }_tab" %></li>
+            <% end -%>
+        </ul>
+    </div>
+<%end-%>

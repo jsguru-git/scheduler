@@ -1,0 +1,40 @@
+<% @page_title = 'Update permissions' %>
+<% @second_nav = people_second_nav(params[:action]) %>
+
+<div class="standard_two_col">
+    <div class="cell_1">
+        <%= render :partial => 'shared/page_heading' %>
+
+        <%= form_tag edit_roles_users_path, method: :get do %>
+            <label for="user_id" class="label">Team:&nbsp;</label>
+            <%= select_tag :team_id, options_from_collection_for_select(@account.teams, :id, :name, params[:team_id]), include_blank: true, class: 'select2 submit_on_change' %>
+        <% end %>
+
+        <%= form_tag update_roles_users_path do %>
+            <table id='permissions' cellspacing='0'>
+                <th>
+                  <% Role.all.each do |role| %>
+                    <td>
+                      <%= role.title.humanize %>
+                    </td>
+                  <% end %>
+                </th>
+                <% @users.not_archived.each do |user| %>
+                  <tr class="<%= cycle('odd', 'even') %>">
+                    <td class='name'><%= user.name %></td>
+                    <%= render partial: 'roles_radio_buttons', locals: { user: user } %>
+                  </tr>
+                <% end %>
+            </table>
+        <% end %>
+    </div>
+    <div class="cell_2">
+        <%if has_permission?('account_holder || administrator') -%>
+            <%=render :partial => 'rights_description'%>
+        <%end-%>
+    </div>
+</div>
+
+<script>
+    $('.submit_on_change').select2();
+</script>

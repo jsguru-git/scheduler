@@ -1,0 +1,10 @@
+<h2>Edit payment stage</h2>
+<%=form_for [:invoice, project, payment_profile], :remote => true, :html => { 'data-spinner' => 'new_profile_form_spinner'} do |f|%>
+    <%=render :partial => 'shared/notifications/error_messages', :object => payment_profile%>
+
+    <%=render :partial => 'form', :locals => {:f => f}%>
+
+    <div class="submit_container_v2">
+        <%= f.submit 'Update payment stage', :class => 'submit' %> <span class="small_text">or <%=link_to 'Cancel', invoice_project_payment_profiles_path(project), :class => 'lightbox_close', 'data-spinner' => 'new_profile_form_spinner'%></span>&nbsp;<%=spinner_tag('new_profile_form_spinner')%>
+    </div>
+<% end -%>

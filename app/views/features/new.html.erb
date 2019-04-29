@@ -1,0 +1,14 @@
+<%@page_title = 'New feature'%>
+
+<div class="standard_two_col">
+    <div class="cell_1">
+        <%=render :partial => 'shared/page_heading'%>
+            
+        <%=render :partial => 'features/new_feature', 
+                  :locals => {:feature => @feature, :project => @project}%>
+    </div>
+
+    <div class="cell_2">
+
+    </div>
+</div>

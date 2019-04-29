@@ -1,0 +1,82 @@
+body {
+    background: #F9F9F9 url(/images/error/main_background.png) repeat-x left top;
+    color: #6B6D6D;
+    font-family: arial,helvetica,sans-serif;
+    font-size: 13px;
+	line-height: 1.4;
+	margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+/* Links */
+a,
+a:link,
+a:visited,
+a:active {
+    color: #007CD0;
+    outline: none;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #499ED0;
+    text-decoration: underline;
+}
+/* Links */
+
+#blank_outer_container {
+    margin: auto;
+    padding: 0;
+    text-align: center;
+    width: 581px;
+}
+
+#blank_outer_container .grid_container_inner {
+    background: url(/images/error/background.png) no-repeat scroll left top transparent;
+    height: 480px;
+    margin: 100px 0 0;
+    padding: 11px 142px 30px 80px;
+    text-align: left;
+}
+
+#blank_outer_container .grid_container_inner {
+    text-align: left;
+}
+
+#blank_outer_container .grid_container_inner .blank_name_container {
+    padding: 0 0 35px;
+}
+
+h1 {
+    color: #606060;
+    display: block;
+    font-family: 'Oswald','arial narrow',arial,helvetica,sans-serif;
+    font-size: 27px;
+    font-weight: 300;
+    line-height: 1;
+    margin: 0;
+    padding: 0;
+    position: relative;
+	text-align: center;
+    text-transform: uppercase;
+    top: -4px;
+}
+
+#blank_outer_container .grid_container_inner .middle_container {
+    background: #FFFFFF;
+    margin: 0;
+    padding: 10px;
+}
+
+#blank_outer_container .grid_container_inner .middle_container .inner_middle_container {
+    background: url(/images/error/inner_background.png) repeat left top;
+    border: 1px solid #EEEEEE;
+    min-height: 236px;
+    padding: 20px;
+}
+
+p	{
+	font-size: 1.2em;
+	text-align: center;
+}

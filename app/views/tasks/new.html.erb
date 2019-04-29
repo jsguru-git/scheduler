@@ -1,0 +1,10 @@
+<%@page_title = 'New task'%>
+
+<div class="standard_one_col">
+    <div class="cell_1">
+        <%=render :partial => 'shared/page_heading'%>
+        
+        <%=render :partial => 'new_task', :locals => {:project => @project, :task => @task}%>
+    </div>
+
+</div>

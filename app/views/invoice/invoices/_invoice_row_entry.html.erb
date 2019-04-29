@@ -1,0 +1,19 @@
+<li class="invoice_item">
+    <div class="col_1">
+        <%=invoice_item.text_field :name, :class => 'text'%>
+    </div>
+    <div class="col_2">
+        <%=invoice_item.text_field :quantity, :class => 'text qty'%>
+    </div>
+    <div class="col_3">
+        <%=invoice_item.select :vat, [['Yes', true], ['No', false]]%>
+    </div>
+    <div class="col_4">
+        <%=invoice_item.text_field :amount, :class => 'text item_amount', :value => number_with_precision(invoice_item.object.amount, :precision => 2)%>
+    </div>
+    <div class="col_5">
+        <%=invoice_item.hidden_field :payment_profile_id %>
+        <%=link_to 'Remove', '#', :class => 'invoice_item_remove small_remove_button'%>
+    </div>
+    <div class="clearing"></div>
+</li>

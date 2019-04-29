@@ -1,0 +1,6 @@
+$('#<%=dom_id(@invoice)%>').replaceWith("<%= escape_javascript(render(:partial => 'display_invoice_usage', :locals => {:invoice => @invoice })) %>");
+
+main_lightbox.close();
+
+$('#<%=dom_id(@invoice_usage)%>').effect("highlight", {}, 3000);
+main_notification.display_message('Usage has been successfully updated');

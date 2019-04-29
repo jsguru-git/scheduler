@@ -1,0 +1,19 @@
+
+<%if has_permission?('account_holder || administrator') -%>
+    <h3 class="blue_heading sub_heading">Teams this person belongs to</h3>
+    
+    <%if @account.teams.blank? -%>
+        <p>Your account does not yet have any projects.</p>
+    <%else-%>
+    
+        <ul class="checkbox_list">
+            <%for team in @account.teams.name_ordered -%>
+                <li>
+                    <%=check_box_tag 'users_teams[]', team.id, params[:commit].blank? ? team.is_user_tagged_to_team?(user) : params['users_teams'].blank? ? false : params['users_teams'].include?(team.id.to_s), :id => "users_teams#{team.id}" %>
+                    <%=label_tag "users_teams#{team.id}", truncate(team.name, :length => 40)%>
+                </li>
+            <%end-%>
+        </ul>
+    <%end-%>
+
+<%end-%>

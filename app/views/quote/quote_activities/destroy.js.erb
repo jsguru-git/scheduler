@@ -1,0 +1,9 @@
+$('#<%=dom_id @quote_activity%>').remove();
+
+// Update total cost
+$('#total_cost_excl_cont').replaceWith("<%= escape_javascript(render(:partial => 'quote/quotes/total_cost_excl', :locals => {:quote => @quote})) %>");
+$('#total_cost_incl_cont').replaceWith("<%= escape_javascript(render(:partial => 'quote/quotes/total_cost_incl', :locals => {:quote => @quote})) %>");
+$('#total_report_currency_cont').replaceWith("<%= escape_javascript(render(:partial => 'quote/quotes/total_report_currency', :locals => {:quote => @quote})) %>");
+
+
+main_notification.display_message('Activity removed');

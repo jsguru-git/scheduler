@@ -1,0 +1,31 @@
+
+<% var submitted = model.get('submitted') && !Track.admin() %>
+
+<div class="entry ui-draggable ui-resizeable <%= submitted ? "submitted" : "" %>"
+     data-new="<%= model.isNew()%>"
+     data-model="<%= model.cid %>">
+
+  <% if (!submitted) { %>
+    <div class="time_indicator"></div>
+  <% } %>
+
+  <div class="inner_content">
+    <div class="project_title">
+      <%= project %>
+    </div>
+
+    <div class="task_title">
+      <%= task %>
+    </div>
+  </div>
+
+  <div class="tooltip">
+    <a class="opt edit-entry" href="#"></a>
+    <a class="opt duplicate-entry" href=""></a>
+    <a class="opt remove-entry" href="#"></a>
+  </div>
+
+  <a class="opt edit-entry" href=""></a>
+  <a class="opt duplicate-entry" href=""></a>
+  <a class="opt remove-entry" href=""></a>
+</div>

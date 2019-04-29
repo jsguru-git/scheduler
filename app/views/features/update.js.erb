@@ -1,0 +1,11 @@
+// Replace data on page
+$('#<%=dom_id(@feature)%>').replaceWith("<%= escape_javascript(render(:partial => 'features/display_feature', :locals => {:feature => @feature})) %>");
+
+// Open lightbox
+main_lightbox.close();
+
+// Highlight
+$('#<%=dom_id(@feature)%> h3').effect("highlight", {}, 3000);
+
+// Observer new sortable lists
+item_sortable.re_apply_sortable();

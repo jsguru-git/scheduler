@@ -1,0 +1,6 @@
+// Replace content in lightbox div
+$("#main_lightbox_content").html("<%= escape_javascript(render(:partial => 'quote_project_profit_and_loss', :locals => {:projects => @projects, :client => @client})) %>");
+
+// Open lightbox
+main_lightbox.change_height_to(400);
+main_lightbox.open();

@@ -1,0 +1,6 @@
+// Replace content in lightbox div
+$("#main_lightbox_content").html("<%= escape_javascript(render(:partial => 'project_comments/preview', :locals => {:project => @project, :project_comments => @project_comments})) %>");
+
+// Open lightbox
+main_lightbox.change_height_to(300);
+main_lightbox.open();

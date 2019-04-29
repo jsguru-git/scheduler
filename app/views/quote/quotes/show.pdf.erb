@@ -1,0 +1,101 @@
+<div id="cover_page" class="page">
+    <div class="cover_heading">
+        <h1><%=@quote.display_title%><br/>
+        <span class="light_text">Estimate</span></h1>
+    </div>
+    <div class="details">
+        <% if @project.client.present? %>
+            <div class="author">
+                Prepared for <strong><%= @project.client.name %></strong>
+            </div>
+        <% end %>
+        <div class="author">Author: <%= current_user.name %>
+        </div>
+        <div>
+            <%= fmt_long_date_full_month Time.now %>, Version <%= @quote.version_number %>
+            <span><%= image_tag s3_image(@project.account.account_setting.logo(:normal), { protocol: request.protocol }), :class => 'cover_logo' %></span>
+        </div>
+    </div>
+</div>
+
+<%@quote.quote_sections.position_ordered.each_with_index do |section, index| -%>
+    <div id="" class="page">
+        <%if section.cost_section? -%>
+             <h3>Estimate</h3>
+            
+            <table class="standard_table">
+                <tr>
+                    <th>Task</th>
+                    <th class="center_text">Time</th>
+                    <th class="right_text">Cost (<%=@quote.currency.upcase%>)</th>
+                </tr>
+                <%@quote.quote_activities.position_ordered.each do |quote_activity| -%>
+                    <%=content_tag_for :tr, quote_activity do%>
+                        <td>
+                            <%=quote_activity.name%>
+                        </td>
+                        <td class="center_text">
+                            <%if quote_activity.estimate_type == 0 -%>
+                                <%=minute_duration_to_human_time quote_activity.max_estimated_minutes, @account, quote_activity.estimate_scale, 2%>
+                            <%else-%>
+                                <%=minute_duration_to_human_time quote_activity.min_estimated_minutes, @account, quote_activity.estimate_scale, 2%> - 
+                                <%=minute_duration_to_human_time quote_activity.max_estimated_minutes, @account, quote_activity.estimate_scale, 2%>
+                            <%end-%>
+                        </td>
+                        <td class="right_text">
+                            <%if quote_activity.discount_percentage.present? && quote_activity.discount_percentage != 0.0%><span class="small_text light_text">(Incl <%=quote_activity.discount_percentage_out%>% discount)</span><%end-%>
+                            <%if quote_activity.estimate_type == 1 -%><%=formated_in_provided_currency quote_activity.min_amount_cents_in_report_currency, @quote.currency%> - <%end-%><%=formated_in_provided_currency quote_activity.max_amount_cents_in_report_currency, @quote.currency%>
+                        </td>
+                     <%end-%>
+                <%end-%>
+            </table>
+            
+            
+            <div class="totals_cont">
+                <table>
+                    <% unless @quote.extra_cost_cents.zero? %>
+                        <tr>
+                            <td class="light_text"><%=@quote.extra_cost_title%>:</td>
+                            <td>
+                                <%=formated_in_provided_currency @quote.extra_cost_cents_in_report_currency, @quote.currency %>
+                            </td>
+                        </tr>
+                    <% end %>
+                    <tr>
+                        <td class="light_text">Subtotal:</td>
+                        <td>
+                            <%if @quote.include_range_estimates? -%>
+                                <%=formated_in_provided_currency @quote.total_min_cost_excl_discount_and_vat_cents_in_report_currency, @quote.currency%> - 
+                            <%end-%>
+                            <%=formated_in_provided_currency @quote.total_max_cost_excl_discount_and_vat_cents_in_report_currency, @quote.currency%>
+                        </td>
+                    </tr>
+                    <%if @quote.discount_percentage != 0%>
+                        <tr>
+                            <td class="light_text">Discount:</td>
+                            <td><%=@quote.discount_percentage_out%>%</td>
+                        </tr>
+                    <%end-%>
+                    <tr>
+                        <td class="light_text">Tax: </td>
+                        <td><%=@quote.vat_rate_out%>%</td>
+                    </tr>
+                    <tr class="total_incl">
+                        <td>Total:</td>
+                        <td>
+                            <%if @quote.include_range_estimates? -%>
+                                <%=formated_in_provided_currency @quote.total_min_cost_incl_discount_and_vat_cents_in_report_currency, @quote.currency%> - 
+                            <%end-%>
+                            <%=formated_in_provided_currency @quote.total_max_cost_incl_discount_and_vat_cents_in_report_currency, @quote.currency%>
+                        </td>
+                    </tr>
+                </table>
+                <div class="clearing"></div>
+            </div>
+            <%else%>
+                <h3><%=section.title%></h3>
+                <%=simple_format section.content%>
+            <%end-%>
+        </div>
+    </div>
+<%end-%>

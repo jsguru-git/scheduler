@@ -1,0 +1,10 @@
+---
+api_keys_001:
+  id: 1
+  access_token: fe65859688b32b921168a360611e8e4f
+  user_id: 1
+
+api_keys_002:
+  id: 2
+  access_token: 5897e9322360906ab2de9075c0bb2617
+  user_id: 2

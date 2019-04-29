@@ -1,0 +1,19 @@
+<p>Hi <%=@user.firstname%></p>
+
+<p>We hope you’re enjoying FleetSuite. This is a reminder that your free trial is set to expire in <%=distance_of_time_in_words_to_now @account.trial_expires_at%> so why not make the most of it and explore the tools further:</p>
+
+<p>- Reduce project delays by using the individual and team lead time view in the Schedule tab to identify missed opportunities for task completion: <%=schedule_entries_url(:subdomain => @account.site_address)%><br/>
+- Increase efficiency with the Track module’s range of in-depth reports assessing project progress against scheduled time: <%=track_timings_url(:subdomain => @account.site_address)%></p>
+
+<p>We’ll send you a reminder a couple of days before your trial is set to expire but please do be aware that if you haven't upgraded your account by expiry date you will no longer be able to access your data and we’ll have to delete your content. Upgrading is quick and easy; simply log in to your account at <%= root_url(:subdomain => @account.site_address) %> , click on the account tab and select the option to update your card details.</p>
+
+<p>As always, if you have any questions please get in touch with us at info@fleetsuite.com. You can also submit ideas for new features and support requests via our dedicated forum at http://help.fleetsuite.com.</p>
+
+<p>Thanks,<br/>
+Scott<br/>
+The FleetSuite Team<br/>
+---<br/>
+Get support: http://help.fleetsuite.com<br/>
+Follow us: https://twitter.com/fleet_suite<br/>
+Suggest new features: http://help.fleetsuite.com/forums</p>
+

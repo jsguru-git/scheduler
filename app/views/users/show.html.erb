@@ -1,0 +1,37 @@
+<% @page_title = @user.name %>
+
+<div class="standard_two_col" id="user_show_page">
+  <div class="cell_1">
+    <h2><%= @user.name %></h2>
+    <div id="user_image" class="float_left">
+      <%= avatar(@user, 250) %>
+    </div>
+    <div id="user_information" class="float_left">
+
+      <span class="large_blue_narrow">Email Address</span>
+      <p><%= link_to @user.email, "mailto:#{ @user.email }" %></p>
+
+      <span class="large_blue_narrow">Teams</span>
+      <p><%= @user.teams.map(&:name).to_sentence(last_word_connector: ' and ') %></p>
+
+      <span class="large_blue_narrow">Bio</span>
+      <div id="bio_field" class="<%= 'editable' if policy(@user).update? %>"><p><%= @user.biography(true).html_safe %></p></div><%= spinner_tag('biography_update_spinner') %> <br />
+        <%= render partial: 'markdown_help' %>
+      </div>
+  </div>
+
+  <div class="cell_2">
+    <% if policy(@user).update? %>
+      <div id="action_links">
+        <%=link_to raw('<span class="edit">Edit user</span>'), edit_user_url(:id => @user.id, :protocol => ssl_link)%>
+        <div class="clearing"></div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function() {
+    bioView = new user.view.BioView({id: <%= @user.id %>});
+  }); 
+</script>

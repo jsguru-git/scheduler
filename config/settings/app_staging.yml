@@ -1,0 +1,59 @@
+# Application Configuration File
+# -------------------------------------
+#
+# These values can be referred to in the code as follows:
+#
+# APP_CONFIG['section-name']['setting-name']
+#
+main:
+    from-email : fleetsuite@arthurly.com
+    to-email : fleetsuite@arthurly.com
+    site-default-title : Online Collaboration Tools - Manage Projects With Ease - FleetSuite
+    site-description : A suite of online collaboration tools that allows you to co-ordinate multiple teams, users, projects and clients across your business with ease
+    site-keywords : Collaboration tools, online collaboration tools, project collaboration tools, online project collaboration tools
+
+
+pagination:
+    site_pagination_per_page : 20
+    admin_pagination_per_page : 20
+    pagination_inner : 1
+    pagination_outer : 0
+    next_label : '>'
+    prev_label : '<'
+
+
+chargify:
+    subdomain: arthurlyuat
+    api_key:  mXnnb6UXM6M_EBZGDLpw
+    shared_key: yRk-i418N6EmgcD3bMco
+    
+    
+gravatar:
+    default_asset_domain: http://www.fleetsuiteite.com
+    default_asset_ssl_domain: https://www.fleetsuiteite.com
+
+
+twitter:
+    user: fleet_suite
+
+openexchangerates:
+    app_id: 2b689bff7a3e4935aa546e92f6ceb942
+    
+pgp_key: fleetpasskey3765
+
+oauth:
+  google:
+    provider_number: 0
+    client_id: 941357160201-1gpgqh1hd114rtgca7gd7999vogficdc.apps.googleusercontent.com
+    client_secret: VBVLYl3oFItHOZdiGRrGPSoz
+    redirect_url: https://www.fleetsuiteite.com/oauth/drive_callbacks
+  dropbox:
+    provider_number: 1
+    client_id: brl9ngyomcv1ty3
+    client_secret: qww2x92tytlb8h3
+    redirect_url: https://www.fleetsuiteite.com/oauth/drive_callbacks
+  local:
+    provider_number: 2
+    client_id:
+    client_secret:
+    redirect_url:

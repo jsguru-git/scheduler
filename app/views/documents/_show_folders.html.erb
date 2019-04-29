@@ -1,0 +1,39 @@
+<%=form_tag project_documents_path(@project), :remote => true, 'data-spinner' => 'attach_spinner' do%>
+    <%=hidden_field_tag :provider, params[:provider]%>
+    <%=hidden_field_tag :browse, params[:browse]%>
+    <%=hidden_field_tag :folder_id, params[:folder_id]%>
+    
+    <div class="list_cont <%=flash[:alert].present? ? 'small_folder_list_cont' : ''%>">
+        <%if results.present? && (results[:results].present? || results[:parent_folder_id].present?) -%>
+            <ul class="item_list">
+                <%if results[:parent_folder_id].present? -%>
+                    <li>
+                        <div class="checkbox_cont">
+                            &nbsp;
+                        </div>
+                        <div class="name_cont back">
+                            <%=link_to 'Back to parent folder', new_project_document_path(:id => @project, :provider => params[:provider], :browse => 'folder', :folder_id => results[:parent_folder_id]), :remote => true, 'data-spinner' => "attach_spinner"%>
+                        </div>
+                        <div class="clearing"></div>
+                    </li>
+                <%end-%>
+                
+                <%results[:results].each do |result| -%>
+                    <%=render :partial => 'list_item', :locals => {:result => result}%>
+                <%end-%>
+            </ul>
+        <%else -%>
+            <p class="no_content">No files or folders found</p>
+        <%end-%>
+    </div>
+    <div class="file_attach_button">
+		<div class="left_text">
+			<%if params[:provider] == 'dropbox' -%><span><strong>Please note:</strong> Anyone who has access to the Dropbox share link that will be generated will be able to view the attached file.</span><%end-%>
+		</div>
+		<div class="right_text">
+        	<%=spinner_tag("attach_spinner")%>&nbsp;&nbsp;
+			<%=submit_tag 'Attach', 'data-disable-with' => 'Attaching', :class => 'submit'%>
+		</div>
+		<div class="clearing"></div>
+    </div>
+<%end-%>

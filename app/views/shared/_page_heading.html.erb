@@ -1,0 +1,15 @@
+<%= render :partial => 'shared/layouts/tool/breadcrumbs' %>
+<% if @no_title.blank? %>
+  <% if @page_title.present? %>
+    <div class="h2_padding_container">
+      <h2>
+        <%= h @page_title %>
+      </h2>
+    </div>
+  <% end %>
+<% end %>
+
+
+<%= render :partial => 'shared/notifications/account_suspended' if @account.account_suspended? %>
+<%= render :partial => 'shared/notifications/account_trial'%>
+<%= render(:partial => 'shared/notifications/flash', :locals => {:flash => flash }) if flash[:notice] || flash[:alert] %>

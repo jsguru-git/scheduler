@@ -1,0 +1,6 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+phases_001:
+  id: 1
+  name: Example Phase 1
+  account_id: 1

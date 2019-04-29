@@ -1,0 +1,89 @@
+<p class="current_account_numbers">Your account currently has <strong><%=pluralize @account.count_for_model('User'), 'user'%></strong>.</p>
+
+<table class="account_chart">
+    <tr class="account_header">
+        <th>Other available plans you can choose</th>
+        <th class="low_priority_text">Users</th>
+        <th>&nbsp;</th>
+    </tr>
+
+    <%for plan in @account_plans -%>
+        <%if should_show_plan(plan) -%>
+            <tr class="<%=account_row_class_name(plan)%>">
+                <td class="left_cell">
+                    <span class="plan_name"><%=h plan.name%></span>
+                    <span class="plan_cost">
+                        <%if plan.price == 0 -%>
+                            Free
+                        <%else-%>
+                            <%=number_to_currency(plan.price, :precision => 0)%>/month
+                        <%end-%>
+                    </span>
+                </td>
+                <td><%=plan_amount_text plan.no_users%></td>
+                <td>
+                    <%if @account.account_plan_id == plan.id-%>
+                        Your plan
+                    <%elsif @account.account_plan.price > plan.price-%>
+                        <%=form_for @account, :url => change_plan_account_settings_path do |f|%>
+                            <%=f.hidden_field :account_plan_id, :value => plan.id%>
+                            <%=f.submit 'Downgrade', :class => 'submit_type_2'%>
+                        <%end%>
+                    <%else-%>
+                        <%=form_for @account, :url => change_plan_account_settings_path do |f|%>
+                            <%=f.hidden_field :account_plan_id, :value => plan.id%>
+                            <%=f.submit 'Upgrade', :class => 'submit_type_3'%>
+                        <%end%>
+                    <%end-%>
+                </td>
+            </tr>
+        <%end-%>
+    <%end-%>
+</table>
+
+<%if @account_components.present? -%>
+    <div class="your_sutie">
+        <h3 class="blue_heading">Your suite</h3>
+        <table class="account_chart">
+            <tr class="account_header">
+                <th>Available components</th>
+                <th class="low_priority_text">Status</th>
+                <th>&nbsp;</th>
+            </tr>
+            <%for component in @account_components -%>
+                <tr>
+                    <td class="left_cell"><%=component.name%> (<%=number_to_currency(component.price, :precision => 0)%>/month)</td>
+                    <td>
+                        <%if @account.component_enabled?(component.id) -%>
+                            Enabled
+                        <%else-%>
+                            Disabled
+                        <%end-%>
+                    </td>
+                    <td>
+                        <%if @account.component_enabled?(component.id) -%>
+                            
+                            <%=form_for @account, :url => disable_component_account_settings_path do |f|%>
+                                <%=hidden_field_tag :component_id, component.id%>
+                                <%if component.can_component_be_disabled_for?(@account)%>
+                                    <%=f.submit 'Disable', :class => 'submit_type_3'%>
+                                <%else-%>
+                                    <%=f.submit 'Disable', :class => 'submit_type_3', :disabled => true%><br/>
+                                    You can only disable a component that is not being used
+                                <%end-%>
+                            <%end%>
+                            
+                        <%else-%>
+
+                            <%=form_for @account, :url => enable_component_account_settings_path do |f|%>
+                                <%=hidden_field_tag :component_id, component.id%>
+                                <%=f.submit 'Enable now', :class => 'submit_type_3'%>
+                            <%end%>
+                            
+                        <%end-%>
+                    </td>
+                </tr>
+            <%end-%>
+        </table>
+    </div>
+<%end-%>

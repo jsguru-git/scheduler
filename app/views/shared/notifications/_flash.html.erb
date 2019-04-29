@@ -1,0 +1,7 @@
+<div class="flash_notification">
+    <div class="<%= flash[:notice] ? 'good' : 'bad' -%>">
+        <p>
+            <%= flash[:notice] || flash[:alert] %>
+        </p>
+    </div>
+</div>

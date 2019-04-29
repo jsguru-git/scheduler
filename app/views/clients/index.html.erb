@@ -1,0 +1,36 @@
+<%@page_title = 'Clients'%>
+<% @second_nav = people_second_nav(params[:action]) %>
+
+<div class="standard_two_col">
+    <div class="cell_1">
+        <%=render :partial => 'shared/page_heading'%>
+        
+        <%=render :partial => 'search_container', :locals => {:search_link => clients_path}%>
+        
+        <%=render :partial => 'shared/pagination/paginate', :object => @clients%>
+
+        <ul class="inline_content_list">
+            <%@clients.each do |client|%>
+                <%=render :partial => 'display_client', :locals => {:client => client}%>
+            <%end-%>
+        </ul>
+        <div class="clearing"></div>
+        <%=render :partial => 'shared/pagination/paginate', :object => @clients%>
+        
+    </div>
+    <div class="cell_2">
+        <div id="action_links">
+            <% if policy(Client).create? %>
+                <%=link_to raw('<span class="add_color">Add Client</span>'), new_client_url(:protocol => ssl_link)%>
+
+				<%if @account.component_enabled?(2) && @account.component_enabled?(4)%>
+                	<%=link_to raw('<span class="report_color">Client profit &amp; loss</span>'), profit_and_loss_reports_clients_path(:protocol => 'http')%>
+				<%end-%>
+				
+            <% end %>
+            <div class="clearing"></div>
+        </div>
+    </div>
+    <div class="clearing"></div>
+</div>
+

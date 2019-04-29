@@ -1,0 +1,8 @@
+// Replace content in lightbox div
+$('#<%= dom_id(@rollover) %>').replaceWith("<%= escape_javascript(render(:partial => '/reports/payment_profiles/rollover_row', :locals => { :payment_profile_rollover => @rollover })) %>");
+
+// Open lightbox
+main_lightbox.close();
+
+// Highlight
+$('#<%= dom_id(@rollover) %>').effect("highlight", {}, 3000);

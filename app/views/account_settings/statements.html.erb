@@ -1,0 +1,35 @@
+<%@page_title = 'Statements'%>
+<%@second_nav = account_settings_second_nav(params[:action])%>
+
+<div class="standard_two_col">
+    <div class="cell_1">
+        <%=render :partial => 'shared/page_heading'%>
+
+        <%if @statements.blank? -%>
+            <p>There are no statements available for this account yet.</p>
+        <%else-%>
+            <%@statment_number = 0%>
+            <table id="statement_list">
+                <tr>
+                    <th>ID</th>
+                    <th>Date</th>
+                    <th>Starting balance</th>
+                    <th>Ending balance</th>
+                </tr>
+                <% @statements.each do |statement| -%>
+                    <tr>
+                        <td><%=link_to "Statement ##{@statment_number+=1}", statement_account_settings_path(:statement_id => statement.id) %></td>
+                        <td><%=fmt_long_date(statement.closed_at)%></td>
+                        <td><%=number_to_currency statement.starting_balance_in_cents%></td>
+                        <td><%=number_to_currency statement.ending_balance_in_cents%></td>
+                    </tr>
+                <%end-%>
+            </table>
+        <%end-%>
+        
+
+    </div>
+    <div class="cell_2">
+
+    </div>
+</div>

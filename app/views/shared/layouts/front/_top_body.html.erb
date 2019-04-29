@@ -1,0 +1,33 @@
+<div class="outer_contaner" id="product_nav">
+     <div class="inner_container" id="product_inner">
+         <ul id="product_nav_links">
+             <li class="first"><%=link_to 'FleetSuite', root_path, :class => product_nav_active('home')%></li>
+             <li class="second"><%=link_to 'quote.', quote_tool_path, :class => product_nav_active('quote')%></li>
+             <li class="third"><%=link_to 'schedule.', scheduling_tool_path, :class => product_nav_active('schedule')%></li>
+             <li class="forth"><%=link_to 'track.', time_tracking_tool_path, :class => product_nav_active('track')%></li>
+             <li class="forth"><%=link_to 'invoice.', invoice_tool_path, :class => product_nav_active('invoice')%></li>
+        </ul>
+     </div>
+</div>
+
+<div id="outer_frame">
+    
+    <div class="outer_contaner" id="header_outer">
+        <%if content_for?(:outer_content)%>
+            <%=yield :outer_content%>
+        <%end-%>
+        
+        <div class="inner_container" id="header_inner">
+            <div class="logo_container">
+                <%= link_to "", "/", :id => "logo" %>
+            </div>
+            <%=render :partial => 'shared/layouts/front/second_nav'%>
+            
+            <%if content_for?(:title_bar)%>
+                <%=yield :title_bar%>
+            <%end-%>
+            
+        </div>
+    </div>
+    
+    

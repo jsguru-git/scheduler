@@ -1,0 +1,9 @@
+$('#<%=dom_id(@payment_profile)%>').replaceWith("<%= escape_javascript(render(:partial => 'display_payment_profile', :locals => {:display_payment_profile => @payment_profile, :project => @project})) %>");
+
+$('#totals_cont').replaceWith("<%= escape_javascript(render(:partial => 'totals', :locals => {:project => @project})) %>");
+
+// Close lightbox
+main_lightbox.close();
+
+// Highlight
+$('#<%=dom_id(@payment_profile)%>').effect("highlight", {}, 3000);

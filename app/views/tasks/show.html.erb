@@ -1,0 +1,28 @@
+<% if @project.archived? %>
+    <% @page_title = 'Features & Tasks: ' + @project.name + ' (Archived)' %>
+<% else %>
+    <% @page_title = 'Features & Tasks: ' + @project.name %>
+<% end %>
+
+<% @second_nav = project_second_nav(@project, 'index') %>
+
+<div class="standard_one_col">
+  <div class="cell_1">
+    <% if @task.present? %>
+      <h2><%= @task.name %></h2>
+      <h3><span>Belongs to:</span> <%= @task.project.name %></h3>
+      <h3><span>Created:</span> <%= time_ago_in_words @task.created_at %> ago</h3>
+ 
+      <h3>
+        <span>Time tracked:</span>
+        <%= @task.time_tracked_as_string  %>
+      </h3>
+
+      <h3>
+        <span>Time tracked this month:</span>
+        <%= @task.time_this_month / 60  %> hours
+      </h3>
+    <% end %>
+  </div>
+</div>
+

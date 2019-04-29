@@ -1,0 +1,44 @@
+<%=content_tag_for :tr, project do -%>
+	<td><%= project.client.name%></td>
+	<td><%=link_to project.name, project_path(project)%></td>
+	<td>
+		<%project.invoices.each do |invoice| -%>
+			<%if invoice.pre_payment? -%>
+				<div>
+					<%=link_to "Invoice #{invoice.invoice_number}", invoice_project_invoice_usages_path(project_id: project, anchor: "invoice_#{invoice.id}")%>
+				</div>
+			<%end-%>
+		<%end-%>
+	</td>
+	<td class="align_center">
+		<%project.invoices.each do |invoice| -%>
+			<%if invoice.pre_payment? -%>
+				<div id="total_amount_<%=dom_id invoice%>">
+					<%=invoice.total_amount_exc_vat_in_currency%>
+				</div>
+			<%end-%>
+		<%end-%>
+	</td>
+	<td class="align_center">
+		<%project.invoices.each do |invoice| -%>
+			<%if invoice.pre_payment? -%>
+				<div id="unalloated_amount_<%=dom_id invoice%>">
+					<%reamining = InvoiceUsage.amount_remaining_for(invoice)%>
+					<%=formated_in_provided_currency( reamining, invoice.currency)%>
+				</div>
+			<%end-%>
+		<%end-%>
+	</td>
+	<td>
+		<%project.invoices.each do |invoice| -%>
+			<%if invoice.pre_payment? -%>
+				<div>
+					<%reamining = InvoiceUsage.amount_remaining_for(invoice)%>
+					<%if reamining > 0%>
+                        <%=link_to raw('<span class="track_color">Allocate amount</span>'), new_invoice_project_invoice_usage_path(:project_id => project, :invoice_id => invoice.id, :from => 'combined'), :remote => true%>
+                    <%end-%>
+				</div>
+			<%end-%>
+		<%end-%>
+	</td>
+<%end-%>

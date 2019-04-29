@@ -1,0 +1,26 @@
+<h2>Import Activities From A Quote</h2>
+
+<% if @project.quotes.present? %>
+  <%= form_tag import_quote_project_tasks_path(@project), remote: true do %>
+
+      <%= hidden_field_tag :project_id, @project.id %>
+
+	<div class="form_row">
+	    <div class="form_text">
+	        <%=label_tag :quote_id, 'Select quote'%>
+	    </div>
+	    <div class="form_field">
+	        <%= select_tag :quote_id, options_for_select(@quotes.collect { |q| [q.title.blank? ? 'No name' : q.title, q.id] }) %><span class="required"> *</span>
+	    </div>
+	    <div class="clearing"></div>
+	</div>
+      
+
+      <div class="submit_container">
+          <%= submit_tag 'Import activities', class: 'submit' %> <span class="small_text">or <%=link_to 'Cancel', cancel_project_tasks_path(project), :remote => true, 'data-spinner' => 'new_task_form_spinner'%></span>&nbsp;<%=spinner_tag('new_task_form_spinner') %>
+      </div>
+  <% end %>
+
+<% else %>
+  This project has no quotes. <%= link_to "Add one.", quote_project_quotes_path(@project) %>
+<% end %>

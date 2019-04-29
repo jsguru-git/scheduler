@@ -1,0 +1,15 @@
+<%from_create ||= false%>
+<%if from_create -%>
+    <h2>Add service types</h2>
+<%else-%>
+    <h2>Edit service types</h2>
+<%end-%>
+<%=form_for [:invoice, project, payment_profile], :url => update_service_types_invoice_project_payment_profile_path(project, payment_profile), :method => :put, :remote => true, :html => { 'data-spinner' => 'profile_form_spinner'} do |f|%>
+    <%=render :partial => 'shared/notifications/error_messages', :object => payment_profile%>
+
+    <%=render :partial => 'service_types_form', :locals => {:f => f, :project => project}%>
+
+    <div class="submit_container">
+        <%= f.submit 'Update service types', :class => 'submit' %> <span class="small_text">or <%=link_to 'Cancel', invoice_project_payment_profiles_path(project), :class => 'lightbox_close', 'data-spinner' => 'profile_form_spinner'%></span>&nbsp;<%=spinner_tag('profile_form_spinner')%>
+    </div>
+<% end -%>

@@ -1,0 +1,12 @@
+<h2>New activity</h2>
+<%=form_for [:quote, project, quote, quote_activity], :remote => true, :html => { 'data-spinner' => 'new_activity_spinner'} do |f|%>
+    <%=render :partial => 'shared/notifications/error_messages', :object => quote_activity%>
+    
+    <%=render :partial => 'form', :locals => {:f => f, :project => project}%>
+    
+    <div class="submit_container">
+        <%= f.submit 'Finish', :class => 'submit' %>&nbsp;&nbsp;
+        <%= f.submit 'Add another', :class => 'submit' %>
+        &nbsp;<%=spinner_tag('new_activity_spinner')%>
+    </div>
+<% end -%>

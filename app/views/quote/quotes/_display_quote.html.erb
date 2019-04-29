@@ -1,0 +1,49 @@
+<%=content_tag_for :tr, quote do%>
+    <td class="title"><%=link_to quote.display_title, quote_project_quote_path(project, quote)%></td>
+    <td class="version align_center"><%=quote.version_number%></td>
+    <td>
+        <%=fmt_long_date quote.updated_at%>
+        <%if quote.last_saved_by.present? -%>
+            by <%=quote.last_saved_by.name%>
+        <%end-%>
+    </td>
+    <td class="cost align_center">
+        <%if quote.include_range_estimates? -%>
+            <%=formated_in_default_currency quote.total_min_cost_incl_discount_and_vat_cents%> - 
+        <%end-%>
+        <%=formated_in_default_currency quote.total_max_cost_incl_discount_and_vat_cents%>
+    </td>
+    
+    <td class="po_number align_center">
+        <%if quote.po_number.present? -%>
+            <%if quote.is_latest_version? && quote.quote_status != 3 -%>
+                <%=link_to quote.po_number, edit_details_quote_project_quote_path(:project_id => @project, :id => quote, :field => 'po_number'), :remote => true, 'data-spinner' => "#{dom_id(quote)}_po_number"%>
+            <%else-%>
+                <%=quote.po_number%>
+            <%end-%>
+        <%else-%>
+            <%if quote.is_latest_version? && quote.quote_status != 3 -%>
+                <%=link_to 'Enter PO number', edit_details_quote_project_quote_path(:project_id => @project, :id => quote, :field => 'po_number'), :remote => true, 'data-spinner' => "#{dom_id(quote)}_po_number"%>
+            <%end-%>
+        <%end-%>
+        &nbsp;<%=spinner_tag("#{dom_id(quote)}_po_number")%>
+    </td>
+    <td class="status">
+        <%if quote.is_latest_version? -%>
+            <%if can_update_quote_status?(quote) -%>
+                <%=form_for [:quote, project, quote], :url => update_details_quote_project_quote_path(project, quote) do |f|%>
+                    <%=f.select :quote_status, SELECTIONS['quote_status'].collect{|key, value| [ value, key ] }, {}, :class => 'ajax_put_submit_on_change'%>
+                <%end-%>
+            <%else-%>
+                <%=SELECTIONS['quote_status'][quote.quote_status]%>
+            <%end-%>
+        <%else-%>
+            Superseded
+        <%end-%>
+    </td>
+    <td class="links">
+        <%if can_delete_quote?(quote) -%>
+            <%=link_to 'Remove', quote_project_quote_path(@project, quote), :method => :delete, :confirm => 'Are you sure you want to remove this quote?', :class => 'remove_button'%>
+        <%end%>
+    </td>
+<%end-%>

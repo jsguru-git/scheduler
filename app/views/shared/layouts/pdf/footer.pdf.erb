@@ -1,0 +1,16 @@
+<div class="footer">
+  <div class="foot_left">
+    Confidential. Copyright &copy; <%=Time.now.year%>
+  </div>
+  <div class="foot_right">
+    Page <span class="page"></span> of <span class="topage"></span>
+  </div>
+  <div class="clearing"></div>
+</div>
+<script>
+$(document).ready(function() {
+  if($('.page').text() == '0') {
+    $('.footer').parent().html("");
+  }
+});
+</script>

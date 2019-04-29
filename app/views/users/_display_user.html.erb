@@ -1,0 +1,16 @@
+<%=content_tag_for(:li, user) do%>
+    <div class="inner_user_container">
+        <%= avatar(user, 80) %>
+        <span class="name"><%= truncate(user.name, :length => 25)%></span>
+        
+        <span class="role">
+            <%if has_permission?('account_holder', user) -%><span class="light_text account_holder">Account holder</span><%end-%>
+            <%if has_permission?('administrator', user) -%><span class="light_text account_holder">Administrator</span><%end-%>
+        </span>
+        
+        <%= link_to 'Edit', edit_user_url(:id => user, :protocol => ssl_link), :class =>'edit_button' if has_permission?('account_holder || administrator') || current_user == user %>
+        <%= link_to 'Remove', user_path(user), :method => :delete, :class => 'remove_button', :data => {:confirm => 'Are you sure you want to remove this user? (Removing a user will also remove any associated data such as their schedule or tracked time)'} if has_permission?('account_holder || administrator') %>
+    <div class="clearing"></div>
+    </div>
+
+<%end%>

@@ -1,0 +1,45 @@
+<h2>Invoice stats</h2>
+
+<div class="invoice_stats_container">
+    <div class="invoice_stat">
+        <div class="figure">
+            <%=@number_with_payment_expected %>
+        </div>
+        <div class="desc">
+            Number of projects expecting<br/> a payment this month
+        </div>
+        <div class="clearing"></div>
+    </div>
+    
+    <div class="invoice_stat">
+        <div class="figure">
+            <%=formated_in_default_currency @totals[:current_year][:total]%>
+        </div>
+        <div class="desc">
+            Payment predictions<br/> for this month
+        </div>
+        <div class="clearing"></div>
+    </div>
+
+    <div class="invoice_stat">
+        <div class="figure">
+            <%=@number_with_invoice_raised%>
+        </div>
+        <div class="desc">
+            Number of these projects<br/> with a raised invoice
+        </div>
+        <div class="clearing"></div>
+    </div>
+
+    <div class="invoice_stat">
+        <div class="figure">
+            <%=formated_in_default_currency @totals[:last_year][:total]%>
+        </div>
+        <div class="desc">
+             Payment predictions for<br/> same period last year
+        </div>
+        <div class="clearing"></div>
+    </div>
+    
+    <div class="clearing"></div>
+</div>

@@ -1,0 +1,11 @@
+<div class="padding_bottom_5">
+    <%=rate_card_payment_profile_form.select :rate_card_id, @account.rate_cards.service_type_ordered.collect {|p| [ p.service_type, p.id ] }, { :include_blank => should_show_blank_rate_card_option?(rate_card_payment_profile_form) }%>
+    <%=rate_card_payment_profile_form.text_field :percentage, :class => 'number'%> %
+
+    <% unless rate_card_payment_profile_form.object.new_record? %>
+        <span class="small_text">&nbsp;
+            <%= rate_card_payment_profile_form.label '_destroy', 'Remove' %>
+            <%= rate_card_payment_profile_form.check_box '_destroy' %>
+        </span>
+    <% end %>
+</div>

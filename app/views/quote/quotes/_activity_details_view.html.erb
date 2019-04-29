@@ -1,0 +1,40 @@
+<div class="activity_details_section">
+    <h3 class="underline">Activities</h3>
+    
+    <div class="outline_container">
+        <ul id="activity_list">
+            <li class="list_heading no_edit">
+                <div class="col_2">Name</div>
+                <div class="col_3">Service type</div>
+                <div class="col_4">Estimated time</div>
+                <div class="col_5">Cost</div>
+                <div class="clearing"></div>
+            </li>
+            <%quote.quote_activities.position_ordered.each do |quote_activity| -%>
+                <%=content_tag_for :li, quote_activity, :class => 'no_edit' do%>
+                    <div class="col_2">
+                        <%=quote_activity.name%>
+                    </div>
+                    <div class="col_3">
+                        <%=quote_activity.rate_card.service_type if quote_activity.rate_card.present?%>
+                    </div>
+                    <div class="col_4">
+                        <%if quote_activity.estimate_type == 0 -%>
+                            <%=minute_duration_to_human_time quote_activity.max_estimated_minutes, @account, quote_activity.estimate_scale%>
+                        <%else-%>
+                            Min: <%=minute_duration_to_human_time quote_activity.min_estimated_minutes, @account, quote_activity.estimate_scale%> - 
+                            Max: <%=minute_duration_to_human_time quote_activity.max_estimated_minutes, @account, quote_activity.estimate_scale%>
+                        <%end-%>
+                    </div>
+                    <div class="col_5">
+                        <%if quote_activity.estimate_type == 1 -%><%=formated_in_default_currency quote_activity.min_amount_cents%> - <%end-%><%=formated_in_default_currency quote_activity.max_amount_cents%>
+                        <%if quote_activity.discount_percentage.present? && quote_activity.discount_percentage != 0.0%><span class="light_text">(Incl <%=quote_activity.discount_percentage_out%>% discount)</span><%end-%>
+                    </div>
+                    <div class="clearing"></div>
+                <%end-%>
+            <%end-%>
+        </ul>
+    </div>
+   
+</div>
+

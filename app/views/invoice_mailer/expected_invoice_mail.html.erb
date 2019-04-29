@@ -1,0 +1,54 @@
+<p>Hi</p>
+
+<%if @payment_profiles.blank? -%>
+	<p>There are no expected invoices for your <%if @account_setting.expected_invoice_mail_frequency == 0 -%> daily <%elsif @account_setting.expected_invoice_mail_frequency == 1 -%> weekly <%elsif @account_setting.expected_invoice_mail_frequency == 2 -%> monthly <%end-%> report.</p>
+<%else-%>
+	<p>Here's your <%if @account_setting.expected_invoice_mail_frequency == 0 -%> daily <%elsif @account_setting.expected_invoice_mail_frequency == 1 -%> weekly <%elsif @account_setting.expected_invoice_mail_frequency == 2 -%> monthly <%end-%> payment profiles that are yet to be invoiced grouped by business owner (Total: <%=@payment_profiles.length%>):</p>
+
+	<%user_id = 0%>
+	<%@payment_profiles.each do |payment_profile| -%>
+	
+		<%if user_id != payment_profile.project.business_owner_id -%>
+			<%if user_id != 0 -%></table><%end-%>
+
+			<table  width="100%" cellpadding="0" cellspacing="0" >
+				<tr>
+					<td style="padding: 30px 0 10px 0;">
+						<h1 style="margin: 0; font-weight: bold; padding-bottom: 3px; color: #464747; font-size: 1.6em; border-bottom: 1px dashed #555555;">
+							<%if payment_profile.project.business_owner.present? -%>
+								<%=payment_profile.project.business_owner.name%>
+							<%else-%>
+								No associated business owner
+							<%end-%>
+						</h1>
+					</td>
+				</tr>
+			</table>
+			<table width="100%" class="data_table" style="border: 1px solid #CEDA9E; border-collapse: collapse; color: #464747;">
+			    <tr style="background: #CEDA9E; font-size: 0.9em;" bgcolor="#CEDA9E">
+			        <th style="color: #FFFFFF; padding: 4px 6px 4px 6px; text-align: center;" align="center">Project</th>
+			        <th style="color: #FFFFFF; padding: 4px 6px 4px 6px; text-align: center;" align="center">Payment stage</th>
+			        <th style="color: #FFFFFF; padding: 4px 6px 4px 6px; text-align: center; width: 100px; text-align: center;" align="center">Amount</th>
+			        <th style="color: #FFFFFF; padding: 4px 6px 4px 6px; text-align: center; width: 100px; text-align: center;" align="center">Expected date</th>
+			    </tr>
+			<%user_id = payment_profile.project.business_owner_id%>
+		<%end-%>
+		<tr>
+	        <td style="padding: 4px 6px 4px 6px; color: #464747; font-family: arial, helvetica, sans-serif; font-size: 0.9em;"><%=payment_profile.project.name%></td>
+	        <td style="padding: 4px 6px 4px 6px; color: #464747; font-family: arial, helvetica, sans-serif; font-size: 0.9em;"><%=payment_profile.name%></td>
+	        <td style="padding: 4px 6px 4px 6px; color: #464747; font-family: arial, helvetica, sans-serif; font-size: 0.9em; text-align: center;" align="center"><%=payment_profile.expected_cost_formatted%></td>
+	        <td style="padding: 4px 6px 4px 6px; color: #464747; font-family: arial, helvetica, sans-serif; font-size: 0.9em; text-align: center;"  align="center"><%=payment_profile.expected_payment_date.strftime("%a %d %b %Y")%></td>
+	    </tr>
+	<%end -%>
+	</table>
+	<br/><br/>
+<%end-%>
+<p>If you would like to un-subscribe form these emails, you may remove your email address from your FleetSuite settings.</p>
+
+<p>Thanks,<br/>
+The FleetSuite Team<br/>
+---<br/>
+Get support: http://help.fleetsuite.com<br/>
+Follow us: https://twitter.com/fleet_suite<br/>
+Suggest new features: http://help.fleetsuite.com/forums</p>
+

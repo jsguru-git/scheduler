@@ -1,0 +1,6 @@
+// Replace content in lightbox div
+$("#main_lightbox_content").html("<%= escape_javascript(render(:partial => 'new_rate_card_form', :locals => {:client_rate_card => @client_rate_card, :rate_card => @rate_card, :client => @client})) %>");
+
+// Open lightbox
+main_lightbox.change_height_to(250);
+main_lightbox.open();

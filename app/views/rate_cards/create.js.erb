@@ -1,0 +1,10 @@
+// Replace content in lightbox div
+$(".service_type_list").append("<%= escape_javascript(render(:partial => 'display_rate_card', :locals => {:rate_card => @rate_card})) %>");
+
+$('.no_rate_card').remove();
+
+// Open lightbox
+main_lightbox.close();
+
+// Highlight
+$('#<%=dom_id(@rate_card)%>').effect("highlight", {}, 3000);

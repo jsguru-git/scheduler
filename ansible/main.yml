@@ -1,0 +1,3 @@
+- include: ../../ansible-arthurly/bootstrap_ansible.yml
+- include: ../../ansible-arthurly/arthurly.yml
+- include: fleetsuite.yml

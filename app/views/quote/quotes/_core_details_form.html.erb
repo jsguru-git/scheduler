@@ -1,0 +1,119 @@
+<div class="core_details_section">
+    <h3 class="underline">Quote details</h3>
+    
+    <div class="even_container_split">
+        <div class="col_1 col">
+            <%if !quote.new_quote? && quote.quote_id.present? -%>
+                <div class="form_row">
+                    <div class="form_text">
+                        Title
+                    </div>
+                    <div class="form_field label_text">
+                        <%=quote.display_title%>
+                    </div>
+                    <div class="clearing"></div>
+                </div>
+            <%elsif quote.new_quote? && quote.title.present?-%>
+                <div  class="form_row">
+                    <div class="form_text">
+                        <%=f.label :title%>
+                    </div>
+                    <div class="form_field">
+                        <%=f.text_field :title, :class => 'text'%><span class="required"> *</span>
+                    </div>
+                    <div class="clearing"></div>
+                </div>
+            <%else-%>
+                <div class="form_row">
+                    <div class="form_text">
+                        Type
+                    </div>
+                    <div class="form_field type_radio_cont">
+                        <div>
+                            <%=f.radio_button :new_quote, true, :id => 'new_quote_button', :class => 'type_radios'%> <%=label_tag :new_quote_button, 'New quote'%>
+                        </div>
+                        <div>
+                            <%if v1_quotes.present? -%>
+                                <%=f.radio_button :new_quote, false, :id => 'new_version_button', :class => 'type_radios'%> 
+                            <%else-%>
+                                <%=f.radio_button :new_quote, false, :id => 'new_version_button', :class => 'type_radios', :disabled => 'disabled'%> 
+                            <%end-%>
+                            <%=label_tag :new_version_button, 'New version of existing quote'%>
+                        </div>
+                    </div>
+                    <div class="clearing"></div>
+                </div>
+
+                <div id="quote_type_true" class="form_row" style="<%=@quote.new_quote? ? '' : 'display: none;'%>">
+                    <div class="form_text">
+                        <%=f.label :title%>
+                    </div>
+                    <div class="form_field">
+                        <%=f.text_field :title, :class => 'text'%><span class="required"> *</span>
+                    </div>
+                    <div class="clearing"></div>
+                </div>
+
+                <div id="quote_type_false" class="form_row" style="<%=@quote.new_quote? ? 'display: none;' : ''%>">
+                    <div class="form_text">
+                        <%=f.label :quote_id, 'Previous quote'%>
+                    </div>
+                    <div class="form_field">
+                        <%=f.select :quote_id, v1_quotes.collect {|p| [ p.display_title, p.id ] }%> 
+                    </div>
+                    <div class="clearing"></div>
+                </div>
+            <%end-%>
+            
+            <%if (!quote.new_quote? && quote.quote_id.present?) || (quote.new_quote? && quote.title.present?)%>
+                <div class="form_row">
+                    <div class="form_text">
+                        Version
+                    </div>
+                    <div class="form_field button_cont">
+                        <div class="label_text inline_block"><%=quote.version_number%></div><%=link_to 'Create new version', quote_project_quotes_path(:id => @project, :quote_id => quote.get_origional_quote.id), :method => :post, :class => 'new_version', :confirm => 'This will create a completely new quote, would you like to continue?'%>
+                    </div>
+                    <div class="clearing"></div>
+                </div>
+            <%end-%>
+
+            <div class="form_row">
+                <div class="form_text">
+                    Status
+                </div>
+                <div class="form_field label_text">
+                    <%=SELECTIONS['quote_status'][quote.quote_status]%>
+                </div>
+                <div class="clearing"></div>
+            </div>
+            
+        </div>
+        <div class="col_2 col">
+            <%if quote.user.present? -%>
+                <div class="form_row">
+                    <div class="form_text">
+                        Creator
+                    </div>
+                    <div class="form_field label_text">
+                        <%=quote.user.name%>
+                    </div>
+                    <div class="clearing"></div>
+                </div>
+            <%end-%>
+            
+            <div class="form_row">
+                <div class="form_text">
+                    <%=f.label :po_number, 'PO no'%>
+                </div>
+                <div class="form_field">
+                    <%=f.text_field :po_number, :class => 'text'%>
+                </div>
+                <div class="clearing"></div>
+            </div>
+
+        </div>
+        <div class="clearing"></div>
+    </div>
+    
+
+</div>

@@ -1,0 +1,21 @@
+<%if @new_project_comment.errors.present?  -%>
+	$("#<%=dom_id @project_comment%> .reply_form_<%=@project_comment.id%>").replaceWith("<%= escape_javascript(render(:partial => 'project_comments/reply_comment_form', :locals => {:project => @project, :project_comment => @project_comment, :new_project_comment => @new_project_comment})) %>");
+<%else-%>
+	// Reset form and remove any error messages
+    $("#<%=dom_id @project_comment%> .reply_form_<%=@project_comment.id%>").replaceWith("<%= escape_javascript(render(:partial => 'project_comments/reply_comment_form', :locals => {:project => @project, :project_comment => @project_comment, :new_project_comment => @project.project_comments.new(:project_comment_id => @project_comment.id)})) %>");
+	// Re-show reply link
+	$("#<%=dom_id @project_comment%> .comment_reply_<%=@project_comment.id%>").show();
+	
+	// Add comment to list
+	$("#<%=dom_id @project_comment%> ul.comment_replies_to_<%=@project_comment.id%>").append("<%= escape_javascript(render(:partial => 'project_comments/display_project_comment', :locals => {:project => @project, :project_comment => @new_project_comment, :editable => true})) %>");
+	
+	// Hide all reply forms and show links for new and replied to comment
+	new_project_comment_creation.show_hide_reply_comments("#<%=dom_id @project_comment%>");
+	new_project_comment_creation.show_hide_reply_comments("#<%=dom_id @new_project_comment%>");
+    
+    // Highlight
+    $('#<%=dom_id(@new_project_comment)%> p').effect("highlight", {}, 3000);
+<%end-%>
+
+// Re-apply observers
+new_project_comment_creation.observe_comment_links();

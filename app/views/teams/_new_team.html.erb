@@ -1,0 +1,24 @@
+<h2>New team</h2>
+<%=form_for team, :remote => true, :html => { 'data-spinner' => 'new_team_form_spinner'} do |f|%>
+    <%=render :partial => 'shared/notifications/error_messages', :object => team%>
+
+    <%=render :partial => 'form', :locals => {:f => f}%>
+    <div class='team-view form_row'></div>
+    <div class="submit_container">
+        <%= f.submit 'Add this team', :class => 'submit' %> <span class="small_text">or <%=link_to 'Cancel', cancel_teams_path, :remote => true, 'data-spinner' => 'new_team_form_spinner'%></span>&nbsp;<%=spinner_tag('new_team_form_spinner')%>
+    </div>
+<% end -%>
+<script>
+    $(document).ready(function() {
+        var team = new Team();
+        var teamView = new TeamView({
+            el: $('.team-view'),
+            model: team
+        });
+        var userView = new UserView({
+            el: $('#users'),
+            model: team
+        });
+
+    });
+</script>

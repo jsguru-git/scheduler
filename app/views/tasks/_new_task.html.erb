@@ -1,0 +1,15 @@
+<h2>New activity</h2>
+<%=form_for [project, task], :remote => true, :html => { 'data-spinner' => 'new_task_form_spinner'} do |f|%>
+    <%=render :partial => 'shared/notifications/error_messages', :object => task%>
+
+    <%=render :partial => 'form', :locals => {:f => f}%>
+
+    <div class="submit_container">
+        <%= f.submit 'Create activity', :class => 'submit', id: 'submit_button' %> <span class="small_text">or <%=link_to 'Cancel', cancel_project_tasks_path(project), :remote => true, 'data-spinner' => 'new_task_form_spinner', id: 'cancel_link' %></span>&nbsp;<%=spinner_tag('new_task_form_spinner')%>
+    </div>
+<% end -%>
+<script>
+  $('#main_lightbox_close, #cancel_link, #submit_button').click(function() {
+    hopscotch.nextStep();
+  });
+</script>

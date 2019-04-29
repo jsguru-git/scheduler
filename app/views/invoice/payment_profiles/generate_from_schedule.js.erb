@@ -1,0 +1,6 @@
+// Replace content in lightbox div
+$("#main_lightbox_content").html("<%= escape_javascript(render(:partial => 'generate_from_schedule', :locals => {:project => @project, :auto_payment_profile => @auto_payment_profile})) %>");
+
+// Open lightbox
+main_lightbox.change_height_to(320);
+main_lightbox.open();

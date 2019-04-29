@@ -1,0 +1,20 @@
+<div id="totals_cont">
+	<div class="number_desc_container">
+		<div class="figure orange_text"><%=formated_in_default_currency project.total_project_cost_cents%></div>
+		<div class="desc">
+			Total<br/>stages
+		</div>
+	</div>
+	<div class="number_desc_container">
+		<div class="figure red_text"><%=formated_in_default_currency project.total_project_cost_cents_not_invoiced%></div>
+		<div class="desc">
+			Not<br/>Invoiced
+		</div>
+	</div>
+	<div class="number_desc_container">
+		<div class="figure green_text"><%=formated_in_default_currency project.total_project_cost_cents_invoiced%></div>
+		<div class="desc">
+			Been<br/>Invoiced
+		</div>
+	</div>
+</div>

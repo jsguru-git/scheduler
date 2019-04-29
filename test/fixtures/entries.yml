@@ -1,0 +1,100 @@
+---
+entries_001:
+  id: 1
+  user_id: 8
+  project_id: 2
+  account_id: 1
+  start_date: 2012-05-18
+  end_date: 2012-05-24
+  created_at: 2012-05-23 11:25:29
+  updated_at: 2012-05-23 11:25:29
+entries_002:
+  id: 2
+  user_id: 5
+  project_id: 3
+  account_id: 1
+  start_date: 2012-05-21
+  end_date: 2012-05-21
+  created_at: 2012-05-23 11:25:36
+  updated_at: 2012-05-23 11:25:36
+entries_003:
+  id: 3
+  user_id: 9
+  project_id: 1
+  account_id: 1
+  start_date: 2012-05-26
+  end_date: 2012-05-31
+  created_at: 2012-05-23 11:25:44
+  updated_at: 2012-05-23 11:25:44
+entries_004:
+  id: 4
+  user_id: 8
+  project_id: 3
+  account_id: 1
+  start_date: 2012-05-22
+  end_date: 2012-05-24
+  created_at: 2012-05-23 11:38:18
+  updated_at: 2012-05-23 11:38:18
+entries_005:
+  id: 5
+  user_id: 1
+  project_id: 1
+  account_id: 1
+  start_date: 2012-05-23
+  end_date: 2012-05-23
+  created_at: 2012-05-23 11:47:38
+  updated_at: 2012-05-23 11:47:38
+entries_006:
+  id: 6
+  user_id: 8
+  project_id: 6
+  account_id: 1
+  start_date: 2012-05-24
+  end_date: 2012-05-24
+  created_at: 2012-05-23 13:15:26
+  updated_at: 2012-05-23 13:15:26
+entries_007:
+  id: 7
+  user_id: 8
+  project_id: 3
+  account_id: 1
+  start_date: 2012-05-25
+  end_date: 2012-05-31
+  created_at: 2012-05-23 13:20:45
+  updated_at: 2012-05-23 13:20:45
+entries_008:
+  id: 8
+  user_id: 8
+  project_id: 1
+  account_id: 1
+  start_date: 2012-05-27
+  end_date: 2012-05-27
+  created_at: 2012-05-23 13:23:06
+  updated_at: 2012-05-23 13:23:06
+entries_009:
+  id: 9
+  user_id: 8
+  project_id: 4
+  account_id: 1
+  start_date: 2012-05-23
+  end_date: 2012-05-23
+  created_at: 2012-05-23 13:23:28
+  updated_at: 2012-05-23 13:23:28
+entries_010:
+  id: 10
+  user_id: 9
+  project_id: 1
+  account_id: 1
+  start_date: 2012-06-06
+  end_date: 2012-06-30
+  created_at: 2012-05-23 13:59:45
+  updated_at: 2012-05-23 13:59:45
+entries_011:
+  id: 11
+  user_id: 2
+  project_id: 7
+  account_id: 2
+  start_date: 2012-06-06
+  end_date: 2012-06-30
+  created_at: 2012-05-23 13:59:45
+  updated_at: 2012-05-23 13:59:45

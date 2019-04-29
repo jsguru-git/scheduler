@@ -1,0 +1,22 @@
+<%@page_title = 'New Client'%>
+
+<div class="standard_two_col">
+    <div class="cell_1">
+        <%=render :partial => 'shared/page_heading'%>
+        
+        <%=form_for @client do |f|%>
+            <%=render :partial => 'shared/notifications/error_messages', :object => @client%>
+
+            <%=render :partial => 'form', :locals => {:f => f}%>
+
+            <div class="submit_container">
+                <%= f.submit 'Add this client', :class => 'submit' %> <span class="small_text">or <%=link_to 'Cancel', clients_path%></span>
+            </div>
+        <% end -%>
+    </div>
+    <div class="cell_2">
+
+    </div>
+    <div class="clearing"></div>
+</div>
+

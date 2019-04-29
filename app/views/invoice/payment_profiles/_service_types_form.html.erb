@@ -1,0 +1,18 @@
+<div class="form_row rate_card_select_container">
+   <div class="form_text">
+       Service types
+   </div>
+   <div class="form_field">
+       <div id="rate_cards">
+           <%if @account.rate_cards.service_type_ordered.present? -%>
+               <%=link_to 'Add another service type',  add_rate_card_select_invoice_project_payment_profiles_path(:project_id => project), :remote => :true%>
+               <%= f.fields_for :rate_card_payment_profiles do |rate_card_payment_profile_form| %>
+                   <%= render :partial => 'rate_card_payment_profile_form', :locals => {:rate_card_payment_profile_form => rate_card_payment_profile_form}%>
+               <%end%>
+           <%else-%>
+               <p>Please update your <%=link_to 'rate card', rate_cards_path%> before adding any service types to this payment stage.</p>
+           <%end-%>
+       </div>
+   </div>
+   <div class="clearing"></div>
+</div>

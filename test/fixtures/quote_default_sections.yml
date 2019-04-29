@@ -1,0 +1,29 @@
+one:
+  id: 1
+  title: Section 1
+  content: Content for section one
+  position: 1
+  account_id: 1
+  cost_section: 0
+  created_at: 2012-05-15 08:29:33
+  updated_at: 2012-05-15 08:29:33
+  
+two:
+  id: 2
+  title: Section 2
+  content: Content for section one
+  position: 3
+  account_id: 1
+  cost_section: 0
+  created_at: 2012-05-15 08:29:33
+  updated_at: 2012-05-15 08:29:33
+  
+three:
+  id: 3
+  title: Costs
+  content: 
+  position: 2
+  account_id: 1
+  cost_section: 1
+  created_at: 2012-05-15 08:29:33
+  updated_at: 2012-05-15 08:29:33

@@ -1,0 +1,21 @@
+<% @page_title = params[:user_view] ? 'User Timesheet' : 'Team Timesheet' %>
+<% @second_nav = time_management_second_nav(params[:action]) %>
+
+<div class="standard_one_col">
+
+    <div class="cell_1">
+        <%= render :partial => 'shared/page_heading' %>
+
+        <!-- if admin or account holder then show the team view page else show user view -->
+        <!-- if they're an admin we need a second navigation -->
+        <% if has_permission?('account_holder || administrator') %>
+            <% if params[:user_view].blank? %>
+              <%= render :partial => 'team_view'%>
+            <% else %>
+              <%= render :partial => 'user_view' %>
+            <% end %>
+        <% else %>
+          <%= render :partial => 'user_view' %>
+        <% end %>
+    </div>
+</div>

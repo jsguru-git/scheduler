@@ -1,0 +1,64 @@
+<h2>Choose relevant project</h2>
+
+<%=form_tag submit_select_project_reports_pages_path, :method => :post do -%>
+	<%if clients.present? -%>
+		<div class="form_row">
+		    <div class="form_text">
+		        <%=label_tag :client_id, 'Client'%>
+		    </div>
+		    <div class="form_field">
+		        <%=select_tag 'client_id', options_from_collection_for_select(clients, "id", "name", params['client_id'].to_i), :include_blank => true%> <%=spinner_tag 'client_spinner'%>
+		    </div>
+		    <div class="clearing"></div>
+		</div>
+	<%end-%>
+
+	<div class="form_row">
+	    <div class="form_text">
+	        <%=label_tag :project_id, 'Project'%>
+	    </div>
+	    <div class="form_field" id="project_select">
+	        <%=render :partial => 'project_select', :locals => {:projects => projects}%>
+	    </div>
+	    <div class="clearing"></div>
+	</div>
+	
+	<div class="form_row">
+	    <div class="form_text">
+
+	    </div>
+	    <div class="form_field">
+	        <%=check_box_tag :remember, 1, true%> <%=label_tag :remember, 'Remember this selection next time'%>
+	    </div>
+	    <div class="clearing"></div>
+	</div>
+	
+	<%=hidden_field_tag :path, params[:path]%>
+	
+	<div class="submit_container">
+        <%= submit_tag 'Go to report', :class => 'submit' %> <span class="small_text">or <%=link_to 'Cancel', reports_path, :class => 'lightbox_close'%></span>
+    </div>
+
+<%end-%>
+
+<script type="text/javascript">
+	$('#client_id').change(function() {
+		var client_id = $(this).val();
+
+		$.ajax({
+            type: 'GET',
+			data: {
+				format: 'js',
+				client_id: client_id
+			},
+            url: '<%=update_project_reports_pages_path%>',
+            beforeSend: function(xhr, settings) {
+                xhr.setRequestHeader('accept', '*/*;q=0.5, ' + settings.accepts.script);
+                $('#client_spinner').show();
+            },
+            complete: function(xhr, text_status) {
+                $('#client_spinner').hide();
+            }
+        })
+	});
+</script>

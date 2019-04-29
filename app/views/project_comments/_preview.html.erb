@@ -1,0 +1,11 @@
+<div class="document_comment_cont">
+    <ul class="comment_list">
+        <%if project_comments.blank? -%>
+            <li class="no_comments">No comments yet</li>
+        <%else-%>
+            <% project_comments.each do |project_comment| -%>
+                <%=render :partial => 'project_comments/display_project_comment', :locals => {:project => project, :project_comment => project_comment, :editable => false}%>
+            <%end-%>
+        <%end-%>
+    </ul>
+</div>

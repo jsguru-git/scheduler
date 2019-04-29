@@ -1,0 +1,14 @@
+<div style="color: #333333; font-family: arial, helvetica, sans-serif; font-size: 13px;">
+	<p>Hi</p>
+	
+	<p>The project <%=link_to @project.name, project_url(@project, subdomain: @project.account.site_address)%> has just exceeded the <%=@percentage_over%>% budget point. (Budget is calculated from submitted tracked time and the estimate for all associated tasks)</p>
+
+	<p>You have received this email because you are either the project manager for the project or you have been selected to receive all budget emails (you may remove your email address from your FleetSuite settings).
+
+	<p>Thanks,<br/>
+	The FleetSuite Team<br/>
+	---<br/>
+	Get support: http://help.fleetsuite.com<br/>
+	Follow us: https://twitter.com/fleet_suite<br/>
+	Suggest new features: http://help.fleetsuite.com/forums</p>
+</div>

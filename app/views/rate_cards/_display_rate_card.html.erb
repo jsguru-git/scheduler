@@ -1,0 +1,13 @@
+<%=content_tag_for(:li, rate_card) do%>
+    <div class="area_1">
+        <span class="title_text"><%=rate_card.service_type%></span>
+    </div>
+    <div class="area_2">
+        <span class="price_text"><%=rate_card.daily_cost.to_money.format(:no_cents_if_whole => true, :symbol => true)%></span>
+    </div>
+    <div class="area_3">
+        <%=link_to 'Edit', edit_rate_card_path(rate_card), :class => 'edit_button', :title => 'Edit service type', :remote => true%>
+        <%=link_to 'Remove', rate_card_path(rate_card), :class => 'remove_button', :method => :delete, :title => 'Remove service type', :data => {:confirm => 'Are you sure you want to remove this service?'}%>
+        <div class="clearing"></div>
+    </div>
+<%end-%>

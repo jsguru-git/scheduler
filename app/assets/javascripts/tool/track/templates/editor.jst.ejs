@@ -1,0 +1,86 @@
+
+<% var submitted = model.get('submitted') && !Track.admin(); %>
+<% var disabled = submitted ? ' disabled="disabled" ' : ''; %>
+
+<div class="time-editor <%= submitted ? 'submitted' : '' %>">
+
+  <div class="inner">
+    <h2>
+      <% if (submitted) { %>
+        View Time Entry
+      <% } else if (model.isNew()) { %>
+        New Time Entry
+      <% } else { %>
+        Edit Time Entry
+      <% }%>
+    </h2>
+
+    <div id="time-errors"></div>
+
+    <form id="time-edit" name="time-edit">
+
+      <ul id="quick_links">
+        <li><a href="#" title="Break" id="link_break"></a></li>
+        <li><a href="#" title="Lunch" id="link_lunch"></a></li>
+        <li><a href="#" title="Annual Leave" id="link_leave"></a></li>
+        <li><a href="#" title="Flexi Leave" id="link_absence"></a></li>
+        <li><a href="#" title="Sick Leave" id="link_sick"></a></li>
+      </ul>
+
+      <div class="time-editor-field">
+
+        <div class="option_wrapper">
+        <div id="loading"></div>
+
+        <span class="projectSelectWrap">
+            <select class="project select2" id="projectSelect" <%= disabled %>>
+              <option value="">Select an activity</option>
+
+              <% _.each(projects, function(project){%>
+                <optgroup label="<%= project.get('name') %>">
+
+                <% _.each(project.get('tasks'), function(task) { %>
+                    <% if(task.archived != true) { %>
+                      <option 
+                          value="<%= task.id %>"
+                          data-projectid="<%= project.get('id') %>"
+                          <% if (model.get('task_id') == task.id) { %>selected="selected"<% } %>
+                          >
+                          <%= task.name %>
+                      </option>
+                    <% } %>
+                <% }); %>
+
+                </optgroup>
+
+              <% }); %>
+
+            </select>
+        </span>
+
+        </div>
+      </div>
+      <div class="time-editor-field">
+        <textarea <%= disabled %> class="notes text" id="notes_field"><%= model.get("notes") %></textarea>
+      </div>
+
+      <div class="time-editor-field from_field text" id="time-editor-field">
+        <label>From:</label>
+        <input type="number" min="0" max="23" class="hour_select text" <%= disabled %>>
+        <input type="number" min="0" max="59" class="minute_select text" <%= disabled %>>
+      </div>
+
+      <div class="time-editor-field to_field text">
+        <label>To:</label>
+        <input type="number" min="0" max="23" class="hour_select text" <%= disabled %>>
+        <input type="number" min="0" max="59" class="minute_select text" <%= disabled %>>
+      </div>
+
+      <div class="time-editor-field time-editor-submit">
+        <input class="submit" type="submit" value="Save" id="submit_button"> or
+        <a href="#" class="cancel">Cancel</a>
+        <div class="submit-loader"></div>
+      </div>
+    </form>
+  </div>
+</div>

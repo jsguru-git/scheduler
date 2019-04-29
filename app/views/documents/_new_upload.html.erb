@@ -1,0 +1,29 @@
+<%if params[:action] == 'new_upload' -%><h2>Upload local file</h2><%end-%>
+
+<%=form_for document, :url => save_upload_project_documents_path(project) do |f| %>
+	<%=render :partial => 'shared/notifications/error_messages', :object => document%>
+	
+	<div class="form_row">
+	    <div class="form_text">
+	        <%=f.label :title%>
+	    </div>
+	    <div class="form_field">
+	        <%=f.text_field :title, :class => 'text'%>
+	    </div>
+	    <div class="clearing"></div>
+	</div>
+	
+	<div class="form_row">
+	    <div class="form_text">
+	        <%=f.label :attachment, 'Choose file'%>
+	    </div>
+	    <div class="form_field">
+	        <%=f.file_field :attachment%>
+	    </div>
+	    <div class="clearing"></div>
+	</div>
+	
+	<div class="submit_container">
+        <%= f.submit 'Upload file', :class => 'submit' %> <span class="small_text">or <%=link_to 'Cancel', project_documents_path(project), :class => 'lightbox_close'%></span>
+    </div>
+<%end%>

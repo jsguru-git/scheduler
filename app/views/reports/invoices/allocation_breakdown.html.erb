@@ -1,0 +1,10 @@
+<%@page_title = 'Allocation breakdown'%>
+
+
+<div class="standard_one_col">
+    <div class="cell_1">
+        <%=render :partial => 'shared/page_heading'%>
+        <%= render :partial => 'allocation_breakdown', :locals => {:invoice_usages => @invoice_usages}%>
+    </div>
+</div>
+

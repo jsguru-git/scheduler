@@ -1,0 +1,6 @@
+// Replace content in lightbox div
+$("#main_lightbox_content").html("<%= escape_javascript(render(:partial => 'edit_form', :locals => {:project => @project, :invoice => @invoice, :invoice_usage => @invoice_usage})) %>");
+
+// Open lightbox
+main_lightbox.change_height_to(270);
+main_lightbox.open();

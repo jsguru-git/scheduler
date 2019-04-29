@@ -1,0 +1,17 @@
+<%@page_title = 'Update payment details'%>
+<%@second_nav = account_settings_second_nav(params[:action])%>
+
+<div class="standard_two_col">
+    <div class="cell_1">
+        <%=render :partial => 'shared/page_heading'%>
+
+        <%unless @account.chargify_customer_id.blank? -%>
+            <%=render :partial => 'update_cc_details', :locals => {:account => @account}%>
+        <%else-%>
+            <p>We don't currently have any card details on record for you, add some now using the <%=link_to 'secure payments page', @account.account_plan.chargify_hosted_signup_link(User.account_holder_for_account(@account))%>.</p>
+        <%end-%>
+    </div>
+    <div class="cell_2">
+
+    </div>
+</div>

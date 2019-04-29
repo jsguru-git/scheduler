@@ -1,0 +1,42 @@
+# This is an example Hopskip tour file.
+---
+index:
+  steps:
+    - title: Create an entry
+      content: Click on the timesheet to create your first tracking entry using drag-and-drop – don’t worry if it’s not accurate, the details can always be updated later.
+      target: title_grid
+      showNextButton: false
+      placement: top
+
+    - title: Choose activity
+      content: Pick an activity from those you’ve created, or choose from the pre-defined ‘Common tasks’.
+      target: quick_links
+      placement: top
+
+    - title: Add information
+      content: It’s a good idea to provide a short description of what you’ve been working on for future reference. 
+      target: notes_field
+      placement: top
+
+    - title: Define the time
+      content: You can set the start and end times of the activity here, and you can also drag-and-drop the block to move it after the entry has been created.
+      target: time-editor-field
+      placement: right
+
+    - title: Save your entry
+      content: >
+        Create the entry by clicking 'Save'. If you need to edit or delete your entry at a later point this can be done using the icons on the block.
+      target: submit_button
+      placement: right
+      nextOnTargetClick: true
+      yOffset: -15
+
+    - title: Submit entries
+      content: Once you’ve completed your tracking, submit your entries by clicking here. Note that once a day has been submitted only administrators can change the entries.
+      target: day_submit_button
+      placement: top
+
+    - title: Tour completed!
+      content: That’s the end of the FleetSuite product tour - go ahead and add your first project now!
+      target: left_util
+      placement: bottom

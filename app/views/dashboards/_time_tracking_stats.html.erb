@@ -1,0 +1,57 @@
+<%percentage = 0%>
+<h2>Time tracking stats</h2>
+<div id="track_stats_container">
+    <div class="time_stats blue">
+        <div class="time">
+            <%mins_tracked = @tracked_timing.sum(:duration_minutes)%>
+            <%=minute_duration_to_short_human_time mins_tracked %>
+            <%percentage = 100 if mins_tracked != 0%>
+        </div>
+        <div class="time_description">Hours tracked<br/>this week</div>
+        <div class="clearing"></div>
+        <div class="bar">
+            <div class="inner_bar" style="width: <%=percentage.to_i%>%;"></div>
+        </div>
+    </div>
+    
+    <div class="time_stats green">
+        <div class="time">
+            <%billable_mins = 0%>
+            <% @tracked_timing.each {|t| billable_mins += t.duration_minutes if t.project.event_type == 0} %>
+            <%=minute_duration_to_short_human_time billable_mins%>
+        </div>
+        <div class="time_description">Billable hours<br/>tracked</div>
+        <div class="clearing"></div>
+        <div class="bar">
+            <%percentage = ((billable_mins.to_f / mins_tracked.to_f) *100) if mins_tracked != 0%>
+            <div class="inner_bar" style="width: <%=percentage.to_i%>%;"></div>
+        </div>
+    </div>
+    
+    <div class="time_stats orange">
+        <div class="time">
+            <%non_billable_mins = mins_tracked - billable_mins%>
+            <%=minute_duration_to_short_human_time non_billable_mins%>
+        </div>
+        <div class="time_description">Non billable<br/>hours tracked</div>
+        <div class="clearing"></div>
+        <div class="bar">
+            <%percentage = ((non_billable_mins.to_f / mins_tracked.to_f) *100) if mins_tracked != 0%>
+            <div class="inner_bar" style="width: <%=percentage.to_i%>%;"></div>
+        </div>
+    </div>
+    
+    <div class="time_stats purple">
+        <div class="time">
+            <%submitted_mins = 0%>
+            <% @tracked_timing.each {|t| submitted_mins += t.duration_minutes if t.submitted} %>
+            <%=minute_duration_to_short_human_time submitted_mins%>
+        </div>
+        <div class="time_description">Hours submitted<br/>this week</div>
+        <div class="clearing"></div>
+        <div class="bar">
+            <%percentage = ((submitted_mins.to_f / mins_tracked.to_f) *100) if mins_tracked != 0%>
+            <div class="inner_bar" style="width: <%=percentage.to_i%>%;"></div>
+        </div>
+    </div>
+</div>

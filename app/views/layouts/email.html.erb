@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		
+	</head>
+	<body leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0">
+		<style type="text/css">
+			body {
+				background-color: #EEF0F1;
+				color: #464747;
+				font-family: arial, helvetica, sans-serif; 
+				font-size: 13px;
+				margin: 0;
+				padding:0;
+				width: 100%;
+			}
+			
+			a,
+			a:link,
+			a:visited,
+			a:active {
+			    color: #499ED0;
+			    outline: none;
+			    text-decoration: none;
+			}
+
+			a:hover {
+			    color: #499ED0;
+			    text-decoration: underline;
+			}
+			
+			img {
+				border: 0;
+				height:auto;
+				line-height:100%; 
+				margin: 0;
+				outline:none; 
+				padding: 0;
+				text-decoration:none;
+			}
+			
+			table.data_table tr:nth-child(odd) {
+				background-color: #F8F9F1;
+			}
+		</style>
+		<table width="100%" align="center" cellpadding="20px" cellspacing="0">
+			<tr bgcolor="#EEF0F1" style="background-color: #EEF0F1;">
+				<td>
+
+					<table width="640" align="center" cellpadding="0" cellspacing="0" style="color: #464747; font-family: arial, helvetica, sans-serif; font-size: 13px;">
+						<!-- Header -->
+						<tr>
+							<td style="padding: 0 30px 20px 30px">
+								<img alt="FleetSuite" height="52" width="190" src="http://www.fleetsuite.com/assets/email/logo.png">
+							</td>
+						</tr>
+		
+						 <!-- Content -->
+						<tr bgcolor="#FFFFFF" style="background-color: #FFFFFF;">
+							<td style="padding: 20px 30px 20px 30px;">
+								<%= yield %>
+							</td>
+						</tr>
+					</table>
+
+				</td>
+			</tr>
+		</table>
+
+	</body>
+</html>

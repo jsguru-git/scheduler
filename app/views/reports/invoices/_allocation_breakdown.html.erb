@@ -1,0 +1,22 @@
+<h2>Allocation breakdown</h2>
+
+<div class="outline_container">
+	<table class="results_table">
+		<tr class="heading_table">
+			<th>Details</th>
+			<th>Allocation</th>
+			<th>Amount spent</th>
+			<th>Date</th>
+		</tr>
+		
+		<%@invoice_usages.each do |invoice_usage| -%>
+			<tr>
+				<td><%=link_to invoice_usage.invoice.project.name, project_path(invoice_usage.invoice.project)%> - <%if invoice_usage.invoice.project.client_id.present? -%>(<%= invoice_usage.invoice.project.client.name%>)<%end-%></td>
+				<td><%=invoice_usage.name%></td>
+				<td><%=formated_in_provided_currency invoice_usage.amount_cents, invoice_usage.invoice.currency%></td>
+				<td><%=fmt_long_date invoice_usage.allocated_at%></td>
+			</tr>
+		<%end-%>
+	
+	</table>
+</div>

@@ -1,0 +1,13 @@
+---
+roles_001:
+  id: 1
+  title: account_holder
+roles_002:
+  id: 2
+  title: administrator
+roles_003:
+  id: 3
+  title: leader
+roles_004:
+  id: 4
+  title: member

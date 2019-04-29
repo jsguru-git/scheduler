@@ -1,0 +1,61 @@
+.cell {
+    float: left;
+}
+
+/* standard_two_col */
+.standard_two_col {
+    min-height: 300px;
+    position: relative;
+
+    .cell_1 {
+        background: url(tool/layout/white_background.png) repeat left top;
+        margin-right: 270px;
+        padding: 30px 30px 0 30px;
+        min-height: 250px;
+    }
+
+    .cell_2 {
+        padding: 0 0 0 20px;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width:240px;
+    }
+}
+/* end standard_two_col */
+
+
+/* standard_reverse_two_col */
+.standard_reverse_two_col {
+    min-height: 300px;
+    position: relative;
+		
+    .cell_1 {
+       	padding: 0 20px 0 0;
+       	position: absolute;
+       	left: 0;
+       	top: 0;
+       	width: 300px;
+    }
+		
+    .cell_2 {
+	  	background: url(tool/layout/white_background.png) repeat left top;
+      	margin-left: 330px;
+      	padding: 30px 30px 0 30px;
+      	min-height: 250px;
+    }
+}
+/* end standard_reverse_two_col */
+
+
+/* standard_one_col */
+.standard_one_col {
+    min-height: 300px;
+
+    .cell_1 {
+        background: url(tool/layout/white_background.png) repeat left top;
+        padding: 30px 30px 0 30px;
+        min-height: 250px;
+    }
+}
+/* end standard_one_col */

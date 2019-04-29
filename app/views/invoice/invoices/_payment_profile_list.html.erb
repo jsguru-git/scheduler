@@ -1,0 +1,38 @@
+<h2>Select payment stages</h2>
+<%= render(:partial => 'shared/notifications/flash', :locals => {:flash => flash }) if flash[:notice] || flash[:alert] %>
+<div id="select_payment_stage">
+    <%if payment_profiles.present? -%>
+        <%=form_tag insert_payment_profiles_invoice_project_invoices_path(project), :remote => true, 'data-spinner' => 'new_item_spinner' do |f|%>
+            <div class="fixed_table_container">
+                <div class="header_background"> </div>
+                <div class="fixed_table_container_inner">
+                    <table class="results_table">
+                        <tr>
+                            <th><div class="th_inner">Use</div></th>
+                            <th><div class="th_inner">Payment date</div></th>
+                            <th><div class="th_inner">Name</div></th>
+                            <th><div class="th_inner">Cost</div></th>
+
+                        </tr>
+                        <%payment_profiles.each do |payment_profile| -%>
+                            <tr>
+                                <td>
+                                    <%=check_box_tag 'payment_profiles[]', payment_profile.id%>
+                                </td>
+                                <td><%=fmt_long_date payment_profile.expected_payment_date%></td>
+                                <td><%=payment_profile.name%></td>
+                                <td><%=convert_to_invoice_currency(payment_profile.expected_cost_cents, @account.account_setting.default_currency, params[:currency])%></td>
+                            </tr>
+                        <%end-%>
+                    </table>
+                </div>
+            </div>
+            <%=hidden_field_tag :currency, params[:currency]%>
+            <div class="buttons">
+                <%= submit_tag 'Add to invoice', :class => 'submit' %> <span class="small_text">or <%=link_to 'Cancel', new_invoice_project_invoice_path(project), :class => 'lightbox_close', 'data-spinner' => 'new_item_spinner'%></span>&nbsp;<%=spinner_tag('new_item_spinner')%>
+            </div>
+        <%end-%>
+    <%else-%>
+        <p>There are no un-invoiced payment stages available for this project.</p>
+    <%end-%>
+</div>

@@ -1,0 +1,75 @@
+<h2>Add invoice item based on tracked time</h2>
+
+<%if !payment_profiles.present? -%>
+    <p>There are no payment stages that you can associate this item with, this is required so that the cost can be calculated from the service types. If a payment profile does not exist but isn't showing, please make sure you have fully assigned the service types to it.</p>
+<%elsif project.total_tracked == 0-%>
+    <p>There has been no submitted tracked time for this project and therefore you will be unable to generate a cost in this way.</p>
+<%else-%>
+    <div class="generate_from_track_form">
+        <%=form_for :invoice_item_track, :url => insert_tracked_time_invoice_project_invoices_path(project), :remote => true, :html => { 'data-spinner' => 'new_item_spinner'} do |f|%>
+            
+            <%=render :partial => 'shared/notifications/error_messages', :object => invoice_item_track%>
+            
+            <div class="form_row">
+                <div class="form_text">
+                    <%=f.label :payment_profile_id, 'Payment stage'%> 
+                </div>
+                <div class="form_field">
+                    <%if payment_profiles.present? -%>
+                        <%=f.select :payment_profile_id, payment_profiles.collect {|p| [ p.name, p.id.to_s ] }%>
+                    <%else-%>
+                        <p>No payment profiles found.</p>
+                    <%end-%>
+                    <p class="explicit_text">If a payment profile does not show which you were expecting, please make sure you have fully assigned the service types to it.</p>
+                </div>
+                <div class="clearing"></div>
+            </div>
+            
+            <p>Please select the date range you wish to consider for this item.</p>
+            <div class="form_row">
+                <div class="form_text">
+                    <%=f.label :start_date %>
+                </div>
+                <div class="form_field">
+                    <div class="date_cal_field_container">
+                        <%=f.text_field :start_date, :class => 'datepicker number'%>
+                        <%=image_tag '/assets/tool/icons/calendar_32.png', :size => '32x32', :class => 'cal_icon', :alt => 'Select date'%>
+                    </div>
+                </div>
+                <div class="clearing"></div>
+            </div>
+            
+            <div class="form_row">
+                <div class="form_text">
+                    <%=f.label :end_date %>
+                </div>
+                <div class="form_field">
+                    <div class="date_cal_field_container">
+                        <%=f.text_field :end_date, :class => 'datepicker number'%>
+                        <%=image_tag '/assets/tool/icons/calendar_32.png', :size => '32x32', :class => 'cal_icon', :alt => 'Select date'%>
+                    </div>
+                </div>
+                <div class="clearing"></div>
+            </div>
+            <%=f.hidden_field :currency, :value => params[:currency]%>
+            <div class="submit_container">
+                <%= submit_tag 'Add to invoice', :class => 'submit' %> <span class="small_text">or <%=link_to 'Cancel', new_invoice_project_invoice_path(project), :class => 'lightbox_close', 'data-spinner' => 'new_item_spinner'%></span>&nbsp;<%=spinner_tag('new_item_spinner')%>
+            </div>
+        <%end-%>
+    </div>
+<%end-%>
+
+
+<script type="text/javascript">
+// Datepicker for invoice cration
+$( ".generate_from_track_form .datepicker" ).datepicker({
+    dateFormat: 'yy-mm-dd',
+    firstDay: 1
+});
+
+$('.generate_from_track_form .cal_icon').click(function() {
+    var idx = $('.generate_from_track_form .cal_icon').index(this);
+    $('.generate_from_track_form .datepicker').eq(idx).trigger('focus');
+    return false;
+});
+</script>

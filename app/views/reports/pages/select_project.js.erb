@@ -1,0 +1,6 @@
+// Replace content in lightbox div
+$("#main_lightbox_content").html("<%= escape_javascript(render(:partial => 'select_project', :locals => {:clients => @clients, :projects => @projects})) %>");
+
+// Open lightbox
+main_lightbox.change_height_to(250);
+main_lightbox.open();

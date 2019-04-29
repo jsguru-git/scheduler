@@ -1,0 +1,12 @@
+<div class="new_comment_container">
+
+    <%=form_for [project, document, document_comment], :remote => true, :html => { 'data-spinner' => "new_comment_spinner_#{dom_id(document)}"} do |f| %>
+        <%=render :partial => 'shared/notifications/error_messages', :object => document_comment%>
+
+       <%=f.text_area :comment, :class => 'text', :rows => 5%>
+   
+        <div class="right_controls">
+            <%=f.submit 'Post this comment'%> <span class="small_text">or <%=link_to 'Cancel', project_documents_path(project), :class => 'cancel_comment_link'%></span>&nbsp;<%=spinner_tag("new_comment_spinner_#{dom_id(document)}")%>
+        </div>
+    <%end-%>
+</div>

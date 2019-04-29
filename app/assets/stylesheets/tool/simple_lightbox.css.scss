@@ -1,0 +1,50 @@
+/*Lightbox container*/
+.simple_lightbox {
+    left: 0;
+    position: absolute;
+    text-align: left;
+    top: 0;
+    z-index: 1002;
+}
+
+.simple_lightbox a.simple_lightbox_close {
+    display: block;
+    right: 24px;
+    position: absolute;
+    top: -5px;
+    width: 34px;
+    z-index: 1;
+}
+
+.simple_lightbox .simple_lightbox_content {
+    background: #FFFFFF;
+    opacity: 0.9;
+    filter: alpha(opacity=90);
+    -moz-opacity:0.9;
+    padding: 15px;
+    text-align: left;
+    width: 750px;
+}
+
+.simple_lightbox .simple_lightbox_scroll_container {
+    background: #FFFFFF url(tool/simple_lightbox/lightbox_background.png) repeat left top;
+    border: 1px solid #D4D3D3;
+    height: 400px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 20px;
+}
+
+/*Lightbox background*/
+.simple_lightbox_background {
+    background-color: #C9C2C2;
+    height: 100%;
+    left: 0;
+    filter:alpha(opacity=60);
+    -moz-opacity: 0.6;
+    opacity: 0.6;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1001;
+}

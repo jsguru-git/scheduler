@@ -1,0 +1,61 @@
+<div class="introduction_area">
+
+    <ul>
+        <% if @project.client_id.present? -%>
+            <li>
+                Client: 
+                <span class="dark_green">
+                    <%= @project.client.name %>
+                </span>
+            </li>
+        <% end -%>
+
+        <% if @project.project_code.present? -%>
+            <li>
+                Project code: 
+                <span class="dark_green">
+                    <%= @project.project_code %>
+                </span>
+            </li>
+        <% end -%>
+
+        <li>
+            Created on: 
+            <span class="dark_green">
+                <%= fmt_long_date @project.created_at %>
+            </span>
+        </li>
+
+        <li>
+            Last updated on: 
+            <span class="dark_green">
+                <%= fmt_long_date @project.updated_at %>
+            </span>
+        </li>
+
+        <% if @account.component_enabled?(1) -%>
+            <li>
+                Work starts on: 
+                <span class="dark_green">
+                    <%= fmt_long_date @project.schedule_start_date %>
+                </span>
+            </li>
+
+            <li>
+                Number of scheduled people involved: 
+                <span class="dark_green">
+                    <%= @project.all_people_scheduled.length %>
+                </span>
+            </li>
+        <% end -%>
+ 
+    </ul>
+            
+    <% if @project.description.present? -%>
+        <div class="project_description">
+            <%= simple_format @project.description %>
+        </div>
+    <% end -%>
+
+</div><!-- end introduction area -->
+

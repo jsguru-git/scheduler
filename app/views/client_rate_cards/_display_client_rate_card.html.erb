@@ -1,0 +1,24 @@
+<%=content_tag_for(:li, rate_card) do%>
+    <%client_rate_card = rate_card.custom_for_client(client.id)%>
+    <div class="area_1">
+        <span class="title_text"><%=rate_card.service_type%></span>
+    </div>
+    <div class="area_2">
+        <%if client_rate_card.blank? -%>
+            <span class="price_text"><%=rate_card.daily_cost.to_money.format(:no_cents_if_whole => true, :symbol => true)%></span>
+        <%else-%>
+            <span class="price_text purple"><%=client_rate_card.daily_cost.to_money.format(:no_cents_if_whole => true, :symbol => true)%></span>
+        <%end-%>
+    </div>
+    <% if policy(client).update? %>
+        <div class="area_3">
+        <%if client_rate_card.blank? -%>
+            <%=link_to 'Custom service rate', new_client_client_rate_card_path(:client_id => client, :rate_card_id => rate_card.id), :class => 'edit_button', :title => 'Set new client rate', :remote => true%>
+        <%else-%>
+            <%=link_to 'Custom service rate', edit_client_client_rate_card_path(:id => client_rate_card, :client_id => client), :class => 'edit_button', :title => 'Update client rate', :remote => true%>
+            <%=link_to 'Remove custom service rate', client_client_rate_card_path(:id => client_rate_card, :client_id => client), :method => :delete, :class => 'remove_button', :title => 'Remove client rate and restore default', :data => {:confirm => 'Are you sure you want to remove the custom client rate?'}%>
+        <%end-%>
+        <div class="clearing"></div>
+    </div>
+    <% end %>
+<%end-%>

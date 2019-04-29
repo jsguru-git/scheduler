@@ -1,0 +1,25 @@
+<%if @quote_activity.new_record? -%>
+    $("#main_lightbox_content").html("<%= escape_javascript(render(:partial => 'new_activity', :locals => {:project => @project, :quote => @quote, :quote_activity => @quote_activity})) %>");
+<%else-%>
+    // append
+    $("#activity_list").append("<%= escape_javascript(render(:partial => 'quote/quote_activities/display_activity', :locals => {:quote_activity => @quote_activity})) %>");
+    
+    // Update total cost
+    $('#total_cost_excl_cont').replaceWith("<%= escape_javascript(render(:partial => 'quote/quotes/total_cost_excl', :locals => {:quote => @quote})) %>");
+    $('#total_cost_incl_cont').replaceWith("<%= escape_javascript(render(:partial => 'quote/quotes/total_cost_incl', :locals => {:quote => @quote})) %>");
+    $('#total_report_currency_cont').replaceWith("<%= escape_javascript(render(:partial => 'quote/quotes/total_report_currency', :locals => {:quote => @quote})) %>");
+    
+    // Show message
+    main_notification.display_message('Activity added');
+    
+    <%if @new_quote_activity.blank?-%>
+        // Close lightbox
+        main_lightbox.close();
+        
+        // Highlight
+        $('#<%=dom_id(@quote_activity)%>').delay(200).effect("highlight", {}, 3000);
+    <%else%>
+        $("#main_lightbox_content").html("<%= escape_javascript(render(:partial => 'new_activity', :locals => {:project => @project, :quote => @quote, :quote_activity => @new_quote_activity})) %>");
+        $("#main_lightbox_content").delay(100).effect("highlight", {}, 3000);
+    <%end-%>
+<%end-%>

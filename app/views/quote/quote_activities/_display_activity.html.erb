@@ -1,0 +1,27 @@
+<%=content_tag_for :li, quote_activity do%>
+    <div class="col_1">
+        <div class="move_handle"></div>
+    </div>
+    <div class="col_2">
+        <%=link_to quote_activity.name, edit_quote_project_quote_quote_activity_path(@project, quote_activity.quote, quote_activity), :remote => true, 'data-spinner' => "#{dom_id quote_activity}_edit_spinner"%>&nbsp;<%=spinner_tag("#{dom_id quote_activity}_edit_spinner")%>
+    </div>
+    <div class="col_3">
+        <%=quote_activity.rate_card.service_type if quote_activity.rate_card.present?%>
+    </div>
+    <div class="col_4">
+        <%if quote_activity.estimate_type == 0 -%>
+            <%=minute_duration_to_human_time quote_activity.max_estimated_minutes, @account, quote_activity.estimate_scale, 2%>
+        <%else-%>
+            Min: <%=minute_duration_to_human_time quote_activity.min_estimated_minutes, @account, quote_activity.estimate_scale, 2%> - 
+            Max: <%=minute_duration_to_human_time quote_activity.max_estimated_minutes, @account, quote_activity.estimate_scale, 2%>
+        <%end-%>
+    </div>
+    <div class="col_5">
+        <%if quote_activity.estimate_type == 1 -%><%=formated_in_default_currency quote_activity.min_amount_cents%> - <%end-%> <%=formated_in_default_currency quote_activity.max_amount_cents%>
+        <%if quote_activity.discount_percentage.present? && quote_activity.discount_percentage != 0.0%><span class="light_text">(Incl <%=quote_activity.discount_percentage_out%>% discount)</span><%end-%>
+    </div>
+    <div class="col_6">
+        <%=link_to 'Remove', quote_project_quote_quote_activity_path(@project, quote_activity.quote, quote_activity), :method => :delete, :class => 'small_remove_button', :remote => true, :confirm => 'Are you sure?'%>
+    </div>
+    <div class="clearing"></div>
+<%end-%>

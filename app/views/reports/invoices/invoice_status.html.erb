@@ -1,0 +1,73 @@
+<% @page_title = 'Invoice status report' %>
+
+<div class="standard_one_col">
+    <div class="cell_1">
+        <%= render :partial => 'shared/page_heading' %>
+        
+        <div class="search_container">
+            <h3>Filter results</h3>
+
+            <%=form_tag invoice_status_reports_invoices_path, :method => :get  do %>
+                <div class="form_row">
+                    <div class="form_text">
+                        <%=label_tag 'status'%>
+                    </div>
+                    <div class="form_field">
+                        <%=select_tag :status, options_for_select( [['All', '']] + SELECTIONS['invoice_status'].sort.collect  {|key, value| [ value, key ] }, params[:status])%>
+                    </div>
+                    <div class="clearing"></div>
+                </div>
+
+                <div class="submit_container">
+                    <%= submit_tag 'Search now', :class => 'submit' %>
+                </div>
+            <%end-%>
+        </div>
+
+        <div class='statistics'>
+            <div class='statistic'>
+                <div class='figure green'><%= formated_in_default_currency @all_invoices.sum(&:total_amount_cents_exc_vat) %></div>
+                <div class='desc'>Total invoice amount</div>
+            </div>
+        </div>
+        <div class='clearing'></div>
+        
+        <%=render :partial => 'shared/pagination/paginate', :object => @invoices%>
+        <div class="outline_container">
+            <table class="results_table">
+                <tr class="heading_table">
+                    <th>Invoice no</th>
+                    <th>Invoice date</th>
+                    <th>Client</th>
+                    <th>Project</th>
+                    <th>Amount (exc VAT)</th>
+                    <th>Status</th>
+                </tr>
+            
+                <%@invoices.each do |invoice| -%>
+                    <tr>
+                        <td><%=link_to invoice.invoice_number, invoice_project_invoice_path(invoice.project_id, invoice)%></td>
+                        <td><%=invoice.invoice_date%></td>
+                        <td>
+                            <%if invoice.project.client.present? -%>
+                                <%=invoice.project.client.name%>
+                            <%end-%>
+                        </td>
+                        <td><%=invoice.project.name%></td>
+                        <td>
+                            <%=invoice.total_amount_exc_vat_in_currency%>
+                        </td>
+                        <td class="no_top_bottom_padding">
+                            <span class="status_<%=invoice.invoice_status%>">
+                                <%=SELECTIONS['invoice_status'][invoice.invoice_status]%>
+                            </span>
+                        </td>
+                    </tr>
+                <%end-%>
+            </table>
+        </div>
+        <%=render :partial => 'shared/pagination/paginate', :object => @invoices%>
+        
+    </div>
+</div>
+

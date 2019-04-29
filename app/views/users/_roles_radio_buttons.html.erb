@@ -1,0 +1,9 @@
+<% Role.all.each do |role| %>
+  <td>
+    <% if (!policy(@account).update? && role.title == 'account_holder') || (Pundit.policy(user, @account).update? && !policy(@account).update?) %>
+      <%= radio_button_tag "#{ user.id }", "#{ role.id }", user.roles.map(&:title).include?(role.title), disabled: true %>
+    <% else %>
+      <%= radio_button_tag "#{ user.id }", "#{ role.id }", user.roles.map(&:title).include?(role.title) %>
+    <% end %>
+  </td>
+<% end %>

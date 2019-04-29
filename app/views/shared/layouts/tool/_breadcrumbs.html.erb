@@ -1,0 +1,12 @@
+<% if @breadcrumbs %>
+    <div id="breadcrumbs">
+        <ul>
+            <% @breadcrumbs.breadcrumbs.each do |nav| -%>
+                <li><%= link_to raw("<span>#{ nav.title }</span>"), nav.link %></li>
+            <% end -%>
+            <% if @breadcrumbs.breadcrumbs.size > 0 && @page_title %>
+              <li><%= @page_title.split(':').first %></li>
+            <% end %>
+        </ul>
+    </div>
+<% end %>

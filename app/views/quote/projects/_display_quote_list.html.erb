@@ -1,0 +1,27 @@
+<%= content_tag_for(:li, quote) do %>
+    <%if quote.version_quotes.date_created_ordered.present? -%>
+        <%latest_quote = quote.version_quotes.date_created_ordered.last%>
+    <%else -%>
+        <%latest_quote = quote%>
+    <%end-%>
+    
+    
+    <span class="name">
+        <%= link_to truncate(latest_quote.display_title, :length => 35), quote_project_quote_path(quote.project, latest_quote), :class => 'grey_link' %>
+    </span>
+    
+    <div class="info">
+        <% if quote.project.client_id.present? -%>
+            Client: 
+            <span class="dark_green">
+                <%=quote.project.client.name%>
+            </span>,
+        <% end -%>
+        Number of versions: 
+        <span class="dark_green">
+           <%=quote.version_quotes.length + 1%>
+        </span>
+    </div>
+
+    <div class="clearing"></div>
+<% end -%>

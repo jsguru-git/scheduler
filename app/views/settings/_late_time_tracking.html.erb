@@ -1,0 +1,18 @@
+<h3 class="padding_top_30">Time tracking</h3>
+<div class="form_row">
+  <div class="form_text">
+    <%= label_tag 'Tracking alerts' %>
+  </div>
+  <p>
+    There are currently
+    <strong>
+      <%= @account.users.not_archived.map(&:days_without_time_tracked).reject{ |u| u.empty? }.size %>
+    </strong>
+    users with overdue timesheets.
+    <%= link_to 'Inform them now', inform_overdue_timesheet_settings_path, data: { confirm: 'Are you sure?', disable_with: 'Sending...' }, class: :standard_button_link, style: 'display:inline-block;' %>
+  </p>
+  <div class="form_field">
+
+  </div>
+  <div class="clearing"></div>
+</div>

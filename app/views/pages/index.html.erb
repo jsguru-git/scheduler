@@ -1,0 +1,139 @@
+<%@page_title = 'Online Collaboration Tools - Manage Projects With Ease - FleetSuite'%>
+<%@page_description = APP_CONFIG['main']['site-description']%>
+<%@second_nav = fleetsuite_second_nav('home')%>
+
+
+<% content_for :outer_content do %>
+    <div id="slide_container" class="cycle-slideshow" data-cycle-slides="> div" data-timeout="10000" cycle-loader="wait" data-cycle-next="#carousel_button_right" data-cycle-prev="#carousel_button_left" data-cycle-timeout="0" data-cycle-speed="750" data-cycle-loader="false">
+        <%=render :partial => 'slide_0'%>
+        <%=render :partial => 'slide_1'%>
+        <%=render :partial => 'slide_2'%>
+        <%=render :partial => 'slide_3'%>
+        <%=render :partial => 'slide_4'%>
+    </div>
+    <%=link_to 'left', '#', :id => 'carousel_button_left'%>
+    <%=link_to 'right', '#', :id => 'carousel_button_right'%>
+<%end-%>
+
+<div class="outer_contaner" id="top_grey_background">
+    <div class="inner_container" id="top_grey_background_inner">
+        
+        <div class="features">
+            <ul>
+                <li class="pos_1">
+                    <p>
+                        <span class="title dark_text">Online Collaboration</span>
+                        <span class="description">All information is accessible from anywhere in the world, making it ideal for distributed teams and remote working.</span>
+                    </p>
+                </li>    
+                <li class="pos_2">
+                    <p>
+                        <span class="title dark_text">Instant Insight</span>
+                        <span class="description">With a variety of dashboards and screens, you can quickly and easily get to the data that you need.</span>
+                    </p>
+                </li>
+                <li class="pos_3">
+                    <p>
+                        <span class="title dark_text">No Install Needed</span>
+                        <span class="description">We manage your account, so you don’t need to worry about paying for and setting up servers, maintenance or backup.</span>
+                    </p>
+                </li>
+                
+                <li class="pos_4">
+                    <p>
+                        <span class="title green_text">Instant Account Activation</span>
+                        <span class="description">Start managing your business straight away with no fuss.</span>
+                    </p>
+                </li>
+                <li class="pos_5">
+                    <p>
+                        <span class="title green_text">Great Support</span>
+                        <span class="description">An award-winning team is on hand to help improve your processes.</span>
+                    </p>
+                </li>
+                <li class="pos_6">
+                    <p>
+                        <span class="title green_text">Only pay for what you use</span>
+                        <span class="description">Mix’n’match from a range of tools for a bespoke solution.</span>
+                    </p>
+                </li>
+            </ul>
+            <div class="clearing"></div>
+        </div>
+    </div>
+</div>
+
+
+<div class="outer_contaner" id="tool_list">
+    <div id="tool_list_middle">
+        <div class="inner_container" id="tool_list_inner">
+            <h3 class="v_large_dark_text">What's in the Suite?</h3>
+            <p class="intro">Each account comes with the core functionality as standard, including projects, teams, clients and users.<br/> You can then add the collaboration  tools you require so you only pay for what you need.</p>
+            
+            <ul class="homepage_tool_list">
+                <li class="quote">
+                    <h4 class="blue_med_oswald_text">Quote</h4>
+                    <p class="small_light_shadow_text">Rapidly create quotes through an intuitive interface, automatically calculate the project cost based on your service types, and easily convert the results into a document that can be presented to clients.</p>
+                    <%=link_to 'See feature tour', quote_tool_path, :class => 'grey_button'%>
+                </li>
+                
+                <li class="schedule">
+                    <h4 class="blue_med_oswald_text">schedule</h4>
+                    <p class="small_light_shadow_text">Easily co-ordinate multiple user and team schedules in a single calendar view. Clear, centralised dashboards provide detailed information for efficient and effective project management.</p>
+                    <%=link_to 'See feature tour', scheduling_tool_path, :class => 'grey_button'%>
+                </li>
+                
+                <li class="time_tracking">
+                    <h4 class="blue_med_oswald_text">track</h4>
+                    <p class="small_light_shadow_text">Track your and your team’s time against projects quickly and with ease, and gain immediate insight into project progress with a variety of detailed reports that connect activity to individual features and tasks.</p>
+                    <%=link_to 'See feature tour', time_tracking_tool_path, :class => 'grey_button'%>
+                </li>
+                
+                <li class="invoice">
+                    <h4 class="blue_med_oswald_text">invoice</h4>
+                    <p class="small_light_shadow_text">Create payment profiles for your project based on schedule time and generate invoices based on actual tracked time, allowing you to gain useful reporting to see what payments are expected and have been sent.</p>
+                    <%=link_to 'See feature tour', invoice_tool_path, :class => 'grey_button'%>
+                </li>
+            </ul>
+            <div class="clearing"></div>
+        </div>
+    </div>
+</div>
+
+
+<div class="outer_contaner" id="home_testimonial">
+    <div id="home_testimonial_middle">
+        <div id="home_testimonial_middle_2">
+            <div class="inner_container" id="testimonial_1_inner">
+                <div class="testimonial_container">
+                    <span class="name med_dark_text">Pete Fry</span>
+                    <span class="position">Account Manager</span>
+                    <span class="testimonial">Being on top of scheduling is critical for any account manager. FleetSuite turns what can be a time consuming task into a beautifully simple one which can be checked with ease throughout even the busiest working day.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%if @tweets.present?%>
+    <div class="outer_contaner" id="tweet_background">
+        <div class="inner_container" id="tweet_inner">
+            <ul>
+                <%for tweet in @tweets -%>
+                    <li>
+                        <p class="post_text">
+                            <%=link_to "@Fleet_Suite", 'http://www.twitter.com/fleet_suite', :target => '_blank', :rel => 'nofollow'%> - <%=raw tweet.title%>
+                        <%if tweet.top_priority.blank? -%>
+                            <span class="time">Posted: <%=time_ago_in_words(tweet.published_at)%> ago</span>
+                        <%else-%>
+                            <span class="time">Featured</span>
+                        <%end-%>
+                        </p>
+                    </li>
+                <%end-%>
+            </ul>
+            <div class="clearing"></div>
+        </div>
+    </div>
+<%end-%>
+        

@@ -1,0 +1,24 @@
+<div style="color: #333333; font-family: arial, helvetica, sans-serif; font-size: 13px;">
+  <p>
+    Hi, <%= @user.firstname %>
+  </p>
+
+  <p>
+    You have been scheduled to work on the following projects this week:
+    <ul>
+      <% @entries.each do |entry| %>
+        <li><%= link_to entry.project.name, user_url(entry.user, subdomain: @account.site_address) %></li>
+      <% end %>
+    </ul>
+  </p>
+
+  You can also <%= link_to 'download your schedule from the dashboard', root_url(subdomain: @account.site_address, anchor: :export_schedule) %>
+  
+  
+  <p>Thanks,<br/>
+  The FleetSuite Team<br/>
+  ---<br/>
+  Get support: http://help.fleetsuite.com<br/>
+  Follow us: https://twitter.com/fleet_suite<br/>
+  Suggest new features: http://help.fleetsuite.com/forums</p>
+</div>

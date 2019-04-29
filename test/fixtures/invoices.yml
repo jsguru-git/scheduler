@@ -1,0 +1,48 @@
+---
+invoices_001:
+  id: 1
+  project_id: 2
+  total_amount_cents_exc_vat: 64000
+  total_amount_cents_inc_vat: 76800
+  invoice_status: 0
+  invoice_date: 2013-04-15
+  due_on_date: 2013-04-15
+  invoice_number: '1'
+  terms: Pay within 30 days
+  po_number: ''
+  currency: gbp
+  vat_rate: 20.0
+  address: ! "11 queen street\r\nCardiff"
+  payment_methods: pay in 30 days
+  notes: Notes here
+  exchange_rate: 1.0
+  created_at: 2013-04-15 10:47:59
+  updated_at: 2013-04-15 10:47:59
+  pre_payment: 0
+  default_currency_total_amount_cents_exc_vat: 64000
+  default_currency_total_amount_cents_inc_vat: 76800
+  user_id: 1
+
+invoices_002:
+  id: 2
+  project_id: 15
+  total_amount_cents_exc_vat: 64000
+  total_amount_cents_inc_vat: 76800
+  invoice_status: 0
+  invoice_date: 2013-04-15
+  due_on_date: 2013-04-15
+  invoice_number: '2'
+  terms: Pay within 30 days
+  po_number: ''
+  currency: gbp
+  vat_rate: 20.0
+  address: ! "11 queen street\r\nCardiff"
+  payment_methods: pay in 30 days
+  notes: Notes here
+  exchange_rate: 1.0
+  created_at: 2013-04-15 10:47:59
+  updated_at: 2013-04-15 10:47:59
+  pre_payment: 1
+  default_currency_total_amount_cents_exc_vat: 64000
+  default_currency_total_amount_cents_inc_vat: 76800
+  user_id: 1

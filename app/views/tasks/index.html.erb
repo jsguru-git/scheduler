@@ -1,0 +1,27 @@
+<% @second_nav = project_second_nav(@project, params[:action]) %>
+
+<div class="standard_two_col">
+
+    <div class="cell_1">
+        <%= render partial: 'project_feature_actions' %>
+        <%= render partial: 'shared/page_heading' %>
+        <% if @project.tasks.empty? %>
+            <div class='empty'>
+                <span class='large_blue_narrow'>No Tasks Available</span>
+                <p class='no_alerts_description'>No activities have been added to this project</p>
+            </div>
+        <% end %>
+        <%= render partial: 'features/project_feature_list', locals: { project: @project } %>
+    </div>
+
+    <div class="cell_2">
+        <% if @account.account_setting.common_project_id != @project.id %>
+            <% if has_permission?('account_holder || administrator') %>
+                <div id="action_links">
+                    <%=link_to raw('<span class="edit">Edit project</span>'), edit_project_path(@project) %>
+                    <div class="clearing"></div>
+                </div>
+            <% end %>
+        <% end %>
+    </div>
+</div>

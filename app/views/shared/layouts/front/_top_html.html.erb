@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!--[if lte IE 7]> <html class="ie ie7"> <![endif]-->  
+<!--[if IE 8]>     <html class="ie ie8"> <![endif]-->  
+<!--[if IE 9]>     <html class="ie ie9"> <![endif]-->  
+<!--[if !IE]><!--> <html>             <!--<![endif]-->
+    <head>
+        <title><%=front_metadata_title%></title>
+        <meta name="description" content="<%=metadata_description%>"/>
+        <meta name="keywords" content="<%=metadata_keywords%>"/>
+        <!--[if lt IE 9]><script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+        <%= stylesheet_link_tag    "front" %>
+        <%= javascript_include_tag "front" %>
+      
+        <%= csrf_meta_tags %>
+      
+        <link href='//fonts.googleapis.com/css?family=Lato:700italic,700,900,400,900italic|Oswald:400,300' rel='stylesheet' type='text/css'>
+        
+        <%if @no_follow%><meta content="noindex, nofollow" name="robots"><%end-%>
+        
+        <%if Rails.env.production? -%>
+            <script type="text/javascript">
+              var _gaq = _gaq || [];
+              _gaq.push(['_setAccount', 'UA-257472-25']);
+              _gaq.push(['_trackPageview']);
+
+              (function() {
+                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+              })();
+            </script>
+        <%end-%>
+
+        <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="apple-touch-icon-114.png" />
+        <link rel="apple-touch-icon" sizes="144x144" href="apple-touch-icon-144.png" />
+    </head>
+    <body id="<%=body_id%>">

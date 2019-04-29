@@ -1,0 +1,43 @@
+<% @page_title = 'Projects' %>
+
+<div class="standard_two_col">
+
+    <div class="cell_1">
+        <%= render :partial => 'shared/page_heading' %>
+        
+        <%= render :partial => 'search_container', 
+                   :locals => {:search_link => projects_path} %>
+        
+        <%=render :partial => 'shared/pagination/paginate', 
+                  :object => @projects %>
+        
+        <% if @projects.present? -%>
+            <ul class="inline_content_list">
+                <% @projects.each do |project|%>
+                    <%= render :partial => 'display_project_list', 
+                               :locals => {:project => project} %>
+                <% end -%>
+            </ul>
+            <div class="clearing"></div>
+        <% else -%>
+            <p>No projects found.</p>
+        <% end -%>
+        
+        <%=render :partial => 'shared/pagination/paginate', 
+                  :object => @projects%>
+    </div>
+
+  
+    <div class="cell_2">
+        <div id="action_links">
+          <% if policy(Project).create? %>
+            <%= link_to raw('<span class="add_color">Add project</span>'), new_project_path, id: :new_project_link %>
+          <% end %>
+          <% if @account.component_enabled?(3) && @account.component_enabled?(2) -%>
+              <%= link_to raw('<span class="report_color">Project overview</span>'), overview_reports_projects_path %>
+          <% end -%>
+          <div class="clearing"></div>
+        </div>
+    </div>
+</div>
+

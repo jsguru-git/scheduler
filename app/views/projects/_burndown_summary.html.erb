@@ -1,0 +1,62 @@
+<div class="inline_time_stats_outer">
+
+    <div class="inline_time_stats blue">
+        <div class="time">
+            <%= minute_duration_to_short_human_time @estimate_time %>
+        </div>
+        <div class="time_description">
+            Total estimated<br/>time
+        </div>
+        <div class="clearing"></div>
+    </div>
+
+    <div class="inline_time_stats green">
+        <div class="time">
+            <%=minute_duration_to_short_human_time @tracked_time%>
+        </div>
+        <div class="time_description">
+            Total submitted<br/> time
+        </div>
+    </div>
+
+    <div class="inline_time_stats orange">
+        <div class="time">
+            <%=minute_duration_to_short_human_time (@estimate_time - @tracked_time)%>
+        </div>
+        <div class="time_description">
+            Time <br/>difference
+        </div>
+    </div>
+
+    <% if (@estimate_time - @tracked_time) < 0 && @estimate_time != 0 %>
+        <div class="inline_time_stats red">
+            <% percentage = (@tracked_time.to_f / @estimate_time.to_f) * 100 - 100 %>
+            <div class="time">
+                <%= number_to_percentage percentage, :precision => 0 %>
+            </div>
+            <div class="time_description">
+                Percentage <br/>overrun
+            </div>
+        </div>
+    <% end %>
+
+    <% if @estimate_time  != 0 || @tracked_time != 0 %>
+       <% if @estimate_time > @tracked_time %>
+           <% estimate_time_percentage = 100 %>
+           <% tracked_time_percentage = (@tracked_time.to_f / @estimate_time.to_f) * 100 %>
+       <% else %>
+           <% estimate_time_percentage = (@estimate_time.to_f / @tracked_time.to_f) * 100 %>
+           <% tracked_time_percentage = 100 %>
+       <% end %>
+       <% if estimate_time_percentage.to_i != 0 %>
+           <div class="bar blue">
+               <div class="inner_bar" style="width: <%=estimate_time_percentage.to_i%>%;"></div>
+           </div>
+       <% end %>
+       <% if tracked_time_percentage.to_i != 0 %>
+           <div class="bar green">
+               <div class="inner_bar" style="width: <%=tracked_time_percentage.to_i%>%;"></div>
+           </div>
+        <% end %>
+    <% end %>
+</div>

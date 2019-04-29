@@ -1,0 +1,19 @@
+---
+- name: Install Gem Dependencies
+  action: $ansible_pkg_mgr
+          pkg={{item}}
+          state=present
+  with_items:
+    - ruby-devel
+    - libxml2
+    - libxslt-devel
+    - libxml2-devel
+    - libxslt
+    - mysql-devel
+    - npm
+
+- name: Install Bundler
+  command: ./gem install bundler chdir=/opt/rubies/ruby-1.9.3-p484/bin
+
+- name: Bundle Gemfile
+  command: /opt/rubies/ruby-1.9.3-p484/bin/bundle install --binstubs chdir=/opt/arthurly/fleetsuite

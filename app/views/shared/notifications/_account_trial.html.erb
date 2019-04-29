@@ -1,0 +1,11 @@
+<%if (params[:controller] == 'dashboards' || (params[:controller] == 'account_settings' && params[:action] == 'index')) && @account.chargify_customer_id.blank? && logged_in? && @account.trial_expires_at < 10.days.from_now-%>
+    <%if has_permission?('account_holder') -%>
+        <div class="flash_notification">
+            <div class="bad">
+            
+                <p>Your trial will expire in <%if @account.trial_expires_at > Time.now -%><%=distance_of_time_in_words_to_now @account.trial_expires_at%><%else-%>next few hours<%end-%>. To continue to use FleetSuite after your trial has ended, you need to add your payment details. Do this now using the <%=link_to 'secure payments page', @account.account_plan.chargify_hosted_signup_link(User.account_holder_for_account(@account))%></p>
+            
+            </div>
+        </div>
+    <%end-%>
+<%end-%>

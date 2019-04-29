@@ -1,0 +1,16 @@
+<% if error_messages.errors.any? %>
+    <div class="error_explanation">
+        <div class="error_explanation_left">
+            <div class="error_explanation_inner_right">
+                <div class="error_explanation_inner">
+                    <p><%=pluralize error_messages.errors.full_messages.length, 'error'%> prevented your <%=error_messages.class.to_s.downcase %> from being saved.</p>
+                    <ul>
+                        <% error_messages.errors.full_messages.each do |msg| %>
+                            <li><%= msg.gsub('digest ', '') %></li>
+                        <% end %>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+<% end %>

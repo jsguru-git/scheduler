@@ -1,0 +1,19 @@
+<div class="form_row">
+    <div class="form_text">
+        <%=f.label :service_type%>
+    </div>
+    <div class="form_field">
+        <%=f.text_field :service_type, :class => 'text'%><span class="required"> *</span>
+    </div>
+    <div class="clearing"></div>
+</div>
+
+<div class="form_row">
+    <div class="form_text">
+        <%=f.label :daily_cost%>
+    </div>
+    <div class="form_field">
+        <%=Money.default_currency.symbol%> <%=f.text_field :daily_cost, :class => 'number'%><span class="required"> *</span>
+    </div>
+    <div class="clearing"></div>
+</div>

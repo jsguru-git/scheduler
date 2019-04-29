@@ -1,0 +1,14 @@
+<div class="action_links">
+    <%if invoice.invoice_status == 0%>
+        <%=link_to raw('<span class="sent_color">Mark as sent</span>'), change_status_invoice_project_invoice_path(:project_id => project, :id => invoice, :status => 1)%>
+        <%=link_to raw('<span class="paid_color">Mark as paid</span>'), change_status_invoice_project_invoice_path(:project_id => project, :id => invoice, :status => 2)%>
+    <%elsif invoice.invoice_status == 1%>
+        <%=link_to raw('<span class="sent_color">Mark as un-sent</span>'), change_status_invoice_project_invoice_path(:project_id => project, :id => invoice, :status => 0), :class => 'light_text'%>
+        <%=link_to raw('<span class="paid_color">Mark as paid</span>'), change_status_invoice_project_invoice_path(:project_id => project, :id => invoice, :status => 2)%>
+    <%elsif invoice.invoice_status == 2%>
+        <%=link_to raw('<span class="sent_color">Mark as un-sent</span>'), change_status_invoice_project_invoice_path(:project_id => project, :id => invoice, :status => 0), :class => 'light_text'%>
+        <%=link_to raw('<span class="paid_color">Mark as un-paid</span>'), change_status_invoice_project_invoice_path(:project_id => project, :id => invoice, :status => 1), :class => 'light_text'%>
+    <%end-%>
+    <%= link_to raw('<span class="pdf_color">Export as PDF</span>'), {:format => :pdf }, :class => 'right_button' %>
+    <div class="clearing"></div>
+</div>

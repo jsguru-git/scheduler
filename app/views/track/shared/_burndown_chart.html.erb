@@ -1,0 +1,100 @@
+<%@google_chart = true%>
+<% graph = params[:graph].present? ? params[:graph] : 'task' %>
+<% @results = @project.burndown_chart(graph, task_id: params[:task_id]) %>
+
+<div class="filter_selection">
+    <%= form_tag track_project_path(@project), :method => :get do %>
+        <%= label_tag :graph, 'Graph:', :class => 'label' %>
+        <div class="select_container">
+            <%= select_tag :graph,  options_for_select([['Tasks', :task], ['Quotes', :quote], ['Payment profiles', :payment_profile]], params[:graph]), :include_blank => false, :class => 'submit_on_change' %>
+        </div>
+        <% if graph == 'task' %>
+            <%= label_tag :task_id, 'Showing:', :class => 'label' %>
+            <div class="select_container">
+                <%= select_tag :task_id,  options_for_select([['All tasks', '']] + @project.tasks.name_ordered.collect { |p| [ p.name, p.id ] }, params[:task_id]), :include_blank => false, :class => 'submit_on_change' %>
+            </div>
+        <% end %>
+    <%end-%>
+    <div class="clearing"></div>
+</div>
+
+<%if @results.blank? -%>
+    <p>No submitted tracked data has been found.</p>
+<%else-%>
+    <% content_for :head_content do %>
+        <script type="text/javascript">
+            function drawVisualization0() {
+                
+                var data = new google.visualization.DataTable();
+                data.addColumn('string','Week');
+                data.addColumn('number','Time remaining');
+                data.addColumn('number','Time overspent');
+                
+                <%@results.each do |key, value| -%>
+                    data.addRow(['Week <%=value[:week_no]%>',  {v:<%=value[:estimate_minutes_left] >= 0 ? value[:estimate_minutes_left] : 0%>, f: '<%=value[:estimate_left]%>'}, {v:<%=value[:estimate_minutes_left] >= 0 ? 0 : value[:estimate_minutes_left]%>, f: '<%=value[:estimate_left]%>'}]);
+                <%end-%>
+                
+                var options = {
+                    vAxis: {
+                        format: '',
+                        title: 'Time',  
+                        titleTextStyle: {color: '#999999'},
+                        textStyle: {color: '#666666'}
+                    },
+                    hAxis: {
+                        title: "Week number", 
+                        titleTextStyle: {color: '#999999'},
+                        textStyle: {color: '#666666'}
+                    },
+                    colors: ['#B3C9E1', '#E39191'],
+                    chartArea: {
+                        width: '95%'
+                    },
+                	legend: {position: 'none'},
+                    isStacked: true
+                };
+                
+                var chart = new google.visualization.ColumnChart(document.getElementById('burndown_div'));
+                chart.draw(data, options);
+            }
+            
+            google.setOnLoadCallback(drawVisualization0);
+        </script>
+    <%end-%>
+
+
+    <div class="outer_chart_container">
+        <div id="burndown_div" style="width: 100%; height: 480px;"></div>
+    </div>
+    <div class="clearing"></div>
+    <div class="outline_container">
+        <%total_time_tracked = 0%>
+
+        <table class="results_table">
+            <tr class="heading_table">
+                <th>Date</th>
+                <th>Week</th>
+                <th>Time tracked</th>
+                <th>Time remaining</th>
+            </tr>
+            <%@results.each do |key, value| -%>
+                <tr>
+                    <td><%=fmt_long_date value[:start_of_week]%> - <%=fmt_long_date value[:end_of_week]%></td>
+                    <td><%=value[:week_no]%></td>
+                    <td><%=value[:tracked_time]%></td>
+                    <td><%=value[:estimate_left]%></td>
+                </tr>
+                <%total_time_tracked += value[:minutes]%>
+            <%end-%>
+            <tr class="dark_green_background">
+                <td></td>
+                <td class="align_right">
+                    <strong>Total:</strong> 
+                </td>
+                <td><%=minute_duration_to_human_time total_time_tracked, @account%></td>
+                <td><%=@results[@results.length][:estimate_left]%></td>
+            </tr>
+        </table>
+    </div>
+    <div class="clearing"></div>
+<%end-%>

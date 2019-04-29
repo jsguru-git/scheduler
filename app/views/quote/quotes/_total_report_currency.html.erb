@@ -1,0 +1,16 @@
+<div id="total_report_currency_cont">
+    <%if Money.default_currency.to_s != quote.currency.upcase -%>
+        <%if quote.currency.present? -%>
+            <p class="label_text">
+            <%if quote.include_range_estimates? -%>
+                <%=formated_in_provided_currency quote.total_min_cost_incl_discount_and_vat_cents_in_report_currency, quote.currency%> - 
+            <%end-%>
+            <%=formated_in_provided_currency quote.total_max_cost_incl_discount_and_vat_cents_in_report_currency, quote.currency%>
+            </p>
+            <p class="label_text">
+                <%=formated_in_default_currency 100%> <%=Money.default_currency%> = <%=formated_in_provided_currency (quote.report_currency_exchange_rate * 100), quote.currency%> <%=quote.currency.upcase%>
+            </p>
+            <p class="currency_updated_on small_text light_text">(Updated on: <%=fmt_long_date quote.get_exchange_rate_updated_at%>)</p>
+        <%end-%>
+    <%end-%>
+</div>

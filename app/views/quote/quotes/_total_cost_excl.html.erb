@@ -1,0 +1,12 @@
+<div class="form_row" id="total_cost_excl_cont">
+    <div class="form_text">
+        Activities
+    </div>
+    <div class="form_field label_text">
+        <%if quote.include_range_estimates? -%>
+            <%=formated_in_default_currency quote.total_min_cost_ex_discount_and_vat_cents%> - 
+        <%end-%>
+        <%=formated_in_default_currency quote.total_max_cost_ex_discount_and_vat_cents%>
+    </div>
+    <div class="clearing"></div>
+</div>

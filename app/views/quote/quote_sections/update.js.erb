@@ -1,0 +1,16 @@
+<%if @saved -%>
+  // Remove error spans if there are any
+  new_quote_creation.clear_all_error_alerts();
+
+  // Display notification
+  main_notification.display_message('Changes saved');
+<%else-%>
+  // Remove error spans if there are any
+  new_quote_creation.clear_all_error_alerts();
+
+  // Add new messages and hightlight fields
+  <%@quote_section.errors.each do |attribute, errors| -%>
+      <%human_error = attribute.to_s.humanize + ' ' +  errors%>
+	  new_quote_creation.highlight_failed_reason('quote', '<%=attribute.to_s%>', '<%=escape_javascript(human_error)%>');
+  <%end-%>
+<%end-%>

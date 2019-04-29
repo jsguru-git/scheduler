@@ -1,0 +1,41 @@
+<div class="total_cost_section" id="total_cost_cont">
+    <h3 class="underline">Total cost</h3>
+    
+    <%=render :partial => 'quote/quotes/extra_cost_form', :locals => {:quote => quote}%>
+    
+    <%=render :partial => 'quote/quotes/total_cost_excl', :locals => {:quote => quote}%>
+    
+    <div class="form_row">
+        <div class="form_text">
+            <%=f.label :discount_percentage, 'Discount'%>
+        </div>
+        <div class="form_field">
+            <%=f.text_field :discount_percentage, :class => 'number'%> %
+        </div>
+        <div class="clearing"></div>
+    </div>
+    
+    <div class="form_row">
+        <div class="form_text">
+            <%=f.label :vat_rate, 'Tax rate'%>
+        </div>
+        <div class="form_field">
+            <%=f.text_field :vat_rate, :class => 'number'%> %
+        </div>
+        <div class="clearing"></div>
+    </div>
+    
+    <%=render :partial => 'quote/quotes/total_cost_incl', :locals => {:quote => quote}%>
+    
+    <div class="form_row">
+        <div class="form_text">
+            <%=f.label :currency, 'Quote Currency'%>
+        </div>
+        <div class="form_field">
+            <%=f.select :currency, supported_currencies(Money::Currency.table).sort.collect {|key, value| [ "#{value[:iso_code]} - #{value[:name]}", key ]}, :class => 'text'%>
+            
+            <%=render :partial => 'quote/quotes/total_report_currency', :locals => {:quote => quote}%>
+        </div>
+        <div class="clearing"></div>
+    </div>
+</div>

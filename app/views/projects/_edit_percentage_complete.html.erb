@@ -1,0 +1,19 @@
+<h2>Update percentage complete</h2>
+<%=form_for project, :url => update_percentage_complete_project_path(project), :remote => true, :html => { 'data-spinner' => 'edit_form_spinner'} do |f|%>
+
+    <%=render :partial => 'shared/notifications/error_messages', :object => project%>
+
+    <div class="form_row">
+	    <div class="form_text">
+	        <%=f.label :percentage_complete%>
+	    </div>
+	    <div class="form_field">
+	        <%=f.text_field :percentage_complete, :class => 'small_number'%> %
+	    </div>
+	    <div class="clearing"></div>
+	</div>
+    
+    <div class="submit_container">
+        <%= f.submit 'Save changes', :class => 'submit' %> <span class="small_text">or <%=link_to 'Cancel', overview_reports_projects_path, :class => 'lightbox_close'%></span> <%=spinner_tag 'edit_form_spinner'%>
+    </div>
+<% end -%>

@@ -1,0 +1,13 @@
+<div class="reply_comment_container reply_form_<%=project_comment.id%>" style="<%='display: none;' if params[:action] == 'index'%>">
+    <%=form_for [project, new_project_comment], :url => submit_reply_project_project_comment_path(project, project_comment), :remote => true, :html => { 'data-spinner' => "reply_comment_spinner_#{dom_id(project_comment)}"} do |f| %>
+        <%=render :partial => 'shared/notifications/error_messages', :object => new_project_comment%>
+
+       <%=f.text_area :comment, :class => 'text', :rows => 5%>
+		
+		<%=f.hidden_field :project_comment_id%>
+   
+        <div class="right_controls">
+            <%= f.submit 'Reply to comment' %> <span class="small_text">or <%=link_to 'Cancel', project_project_comments_path(project), :class => 'cancel_reply_comment_link'%></span>&nbsp;<%=spinner_tag("reply_comment_spinner_#{dom_id(project_comment)}")%>
+        </div>
+    <%end-%>
+</div>

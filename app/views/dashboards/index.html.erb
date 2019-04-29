@@ -1,0 +1,27 @@
+<%if @account.account_suspended? -%>
+    <%@page_title = "Account suspended"%>
+    <%=render :partial => 'suspended_account'%>
+<%else-%>
+    <%@no_title = true%>
+    <%@page_title = "Hi #{current_user.firstname}, here is your overview"%>
+
+    <div class="standard_one_col">
+        <div class="cell_1">
+            <%=render :partial => 'shared/page_heading'%>
+            
+            <%if @account.component_enabled?(4) && has_permission?('account_holder || administrator')%>
+                <%=render :partial => 'invoice_stats'%>
+            <%end-%>
+            
+            <%if @account.component_enabled?(2)%>
+                <%=render :partial => 'time_tracking_stats', :locals => {:my_alerts => @my_alerts}%>
+            <%end-%>
+            
+            <%if @account.component_enabled?(1)%>
+                <%=render :partial => 'my_alerts', :locals => {:my_alerts => @my_alerts}%>
+                <%=render :partial => 'my_schedule', :locals => {:my_entries => @my_entries}%>
+            <%end-%>
+            
+        </div>
+    </div>
+<%end-%>

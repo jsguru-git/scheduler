@@ -1,0 +1,10 @@
+---
+- name: Install Ruby 1.9.3-p484
+  action: $ansible_pkg_mgr
+          pkg=arthurly-ruby193
+          state=present
+
+- name: Install chruby
+  action: $ansible_pkg_mgr
+          pkg=chruby
+          state=present

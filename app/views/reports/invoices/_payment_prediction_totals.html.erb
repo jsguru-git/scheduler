@@ -1,0 +1,31 @@
+<div class="totals">
+    <div class="stat">
+        <div class="figure"><%=formated_in_default_currency totals[:current_year][:total]%></div>
+        <div class="desc">Total<br/> expected</div>
+    </div>
+    
+    <div class="stat">
+        <div class="figure"><span class="<%= totals[:current_year][:total] > totals[:last_year][:total] ? '' : 'red_text'-%>"><%=formated_in_default_currency(totals[:current_year][:total] - totals[:last_year][:total])%></span></div>
+        <div class="desc"><%= totals[:current_year][:total] > totals[:last_year][:total] ? 'Increase' : 'Decrease'-%> since<br/> year before</div>
+    </div>
+    
+    <div class="stat">
+        <div class="figure"><%=formated_in_default_currency(totals[:current_year][:requested] + totals[:current_year][:sent])%></div>
+        <div class="desc">Total<br/> requested</div>
+    </div>
+    
+    <div class="clearing"></div>
+</div>
+<div class="totals">
+    <div class="stat">
+        <div class="figure"><%=formated_in_default_currency totals[:current_year][:pre_payment_total]%></div>
+        <div class="desc">Total pre-payments<br/>expected</div>
+    </div>
+    
+    <div class="stat">
+        <div class="figure"><%=formated_in_default_currency(totals[:current_year][:total] - totals[:current_year][:pre_payment_total])%></div>
+        <div class="desc">Total expected<br/> excl pre-payments</div>
+    </div>
+    
+    <div class="clearing"></div>
+</div>

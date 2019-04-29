@@ -1,0 +1,13 @@
+<%@page_title = 'Generate from schedule'%>
+
+<div class="standard_two_col">
+    <div class="cell_1">
+        <%=render :partial => 'shared/page_heading'%>
+        <%= render :partial => 'generate_from_schedule', :locals => {:project => @project, :auto_payment_profile => @auto_payment_profile}%>
+    </div>
+    <div class="cell_2">
+
+    </div>
+    <div class="clearing"></div>
+</div>
+

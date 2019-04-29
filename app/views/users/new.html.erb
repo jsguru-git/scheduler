@@ -1,0 +1,98 @@
+<% @page_title = 'New Employee' %>
+<% @second_nav = people_second_nav(params[:action]) %>
+<%
+    @user.password = nil
+%>
+
+
+<div class="standard_one_col">
+    <div class="cell_1">
+        <%=render :partial => 'shared/page_heading'%>
+        <%=form_for @user do |f|%>
+
+            <div class="two_col_inline_container_heavy_left">
+                <div class="inline_left">
+
+                    <h3 class="blue_heading sub_heading">Personal details</h3>
+
+                    <%=render :partial => 'shared/notifications/error_messages', :object => @user%>
+
+                    <div class="form_row">
+                        <div class="form_text">
+                            <%=f.label :firstname %>
+                        </div>
+                        <div class="form_field">
+                            <%=f.text_field :firstname, :class => 'text'%><span class="required"> *</span>
+                        </div>
+                        <div class="clearing"></div>
+                    </div>
+
+                    <div class="form_row">
+                        <div class="form_text">
+                            <%=f.label :lastname %>
+                        </div>
+                        <div class="form_field">
+                            <%=f.text_field :lastname, :class => 'text'%><span class="required"> *</span>
+                        </div>
+                        <div class="clearing"></div>
+                    </div>
+
+                    <div class="form_row">
+                        <div class="form_text">
+                            <%=f.label :email%>
+                        </div>
+                        <div class="form_field">
+                            <%=f.text_field :email, :class => 'text'%><span class="required"> *</span>
+                        </div>
+                        <div class="clearing"></div>
+                    </div>
+
+
+                    <div>
+                        <div class="form_row">
+                            <div class="form_text">
+                                <%=f.label :password%>
+                            </div>
+                            <div class="form_field">
+                                <%=f.password_field :password, :class => 'text', :autocomplete => 'off'%><span class="required"> *</span>
+                            </div>
+                            <div class="clearing"></div>
+                        </div>
+                    </div>
+                
+                    <div class="form_row">
+                        <div class="form_text">
+                            <%=f.label :time_zone%>
+                        </div>
+                        <div class="form_field">
+                            <%=f.time_zone_select :time_zone, nil, :default => "UTC" , :class => 'text'%>
+                        </div>
+                        <div class="clearing"></div>
+                    </div>
+
+                    <div>
+                        <div class="form_row">
+                            <div class="form_text">&nbsp;</div>
+                            <div class="form_field">
+                                <%=check_box_tag :send_invite_email, 1, params[:send_invite_email].blank? ? false : true%> <%=label_tag :send_invite_email, 'Send invite email to new user that contains their login details.'%>
+                            </div>
+                            <div class="clearing"></div>
+                        </div>
+                    </div>
+
+                    <div class="submit_container">
+                        <%= f.submit 'Add this person', :class => 'submit' %> <span class="small_text">or <%=link_to 'Cancel', users_path%></span>
+                    </div>
+
+                </div>
+                <div class="inline_right">
+                    <%=render :partial => 'users/team_list', :locals => {:user => @user}%>
+                </div>
+                <div class="clearing"></div>
+            </div>
+        <% end -%>
+
+    </div>
+    <div class="clearing"></div>
+</div>
+

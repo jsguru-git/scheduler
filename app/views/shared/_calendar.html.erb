@@ -1,0 +1,9 @@
+<%if @account.component_enabled?(1)%>
+    <div class="calendar <% restrict_to 'account_holder || administrator' do -%>can-edit-entries<% end -%>" 
+         data-teamid="<%= team_id %>"
+         data-userid="<%= user_id %>"
+         data-projectid="<%= project_id %>"
+         data-showtype="<%= show_type %>"
+         data-startdate="<%= start_date %>" 
+         data-enddate="<%= end_date %>"></div>
+<%end-%>

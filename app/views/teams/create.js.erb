@@ -1,0 +1,10 @@
+// Replace content in lightbox div
+$("#team_list").append("<%= escape_javascript(render(:partial => 'teams/display_team', :locals => {:team => @team})) %>");
+
+$('.no_team').remove();
+
+// Open lightbox
+main_lightbox.close();
+
+// Highlight
+$('#<%=dom_id(@team)%> .point_container_right').effect("highlight", {}, 3000);

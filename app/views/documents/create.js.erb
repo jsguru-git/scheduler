@@ -1,0 +1,17 @@
+$('.no_content').remove();
+
+// Replace select
+<%@response[:docs].each do |document|%>
+    //Append
+    $("#attached_docuemnt_list").append("<%= escape_javascript(render(:partial => 'display_document', :locals => {:document => document})) %>");
+    // Highlight
+    $('#<%=dom_id document%>').effect("highlight", {}, 3000);
+<%end-%>
+
+// Open lightbox
+main_lightbox.close();
+
+// Re-apply observers
+new_comment_creation.set_page_comments();
+new_comment_creation.show_hide_reply_comments(null);
+new_comment_creation.observe_comment_links();

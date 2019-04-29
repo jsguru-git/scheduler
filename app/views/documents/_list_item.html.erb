@@ -1,0 +1,17 @@
+<li>
+    <div class="checkbox_cont">
+        <%if !result[:mime_type].include?('folder') -%>
+            <%=check_box_tag 'documents[]', result[:id], false, :id => "documents_#{result[:id].gsub(/[^0-9a-z]/i, '')}"%>
+        <%else-%>
+        &nbsp;
+        <%end-%>
+    </div>
+    <div class="name_cont <%=result[:file_type]%>">
+        <%if result[:mime_type].include?('folder') -%>
+                <%=link_to result[:title], new_project_document_path(:id => @project, :provider => params[:provider], :browse => 'folder', :folder_id => result[:id]), :remote => true, 'data-spinner' => "attach_spinner"%>
+        <%else-%>
+            <%=label_tag "documents_#{result[:id].gsub(/[^0-9a-z]/i, '')}", result[:title]%>
+        <%end-%>
+    </div>
+    <div class="clearing"></div>
+</li>

@@ -1,0 +1,154 @@
+<% @page_title = 'Invoice client profit and loss' %>
+
+<div class="standard_one_col">
+
+    <div class="cell_1">
+        <%= render :partial => 'shared/page_heading' %>
+        
+        <div class="search_container">
+            <h3>Filter results</h3>
+
+            <%=form_tag profit_and_loss_reports_clients_path, :method => :get  do %>
+                <div class="form_row">
+                    <div class="form_text">
+                        <%=label_tag :start_date%>
+                    </div>
+                    <div class="form_field date_cal_field_container">
+                        <%=text_field_tag :start_date, @cal.start_date, :class => 'datepicker number'%>
+                        <%=image_tag '/assets/tool/icons/calendar_32.png', :size => '32x32', :class => 'cal_icon', :alt => 'Select start date'%>
+                    </div>
+                    <div class="clearing"></div>
+                </div>
+                
+                <div class="form_row">
+                    <div class="form_text">
+                        <%=label_tag :end_date%>
+                    </div>
+                    <div class="form_field date_cal_field_container">
+                        <%=text_field_tag :end_date, @cal.end_date, :class => 'datepicker number'%>
+                        <%=image_tag '/assets/tool/icons/calendar_32.png', :size => '32x32', :class => 'cal_icon', :alt => 'Select end date'%>
+                    </div>
+                    <div class="clearing"></div>
+                </div>
+                
+                <div class="submit_container">
+                    <%= submit_tag 'Filter now', :class => 'submit' %>
+                </div>
+                
+                <div class="month_switch">
+                    <div class="left">
+                        <%=link_to 'Previous month', profit_and_loss_reports_clients_path(:team_id => params[:team_id], :start_date => (@cal.start_date - 1.month).beginning_of_month, :end_date => (@cal.start_date - 1.month).end_of_month)%> 
+                    </div>
+                    <div class="right">
+                        <%=link_to 'Next month', profit_and_loss_reports_clients_path(:team_id => params[:team_id], :start_date => (@cal.start_date + 1.month).beginning_of_month, :end_date => (@cal.start_date + 1.month).end_of_month)%>
+                    </div>
+                    <div class="clearing"></div>
+                </div>
+                
+            <%end-%>
+        </div>
+
+        <div class='statistics'>
+            <div class='statistic'>
+                <% average_day_rate = @all_clients.collect { |c| c.avg_rate_card_amount_cents }.sum.to_f / @all_clients.size %>
+                <div class='figure red'><%= formated_in_default_currency average_day_rate %></div>
+                <div class='desc'>Average Day Rate</div>
+            </div>
+            <div class='statistic'>
+                <% total_invoiced = Invoice.amount_cents_invoiced_for_period(@account, @cal.start_date, @cal.end_date) %>
+                <div class='figure orange'><%= formated_in_default_currency total_invoiced %></div>
+                <div class='desc'>Total invoiced</div>
+            </div>
+            <div class='statistic'>
+                <% total_profit = @all_clients.collect { |c| c.profit(@cal) }.sum %>
+                <div class='figure green'><%= formated_in_default_currency total_profit %></div>
+                <div class='desc'>Total profit</div>
+            </div>
+            <div class='statistic'>
+                <% profit_day_rate = @all_clients.collect { |c| c.profit_day_rate(@cal) }.sum.to_f / @all_clients.size %>
+                <div class='figure blue'><%= formated_in_default_currency profit_day_rate %></div>
+                <div class='desc'>Average Profit Day Rate</div>
+            </div>
+        </div>
+        <div class='clearing'></div>
+
+        <%=render :partial => 'shared/pagination/paginate', :object => @clients%>
+        
+        <div class="outline_container">
+            <table class="results_table">
+                <tr class="heading_table">
+                    <th>Client</th>
+                    <th class="align_center">Avg day rate</th>
+                    <th class="align_center">Tracked days</th>
+                    <th class="align_center">Amount invoiced</th>
+                    <th class="align_center">P &amp; L (Days)</th>
+                    <th class="align_center">P &amp; L (<%=Money.default_currency.symbol%>)</th>
+                    <th class="align_center">P &amp; L (%)</th>
+                    <th class="align_center">Day rate after P &amp; L</th>
+                </tr>
+                <%@clients.each do |client| -%>
+                    <%day_rate = client.avg_rate_card_amount_cents.round(2)%>
+                    <%mins_tracked = Timing.minute_duration_submitted_for_period_and_client(client.id, @cal.start_date, @cal.end_date)%>
+                    <%invoiced_amount = Invoice.amount_cents_invoiced_for_period_and_client(client.id, @cal.start_date, @cal.end_date).round(2)%>
+                    <%days_tracked = (hours = mins_tracked.to_s.to_d / @account.account_setting.working_day_duration_minutes).round(2)%>
+                    <%p_l_days = (day_rate == 0 ? 0.0 : (days_tracked - (invoiced_amount/day_rate.to_s.to_d)).round(2)) %>
+                    <%p_l_cost = (invoiced_amount - (days_tracked*day_rate.to_s.to_d)).round(2)%>
+                    <%if invoiced_amount == 0 && days_tracked != 0 -%>
+                        <%p_l_percent = -100%>
+                    <%elsif invoiced_amount != 0 && days_tracked == 0 -%>
+                        <%p_l_percent = 100%>
+                    <%elsif invoiced_amount == 0 -%>
+                        <%p_l_percent = 0%>
+                    <%else-%>
+                        <%p_l_percent = ((p_l_cost/invoiced_amount)*100).round(2)%>
+                    <%end-%>
+                    
+                    <tr>
+                        <td>
+                            <%=link_to client.name, project_profit_and_loss_reports_client_path(:id => client.id, :start_date => @cal.start_date, :end_date => @cal.end_date), :remote => true%>
+                        </td>
+                        <td class="align_center">
+                            <%=formated_in_default_currency day_rate%>
+                        </td>
+                        <td class="align_center">
+                            <%=days_tracked%>
+                        </td>
+                        <td class="align_center">
+                            <%=formated_in_default_currency invoiced_amount%>
+                        </td>
+                        <td class="align_center <%=p_l_days > 0 ? 'red_text' : 'green_text'%>">
+                            <%=p_l_days%>
+                        </td>
+                        <td class="align_center <%=p_l_days > 0 ? 'red_text' : 'green_text'%>">
+                            <%= formated_in_default_currency client.profit(@cal) %>
+                        </td>
+                        <td class="align_center <%=p_l_days > 0 ? 'red_text' : 'green_text'%>">
+                            <%=number_to_percentage p_l_percent, :precision => 2%>
+                        </td>
+                        <td class="align_center">
+                            <%=formated_in_default_currency client.profit_day_rate(@cal) %>
+                        </td>
+                    </tr>
+                <%end-%>
+            </table>
+        </div>
+        
+        <%=render :partial => 'shared/pagination/paginate', :object => @clients%>
+        
+    </div>
+</div>
+
+<script type="text/javascript">
+    // Datepicker for invoice cration
+    $( "#clients_profit_and_loss .datepicker" ).datepicker({
+        dateFormat: 'yy-mm-dd',
+        firstDay: 1
+    });
+
+    $('#clients_profit_and_loss .cal_icon').click(function() {
+        var idx = $('#clients_profit_and_loss .cal_icon').index(this);
+        $('#clients_profit_and_loss .datepicker').eq(idx).trigger('focus');
+        return false;
+    });
+</script>
+

@@ -1,0 +1,42 @@
+<div class="search_container">
+    <h3>Filter results</h3>
+    
+    <%=form_tag users_path, :method => :get  do %>
+        
+        <%if @account.users.present?%>
+            <div class="form_row">
+                <div class="form_text">
+                    <%=label_tag 'first_name'%>
+                </div>
+                <div class="form_field">
+                    <%=text_field_tag :firstname, params[:firstname], :class => 'text'%>
+                </div>
+                <div class="clearing"></div>
+            </div>
+            
+            <div class="form_row">
+                <div class="form_text">
+                    <%=label_tag 'last_name'%>
+                </div>
+                <div class="form_field">
+                    <%=text_field_tag :lastname, params[:lastname], :class => 'text'%>
+                </div>
+                <div class="clearing"></div>
+            </div>
+            
+            <div class="form_row">
+                <div class="form_text">
+                    <%=label_tag 'archived'%>
+                </div>
+                <div class="form_field">
+                    <%=select_tag :archived, options_for_select( [['All', 2], ['No', 0], ['Yes', 1]], params[:archived])%>
+                </div>
+                <div class="clearing"></div>
+            </div>
+        <%end-%>
+        
+        <div class="submit_container">
+            <%= submit_tag 'Search now', :class => 'submit' %>
+        </div>
+    <%end-%>
+</div>

@@ -1,0 +1,85 @@
+---
+account_settings_001:
+  id: 1
+  account_id: 1
+  reached_limit_email_sent: 0
+  created_at: 2012-05-15 08:22:38
+  updated_at: 2012-05-15 08:22:38
+  working_day_start_time: '09:00:00'
+  working_day_end_time: '17:00:00'
+  common_project_id: 8
+  working_days: <%= {:sunday => '0', :monday => '1', :tuesday => '1', :wednesday => '1', :thursday => '1', :friday => '1', :saturday => '0'}.to_yaml.inspect %>
+  default_currency: gbp
+  invoice_alert_email: info@arthurly.com
+  schedule_mail_email: scott@arthurly.com
+  schedule_mail_frequency: 1
+  schedule_mail_last_sent_at:
+  expected_invoice_mail_email: scott@arthurly.com
+  expected_invoice_mail_frequency: 1
+  expected_invoice_mail_last_sent_at:
+  rollover_alert_email:
+  stale_opportunity_email: scott@arthurly.com
+  budget_warning_email: scott@arthurly.com, stuart@arthurly.com
+account_settings_002:
+  id: 2
+  account_id: 2
+  reached_limit_email_sent: 0
+  created_at: 2012-05-15 08:23:03
+  updated_at: 2012-05-15 08:23:03
+  working_day_start_time: '09:00:00'
+  working_day_end_time: '17:00:00'
+  common_project_id: 9
+  working_days: <%= {:sunday => '1', :monday => '1', :tuesday => '1', :wednesday => '1', :thursday => '1', :friday => '1', :saturday => '1'}.to_yaml.inspect %>
+  default_currency: gbp
+  invoice_alert_email:
+  schedule_mail_email: 
+  schedule_mail_frequency: 1
+  schedule_mail_last_sent_at:
+  expected_invoice_mail_email:
+  expected_invoice_mail_frequency: 1
+  expected_invoice_mail_last_sent_at:
+  rollover_alert_email:
+  stale_opportunity_email:
+  budget_warning_email:
+account_settings_003:
+  id: 3
+  account_id: 3
+  reached_limit_email_sent: 0
+  created_at: 2012-05-15 08:23:46
+  updated_at: 2012-05-15 08:23:46
+  working_day_start_time: '09:00:00'
+  working_day_end_time: '17:00:00'
+  common_project_id: 10
+  working_days: <%= {:sunday => '0', :monday => '1', :tuesday => '1', :wednesday => '1', :thursday => '1', :friday => '1', :saturday => '0'}.to_yaml.inspect %>
+  default_currency: gbp
+  invoice_alert_email:
+  schedule_mail_email: 
+  schedule_mail_frequency: 1
+  schedule_mail_last_sent_at:
+  expected_invoice_mail_email:
+  expected_invoice_mail_frequency: 1
+  expected_invoice_mail_last_sent_at:
+  rollover_alert_email:
+  stale_opportunity_email:
+  budget_warning_email:
+account_settings_004:
+  id: 4
+  account_id: 4
+  reached_limit_email_sent: 0
+  created_at: 2012-05-15 08:25:27
+  updated_at: 2012-05-15 08:25:27
+  working_day_start_time: '09:00:00'
+  working_day_end_time: '17:00:00'
+  common_project_id: 11
+  working_days: <%= {:sunday => '0', :monday => '1', :tuesday => '1', :wednesday => '1', :thursday => '1', :friday => '1', :saturday => '0'}.to_yaml.inspect %>
+  default_currency: gbp
+  invoice_alert_email:
+  schedule_mail_email: 
+  schedule_mail_frequency: 1
+  schedule_mail_last_sent_at:
+  expected_invoice_mail_email:
+  expected_invoice_mail_frequency: 1
+  expected_invoice_mail_last_sent_at:
+  rollover_alert_email:
+  stale_opportunity_email:
+  budget_warning_email:

@@ -1,0 +1,44 @@
+<%= content_tag_for(:div, entry) do %>
+    <div class="days_left_container">
+        <span class="top_large"><%=entry.number_of_days_left(date)%></span>
+        <span class="bottom_small"><%if entry.number_of_days_left(date) == 1%>Day left<%else-%>Days left<%end%></span>
+    </div>
+
+    <div class="main_content">
+        <%people_in_next_week = entry.project.people_scheduled_for_next_week_from(date)%>
+        <%all_people_involved = entry.project.all_people_scheduled%>
+        <div class="min_content">
+            <span class="project_title">
+                <%=link_to entry.project.name, project_path(entry.project), :class => 'grey_link', :title => entry.project.name%>
+            </span>
+
+            <%if entry.project.client_id.present? -%>
+                <span class="client">
+                    Client: <%=entry.project.client.name%>
+                </span>
+            <%end-%>
+        
+            <span class="people_count">
+                Number of people working on project in the next week: <%=link_to people_in_next_week.length, project_path(:id => entry.project, :anchor => "people_involved")%>
+            </span>
+            &nbsp;&nbsp;&nbsp;
+            <span class="people_count">
+                Total number of people involved with project: <%=link_to all_people_involved.length, project_path(:id => entry.project, :anchor => "people_involved")%>
+            </span>
+        </div>
+        
+        <div class="expandable_content js_hide">
+            <%if entry.project.description.present? -%>
+                <span class="description_heading large_red_narrow">Description:</span>
+                <div class="project_description_container">
+                <%=simple_format entry.project.description, :class => 'project_description'%>
+                </div>
+            <%end-%>
+            
+            <%=render :partial => 'schedule/shared/people_scheduled', :locals => {:display_type => 'project', :people_in_next_week => people_in_next_week, :people_scheduled => all_people_involved, :first_title => 'Scheduled in next 7 days'}%>
+
+        </div>
+    </div>
+    <%=link_to 'Expand', '#', :class => 'expandable_link js_show', :style => 'display: none;'%>
+    <%=link_to 'Expand', '#', :class => 'shrink_link', :style => 'display: none;'%>
+<%end-%>

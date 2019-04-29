@@ -1,0 +1,207 @@
+<% @page_title = 'Submitted time report' %>
+<% @second_nav = time_management_second_nav(params[:action]) %>
+
+<div class="standard_one_col">
+    <div class="cell_1">
+
+        <%= render 'shared/page_heading' %>
+        
+        <div class="schedule_calendar_options_container">
+            <%= form_tag request.path, :method => :get, :class => 'submit_form' do -%>
+
+                <div class="col_1">
+
+                    <% if has_permission?('account_holder || administrator') -%>
+                        <div class="filter_selection">
+                            <label for="user_id" class="label">User:&nbsp;</label>
+                            <div class="select_container">
+                                <%=select_tag 'user_id', 
+                                               options_from_collection_for_select(@account.users.not_archived.name_ordered, "id", "name", params['user_id'].to_i), 
+                                               :class => 'submit_on_change'%>
+                            </div>
+                            <div class='clearing'></div>
+                        </div>
+
+                        <div class="filter_selection">
+                            <label for="project_id" class="label">Project:&nbsp;</label>
+                            <div class="select_container">
+                                <%= select_tag 'project_id', options_from_collection_for_select(@projects, :id, :name, params['project_id'].to_i), { prompt: 'All projects', class: 'submit_on_change' } %>
+                            </div>
+                            <div class='clearing'></div>
+                        </div>
+                    <% else -%>
+                        &nbsp;
+                    <% end -%>
+
+                </div>
+                <div class="col_2">
+                    <% unless @timings.blank? -%>
+                        <%= link_to 'Export as CSV', submitted_time_report_track_timings_path(params.merge(format: :csv)), class: 'csv_link' %>
+                    <% end-%>
+                    <%= link_to '#', id: 'select_calendar', class: 'calendar_link' do %>
+                        <%= image_tag('tool/icons/calendar_32.png', :size => '32x32', :alt => 'Select dates', :class => 'update_calendar_dates padding_right_10') %>
+                        <span class="label_text">
+                            <%= fmt_long_date(@cal.start_date) %>
+                        </span>
+                    <% end %>
+
+                    <div id="date_range_selection_background" 
+                         class="date_range_selection_background" 
+                         style="display: none;">
+                    </div>
+
+                    <div class="date_range_selection double_date_range_selection">
+                        <div class="inner_date_range_selection">
+
+                            <span class="large_blue_narrow first_title">Start date:</span>
+                            <span class="large_blue_narrow">End date:</span>
+                            <div class="clearing"></div>
+                            <div id="from_date" class="calendar_containers"></div>
+                            <div id="end_date" class="calendar_containers"></div>
+                            <div class="clearing"></div>
+
+                            <%= hidden_field_tag 'start_date', @cal.start_date, :id => 'start_date_range' %>
+                            <%= hidden_field_tag 'end_date', @cal.end_date, :id => 'end_date_range' %>
+
+                            <div class="submit-wrapper">
+                                <input type="submit" class="submit" value="Apply" />
+                                or
+                                <a class="cancel">Cancel</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="clearing"></div>
+            <% end -%>
+        </div>
+        
+        <% if @timings.blank? -%>
+            <p>There are no submitted time entries for this date range.</p>
+        <% else -%>
+            <div class="outline_container">
+                <table class="results_table">
+                    <tr class="heading_table">
+                        <th>Project</th>
+                        <th>Task</th>
+                        <th>Notes</th>
+                        <th>Start</th>
+                        <th>End</th>
+                        <th>Duration</th>
+                    </tr>
+                
+                    <% current_total_duration_mins = 0 %>
+                    <% grand_current_total_duration_mins = 0 %>
+                    <% number_of_days = 0 %>
+                    <% current_date = nil %>
+                
+                    <% for timing in @timings -%>
+                        <% if current_date != timing.started_at.to_date -%>
+                            <% unless current_date.nil? %>
+                                <tr class="grey_background_v2">
+                                    <td colspan="6" class="align_right">
+										<%if @account.account_setting.working_days[current_date.strftime("%A").downcase.to_sym] == '1' -%>
+                                        	<% day_completed = (current_total_duration_mins - @account.account_setting.working_day_duration_minutes).to_i %>
+										<%else-%>
+											<% day_completed = current_total_duration_mins %>
+										<%end-%>
+                                        <strong>Total:</strong>
+
+                                        <span class="purple_text">
+                                            <%= minute_duration_to_human_time current_total_duration_mins, @account %>
+                                        </span>,
+                                        <strong>Flexi time:</strong> 
+                                        <span class="<%= day_completed < 0 ? 'red_text' : 'green_text' %>">
+                                            <%= day_completed < 0 ? '-' : ''%> 
+                                            <%= minute_duration_to_human_time day_completed.abs, @account %>
+                                         </span>
+                                    </td>
+                                </tr>
+                            <% end -%>
+
+                            <% current_date = timing.started_at.to_date %>
+                            <% current_total_duration_mins = 0 %>
+                            <% number_of_days += 1  if @account.account_setting.working_days[current_date.strftime("%A").downcase.to_sym] == '1'%>
+
+                            <tr class="green_background">
+                                <td colspan="6">
+                                    <strong>
+                                        <%= fmt_long_date_with_day current_date %>
+                                    </strong>
+                                </td>
+                            </tr>
+                        <%end-%>
+                        <tr>
+                            <td>
+                                <% if timing.project_id-%>
+                                    <%=link_to timing.project.name, project_path(timing.project)%> 
+                                    <% if timing.project.event_type != 0%>
+                                        <span class="italic_text">(<%=SELECTIONS['project_event_type'][timing.project.event_type]%>)</span>
+                                    <% end -%>
+                                <% end -%>
+                            </td>
+                            <td>
+                                <% if timing.task_id-%>
+                                    <%= timing.task.name %>
+                                <% end -%>
+                            </td>
+                            <td class="notes">
+                                <%= timing.notes.blank? ? "N/A" : timing.notes %>
+                            </td>
+                            <td>
+                                <%= fmt_time timing.started_at %>
+                            </td>
+                            <td>
+                                <%= fmt_time timing.ended_at %>
+                            </td>
+                            <td>
+                                <%= minute_duration_to_human_time timing.duration_minutes, @account %>
+                            </td>
+                        </tr>
+
+                        <% if timing.task && timing.task.count_towards_time_worked? %>
+                            <% current_total_duration_mins += timing.duration_minutes %>
+                            <% grand_current_total_duration_mins += timing.duration_minutes %>
+                        <% end -%>
+
+                        <% if timing.id == @timings.last.id %>
+                            <tr class="grey_background_v2">
+                                <td colspan="6" class="align_right">
+	
+									<%if @account.account_setting.working_days[current_date.strftime("%A").downcase.to_sym] == '1' -%>
+                                    	<% day_completed = (current_total_duration_mins - @account.account_setting.working_day_duration_minutes).to_i %>
+									<%else-%>
+										<% day_completed = current_total_duration_mins %>
+									<%end-%>
+
+                                    <strong>Total:</strong> 
+                                    <span class="purple_text">
+                                        <%=minute_duration_to_human_time current_total_duration_mins, @account%></span>, 
+                                    <strong>Flexi time:</strong> 
+                                    <span class="<%=day_completed < 0 ? 'red_text' : 'green_text'%>">
+                                        <%=day_completed < 0 ? '-' : '' %>
+                                        <%= minute_duration_to_human_time day_completed.abs, @account %>
+                                    </span>
+                                </td>
+                            </tr>
+                        <%end-%>
+                    <%end-%>
+                    <tr class="dark_green_background">
+                        <td colspan="6" class="align_right">
+                            <strong>Total:</strong> 
+                                <%=minute_duration_to_human_time grand_current_total_duration_mins, @account %>,
+                                <% total_expected_working_hours = (number_of_days * @account.account_setting.working_day_duration_minutes).to_i %>
+                            <strong>Flexi time:</strong>
+                            <% expected_min_comparison = grand_current_total_duration_mins- total_expected_working_hours %>
+                            <span class="<%=expected_min_comparison < 0 ? 'red_text' : 'green_text'%>">
+                                <%= expected_min_comparison < 0 ? '-' : '' %>
+                                <%= minute_duration_to_human_time expected_min_comparison.abs, @account %>
+                            </span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        <% end -%>
+    </div>
+</div>
+

@@ -1,0 +1,78 @@
+<%@page_title = 'Quote Software – Cost Estimation - FleetSuite'%>
+<%@page_description = "Rapidly create project quotes, both online and in PDF, with FleetSuite’s quotation software."%>
+<%@page_keywords = "quote software, quotation software, quote tool"%>
+<%@second_nav = quote_second_nav('home')%>
+
+<% content_for :title_bar do %>
+    <div class="mac_ipad_preview">
+    </div>
+<%end-%>
+
+<div class="outer_contaner" id="tour_features">
+    <div class="inner_container" id="tour_features_inner">
+        <h1 class="tool_title">Project Quote Tool</h1>
+        
+        <ul class="feature_list">
+            <li class="pos_1">
+                <h2 class="blue_med_oswald_text">Overview</h2>
+                <p>FleetSuite’s quotation software allows you to quickly and simply record the timescales and costs associated with a project, breaking key information down into distinct activities for increased granularity. Providing a single location through which to facilitate collaborative working, quotes that have been approved by all parties can then be automatically converted into client-ready PDFs at the click of a button.</p>
+            </li>
+            
+            <li class="pos_2">
+                <h2 class="blue_med_oswald_text">Security</h2>
+                <p>Comprehensive versioning capabilities and clear status updates make it easy to modify and track the progress of project quotations, while administrator permissions provide you with the appropriate level of control; delivering a valuable layer of security even when multiple authors are involved in the quotation process.</p>
+            </li>
+            <li class="pos_3">
+                <h2 class="blue_med_oswald_text">Client-ready PDFs</h2>
+                <p>Comprehensive versioning capabilities and clear status updates make it easy to modify and track the progress of project quotations, while administrator permissions provide you with the appropriate level of control; delivering a valuable layer of security even when multiple authors are involved in the quotation process.</p>
+            </li>
+            <li class="pos_4">
+                <h2 class="blue_med_oswald_text">Rate Cards</h2>
+                <p>Streamline the quotation process with a rate card interface that records the cost of your services on a per-client basis and connects this with your project quotes. Break down your services into more granular activities as required and apply custom discount and tax rates to suit your marketplace.   </p>
+            </li>
+        </ul>
+        <div class="clearing"></div>
+        
+        <div class="core_intro">
+            <h1 class="core_title">Core features</h1>
+            <p class="small_light_shadow_text">The core features included as standard with all FleetSuite accounts<br/> make managing multiple projects, teams and tools simple and intuitive.</p>
+        </div>
+    </div>
+</div>
+
+<div class="outer_contaner" id="core_features_select">
+    <div class="inner_container" id="core_features_select_inner">
+        <div class="core_expand"></div>
+    </div>
+</div>
+
+<div class="outer_contaner" id="core_features_content">
+    <div class="inner_container" id="core_features_content_inner">
+        <ul class="four_col_list">
+            <li class="pos_1">
+                <h2 class="blue_small_oswald_text">Dashboards</h2>
+                <p>A visually engaging front page provides a high-level overview of all tasks and actions from across your chosen components.</p>
+            </li>
+            <li class="pos_2">
+                <h2 class="blue_small_oswald_text">Projects</h2>
+                <p>Create, edit and archive projects to maintain an up-to-date overview of activity, with easy access to more granular information as required.  </p>
+            </li>
+            <li class="pos_3">
+                <h2 class="blue_small_oswald_text">Teams & People</h2>
+                <p>Create profiles for users across your business so they can easily view and understand their own schedules and tasks.</p>
+            </li>
+            <li class="pos_4">
+                <h2 class="blue_small_oswald_text">Clients</h2>
+                <p>Connect distinct projects to specific clients for a joined-up view of your workload and added information for project teams.</p>
+            </li>
+        </ul>
+        <div class="clearing"></div>
+        
+        <span class="signup_button">
+            <%= link_to pricing_path(:from => 'quote'), :class => 'pricing_and_signup_button' do %>
+                See Pricing &amp; Signup
+                <%= content_tag(:span, "30-Day Free Trial") %>
+            <% end %>
+        </span>
+    </div>
+</div>

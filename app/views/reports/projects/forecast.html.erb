@@ -1,0 +1,124 @@
+
+<div class="outline_container">
+<div class="search_container">
+  <h3>Filter results</h3>
+  <div class="form_row">
+    <div class="form_text">
+      <%= label_tag :show %>
+    </div>
+    <div class="form_field">
+      <label>
+        <%= check_box_tag 'expected', nil, true %>
+        Expected
+      </label>
+      <label>
+        <%= check_box_tag 'requested', nil, true %>
+        Requested
+      </label>
+      <label>
+        <%= check_box_tag 'sent', nil, true %>
+        Sent
+      </label>
+    </div>
+    <div class="clearing"></div>
+  </div>
+  <% if @projects.present? %>
+    <table class="results_table client_utilisation">
+      <tr class="heading_table">
+        <th>Project</th>
+        <% @months.each do |month| %>
+          <th><%= month %></th>
+        <% end %>
+      </tr>
+      <% client_results = @results.map(&:values) %>
+      <% @projects.map(&:client).uniq.each do |client| %>
+        <tr class="<%="client_#{ client.id }"%> client_line" data-client-id="<%= client.id %>">
+          <td class="align_left">
+            <strong><%= link_to client.name, '#' %></strong> <em>(<%= pluralize(client.projects.count, 'project') %>)</em>
+          </td>
+          <%= render partial: 'forecast_clients',
+                     locals: { client_results: client_results,
+                               client: client } %>
+
+          <%= render partial: 'forecast_projects',
+                     locals: { client_results: client_results,
+                               client: client } %>
+        </tr>
+      <% end %>
+
+      <%= render partial: 'forecast_total_cash',
+                 locals: { client_results: client_results } %>
+
+      <%= render partial: 'forecast_variance',
+                 locals: { client_results: client_results } %>
+
+      <tr>
+        <td class="align_left">
+          <strong>Pre-paid</strong>
+        </td>
+        <% @number_of_months.times do |i| %>
+          <td>
+            <%= formated_in_default_currency Project.payment_prediction_totals(@account, {}, (Date.today + i.months).beginning_of_month, (Date.today + i.months).end_of_month)[:current_year][:pre_payment_total] %>
+          </td>
+        <% end %>
+      </tr>
+
+      <tr>
+        <td class="align_left">
+          <strong>Excl Pre-paid</strong>
+        </td>
+        <% @number_of_months.times do |i| %>
+          <td>
+            <% totals = Project.payment_prediction_totals(@account, {}, (Date.today + i.months).beginning_of_month, (Date.today + i.months).end_of_month) %>
+            <%= formated_in_default_currency totals[:current_year][:total] - totals[:current_year][:pre_payment_total] %>
+          </td>
+        <% end %>
+      </tr>
+
+      <tr>
+        <td class="align_left">
+          <strong>Rolled over in to next month</strong>
+        </td>
+        <td>
+          <%= formated_in_default_currency (PaymentProfileRollover.profiles_rolled_over_in_to_month(1).sum(&:expected_cost_cents)) %>
+        </td>
+      </tr>
+
+      <tr>
+        <td class="align_left">
+          <strong>Normalised Total</strong>
+        </td>
+        <% @number_of_months.times do |i| %>
+          <td>
+            <% totals = Project.payment_prediction_totals(@account, {}, (Date.today + i.months).beginning_of_month, (Date.today + i.months).end_of_month) %>
+            <%= formated_in_default_currency (totals[:current_year][:total] - totals[:current_year][:pre_payment_total]) + (PaymentProfileRollover.profiles_rolled_over_in_to_month(i).sum(&:expected_cost_cents)) %>
+          </td>
+        <% end %>
+      </tr>
+
+
+    </table>
+  <% else %>
+    There are no projects associated with your account.
+  <% end %>
+  
+</div>
+<small>* - Amount includes pre-paid invoices</small>
+<script>
+  $(document).ready(function() {
+    $('#expected').click(function() {
+      $('.expected_amount').toggle();
+    });
+    $('#requested').click(function() {
+      $('.requested_amount').toggle();
+    });
+    $('#sent').click(function() {
+      $('.sent_amount').toggle();
+    });
+    $('.client_line').click(function(e) {
+      client_id = $(e.currentTarget).data('client-id');
+      $(".project_line.client_" + client_id).toggle();
+      return false;
+    });
+  });
+</script>

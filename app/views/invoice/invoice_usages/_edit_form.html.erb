@@ -1,0 +1,10 @@
+<div class="usage_form">
+    <h2>Edit details</h2>
+    <%=form_for [:invoice, project, invoice_usage], :remote => true, :html => { 'data-spinner' => "usage_spinner"}  do |f| %>
+        <%=render :partial => 'shared/notifications/error_messages', :object => invoice_usage%>
+        
+        <%=render :partial => 'form', :locals => {:f => f, :invoice => invoice}%>
+        
+        <%=f.submit 'Save changes', :class => 'submit'%>&nbsp;&nbsp;<span class="small_text"> or <%=link_to 'Cancel', invoice_project_invoice_usages_path(project), :class => 'lightbox_close'%></span>&nbsp;<%=spinner_tag("usage_spinner")%>
+    <%end-%>
+</div>

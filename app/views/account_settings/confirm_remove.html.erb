@@ -1,0 +1,17 @@
+<%@page_title = 'Are you sure you want to delete your account?'%>
+<div class="standard_two_col">
+    <div class="cell_1">
+        <%= render :partial => 'shared/page_heading'%>
+        <div class="standard_border_container">
+            <p>Once you have cancelled your account, all of the information in your account will be permanently deleted. Your account can not be restored.</p>
+
+
+            <%=form_for @account, :url => account_setting_path(@account), :html => { :method => :delete} do |f|%>
+                <%=f.submit 'Cancel my account'%>
+                <span class="small_text"><span class="light_text">or</span> <%=link_to 'No, do not cancel my account', account_settings_path%></span>
+            <%end%>
+        </div>
+    </div>
+    <div class="cell_2">
+    </div>
+</div>

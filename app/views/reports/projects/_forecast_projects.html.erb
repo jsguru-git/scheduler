@@ -1,0 +1,31 @@
+<% client.projects.each do |project| %>
+  <tr class="<%= "client_#{ client.id }" %> project_line hidden">
+    <td style="text-align:left;padding-left:30px;"><%= link_to project.name, project_path(project) %> <%= "(#{ project.project_status.capitalize })" if project.project_status.eql? 'opportunity' %></td>
+      <% client_results.each do |month| %>
+        <td>
+          <% totals = { expected:  { amount: 0, incl_prepaid: false },
+                        requested: { amount: 0, incl_prepaid: false },
+                        sent:      { amount: 0, incl_prepaid: false } } %>
+          <% month.each do |report| %>
+            <% if report[:project_name] == project.name %>
+              <% totals.keys.each do |key| %>
+                <% totals[key][:amount] += report[key] %>
+                <% totals[key][:incl_prepaid] = true if report["#{ key }_incl_pre_payment".to_sym] %>
+              <% end %>
+            <% end %>
+          <% end %>
+          <% totals.keys.each do |key| %>
+            <div class="<%= "#{ key }_amount" %>">
+              <span class="result_row"><strong><%= key.capitalize %>:</strong></span>
+              <span class="result_row">
+                <%= formated_in_default_currency totals[key][:amount] %>
+                <%= '*' if totals[key][:incl_prepaid] %>
+              </span>
+              <div class="clearing"></div>
+            </div>
+          <% end %>
+        </td>
+      <% end %>
+    </td>
+  </tr>
+<% end %>

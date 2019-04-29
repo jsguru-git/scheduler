@@ -1,0 +1,49 @@
+table {
+    border-collapse: collapse;
+    
+    tr {
+        
+        th,
+        td {
+            text-align: left;
+        }
+        
+        .center_text {
+            text-align: center;
+        }
+        
+        .right_text {
+            text-align: right;
+        }
+        
+    }
+}
+
+
+/*====== standard_table ======*/
+table.standard_table {
+    width: 100%;
+    
+    tr {
+        
+        th {
+            border-bottom: 1px solid #000000;
+            border-top: 2px solid #000000;
+            padding: 5px 10px;
+        }
+        
+        
+        td {
+            padding: 5px 10px;
+        }
+        
+    }
+    
+    tr {
+        
+        td {
+            border-bottom: 1px solid #333333;
+        }
+    }
+}
+/*====== end standard_table ======*/

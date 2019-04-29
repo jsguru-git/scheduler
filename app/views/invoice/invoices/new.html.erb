@@ -1,0 +1,148 @@
+<% if @project.archived? -%>
+    <% @page_title = 'New Invoice (Archived)' %>
+<%else-%>
+    <% @page_title = 'New Invoice' %>
+<%end-%>
+<% @second_nav = project_second_nav(@project, 'invoice') %>
+
+<div class="standard_one_col">
+    <div class="cell_1">
+        <%=render :partial => 'shared/page_heading'%>
+
+        <div id="invoice_form">
+            <%=form_for [:invoice, @project, @invoice] do |f|%>
+                <%=render :partial => 'shared/notifications/error_messages', :object => @invoice%>
+
+                <div class="top_details">
+                    <div class="address">
+                        <div class="inner">
+                            <div class="label_cont"><%=f.label :address, 'Address', :class => 'label_text'%></div>
+                            <%=f.text_area :address, :class => 'text'%>
+
+                            <div class="label_cont padding_top_15"><%=f.label :email, 'Email address', :class => 'label_text'%></div>
+                            <%=f.text_field :email, :class => 'text'%>
+                        </div>
+                    </div>
+                    <div class="options">
+                        <div class="inner">
+                            <div class="row invoice_number">
+                                <%=f.label :invoice_number, 'Invoice Number'%>
+                                <div class="invoice_no_cont">
+                                    <%=f.text_field :invoice_number, :class => 'text'%>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="date_row">
+                                    <%=f.label :invoice_date, 'Inv date', :class => 'label_text'%>
+                                    <div class="date_cal_field_container">
+                                        <%=f.text_field :invoice_date, :class => 'datepicker number'%>
+                                        <%=image_tag '/assets/tool/icons/calendar_32.png', :size => '32x32', :class => 'cal_icon', :alt => 'Select dates'%>
+                                    </div>
+                                </div>
+                                <div class="date_row">
+                                    <%=f.label :due_on_date, 'Due date', :class => 'label_text'%>
+                                    <div class="date_cal_field_container second">
+                                        <%=f.text_field :due_on_date, :class => 'datepicker number'%>
+                                        <%=image_tag '/assets/tool/icons/calendar_32.png', :size => '32x32', :class => 'cal_icon', :alt => 'Select dates'%>
+                                    </div>
+                                </div>
+                                <div class="clearing"></div>
+                            </div>
+
+                            <div class="row normal_row">
+                                <%=f.label :terms, 'Terms', :class => 'label_text'%>
+                                <div class="input_cont">
+                                    <%=f.text_field :terms, :class => 'text'%>
+                                </div>
+                            </div>
+
+                            <div class="row normal_row">
+                                <%=f.label :po_number, 'PO No', :class => 'label_text'%>
+                                <div class="input_cont">
+                                    <%=f.text_field :po_number, :class => 'text'%>
+                                </div>
+                            </div>
+                            
+                            <div class="row normal_row">
+                                <%=f.label :currency, 'Currency', :class => 'label_text'%>
+                                <div class="input_cont input_cont_long_label">
+                                    <%=f.select :currency, supported_currencies(Money::Currency.table).sort.collect {|key, value| [ "#{value[:iso_code]} - #{value[:name]}", key ]}, :class => 'text'%>
+                                </div>
+                            </div>
+                            
+                            <div class="row normal_row">
+                                <%=f.label :pre_payment, "Pre payment", :class => 'label_text'%>
+                                <div class="input_cont input_cont_long_label">
+                                    <%= f.select :pre_payment, options_for_select([['Yes', true], ['No', false]]), include_blank: true %>
+                                </div>
+                            </div>
+                            
+                            
+
+                        </div>
+                    </div>
+                    <div class="clearing"></div>
+                </div>
+
+                <div id="payment_profile_cont">
+                    <div class="inner_payment_profiles">
+                        <ul id="payment_profile_list">
+                            <li class="list_heading">
+                                <div class="col_1">
+                                    Name
+                                </div>
+                                <div class="col_2">
+                                    Qty
+                                </div>
+                                <div class="col_3">
+                                    VAT
+                                </div>
+                                <div class="col_4">
+                                    Amount
+                                </div>
+                                <div class="clearing"></div>
+                            </li>
+
+                            <%if @invoice.invoice_items.blank? -%>
+                                <li class="no_content">Please add your first payment item using the links below.</li>
+                            <%else-%>
+                                <%= f.fields_for :invoice_items do |invoice_item| %>
+                                   <%= render :partial => 'invoice_row_entry', :locals => {:invoice_item => invoice_item}%>
+                               <%end%>
+                            <%end-%>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="action_links">
+                    <%=link_to raw('<span class="payment_profile_color">Add from payment profile</span>'), add_payment_profile_invoice_project_invoices_path(@project), :class => 'create_invoice_item'%>
+                    <%if  @account.component_enabled?(2)%> <%=link_to raw('<span class="track_color">Add from tracked time</span>'), add_tracked_time_invoice_project_invoices_path(@project), :class => 'create_invoice_item'%><%end-%>
+                    <%=link_to raw('<span class="add_color">Add blank item</span>'), add_blank_item_invoice_project_invoices_path(@project), :remote => true%>
+                </div>
+                <div class="final_info_cont">
+                    <div class="further_info">
+                        <div class="first">
+                            <%=f.label :payment_methods%>
+                            <%=f.text_area :payment_methods, :class => 'text', :rows => 5%>
+                        </div>
+                        <div>
+                            <%=f.label :notes%>
+                            <%=f.text_area :notes, :class => 'text', :rows => 5%>
+                        </div>
+                    </div>
+                    <div class="total_info">
+
+                        <div id="total_cont">
+                            <%=render :partial => 'form_totals', :locals => {:f => f}%>
+                        </div>
+
+                        <%=image_submit_tag 'tool/pages/invoice_new/create_invoice.png'%>
+                    </div>
+                </div>
+            <%end-%>
+        </div>
+
+    </div>
+</div>
+

@@ -1,0 +1,25 @@
+<%=content_tag_for :li, quote_section do%>
+    <div class="outline_container">
+        <div class="section_container">
+            <div class="drag">
+                <div class="move_handle"></div>
+            </div>
+            <div class="content">
+                <%if quote_section.cost_section? -%>
+                    <div class="cost_text">&nbsp;</div>
+                <%else-%>
+                    <%=form_for [:quote, project, quote, quote_section] do |fs| -%>
+                        <%=fs.text_field :title, :class => 'text'%>
+                        <%=fs.text_area :content, :rows => 5, :class => 'text'%>
+                        <%=fs.submit 'Save changes', :class => 'submit'%>
+                    <%end-%>
+                <%end-%>
+            </div>
+            <div class="delete">
+                <%if !quote_section.cost_section? -%>
+                    <%=link_to 'Remove', quote_project_quote_quote_section_path(project, quote, quote_section), :remote => true, :method => :delete, :class => 'remove_button', :confirm => 'Are you sure?', 'data-spinner' => "#{dom_id quote_section}_remove_spinner"%>&nbsp;<%=spinner_tag("#{dom_id quote_section}_remove_spinner")%>
+                <%end-%>
+            </div>
+        </div>
+    </div>
+<%end-%>

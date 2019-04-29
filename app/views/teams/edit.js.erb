@@ -1,0 +1,6 @@
+// Replace content in lightbox div
+$("#main_lightbox_content").html("<%= escape_javascript(render(:partial => 'teams/edit_team', :locals => {:team => @team})) %>");
+
+// Open lightbox
+main_lightbox.change_height_to(270);
+main_lightbox.open();

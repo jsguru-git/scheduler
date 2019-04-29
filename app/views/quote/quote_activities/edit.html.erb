@@ -1,0 +1,14 @@
+<%@page_title = 'Edit activity'%>
+<%@second_nav = project_second_nav(@project, 'quote')%>
+
+<div class="standard_two_col">
+    <div class="cell_1">
+        <%=render :partial => 'shared/page_heading'%>
+        <%= render :partial => 'edit_activity', :locals => {:project => @project, :quote => @quote, :quote_activity => @quote_activity}%>
+    </div>
+    <div class="cell_2">
+
+    </div>
+    <div class="clearing"></div>
+</div>
+

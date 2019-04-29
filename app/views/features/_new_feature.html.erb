@@ -1,0 +1,10 @@
+<h2>New category</h2>
+<%=form_for [project, feature], :remote => true, :html => { 'data-spinner' => 'new_feature_form_spinner'} do |f|%>
+    <%=render :partial => 'shared/notifications/error_messages', :object => feature%>
+
+    <%=render :partial => 'form', :locals => {:f => f}%>
+
+    <div class="submit_container">
+        <%= f.submit 'Create category', :class => 'submit' %> <span class="small_text">or <%=link_to 'Cancel', cancel_project_features_path(project), :remote => true, 'data-spinner' => 'new_feature_form_spinner'%></span>&nbsp;<%=spinner_tag('new_feature_form_spinner')%>
+    </div>
+<% end -%>

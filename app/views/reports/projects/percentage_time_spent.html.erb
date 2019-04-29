@@ -1,0 +1,177 @@
+<% @page_title = 'Percentage time spent on project' %>
+
+<div class="standard_one_col">
+	<div class="cell_1">
+		<%= render :partial => 'shared/page_heading' %>
+	</div>
+</div>
+
+<div class="standard_reverse_two_col">
+	<%=form_tag percentage_time_spent_reports_projects_path, :method => :get  do %>
+		
+		<div class="cell_1">
+			
+			<div id="team_selection_cont">
+				<h3 class="blue_heading">Select teams</h3>
+	            <% @teams.each do |team| -%>
+	                <div class="team_select_cont">
+						<div class="checkbox_cont">
+	                    	<%=check_box_tag 'teams[]', team.id, should_team_be_checked(params, team.id), :id => "team_checkbox_#{team.id}", :class => 'team_selection'%>
+						</div>
+						<div class="label_cont">
+	                    	<%=label_tag "team_checkbox_#{team.id}", team.name, :class => 'label_text'%>
+						</div>
+						<div class="clearing"></div>
+	                </div>
+	            <% end -%>
+        
+	            <div>
+	                <%=link_to 'Select all', '#', :id => 'select_all'%> / <%=link_to 'Un-select all', '#', :id => 'unselect_all'%>
+	            </div>
+        
+	            <%=submit_tag 'Filter teams', :class => 'js_hide'%>
+	        </div>
+		</div>
+	
+	    <div class="cell_2">
+        
+            <div class="search_container">
+                <h3>Filter results</h3>
+            
+            
+                <div class="form_row">
+                    <div class="form_text">
+                        <%=label_tag :project_id%>
+                    </div>
+                    <div class="form_field">
+                        <%=select_tag :project_id, options_for_select(@account.projects.name_ordered.collect {|p| [ p.name, p.id.to_s ] }, params[:project_id]), :include_blank => false%>
+                    </div>
+                    <div class="clearing"></div>
+                </div>
+            
+                <div class="form_row">
+                    <div class="form_text">
+                        <%=label_tag :start_date%>
+                    </div>
+                    <div class="form_field date_cal_field_container">
+                        <%=text_field_tag :start_date, @cal.start_date, :class => 'datepicker number'%>
+                        <%=image_tag '/assets/tool/icons/calendar_32.png', :size => '32x32', :class => 'cal_icon', :alt => 'Select start date'%>
+                    </div>
+                    <div class="clearing"></div>
+                </div>
+    
+                <div class="form_row">
+                    <div class="form_text">
+                        <%=label_tag :end_date%>
+                    </div>
+                    <div class="form_field date_cal_field_container">
+                        <%=text_field_tag :end_date, @cal.end_date, :class => 'datepicker number'%>
+                        <%=image_tag '/assets/tool/icons/calendar_32.png', :size => '32x32', :class => 'cal_icon', :alt => 'Select end date'%>
+                    </div>
+                    <div class="clearing"></div>
+                </div>
+    
+                <div class="submit_container">
+                    <%= submit_tag 'Filter now', :class => 'submit' %>
+                </div>
+        
+        
+                <div class="month_switch">
+                    <div class="left">
+                        <%=link_to 'Previous month', percentage_time_spent_reports_projects_path(:project_id => params[:project_id], :start_date => (@cal.start_date - 1.month).beginning_of_month, :end_date => (@cal.start_date - 1.month).end_of_month)%> 
+                    </div>
+                    <div class="right">
+                        <%=link_to 'Next month', percentage_time_spent_reports_projects_path(:project_id => params[:project_id], :start_date => (@cal.start_date + 1.month).beginning_of_month, :end_date => (@cal.start_date + 1.month).end_of_month)%>
+                    </div>
+                    <div class="clearing"></div>
+                </div>
+            </div>
+        
+            
+        
+            <div id="results_cont" class="">
+                <% total_mins = 0 -%>
+                <% total_project_mins = 0 -%>
+                <% @teams.each do |team| -%>
+                    <% total_team_mins = Timing.minute_duration_submitted_for_period_and_team(team.id, @cal.start_date, @cal.end_date) -%>
+                    <% total_team_project_mins = Timing.minute_duration_submitted_for_period_and_team_and_project(team.id, @project.id, @cal.start_date, @cal.end_date) %>
+                    <% total_mins += total_team_mins -%>
+                    <% total_project_mins += total_team_project_mins %>
+                
+                    <%= content_tag_for :div, team, 'data-total-team-mins' => total_team_mins, 'data-total-team-project-mins' => total_team_project_mins do %>
+                        <div class="team_name label_text"><%=team.name%></div>
+                    	
+						<div class="number_desc_container">
+							<div class="figure green_text"><%=minute_duration_to_short_human_time total_team_mins%></div>
+							<div class="desc">Total<br/>hours</div>
+						</div>
+						
+						<div class="number_desc_container">
+							<div class="figure orange_text"><%=minute_duration_to_short_human_time total_team_project_mins%></div>
+							<div class="desc">Total project<br/>hours</div>
+						</div>
+						
+						<div class="number_desc_container">
+							<div class="figure purple_text">
+								<%if total_team_project_mins == 0 -%>
+		                            <%percent = 0%>
+		                        <%else-%>
+	                            	<%percent = ((total_team_project_mins / total_team_mins.to_f) * 100)%>
+		                        <%end-%>
+								<%=number_to_percentage percent, :precision => 1 %>
+							</div>
+							<div class="desc">Time on<br/>project</div>
+						</div>
+						
+						<div class="css_bar">
+							<div class="inner_bar orange" style="width: <%=percent%>%;"></div>
+						</div>
+						
+                    <%end%>
+                <% end -%>
+            
+                <div class="totals">
+                    <div class="total_number">Totals</div>
+
+					<div class="number_desc_container">
+						<div class="figure green_text total_hours"><%=minute_duration_to_short_human_time(total_mins,)%></div>
+						<div class="desc">Total<br/>hours</div>
+					</div>
+	
+					<div class="number_desc_container">
+						<div class="figure orange_text total_project_hours"><%=minute_duration_to_short_human_time(total_project_mins)%></div>
+						<div class="desc">Total project<br/>hours</div>
+					</div>
+
+					<div class="number_desc_container">
+						<div class="figure purple_text percentage">
+							<%if total_project_mins == 0 -%>
+		                        <%total_percent = 0%>
+		                    <%else-%>
+		                        <%total_percent = ((total_project_mins / total_mins.to_f) * 100) %>
+		                    <%end-%>
+							<%=number_to_percentage total_percent, :precision => 1 %>
+						</div>
+						<div class="desc">Time on<br/>project</div>
+					</div>
+                    
+                </div>
+            </div>
+    	</div>
+	<%end-%>
+</div>
+
+<script type="text/javascript">
+    // Datepicker for invoice cration
+    $("#reportsprojects_percentage_time_spent .datepicker").datepicker({
+    	dateFormat: 'yy-mm-dd',
+    	firstDay: 1
+    });
+
+    $('#reportsprojects_percentage_time_spent .cal_icon').click(function() {
+        var idx = $('#reportsprojects_percentage_time_spent .cal_icon').index(this);
+        $('#reportsprojects_percentage_time_spent .datepicker').eq(idx).trigger('focus');
+        return false;
+    });
+</script>
+

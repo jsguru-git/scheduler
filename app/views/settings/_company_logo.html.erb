@@ -1,0 +1,39 @@
+<script>
+  $(document).ready(function(){
+    $('#account_setting_logo').filePreview();
+    $('#cancel_logo').hide();
+
+    $('#account_setting_logo').change(function(){
+      $('#cancel_logo').toggle();
+    });
+
+    $('#cancel_logo').click(function(){
+      $('#account_setting_logo_preview').html('');
+      $('#account_setting_logo').val('');
+      $('#cancel_logo').toggle();
+      return false;
+    });
+
+  });
+</script>
+<h3 class="padding_top_30">Company logo</h3>
+<p>Your company logo will appear on all system reports generated in Fleetsuite.</p>
+<div class="form_row">
+    <div class="form_text">
+        <%= f.label :logo %>
+    </div>
+    <div class="form_field">
+        <% if @account_setting.logo_file_name %>
+            <div id="account_setting_logo_preview">
+                <%= image_tag @account_setting.logo.url %>
+            </div>
+            <%= link_to 'Remove image', remove_logo_setting_path(@account_setting) %>
+        <% else %>
+            <%= f.file_field :logo, accept: 'image/png, image/jpeg' %>
+            <div id="account_setting_logo_preview"></div>
+            <%= link_to 'cancel', '#', :id => 'cancel_logo' %>
+        <% end %>
+    </div>
+    <div class="clearing"></div>
+</div>
+

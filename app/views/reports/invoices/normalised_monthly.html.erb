@@ -1,0 +1,125 @@
+<% @page_title = 'Normalised Monthly Invoicing' %>
+
+<div class="standard_one_col">
+    <div class="cell_1">
+        <%= render :partial => 'shared/page_heading' %>
+        
+        <div class="search_container">
+            <h3>Filter results</h3>
+
+            <%=form_tag normalised_monthly_reports_invoices_path, :method => :get  do %>
+                <div class="form_row">
+                    <div class="form_text">
+                        <%=label_tag :start_date%>
+                    </div>
+                    <div class="form_field date_cal_field_container">
+                        <%=text_field_tag :start_date, @cal.start_date, :class => 'datepicker number'%>
+                        <%=image_tag '/assets/tool/icons/calendar_32.png', :size => '32x32', :class => 'cal_icon', :alt => 'Select start date'%>
+                    </div>
+                    <div class="clearing"></div>
+                </div>
+                
+                <div class="form_row">
+                    <div class="form_text">
+                        <%=label_tag :end_date%>
+                    </div>
+                    <div class="form_field date_cal_field_container">
+                        <%=text_field_tag :end_date, @cal.end_date, :class => 'datepicker number'%>
+                        <%=image_tag '/assets/tool/icons/calendar_32.png', :size => '32x32', :class => 'cal_icon', :alt => 'Select end date'%>
+                    </div>
+                    <div class="clearing"></div>
+                </div>
+
+                <div class="submit_container">
+                    <%= submit_tag 'Search now', :class => 'submit' %>
+                </div>
+                
+                <div class="month_switch">
+                    <div class="left">
+                        <%=link_to 'Previous month', normalised_monthly_reports_invoices_path(:start_date => (@cal.start_date - 1.month).beginning_of_month, :end_date => (@cal.start_date - 1.month).end_of_month)%> 
+                    </div>
+                    <div class="right">
+                        <%=link_to 'Next month', normalised_monthly_reports_invoices_path(:start_date => (@cal.start_date + 1.month).beginning_of_month, :end_date => (@cal.start_date + 1.month).end_of_month)%>
+                    </div>
+                    <div class="clearing"></div>
+                </div>
+                
+            <%end-%>
+        </div>
+
+        <div class='statistics'>
+            <div class='statistic'>
+                <% total_invoice = Invoice.amount_cents_invoiced_for_period(@account, @cal.start_date, @cal.end_date) %>
+                <div class='figure green'><%= formated_in_default_currency total_invoice %></div>
+                <div class='desc'>Total Invoiced</div>
+            </div>
+            <div class='statistic'>
+                <% total_pre_paid = Invoice.amount_cents_pre_payment_invoiced_for_period(@account, @cal.start_date, @cal.end_date) %>
+                <div class='figure orange'><%= formated_in_default_currency total_pre_paid %></div>
+                <div class='desc'>Total Pre-paid</div>
+            </div>
+            <div class='statistic'>
+                <% total_pre_paid_worked = InvoiceUsage.amount_cents_allocated_for_period(@account, @cal.start_date, @cal.end_date) %>
+                <div class='figure red'><%= formated_in_default_currency total_pre_paid_worked %></div>
+                <div class='desc'>Pre-paid completed</div>
+            </div>
+            <div class='statistic'>
+                <% normalized_total = (total_invoice - total_pre_paid) + total_pre_paid_worked %>
+                <div class='figure blue'><%= formated_in_default_currency normalized_total %></div>
+                <div class='desc'>Normalized Total</div>
+            </div>
+        </div>
+        <div class='clearing'></div>
+        
+        <div class="outline_container">
+            <table class="results_table">
+                <tr class="heading_table">
+                    <th>Month</th>
+                    <th>Total invoices</th>
+                    <th>Pre-paid invoices (Sent)</th>
+                    <th>Pre paid work complete</th>
+                    <th>Normalised Monthly Total</th>
+                </tr>
+                
+                <%date = @cal.start_date
+                while date < @cal.end_date%>
+                    <%start_date = ("#{date.month}-#{date.year}" == "#{@cal.start_date.month}-#{@cal.start_date.year}" ? @cal.start_date : date.beginning_of_month.to_date)%>
+                    <%end_date = ("#{date.month}-#{date.year}" == "#{@cal.end_date.month}-#{@cal.end_date.year}" ? @cal.end_date : date.end_of_month.to_date)%>
+                    
+                    <tr>
+                        <td><%=fmt_date_month_year date%></td>
+                        <td>
+                            <%=formated_in_default_currency(total_invoiced = Invoice.amount_cents_invoiced_for_period(@account, start_date, end_date) )%>
+                        </td>
+                        <td>
+                            <%=formated_in_default_currency(total_pre_payment_invoiced = Invoice.amount_cents_pre_payment_invoiced_for_period(@account, start_date, end_date) )%>
+                        </td>
+                        <td>
+                            <%=link_to formated_in_default_currency(total_invoice_usage = InvoiceUsage.amount_cents_allocated_for_period(@account, start_date, end_date) ), allocation_breakdown_reports_invoices_path(:start_date => date.beginning_of_month, :end_date => date.end_of_month), :remote => true%>
+                        </td>
+                        <td>
+                            <%=formated_in_default_currency((total_invoiced - total_pre_payment_invoiced) + total_invoice_usage)%>
+                        </td>
+                    </tr>
+                    <%date = date.advance(months: 1)%>
+                <%end%>
+                
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    // Datepicker for invoice cration
+    $( "#invoicereports_normalised_monthly .datepicker" ).datepicker({
+        dateFormat: 'yy-mm-dd',
+        firstDay: 1
+    });
+
+    $('#invoicereports_normalised_monthly .cal_icon').click(function() {
+        var idx = $('#invoicereports_normalised_monthly .cal_icon').index(this);
+        $('#invoicereports_normalised_monthly .datepicker').eq(idx).trigger('focus');
+        return false;
+    });
+</script>

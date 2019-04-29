@@ -1,0 +1,10 @@
+<h2>Edit category</h2>
+<%=form_for [project, feature], :remote => true, :html => { 'data-spinner' => 'edit_feature_form_spinner'} do |f|%>
+    <%=render :partial => 'shared/notifications/error_messages', :object => feature%>
+
+    <%=render :partial => 'form', :locals => {:f => f}%>
+
+    <div class="submit_container">
+        <%= f.submit 'Save changes', :class => 'submit' %> <span class="small_text">or <%=link_to 'Cancel', cancel_project_features_path(project), :remote => true, 'data-spinner' => 'edit_feature_form_spinner'%></span>&nbsp;<%=spinner_tag('edit_feature_form_spinner')%>
+    </div>
+<% end -%>

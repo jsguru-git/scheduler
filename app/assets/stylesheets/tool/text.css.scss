@@ -1,0 +1,72 @@
+.large_blue_narrow {
+    color: #8DAACC;
+    display: block;
+    font-family: 'arial narrow', arial, helvetica, sans-serif;
+    font-size: 1.8em;
+    line-height: 1;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    text-transform: uppercase;
+}
+
+.no_team .large_blue_narrow {
+  margin-bottom: 20px;
+}
+
+.large_red_narrow {
+    color: #E17B7B;
+    display: block;
+    font-family: 'arial narrow', arial, helvetica, sans-serif;
+    font-size: 1.8em;
+    line-height: 1;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    text-transform: uppercase;
+}
+
+.light_green,
+.light_green_text {
+    color: #B7C585;
+}
+
+.green_text {
+    color: #ACBC76;
+}
+
+.dark_green,
+.dark_green_text {
+    color: #93A54F;
+}
+
+.red_text {
+    color: #E17B7B;
+}
+
+.orange_text {
+    color: #EBB165;
+}
+
+.purple_text {
+    color: #A38097;
+}
+
+.label_text {
+    font-family: 'arial narrow', arial, helvetica, sans-serif;
+    font-weight: 300;
+    font-size: 1.4em;
+    line-height: 1;
+    margin: 0;
+    padding: 0;
+    color: #606060;
+    text-transform: uppercase;
+}
+
+.large_text {
+    font-size: 1.2em;
+}
+
+.italic_text {
+    font-style: italic;
+}

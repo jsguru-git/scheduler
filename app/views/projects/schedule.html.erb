@@ -1,0 +1,36 @@
+<%if @project.archived? -%>
+    <%@page_title = 'Project Schedule (Archived)'%>
+<%else-%>
+    <%@page_title = 'Project Schedule' %>
+<%end-%>
+<%@second_nav = project_second_nav(@project, params[:action])%>
+
+<div class="standard_two_col">
+    <div class="cell_1">
+        <%=render :partial => 'shared/page_heading'%>
+
+
+        <%=render :partial => 'schedule/entries/calendar_filters', :locals => { :team_select => false } %>
+
+        <%=render :partial => 'shared/calendar', :locals => { :project_id => @project.id,
+                                                              :team_id => '',
+                                                              :user_id => '',
+                                                              :show_type => params[:show_type],
+                                                              :start_date => @cal.start_date,
+                                                              :end_date => @cal.end_date } %>
+
+        <%=render :partial => 'schedule/shared/people_scheduled', :locals => {:display_type => 'project', :people_in_next_week => @people_in_next_week, :people_scheduled => @people_scheduled}%>
+
+    </div>
+
+    <div class="cell_2">
+        <%if @account.account_setting.common_project_id != @project.id -%>
+        <%if has_permission?('account_holder || administrator') -%>
+            <div id="action_links">
+                <%=link_to raw('<span class="edit">Edit project</span>'), edit_project_path(@project)%>
+                <div class="clearing"></div>
+            </div>
+        <%end-%>
+        <%end%>
+    </div>
+</div>

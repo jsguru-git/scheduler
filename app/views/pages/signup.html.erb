@@ -1,0 +1,129 @@
+
+<%if params[:from].present? && params[:from] == 'schedule' -%>
+    <%@second_nav = schedule_second_nav('signup')%>
+    <%@page_title = 'Flexible Suite Of Modules - Scheduling Tool - Plan Costs - FleetSuite'%>
+    <%@page_description = "Plans and pricing for FleetSuite's scheduling tool; flexible packages with no long-term contracts, including a 30-day free trial for all users"%>
+    <%@page_keywords = "scheduling tool, cost, pricing"%>
+<%elsif params[:from].present? && params[:from] == 'quote' -%>
+            <%@second_nav = quote_second_nav('signup')%>
+            <%@page_title = 'Flexible Suite Of Modules - Quote Tool - Plan Costs - FleetSuite'%>
+            <%@page_description = "Plans and pricing for FleetSuite's online project collaboration tools; flexible packages with no long-term contracts, including 30-day free trial for all users"%>
+            <%@page_keywords = "estimate, estimation"%>
+<%elsif params[:from].present? && params[:from] == 'track' -%>
+        <%@second_nav = track_second_nav('signup')%>
+        <%@page_title = 'Flexible Suite Of Modules - Time Tracking Tool - Plan Costs - FleetSuite'%>
+        <%@page_description = "Plans and pricing for FleetSuite's time tracking tool; flexible packages with no long-term contracts, including a 30-day free trial for all users"%>
+        <%@page_keywords = "scheduling tool, cost, pricing"%>
+<%elsif params[:from].present? && params[:from] == 'invoice' -%>
+        <%@second_nav = invoice_second_nav('signup')%>
+        <%@page_title = 'Flexible Suite Of Modules - Invoicing Software - Plan Costs - FleetSuite'%>
+        <%@page_description = "Plans and pricing for FleetSuite's invoicing software; flexible packages with no long-term contracts, including 30-day free trial for all users"%>
+        <%@page_keywords = "invoicing tool, payments"%>
+<%else-%>
+    <%@second_nav = fleetsuite_second_nav('signup')%>
+    <%@page_title = 'Online Project Collaboration Tools - Plan Costs - FleetSuite'%>
+    <%@page_description = "Plans and pricing for FleetSuite's online project collaboration tools; flexible packages with no long-term contracts, including 30-day free trial for all users"%>
+    <%@page_keywords = "online project collaboration tools, project collaboration tools, cost, pricing"%>
+<%end-%>
+
+<% content_for :title_bar do %>
+    <%if params[:from].present? && params[:from] == 'schedule' -%>
+        <h1>Scheduling Tool Cost</h1>
+    <%else%>
+        <h1>FleetSuite Cost</h1>
+    <%end-%>
+    <h2>Select your account requirements below for instant activation of a 30-day free trial</h2>
+<%end-%>
+
+<div class="outer_contaner" id="pricing_background">
+    <div class="inner_container" id="pricing_inner">
+        
+        <%= render(:partial => 'shared/notifications/flash', :locals => {:flash => flash }) if flash[:notice] || flash[:alert] %>
+        
+        
+        <ul class="plan_container">
+            <%pos = 1%>
+            <%for plan in @account_plans -%>
+                <%= content_tag_for(:li, plan, :class => "pos_#{pos}") do %>
+                    
+                        
+                    <%=form_tag verify_suite_accounts_url(:protocol => ssl_link) do%>
+                        <div class="outer_plan_container">
+                            <div class="inner_plan_container">
+                                <div class="plan_header">
+                                    <%=plan.name%>
+                                </div>
+                                <div class="price_container">
+                                    <div class="no_users">
+                                        Up to <%=plan.no_users%> users
+                                    </div>
+                                    <div class="price">
+                                        <span class="doller">$</span><span class="number"><%=plan.price%></span><span class="month">Per Month</span>
+                                    </div>
+                                </div>
+                            
+                                <ul class="component_container">
+                                    <%for component in @account_components -%>
+                                        <%= content_tag_for(:li, component) do %>
+                                            <div class="select">
+                                                <%=check_box_tag 'component_id[]', component.id, should_component_be_checked(component.name), 'data-price' => component.price, :id => "plan_id_#{plan.id}_component_id_#{component.id}", :class => "component_id_#{component.id}"%>
+                                            </div>
+                                            <div class="name <%=component.name.downcase%>">
+                                                <span class="plan"><%=component.name%></span>
+                                                <span class="text_description"><%=component.description%></span>
+                                            </div>
+                                            <div class="clearing"></div>
+                                        <%end-%>
+                                    <%end-%>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="plan_bottom_container">
+                            <div class="inner_plan_container_bottom">
+                            <%=hidden_field_tag("plan_id", plan.id, 'data-price' => plan.price, :id => "plan_id_#{plan.id}", :class => 'plan_id')%>
+                            <%=submit_tag 'Sign up', :class => 'signup'%>
+                            </div>
+                        </div>
+                    <%end-%>
+                 
+                        
+                <%end-%>
+                <%pos += 1%>
+            <%end-%>
+        </ul>
+        <div class="clearing"></div>
+
+    </div>
+</div>
+
+
+<div class="outer_contaner" id="pricing_questions_background">
+    <div class="inner_container" id="pricing_questions_inner">
+        <div class="two_col_even_split">
+            
+            <div class="cell cell_1">
+                <h3 class="question">Can you support more users?</h3>
+                <p>We offer an enterprise install that is fully managed by us on a separate dedicated server. If you would like more details of this, please <%=link_to 'get in touch', 'http://help.fleetsuite.com'%>. </p>
+
+            </div>
+            <div class="cell cell_2">
+                <h3 class="question">Are there any long term contracts?</h3>
+                <p>No - you pay for your suite of collaboration tools on a month-by-month basis and can upgrade, downgrade or cancel your subscription at any time.</p>
+            </div>
+            
+            <div class="clearing"></div>
+        </div>
+        <div class="two_col_even_split">
+            <div class="cell cell_1">
+                <h3 class="question">How does the 30 day free trial work?</h3>
+                <p>All accounts come with a 30-day free trial period, after which you will be prompted to provide card details to continue using the service. Once you have entered these details your trial ends and payment will be taken.</p>
+            </div>
+            <div class="cell cell_2">
+                <h3 class="question">Can I change my plan at any time?</h3>
+                <p>Yes, you can modify your user packages and add or remove tools whenever you like. Your new subscription will come into effect immediately, although if you wish to remove a project collaboration tool you will be asked to delete all content first. </p>
+            </div>
+            <div class="clearing"></div>
+        </div>
+    </div>
+</div>

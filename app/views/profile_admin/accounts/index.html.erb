@@ -1,0 +1,56 @@
+<h1><%=@page_title = 'Admin - Accounts'%></h1>
+
+<div>
+<%=form_tag profile_admin_accounts_path, :method => :get do%>
+    <%=label_tag 'subdomain'%>: <%=text_field_tag 'subdomain'%>
+    <%=submit_tag 'Search'%>
+<%end%>
+</div>
+
+<br/>
+
+<%=render :partial => 'shared/pagination/paginate', :object => @accounts%>
+
+<br/>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Subdomain</th>
+        <th>Number of users</th>
+        <th>Number of projects</th>
+        <th>Plan</th>
+        <th>Components</th>
+        <th>Suspended?</th>
+        <th>Created at</th>
+        <th>Deleted at</th>
+        <th>Chargify id</th>
+        <th>Trial expires at</th>
+    </tr>
+    <%for account in @accounts -%>
+    <tr>
+    <td><%=account.id%></td>
+    <td><%=h account.site_address%></td>
+    <td><%=link_to account.users.length, profile_admin_users_path(:account_id => account.id)%></td>
+    <td><%=link_to account.projects.length, profile_admin_projects_path(:account_id => account.id)%></td>
+    <td><%=account.account_plan.name%></td>
+    <td>
+        <%unless account.account_components.blank? -%>
+            <%for component in account.account_components%>
+                <%=component.name%>,
+            <%end-%>
+        <%end-%>
+    </td>
+    <td><%=account.account_suspended%></td>
+    <td><%=fmt_long_date account.created_at%></td>
+    <td><%=fmt_long_date account.account_deleted_at%></td>
+    <td><%=account.chargify_customer_id%></td>
+    <td>
+        <%if account.chargify_customer_id.blank? -%>
+            <%=fmt_long_date account.trial_expires_at%>
+        <%end-%>
+    </td>
+    </tr>
+    <%end-%>
+</table>
+<br/>
+<%=render :partial => 'shared/pagination/paginate', :object => @accounts%>

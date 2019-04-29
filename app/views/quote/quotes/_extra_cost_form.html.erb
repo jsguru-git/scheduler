@@ -1,0 +1,23 @@
+<div class="form_row" id="extra_cost_cont">
+    <div class="form_text">
+        <label>Extra cost</label>
+    </div>
+    <div class="form_field">
+	
+        <div class="label_text">
+            <span class="cost"><%=formated_in_default_currency quote.extra_cost_cents.present? ? quote.extra_cost_cents : 0 %></span>
+            <%if quote.extra_cost_title.present?%><span> - <%=quote.extra_cost_title%></span><%end-%>
+		</div>
+		
+        <div class="action_buttons">
+			<%=link_to (quote.extra_cost_cents.present? && quote.extra_cost_cents > 0 ? 'Edit' : 'Add extra cost'), edit_details_quote_project_quote_path(:project_id => @project, :id => quote, :field => 'extra_costs'), :remote => true, 'data-spinner' => "extra_cost_sinner", :class => 'small_edit_button button'%>
+			<%if quote.extra_cost_cents.present? && quote.extra_cost_cents > 0 -%>
+               <%=link_to 'Remove', update_details_quote_project_quote_path(:project_id => @project, :id => quote, :quote => {:extra_cost => nil, :extra_cost_title => nil}, :field => 'extra_costs'), :method => :put, 'data-spinner' => "extra_cost_sinner", :remote => true, :class => 'small_remove_button button' %>
+       		<%end-%>
+			<div class="clearing"></div>
+		</div>
+		&nbsp;<%=spinner_tag("extra_cost_sinner")%>
+    </div>
+
+    <div class="clearing"></div>
+</div>

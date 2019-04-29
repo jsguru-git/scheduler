@@ -1,0 +1,8 @@
+<%=render :partial => 'shared/layouts/tool/top_html'%>
+    <%=render :partial => 'shared/layouts/tool/top_body'%>
+        <%= yield %>
+    <%=render :partial => 'shared/layouts/tool/bottom_body'%>
+<%=render :partial => 'shared/layouts/tool/bottom_html'%>
+<% if current_user.roles.first.title == 'account_holder' && current_user.account.account_setting.hopscotch_enabled? %>
+  <%= Hopskip::HopscotchParser.new(controller).show %>
+<% end %>

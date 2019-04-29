@@ -1,0 +1,967 @@
+---
+currencies_001:
+  id: 1
+  iso_code: AED
+  exchange_rate: 3.672725
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:13
+currencies_002:
+  id: 2
+  iso_code: AFN
+  exchange_rate: 51.4961
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:13
+currencies_003:
+  id: 3
+  iso_code: ALL
+  exchange_rate: 104.132499
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:13
+currencies_004:
+  id: 4
+  iso_code: AMD
+  exchange_rate: 406.290003
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 11:37:32
+currencies_005:
+  id: 5
+  iso_code: ANG
+  exchange_rate: 1.788775
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:13
+currencies_006:
+  id: 6
+  iso_code: AOA
+  exchange_rate: 95.934001
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:13
+currencies_007:
+  id: 7
+  iso_code: ARS
+  exchange_rate: 4.995852
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 11:37:32
+currencies_008:
+  id: 8
+  iso_code: AUD
+  exchange_rate: 0.97586
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:13
+currencies_009:
+  id: 9
+  iso_code: AWG
+  exchange_rate: 1.789967
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 11:37:32
+currencies_010:
+  id: 10
+  iso_code: AZN
+  exchange_rate: 0.7848
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 11:37:32
+currencies_011:
+  id: 11
+  iso_code: BAM
+  exchange_rate: 1.457432
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:13
+currencies_012:
+  id: 12
+  iso_code: BBD
+  exchange_rate: 2.0
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 11:37:32
+currencies_013:
+  id: 13
+  iso_code: BDT
+  exchange_rate: 78.211825
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:13
+currencies_014:
+  id: 14
+  iso_code: BGN
+  exchange_rate: 1.45852
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:13
+currencies_015:
+  id: 15
+  iso_code: BHD
+  exchange_rate: 0.376981
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:13
+currencies_016:
+  id: 16
+  iso_code: BIF
+  exchange_rate: 1560.87375
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:13
+currencies_017:
+  id: 17
+  iso_code: BMD
+  exchange_rate: 1.0
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 11:37:32
+currencies_018:
+  id: 18
+  iso_code: BND
+  exchange_rate: 1.23992
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:13
+currencies_019:
+  id: 19
+  iso_code: BOB
+  exchange_rate: 6.979753
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:13
+currencies_020:
+  id: 20
+  iso_code: BRL
+  exchange_rate: 1.97233
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:13
+currencies_021:
+  id: 21
+  iso_code: BSD
+  exchange_rate: 1.0
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 11:37:32
+currencies_022:
+  id: 22
+  iso_code: BTC
+  exchange_rate: 0.040748
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:13
+currencies_023:
+  id: 23
+  iso_code: BTN
+  exchange_rate: 53.885533
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:13
+currencies_024:
+  id: 24
+  iso_code: BWP
+  exchange_rate: 8.014513
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:13
+currencies_025:
+  id: 25
+  iso_code: BYR
+  exchange_rate: 8661.0
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:13
+currencies_026:
+  id: 26
+  iso_code: BZD
+  exchange_rate: 1.971413
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:13
+currencies_027:
+  id: 27
+  iso_code: CAD
+  exchange_rate: 1.006477
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:13
+currencies_028:
+  id: 28
+  iso_code: CDF
+  exchange_rate: 921.325033
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 11:37:32
+currencies_029:
+  id: 29
+  iso_code: CHF
+  exchange_rate: 0.917537
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:13
+currencies_030:
+  id: 30
+  iso_code: CLF
+  exchange_rate: 0.02072
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 11:37:32
+currencies_031:
+  id: 31
+  iso_code: CLP
+  exchange_rate: 472.391206
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:13
+currencies_032:
+  id: 32
+  iso_code: CNY
+  exchange_rate: 6.244618
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:13
+currencies_033:
+  id: 33
+  iso_code: COP
+  exchange_rate: 1783.490858
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:13
+currencies_034:
+  id: 34
+  iso_code: CRC
+  exchange_rate: 499.1601
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:13
+currencies_035:
+  id: 35
+  iso_code: CUP
+  exchange_rate: 22.682881
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 11:37:32
+currencies_036:
+  id: 36
+  iso_code: CVE
+  exchange_rate: 82.348763
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:13
+currencies_037:
+  id: 37
+  iso_code: CZK
+  exchange_rate: 18.826235
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:13
+currencies_038:
+  id: 38
+  iso_code: DJF
+  exchange_rate: 177.247375
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:13
+currencies_039:
+  id: 39
+  iso_code: DKK
+  exchange_rate: 5.557924
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:13
+currencies_040:
+  id: 40
+  iso_code: DOP
+  exchange_rate: 40.608746
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:13
+currencies_041:
+  id: 41
+  iso_code: DZD
+  exchange_rate: 77.846643
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:13
+currencies_042:
+  id: 42
+  iso_code: EEK
+  exchange_rate: 11.7331
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 11:37:32
+currencies_043:
+  id: 43
+  iso_code: EGP
+  exchange_rate: 6.717099
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:13
+currencies_044:
+  id: 44
+  iso_code: ETB
+  exchange_rate: 18.340875
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:13
+currencies_045:
+  id: 45
+  iso_code: EUR
+  exchange_rate: 0.744476
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:13
+currencies_046:
+  id: 46
+  iso_code: FJD
+  exchange_rate: 1.773867
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:13
+currencies_047:
+  id: 47
+  iso_code: FKP
+  exchange_rate: 0.640232
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:13
+currencies_048:
+  id: 48
+  iso_code: GBP
+  exchange_rate: 0.640232
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:13
+currencies_049:
+  id: 49
+  iso_code: GEL
+  exchange_rate: 1.66075
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 11:37:32
+currencies_050:
+  id: 50
+  iso_code: GHS
+  exchange_rate: 1.89988
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:13
+currencies_051:
+  id: 51
+  iso_code: GIP
+  exchange_rate: 0.63247
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 11:37:32
+currencies_052:
+  id: 52
+  iso_code: GMD
+  exchange_rate: 33.188463
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:13
+currencies_053:
+  id: 53
+  iso_code: GNF
+  exchange_rate: 7089.395
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:13
+currencies_054:
+  id: 54
+  iso_code: GTQ
+  exchange_rate: 7.85695
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:13
+currencies_055:
+  id: 55
+  iso_code: GYD
+  exchange_rate: 202.634999
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 11:37:32
+currencies_056:
+  id: 56
+  iso_code: HKD
+  exchange_rate: 7.75569
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:13
+currencies_057:
+  id: 57
+  iso_code: HNL
+  exchange_rate: 19.896824
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:13
+currencies_058:
+  id: 58
+  iso_code: HRK
+  exchange_rate: 5.646841
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:13
+currencies_059:
+  id: 59
+  iso_code: HTG
+  exchange_rate: 42.41865
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:13
+currencies_060:
+  id: 60
+  iso_code: HUF
+  exchange_rate: 217.127716
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:13
+currencies_061:
+  id: 61
+  iso_code: IDR
+  exchange_rate: 9631.042924
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:13
+currencies_062:
+  id: 62
+  iso_code: ILS
+  exchange_rate: 3.697544
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:13
+currencies_063:
+  id: 63
+  iso_code: INR
+  exchange_rate: 53.865339
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:13
+currencies_064:
+  id: 64
+  iso_code: IQD
+  exchange_rate: 1162.0825
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:13
+currencies_065:
+  id: 65
+  iso_code: IRR
+  exchange_rate: 9999.999999
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:13
+currencies_066:
+  id: 66
+  iso_code: ISK
+  exchange_rate: 128.312501
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:13
+currencies_067:
+  id: 67
+  iso_code: JEP
+  exchange_rate: 0.640232
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:13
+currencies_068:
+  id: 68
+  iso_code: JMD
+  exchange_rate: 93.931526
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:13
+currencies_069:
+  id: 69
+  iso_code: JOD
+  exchange_rate: 0.708476
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:13
+currencies_070:
+  id: 70
+  iso_code: JPY
+  exchange_rate: 93.953435
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:13
+currencies_071:
+  id: 71
+  iso_code: KES
+  exchange_rate: 87.408242
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:13
+currencies_072:
+  id: 72
+  iso_code: KGS
+  exchange_rate: 47.950867
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 11:37:32
+currencies_073:
+  id: 73
+  iso_code: KHR
+  exchange_rate: 3980.4525
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:13
+currencies_074:
+  id: 74
+  iso_code: KMF
+  exchange_rate: 366.587975
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:13
+currencies_075:
+  id: 75
+  iso_code: KPW
+  exchange_rate: 900.0
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 11:37:32
+currencies_076:
+  id: 76
+  iso_code: KRW
+  exchange_rate: 1094.199232
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:13
+currencies_077:
+  id: 77
+  iso_code: KWD
+  exchange_rate: 0.282133
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:13
+currencies_078:
+  id: 78
+  iso_code: KYD
+  exchange_rate: 0.818263
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:13
+currencies_079:
+  id: 79
+  iso_code: KZT
+  exchange_rate: 150.314237
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:13
+currencies_080:
+  id: 80
+  iso_code: LAK
+  exchange_rate: 7916.5025
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:13
+currencies_081:
+  id: 81
+  iso_code: LBP
+  exchange_rate: 1501.84088
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:13
+currencies_082:
+  id: 82
+  iso_code: LKR
+  exchange_rate: 126.268426
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:13
+currencies_083:
+  id: 83
+  iso_code: LRD
+  exchange_rate: 74.166667
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 11:37:32
+currencies_084:
+  id: 84
+  iso_code: LSL
+  exchange_rate: 8.903561
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:13
+currencies_085:
+  id: 85
+  iso_code: LTL
+  exchange_rate: 2.571717
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:13
+currencies_086:
+  id: 86
+  iso_code: LVL
+  exchange_rate: 0.521483
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:13
+currencies_087:
+  id: 87
+  iso_code: LYD
+  exchange_rate: 1.258066
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:13
+currencies_088:
+  id: 88
+  iso_code: MAD
+  exchange_rate: 8.331971
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:13
+currencies_089:
+  id: 89
+  iso_code: MDL
+  exchange_rate: 12.036887
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:13
+currencies_090:
+  id: 90
+  iso_code: MGA
+  exchange_rate: 2195.7925
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:14
+currencies_091:
+  id: 91
+  iso_code: MKD
+  exchange_rate: 47.082469
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:14
+currencies_092:
+  id: 92
+  iso_code: MMK
+  exchange_rate: 856.1375
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:14
+currencies_093:
+  id: 93
+  iso_code: MNT
+  exchange_rate: 1387.5
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 11:37:32
+currencies_094:
+  id: 94
+  iso_code: MOP
+  exchange_rate: 7.97315
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:14
+currencies_095:
+  id: 95
+  iso_code: MRO
+  exchange_rate: 299.73825
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:14
+currencies_096:
+  id: 96
+  iso_code: MUR
+  exchange_rate: 30.536465
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:14
+currencies_097:
+  id: 97
+  iso_code: MVR
+  exchange_rate: 15.32035
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:14
+currencies_098:
+  id: 98
+  iso_code: MWK
+  exchange_rate: 359.086875
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:14
+currencies_099:
+  id: 99
+  iso_code: MXN
+  exchange_rate: 12.753889
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:14
+currencies_100:
+  id: 100
+  iso_code: MYR
+  exchange_rate: 3.099082
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:14
+currencies_101:
+  id: 101
+  iso_code: MZN
+  exchange_rate: 29.6703
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:14
+currencies_102:
+  id: 102
+  iso_code: NAD
+  exchange_rate: 8.887938
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:14
+currencies_103:
+  id: 103
+  iso_code: NGN
+  exchange_rate: 157.104282
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:14
+currencies_104:
+  id: 104
+  iso_code: NIO
+  exchange_rate: 24.475525
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:14
+currencies_105:
+  id: 105
+  iso_code: NOK
+  exchange_rate: 5.503517
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:14
+currencies_106:
+  id: 106
+  iso_code: NPR
+  exchange_rate: 86.136881
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:14
+currencies_107:
+  id: 107
+  iso_code: NZD
+  exchange_rate: 1.19687
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:14
+currencies_108:
+  id: 108
+  iso_code: OMR
+  exchange_rate: 0.384986
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:14
+currencies_109:
+  id: 109
+  iso_code: PAB
+  exchange_rate: 1.0
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 11:37:32
+currencies_110:
+  id: 110
+  iso_code: PEN
+  exchange_rate: 2.576703
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:14
+currencies_111:
+  id: 111
+  iso_code: PGK
+  exchange_rate: 2.064417
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:14
+currencies_112:
+  id: 112
+  iso_code: PHP
+  exchange_rate: 40.723636
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:14
+currencies_113:
+  id: 113
+  iso_code: PKR
+  exchange_rate: 97.939798
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:14
+currencies_114:
+  id: 114
+  iso_code: PLN
+  exchange_rate: 3.101907
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:14
+currencies_115:
+  id: 115
+  iso_code: PYG
+  exchange_rate: 4121.43828
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:14
+currencies_116:
+  id: 116
+  iso_code: QAR
+  exchange_rate: 3.640779
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:14
+currencies_117:
+  id: 117
+  iso_code: RON
+  exchange_rate: 3.278439
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:14
+currencies_118:
+  id: 118
+  iso_code: RSD
+  exchange_rate: 83.122425
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:14
+currencies_119:
+  id: 119
+  iso_code: RUB
+  exchange_rate: 30.113968
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:14
+currencies_120:
+  id: 120
+  iso_code: RWF
+  exchange_rate: 620.43606
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:14
+currencies_121:
+  id: 121
+  iso_code: SAR
+  exchange_rate: 3.750119
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:14
+currencies_122:
+  id: 122
+  iso_code: SBD
+  exchange_rate: 7.06718
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:14
+currencies_123:
+  id: 123
+  iso_code: SCR
+  exchange_rate: 12.718739
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:14
+currencies_124:
+  id: 124
+  iso_code: SDG
+  exchange_rate: 4.410143
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 11:37:32
+currencies_125:
+  id: 125
+  iso_code: SEK
+  exchange_rate: 6.390242
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:14
+currencies_126:
+  id: 126
+  iso_code: SGD
+  exchange_rate: 1.242641
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:14
+currencies_127:
+  id: 127
+  iso_code: SHP
+  exchange_rate: 0.640232
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:14
+currencies_128:
+  id: 128
+  iso_code: SLL
+  exchange_rate: 4315.836208
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 11:37:32
+currencies_129:
+  id: 129
+  iso_code: SOS
+  exchange_rate: 1594.66375
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:14
+currencies_130:
+  id: 130
+  iso_code: SRD
+  exchange_rate: 3.275
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 11:37:32
+currencies_131:
+  id: 131
+  iso_code: STD
+  exchange_rate: 9999.999999
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:14
+currencies_132:
+  id: 132
+  iso_code: SVC
+  exchange_rate: 8.734776
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:14
+currencies_133:
+  id: 133
+  iso_code: SYP
+  exchange_rate: 70.831624
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:14
+currencies_134:
+  id: 134
+  iso_code: SZL
+  exchange_rate: 8.903806
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:14
+currencies_135:
+  id: 135
+  iso_code: THB
+  exchange_rate: 29.86619
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:14
+currencies_136:
+  id: 136
+  iso_code: TJS
+  exchange_rate: 4.7548
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:14
+currencies_137:
+  id: 137
+  iso_code: TMT
+  exchange_rate: 2.85065
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 11:37:32
+currencies_138:
+  id: 138
+  iso_code: TND
+  exchange_rate: 1.554075
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:14
+currencies_139:
+  id: 139
+  iso_code: TOP
+  exchange_rate: 1.727514
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:14
+currencies_140:
+  id: 140
+  iso_code: TRY
+  exchange_rate: 1.774017
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:14
+currencies_141:
+  id: 141
+  iso_code: TTD
+  exchange_rate: 6.381856
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:14
+currencies_142:
+  id: 142
+  iso_code: TWD
+  exchange_rate: 29.739235
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:14
+currencies_143:
+  id: 143
+  iso_code: TZS
+  exchange_rate: 1612.932596
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:14
+currencies_144:
+  id: 144
+  iso_code: UAH
+  exchange_rate: 8.098644
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:14
+currencies_145:
+  id: 145
+  iso_code: UGX
+  exchange_rate: 2647.659988
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:14
+currencies_146:
+  id: 146
+  iso_code: USD
+  exchange_rate: 1.0
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 11:37:32
+currencies_147:
+  id: 147
+  iso_code: UYU
+  exchange_rate: 19.01249
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:14
+currencies_148:
+  id: 148
+  iso_code: UZS
+  exchange_rate: 2001.354996
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:14
+currencies_149:
+  id: 149
+  iso_code: VEF
+  exchange_rate: 4.29408
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 11:37:32
+currencies_150:
+  id: 150
+  iso_code: VND
+  exchange_rate: 9999.999999
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:14
+currencies_151:
+  id: 151
+  iso_code: VUV
+  exchange_rate: 91.0
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 11:37:32
+currencies_152:
+  id: 152
+  iso_code: WST
+  exchange_rate: 2.273096
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:14
+currencies_153:
+  id: 153
+  iso_code: XAF
+  exchange_rate: 488.813966
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:14
+currencies_154:
+  id: 154
+  iso_code: XCD
+  exchange_rate: 2.701925
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:14
+currencies_155:
+  id: 155
+  iso_code: XDR
+  exchange_rate: 0.65365
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:14
+currencies_156:
+  id: 156
+  iso_code: XOF
+  exchange_rate: 489.147497
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:14
+currencies_157:
+  id: 157
+  iso_code: XPF
+  exchange_rate: 89.013625
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:14
+currencies_158:
+  id: 158
+  iso_code: YER
+  exchange_rate: 214.848258
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 11:37:32
+currencies_159:
+  id: 159
+  iso_code: ZAR
+  exchange_rate: 8.952318
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 12:04:14
+currencies_160:
+  id: 160
+  iso_code: ZMK
+  exchange_rate: 5232.196666
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 11:37:32
+currencies_161:
+  id: 161
+  iso_code: ZWL
+  exchange_rate: 322.387247
+  created_at: 2013-02-12 11:37:32
+  updated_at: 2013-02-12 11:37:32

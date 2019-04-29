@@ -1,0 +1,28 @@
+body {
+    color: #000000;
+    font-family: arial, helvetica, sans-serif;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+
+/* footer */
+.footer {
+    border-bottom: 1px solid #999;
+    border-top: 1px solid #999;
+    color: #999;
+    font-size: 0.9em;
+    padding: 0px 0 0 0;
+
+    .foot_left {
+        float: left;
+        width: 50%;
+    }
+
+    .foot_right {
+        float: left;
+        text-align: right;
+        width: 50%;
+    }
+}
+/* end footer */

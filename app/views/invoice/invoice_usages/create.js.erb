@@ -1,0 +1,18 @@
+<%if params[:from] == 'project'%>
+    $('#<%=dom_id(@invoice)%>').replaceWith("<%= escape_javascript(render(:partial => 'display_invoice_usage', :locals => {:invoice => @invoice })) %>");
+
+    main_lightbox.close();
+
+    $('#<%=dom_id(@invoice_usage)%>').effect("highlight", {}, 3000);
+    main_notification.display_message('Allocation has been successfully added');
+<%elsif params[:from] == 'combined' %>
+    <%reamining = InvoiceUsage.amount_remaining_for(@invoice_usage.invoice)%>
+	
+    $('#total_amount_<%=dom_id(@invoice_usage.invoice)%>').html('<%=escape_javascript @invoice_usage.invoice.total_amount_exc_vat_in_currency%>');
+    $('#unalloated_amount_<%=dom_id(@invoice_usage.invoice)%>').html('<%=escape_javascript formated_in_provided_currency( reamining, @invoice_usage.invoice.currency)%>');
+    
+    main_lightbox.close();
+    
+    $('#<%=dom_id(@project)%>').effect("highlight", {}, 3000);
+    main_notification.display_message('Allocation has been successfully added');
+<%end-%>

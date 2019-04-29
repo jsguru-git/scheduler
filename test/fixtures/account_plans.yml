@@ -1,0 +1,45 @@
+---
+account_plans_001:
+  id: 1
+  name: Free
+  description:  
+  price_in_cents: 0
+  chargify_product_handle: free
+  chargify_product_number: 107462
+  show_plan: 1
+  created_at: 2012-05-09 10:04:30
+  updated_at: 2012-05-09 10:04:30
+  no_users: 7
+account_plans_002:
+  id: 2
+  name: Basic
+  description:  
+  price_in_cents: 4900
+  chargify_product_handle: basic
+  chargify_product_number: 107463
+  show_plan: 1
+  created_at: 2012-05-09 10:04:30
+  updated_at: 2012-05-09 10:04:30
+  no_users: 10
+account_plans_003:
+  id: 3
+  name: Pro
+  description:  
+  price_in_cents: 9900
+  chargify_product_handle: pro
+  chargify_product_number: 107464
+  show_plan: 1
+  created_at: 2012-05-09 10:04:30
+  updated_at: 2012-05-09 10:04:30
+  no_users: 20
+account_plans_004:
+  id: 4
+  name: Max
+  description:  
+  price_in_cents: 14900
+  chargify_product_handle: max
+  chargify_product_number: 107465
+  show_plan: 0
+  created_at: 2012-05-09 10:04:30
+  updated_at: 2012-05-09 10:04:30
+  no_users: 30

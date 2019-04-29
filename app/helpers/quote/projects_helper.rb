@@ -1,0 +1,2 @@
+module Quote::ProjectsHelper
+end

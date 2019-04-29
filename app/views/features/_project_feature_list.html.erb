@@ -1,0 +1,14 @@
+<div id="no_associated_features" class="feature">
+
+    <%= render partial: 'tasks/project_task_list',
+               locals:  { tasks:   project.tasks.no_associated_feature.position_ordered,
+                          project: project,
+                          feature: nil } %>
+</div>
+
+<ul id="feature_list">
+    <% @project.features.name_ordered.each do |feature|-%>
+        <%= render partial: 'features/display_feature',
+                   locals:  { feature: feature } %>
+    <% end %>
+</ul>

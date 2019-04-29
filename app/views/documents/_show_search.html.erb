@@ -1,0 +1,43 @@
+<%=form_tag new_project_document_path(@project), :method => :get, :remote => true, 'data-spinner' => 'search_form_spinner', :class => 'title_search_form' do -%>
+    <%=hidden_field_tag :provider, params[:provider]%>
+    <%=hidden_field_tag :browse, params[:browse]%>
+    <div class="search_col_1">
+        <%=label_tag :term, 'File title:', :class => 'label_text'%>
+    </div>
+    <div class="search_col_2">
+        <%=text_field_tag :term, params[:term], :class => 'text'%>
+    </div>
+    <div class="search_col_3">
+        <%=submit_tag 'Search', :class => 'submit'%>&nbsp;<%=spinner_tag('search_form_spinner')%>
+    </div>
+    <div class="clearing"></div>
+<%end-%>
+
+<%=form_tag project_documents_path(@project), :remote => true, 'data-spinner' => 'attach_spinner' do%>
+    <%=hidden_field_tag :provider, params[:provider]%>
+    <%=hidden_field_tag :browse, params[:browse]%>
+    <%=hidden_field_tag :term, params[:term]%>
+    
+    <div class="list_cont <%=flash[:alert].present? ? 'small_search_list_cont' : 'search_list_cont'%>">
+        <%if search_results.present? && search_results[:results].present? -%>
+            <ul class="item_list">
+                <%search_results[:results].each do |result| -%>
+                    <%=render :partial => 'list_item', :locals => {:result => result}%>
+                <%end-%>
+            </ul>
+        <%elsif params[:term].present? -%>
+            <p class="no_content">No results have been found.</p>
+        <%end-%>
+    </div>
+    
+	<div class="file_attach_button">
+		<div class="left_text">
+			<%if params[:provider] == 'dropbox' -%><span><strong>Please note:</strong> Anyone who has access to the Dropbox share link that will be generated will be able to view the attached file.</span><%end-%>
+		</div>
+		<div class="right_text">
+        	<%=spinner_tag("attach_spinner")%>&nbsp;&nbsp;
+			<%=submit_tag 'Attach', 'data-disable-with' => 'Attaching', :class => 'submit'%>
+		</div>
+		<div class="clearing"></div>
+    </div>
+<%end-%>

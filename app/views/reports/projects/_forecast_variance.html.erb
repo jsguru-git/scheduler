@@ -1,0 +1,18 @@
+<% if client_results.first.present? %>
+  <tr>
+    <td class="align_left">
+      <strong>Variance</strong>
+    </td>
+    <td>
+      <% total_expected = client_results.first.first[:expected] %>
+      <% total_sent = client_results.first.first[:sent] %>
+      <% total_requested = client_results.first.first[:requested] %>
+
+      <% total_invoiced = Invoice.amount_cents_invoiced_for_period(@account, Date.today.beginning_of_month, Date.today.end_of_month) %>
+      <% total_asked_for = (total_expected + total_requested + total_sent) * 100 %>
+
+      <%= ((total_invoiced.to_f / total_asked_for.to_f) * 100).round(2) %>%
+
+    </td>
+  </tr>
+<% end %>

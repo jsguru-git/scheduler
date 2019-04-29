@@ -1,0 +1,40 @@
+<% if @project.archived? %>
+  <% @page_title = 'Documents (Archived)' %>
+<% else %>
+  <% @page_title = 'Documents' %>
+<% end %>
+
+<% @second_nav = project_second_nav(@project, 'documents') -%>
+
+<div id="document_list_cont" class="standard_one_col">
+  <div class="cell_1">
+    <%= render partial: 'shared/page_heading' %>
+
+    <div class="action_links">
+      <% unless @google_storage.is_authorized? %>
+        <%= link_to raw('<span class="google_drive">Attach Google document</span>'), @google_storage.get_oauth_authorization_link(@account, @project) %>
+      <% else %>
+        <%= link_to raw('<span class="google_drive">Attach Google document</span>'), new_project_document_path(:id => @project, :provider => 'google'), :remote => true, 'data-call-on-load' => params[:from_oauth].present? && params[:from_oauth] == 'google' ? 'true' : 'false', 'data-spinner' => "action_link_spinner"%>
+      <% end %>
+
+      <% unless @dropbox_storage.is_authorized? %>
+        <%= link_to raw('<span class="dropbox">Attach Dropbox document</span>'), @dropbox_storage.get_oauth_authorization_link(@account, @project) %>
+      <% else %>
+        <%=link_to raw('<span class="dropbox">Attach Dropbox document</span>'), new_project_document_path(:id => @project, :provider => 'dropbox'), :remote => true, 'data-call-on-load' => params[:from_oauth].present? && params[:from_oauth] == 'dropbox' ? 'true' : 'false', 'data-spinner' => "action_link_spinner"%>
+      <% end %>
+
+      <%= link_to raw('<span class="add_color">Upload local file</span>'), new_upload_project_documents_path(:project_id => @project), :remote => true, 'data-spinner' => "action_link_spinner" %>
+            &nbsp;<%=spinner_tag("action_link_spinner") %>
+    </div>
+
+    <ul id="attached_docuemnt_list">
+      <% if @documents.blank? %>
+        <li class="no_content">No documents have been attached to this project</li>
+      <% else %>
+        <% @documents.each do |document| %>
+          <%= render :partial => 'display_document', :locals => {:document => document} %>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
+</div>

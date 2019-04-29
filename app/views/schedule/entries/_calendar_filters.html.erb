@@ -1,0 +1,55 @@
+<div class="schedule_calendar_options_container">
+    <%=form_tag request.path, :method => :get, :class => 'submit_form' do -%>
+        <div class="col_1">
+            
+            <% if team_select -%>
+                <div class="team_selection">
+                    <label for="team_id" class="label">Team:&nbsp;</label>
+                    <div class="select_container">
+                        <%= select_tag 'team_id', 
+                                      options_from_collection_for_select(@account.teams.has_users.name_ordered, "id", "name", params['team_id'].to_i), 
+                                      :prompt => "Everyone",
+                                      :class => 'submit_on_change' %>
+                    </div>
+                </div>
+            <% else %>
+                <div class="filter_selection">
+                    <label for="show_type" class="label">Show:</label>
+                    <select name="show_type" class="submit_on_change">
+                        <option value="">People working on this project</option>
+                        <option value="all"<%if params[:show_type] == "all"-%> selected="selected"<%end-%>>Everyone</option>
+                    </select>
+                </div>
+            <%end-%>
+        
+        </div>
+        <div class="col_2">
+            <%=link_to '#', id: 'select_calendar', class: 'calendar_link' do %>
+                <%= image_tag('tool/icons/calendar_32.png', :size => '32x32', :alt => 'Select dates', :class => 'update_calendar_dates padding_right_10') %>
+                <span class="label_text">
+                    <%= fmt_long_date(@cal.start_date) %>
+                </span>
+            <% end %>
+            
+            <div id="date_range_selection_background" class="date_range_selection_background" style="display: none;"></div>
+            
+            <div class="date_range_selection single_date_range_selection">
+                <div class="inner_date_range_selection">
+                    <span class="large_blue_narrow">Start date:</span>
+                    <div id="from_date" class="calendar_containers"></div>
+                    <div class="clearing"></div>
+                
+                    <%=hidden_field_tag 'start_date', @cal.start_date, :id => 'start_date_range'%>
+
+                    <div class="submit-wrapper">
+                        <input type="submit" class="submit" value="Apply" />
+                        or
+                        <a class="cancel">Cancel</a>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <div class="clearing"></div>
+    <%end-%>
+</div>

@@ -1,0 +1,45 @@
+<%if params[:field] == 'extra_costs' -%>
+    <h2><%= params[:field].humanize%></h2>
+<%else-%>
+    <h2><%='Update ' + params[:field].humanize%></h2>
+<%end-%>
+<%=form_for [:quote, project, quote], :url => update_details_quote_project_quote_path(project, quote), :remote => true, :html => {'data-spinner' => 'edit_details_spinner'} do |f|%>
+    <%=render :partial => 'shared/notifications/error_messages', :object => quote%>
+    
+    <%if params[:field] == 'po_number' -%>
+        <div class="form_row">
+            <div class="form_text">
+                <%=f.label :po_number%>
+            </div>
+            <div class="form_field">
+                <%=f.text_field :po_number, :class => 'text'%>
+            </div>
+            <div class="clearing"></div>
+        </div>
+    <%elsif params[:field] == 'extra_costs' -%>
+        <div class="form_row">
+            <div class="form_text">
+                <%=f.label :extra_cost_title, 'Title'%>
+            </div>
+            <div class="form_field">
+                <%=f.text_field :extra_cost_title, :class => 'text'%>
+            </div>
+            <div class="clearing"></div>
+        </div>
+        <div class="form_row">
+            <div class="form_text">
+                <%=f.label :extra_cost, 'Amount'%>
+            </div>
+            <div class="form_field extra_amount_field">
+                <span class="symbol"><%=Money.default_currency.symbol%></span> <%=f.text_field :extra_cost, :class => 'number'%>
+            </div>
+            <div class="clearing"></div>
+        </div>
+    <%end-%>
+    
+    <%=hidden_field_tag :field, params[:field]%>
+    
+    <div class="submit_container">
+        <%= f.submit 'Save changes', :class => 'submit' %> <span class="small_text">or <%=link_to 'Cancel', quote_project_quotes_path(project), :class => 'lightbox_close', 'data-spinner' => 'edit_details_spinner'%></span>&nbsp;<%=spinner_tag('edit_details_spinner')%>
+    </div>
+<% end -%>

@@ -1,0 +1,74 @@
+<div style="color: #333333; font-family: arial, helvetica, sans-serif; font-size: 13px;">
+	<p>Hi</p>
+	
+	<%if @teams.present? -%>
+		<p>Your <%if @account_setting.schedule_mail_frequency == 0 -%> daily <%elsif @account_setting.schedule_mail_frequency == 1 -%> weekly <%elsif @account_setting.schedule_mail_frequency == 2 -%> monthly <%end-%> schedule plan can be found below.</p>
+	
+		<%@teams.each do |team| -%>
+			<div style="padding-bottom: 40px;">
+				<h1 style="font-weight: bold; margin: 30px 0 15px 0; padding-bottom: 3px; color: #464747; font-size: 1.6em; border-bottom: 1px dashed #555555;"><%=team.name%></h1>
+		
+				<%if team.users.name_ordered.present? -%>
+					<table width="100%" class="data_table" style="border: 1px solid #CEDA9E; border-collapse: collapse; color: #464747;">
+						<tr style="background: #CEDA9E; font-size: 0.9em;" bgcolor="#CEDA9E">
+							<th style="color: #FFFFFF; padding: 4px 6px 4px 6px; text-align: left;" align="left">Name</th>
+							<th style="color: #FFFFFF; padding: 4px 6px 4px 6px; text-align: left;" align="left">Scheduled projects</th>
+						</tr>
+						<%team.users.name_ordered.each do |user| -%>
+							<tr>
+								<td valign="top" style="padding: 4px 6px 4px 6px; color: #464747; font-family: arial, helvetica, sans-serif; font-size: 13px;"><%=user.name -%></td>
+								<td style="padding: 4px 6px 4px 6px; color: #464747; font-family: arial, helvetica, sans-serif; font-size: 13px;">
+									<%entries = Entry.for_user_period(user.id, @start_date, @end_date)%>
+
+									<%if entries.blank? -%>
+										No projects scheduled<br/>
+									<%else-%>
+										<%entries.each do |entry| -%>
+											
+											<%if @account_setting.schedule_mail_frequency == 0%>
+												Today
+											<%else-%>
+												<span>
+													<strong>From:</strong> 
+													<%if entry.start_date < @start_date -%>
+														<%=@start_date.strftime("%a %d %b %Y")%> 
+													<%else-%>
+														<%=entry.start_date.strftime("%a %d %b %Y")%> 
+													<%end-%>
+													
+													<strong>To:</strong> 
+													<%if entry.end_date > @end_date -%>
+														<%=@end_date.strftime("%a %d %b %Y")%>
+													<%else-%>
+														<%=entry.end_date.strftime("%a %d %b %Y")%>
+													<%end-%>
+												</span> 
+											<%end-%>
+											
+											- <%=entry.project.name%>
+											<br/>
+										<%end-%>
+									<%end-%>
+								</td>
+							</tr>
+						<%end-%>
+					</table>
+				<%else-%>
+					<p>Team does not yet have any associated employees.</p>
+				<%end-%>
+			</div>
+		<%end-%>
+	
+	<%else -%>
+		<p>You do not yet have any teams setup, you will be required to create at least one team for data to appear in this report.</p>
+	<%end-%>
+
+	<p>If you would like to un-subscribe form these emails, you may remove your email address from your FleetSuite settings.</p>
+
+	<p>Thanks,<br/>
+	The FleetSuite Team<br/>
+	---<br/>
+	Get support: http://help.fleetsuite.com<br/>
+	Follow us: https://twitter.com/fleet_suite<br/>
+	Suggest new features: http://help.fleetsuite.com/forums</p>
+</div>

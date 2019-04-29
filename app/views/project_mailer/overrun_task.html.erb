@@ -1,0 +1,14 @@
+<div style="color: #333333; font-family: arial, helvetica, sans-serif; font-size: 13px;">
+  <p>Hi</p>
+
+  <p><%= @task.name %> has overrun. Time tracked for this task has exceeded the time estimated. See the <%= link_to 'burndown report', track_project_url(@task.project, graph: 'task', task_id: @task.id, subdomain: @task.project.account.site_address)%> for an overview.</p>
+
+  <p>You have received this email because you are either the project manager for the project or you have been selected to receive all budget emails (you may remove your email address from your FleetSuite settings).
+
+  <p>Thanks,<br/>
+  The FleetSuite Team<br/>
+  ---<br/>
+  Get support: http://help.fleetsuite.com<br/>
+  Follow us: https://twitter.com/fleet_suite<br/>
+  Suggest new features: http://help.fleetsuite.com/forums</p>
+</div>

@@ -1,0 +1,8 @@
+// Replace content
+$('#<%=dom_id(@team)%>').replaceWith("<%= escape_javascript(render(:partial => 'teams/display_team', :locals => {:team => @team})) %>");
+
+// Open lightbox
+main_lightbox.close();
+
+// Highlight
+$('#<%=dom_id(@team)%> .point_container_right').effect("highlight", {}, 3000);

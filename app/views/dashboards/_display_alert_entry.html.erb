@@ -1,0 +1,13 @@
+<%= content_tag_for(:li, entry) do %>
+    <div class="date_display">
+        <span class="month"><%=entry.start_date.strftime('%^b')%></span>
+        <span class="day"><%=entry.start_date.day%></span>
+    </div>
+    <div class="content_display">
+        <span class="light_green added"><%=entry.created_at == entry.updated_at ? 'Created' : 'Updated' %> <%=time_ago_in_words(entry.updated_at)%> ago</span>
+        <span class="name"><%=link_to truncate(entry.project.name, :length => 38), project_path(entry.project), :class => 'grey_link', :title => entry.project.name%></span>
+        <span class="duration light_text">Duration: <%=pluralize entry.number_of_days, 'day'%></span>
+        <%if entry.project.client_id.present?%><span class="client light_text">Client: <%=entry.project.client.name%></span><%end-%>
+    </div>
+    <div class="clearing"></div>
+<%end%>

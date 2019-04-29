@@ -1,0 +1,35 @@
+<script>
+/**
+ * Configure Hopscotch tour to end permanently when closed
+ */
+try {
+    hopscotch.configure({
+        onClose: function() {
+            $.ajax({
+                type: 'PUT',
+                url: '<%= update_hopscotch_setting_url(id: current_user.account.id, format: :json, protocol: "//") %>',
+                data: { 'account_setting': { 'hopscotch_enabled' : 0 } },
+                success: function() {
+                    return false;
+                }
+            });
+        }
+    });
+
+    $('#cancel_tour_link').click(function() {
+        $('#cancel_tour_link').hide();
+        hopscotch.endTour();
+        $.ajax({
+            type: 'PUT',
+            url: '<%= update_hopscotch_setting_url(id: current_user.account.id, format: :json, protocol: "//") %>',
+            data: { 'account_setting': { 'hopscotch_enabled' : 0 } },
+            success: function() {
+                return false;
+            }
+        });
+        return false;
+    });
+} catch (err) {}
+
+
+</script>

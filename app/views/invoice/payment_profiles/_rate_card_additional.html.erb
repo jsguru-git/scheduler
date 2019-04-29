@@ -1,0 +1,5 @@
+<%= fields_for rate_card_additional do |payment_profile_instance| %>
+    <% payment_profile_instance.fields_for :rate_card_payment_profiles do |rate_card_payment_profile_form| %>
+        <%= render :partial => 'rate_card_payment_profile_form', :locals => {:rate_card_payment_profile_form => rate_card_payment_profile_form}%>
+    <%end%>
+<%end%>

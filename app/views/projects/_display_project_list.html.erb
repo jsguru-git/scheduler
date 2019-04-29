@@ -1,0 +1,26 @@
+<%= content_tag_for(:li, project) do %>
+
+    <span class="name">
+        <%= link_to truncate(project.name, :length => 35), project_path(project), :class => 'grey_link' %>
+    </span>
+    
+    <div class="info">
+        Client:&nbsp;
+        <% if project.client_id.present? -%>
+            <span class="dark_green">
+                <%=project.client.name%>
+            </span>
+        <% end -%>
+        <br />
+        Number of people involved:
+        <span class="dark_green">
+            <%=project.all_people_scheduled.length %>
+        </span><br />
+        Status:
+        <span class="dark_green">
+            <%= project.project_status_name %>
+        </span>
+    </div>
+
+    <div class="clearing"></div>
+<% end -%>

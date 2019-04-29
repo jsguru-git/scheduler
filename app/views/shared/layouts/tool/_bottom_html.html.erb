@@ -1,0 +1,25 @@
+        <%=render :partial => 'shared/simple_lightbox'%>
+        <%=render :partial => 'shared/simple_notificaiton'%>
+        <script type="text/javascript" src="//assets.zendesk.com/external/zenbox/v2.5/zenbox.js"></script>
+        <style type="text/css" media="screen, projection">
+          @import url(//assets.zendesk.com/external/zenbox/v2.5/zenbox.css);
+        </style>
+        <script type="text/javascript">
+          if (typeof(Zenbox) !== "undefined") {
+            Zenbox.init({
+              dropboxID:   "20098753",
+              url:         "https://fleetsuite.zendesk.com",
+              tabID:       "Feedback",
+              tabColor:    "#8DAACC",
+              tabPosition: "Right"
+            });
+          }
+        </script>
+        <div id="top_of_page"></div>
+        <% if controller.controller_name != 'pages' %>
+          <% if logged_in? && current_user.account.account_setting.hopscotch_enabled? %>
+            <%= render :partial => 'shared/hopscotch_config' %>
+          <% end %>
+        <% end %>
+    </body>
+</html>

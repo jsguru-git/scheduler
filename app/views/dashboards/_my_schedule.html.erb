@@ -1,0 +1,35 @@
+<h2>Your work schedule</h2>
+
+<div class="tabbed_area" id="my_schedule">
+    <ul class="day_tabs">
+        <% @tab_count = 1 %>
+        <% my_entries.each_key do |date| -%>
+            <li class='<%= active_dashboard_tab_class(@tab_count) %>'>
+                <%= link_to date.strftime("%a"), root_path(:active_tab => @tab_count), :class => "day_#{date.day}"%>
+            </li>
+            <% @tab_count += 1 %>
+        <%end-%>
+    </ul>
+
+    <div class="clearing"></div>
+
+    <div class="day_content">
+        <% @tab_count = 1 %>
+        <%my_entries.each do |date, entries| -%>
+            <div class="area <%=active_dashboard_tab_class(@tab_count)%>">
+                <%if entries.blank?-%>
+                    <div class="no_entries">
+                        <span class="large_blue_narrow">No work scheduled</span>
+                        <p class="no_alerts_description">You currently have no work scheduled for this day.</p>
+                    </div>
+                <%else-%>
+                    <%for entry in entries -%>
+                        <%=render :partial  => 'dashboards/display_expandable_entry', :locals => {:entry => entry, :date => date.to_date}%>
+                    <%end-%>
+                <%end-%>
+            </div>
+            <%@tab_count += 1%>
+        <%end-%>
+        <%= link_to 'Export to Calendar', entries_path(format: :ics), class: :large_blue_link, id: :export_schedule %>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+<%@page_title = 'Invoice settings'%>
+<%@second_nav = settings_second_nav('invoice')%>
+
+<div class="standard_one_col">
+    <div class="cell_1">
+        <%=render :partial => 'shared/page_heading'%>
+        
+        <div class="search_container">
+            
+            <%=render :partial => 'shared/notifications/error_messages', :object => @account_setting%>
+
+            <%=form_for @account_setting, :url => update_invoice_setting_path(@account_setting) do |f|%>
+            
+                <%=render :partial => 'settings/invoice', :locals => {:f => f} %>
+                
+                <div class="submit_container">
+                    <%= submit_tag 'Save changes', :class => 'submit' %>
+                </div>
+            <%end-%>
+        </div>
+    </div>
+
+</div>

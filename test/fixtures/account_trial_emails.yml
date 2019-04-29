@@ -1,0 +1,31 @@
+one:
+  account_id: 1
+  trial_path: 1
+  email_1_sent: true
+  email_2_sent: true
+  email_3_sent: false
+  email_4_sent: false
+  
+two:
+  account_id: 2
+  trial_path: 1
+  email_1_sent: true
+  email_2_sent: true
+  email_3_sent: false
+  email_4_sent: false
+
+three:
+  account_id: 3
+  trial_path: 2
+  email_1_sent: true
+  email_2_sent: false
+  email_3_sent: true
+  email_4_sent: false
+
+four:
+  account_id: 4
+  trial_path: 
+  email_1_sent: false
+  email_2_sent: false
+  email_3_sent: false
+  email_4_sent: false

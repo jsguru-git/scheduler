@@ -1,0 +1,27 @@
+<%= content_tag_for(:li, document) do %>
+  <div class="doc_heading_outer">
+    <div class="doc_heading <%= document.file_type %>">
+      <% if document.is_local? %>
+        <%= link_to document.title, project_document_path(@project, document), target: '_blank', class: 'large_grey_link' %>
+      <% else %>
+        <%= link_to document.title, document.view_link, target: '_blank', class: 'large_grey_link' %>
+      <% end %>
+
+      <div class="doc_summary">
+        <%= summary_helper(document) %><br/>
+        <% if document.provider_owner_names.present? %>
+          Owners: <%= document.provider_owner_names %><br/>
+        <% end %>
+        <%= provider_name_helper(document) %>
+      </div>
+    </div>
+    <div class="doc_actions">
+      <% if policy(document).destroy? %>
+        <%= link_to 'Un-Attach', project_document_path(@project, document), method: :delete, confirm: 'Are you sure you want to un-attach this document from the project and remove any comments?', class: 'remove_button'%>
+      <% end %>
+    </div>
+  </div>
+  <div class="document_comment_cont">
+    <%= render partial: 'document_comments/comments_section', locals: { document: document, project: @project } %>
+  </div>
+<% end %>

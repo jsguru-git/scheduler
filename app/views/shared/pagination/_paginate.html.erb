@@ -1,0 +1,8 @@
+<%if paginate.total_pages > 1 -%>
+    <div class="pagination_container">
+        <%= will_paginate paginate, :inner_window => APP_CONFIG['pagination']['pagination_inner'],
+            :outer_window => APP_CONFIG['pagination']['pagination_outer'],
+            :previous_label => APP_CONFIG['pagination']['prev_label'],
+            :next_label => APP_CONFIG['pagination']['next_label'] %>
+    </div>
+<%end-%>

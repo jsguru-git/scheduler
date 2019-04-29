@@ -1,0 +1,80 @@
+<%@page_title = 'Online Invoice Management - Invoicing Software - FleetSuite'%>
+<%@page_description = "Easily raise new invoices and keep track of billing with FleetSuite’s easy-to-use web based invoicing software."%>
+<%@page_keywords = "invoice management, invoice management software, online invoice management, invoice software, invoicing software"%>
+<%@second_nav = invoice_second_nav('home')%>
+
+<% content_for :title_bar do %>
+    <div class="mac_ipad_preview">
+    </div>
+<%end-%>
+
+<div class="outer_contaner" id="tour_features">
+    <div class="inner_container" id="tour_features_inner">
+        <h1 class="tool_title">Online invoice management software</h1>
+        
+        <ul class="feature_list">
+            <li class="pos_1">
+                <h2 class="blue_med_oswald_text">Invoices</h2>
+                <p>Creating and sending invoices has been designed to be as flexible as possible. You can choose to manage your invoices based on an existing payment profile, generate them based on actual tracked time, or simply add a new item to cover any unexpected costs. PDF invoices are generated that can be sent to your clients along with the ability to mark invoices as sent or paid to help keep track of your cash flow.</p>
+            </li>
+            <li class="pos_2">
+                <h2 class="blue_med_oswald_text">Unified</h2>
+                <p>Integrating seamlessly with both the schedule and track tools, the invoice tool can instantly bring existing data across to save you time and money. Payment profiles can be based on your team schedule and rate card to predict cost. Invoices can be generated based on a projects tracked time, making sure you invoice for all time, which has been spent on that project.</p>
+            </li>
+            <li class="pos_3">
+                <h2 class="blue_med_oswald_text">Payment profiles</h2>
+                <p>
+                    Generating payment profiles for your project could not be quicker. Either choose to create each payment stage manually by entering a name and cost or automatically generate the cost based on time and your daily rate per service.
+                </p>
+            </li>
+            
+            <li class="pos_4">
+                <h2 class="blue_med_oswald_text">Reporting</h2>
+                <p>Invoice makes use of both payment profiles and invoicing to generate some very useful and insightful reports. This will allow you to monitor expected invoicing for a given date range along with an invoice status update.</p>
+            </li>
+        </ul>
+        <div class="clearing"></div>
+        
+        <div class="core_intro">
+            <h1 class="core_title">Core features</h1>
+            <p class="small_light_shadow_text">The core features included as standard with all FleetSuite accounts<br/> make managing multiple projects, teams and tools simple and intuitive.</p>
+        </div>
+    </div>
+</div>
+
+<div class="outer_contaner" id="core_features_select">
+    <div class="inner_container" id="core_features_select_inner">
+        <div class="core_expand"></div>
+    </div>
+</div>
+
+<div class="outer_contaner" id="core_features_content">
+    <div class="inner_container" id="core_features_content_inner">
+        <ul class="four_col_list">
+            <li class="pos_1">
+                <h2 class="blue_small_oswald_text">Dashboards</h2>
+                <p>A visually engaging front page provides a high-level overview of all tasks and actions from across your chosen components.</p>
+            </li>
+            <li class="pos_2">
+                <h2 class="blue_small_oswald_text">Projects</h2>
+                <p>Create, edit and archive projects to maintain an up-to-date overview of activity, with easy access to more granular information as required.  </p>
+            </li>
+            <li class="pos_3">
+                <h2 class="blue_small_oswald_text">Teams & People</h2>
+                <p>Create profiles for users across your business so they can easily view and understand their own schedules and tasks.</p>
+            </li>
+            <li class="pos_4">
+                <h2 class="blue_small_oswald_text">Clients</h2>
+                <p>Connect distinct projects to specific clients for a joined-up view of your workload and added information for project teams.</p>
+            </li>
+        </ul>
+        <div class="clearing"></div>
+        
+        <span class="signup_button">
+            <%= link_to pricing_path(:from => 'invoice'), :class => 'pricing_and_signup_button' do %>
+                See Pricing &amp; Signup
+                <%= content_tag(:span, "30-Day Free Trial") %>
+            <% end %>
+        </span>
+    </div>
+</div>

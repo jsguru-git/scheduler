@@ -1,0 +1,28 @@
+<div id="provider_cont">
+	<h2>Attach <%=params[:provider]%> document</h2>
+
+	<div id="provider_switch_link">
+		<%=link_to "Switch #{params[:provider]} accounts", switch_project_documents_path(:project_id => @project, :provider => params[:provider])%>
+	</div>
+
+	<div id="file_chooser">
+	    <div id="tab_cont" class="simple_tabs inline_tabbed_area inline_tabbed_area_style_lightbox">
+	        <ul class="options">
+	            <li class="<%=params[:browse] == 'folder' ? 'selected' : ''%>"><%=link_to 'Folder browser', new_project_document_path(:id => @project, :provider => params[:provider], :browse => 'folder'), :remote => true, 'data-spinner' => "tab_spinner"%></li>
+	            <li class="<%=params[:browse] == 'search' ? 'selected' : ''%>"><%=link_to 'Search files', new_project_document_path(:id => @project, :provider => params[:provider], :browse => 'search'), :remote => true, 'data-spinner' => "tab_spinner", :class => 'item_2'%></li>
+	        </ul>
+	    </div>
+	    <div class="clearing"></div>
+	    <div class="tab_spinner_cont">
+	        <%=spinner_tag("tab_spinner")%>
+	    </div>
+	    <%= render(:partial => 'shared/notifications/flash', :locals => {:flash => flash }) if flash[:notice] || flash[:alert] %>
+    
+	    <%if params[:browse] == 'folder' -%>
+	        <%=render :partial => 'show_folders', :locals => {:storage => storage, :results => results}%>
+	    <%elsif params[:browse] == 'search'-%>
+	        <%=render :partial => 'show_search', :locals => {:storage => storage, :search_results => results}%>
+	    <%end-%>
+	</div>
+
+</div>

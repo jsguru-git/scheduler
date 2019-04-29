@@ -1,0 +1,6 @@
+// Replace content in lightbox div
+$("#main_lightbox_content").html("<%= escape_javascript(render(:partial => 'allocation_breakdown', :locals => {:invoice_usages => @invoice_usages})) %>");
+
+// Open lightbox
+main_lightbox.change_height_to(350);
+main_lightbox.open();

@@ -1,0 +1,114 @@
+/*====== results_table ======*/
+.results_table {
+    border-collapse: collapse;
+    width: 100%;
+
+    tr.heading_table {
+        background: url(tool/tables/results_table/header_bg.png) repeat-x left top;
+
+        th {
+            background: url(tool/tables/results_table/header_border.png) no-repeat right top;
+            border-collapse: collapse;
+            color: #999999;
+            font-weight: bold;
+            height: 40px;
+            margin: 0;
+            padding: 0 10px 0 10px;
+            text-transform: uppercase;
+
+        }
+
+        th:last-child {
+            background: none;
+        }
+    }
+    
+    tr.green_background {
+        background: url(tool/tables/results_table/green_background.png) repeat-x left bottom;
+        color: #ACBC76;
+    }
+    
+    tr.grey_background_v2 {
+        background: url(tool/tables/results_table/grey_background_v2.png) repeat-x left bottom;
+    }
+    
+    tr.dark_green_background {
+        background: url(tool/tables/results_table/green_background_v2.png) repeat-x left bottom;
+    }
+
+    tr {
+        background: url(tool/tables/results_table/grey_background.png) repeat-x left bottom;
+        border-collapse: collapse;
+        color: #888888;
+        margin: 0;
+        padding: 0;
+
+        td {
+            padding: 7px 10px 7px 10px;
+        }
+        
+        td.no_top_bottom_padding {
+            padding-bottom: 0;
+            padding-top: 0;
+        }
+    }
+
+}
+/*====== end results_table ======*/
+
+
+/*====== dashed_line_table ======*/
+.dashed_line_table {
+    border-collapse: collapse;
+    width: 100%;
+    
+    tr.heading_table {
+        background: url(tool/layout/dashed_heading.png) repeat-x left top;
+
+        th {
+            background: url(tool/layout/dashed_heading.png) repeat-x left bottom;
+            border-collapse: collapse;
+            color: #999999;
+            font-weight: bold;
+            height: 40px;
+            margin: 0;
+            padding: 0 10px 0 10px;
+            text-transform: uppercase;
+        }
+    }
+    
+    tr:nth-child(2) {
+        td {
+            padding-top: 30px;
+        }
+    }
+    
+    tr:last-child {
+        td {
+            background: url(tool/layout/dashed_heading.png) repeat-x left bottom;
+            padding-bottom: 15px;
+        }
+   }
+
+    tr {
+        border-collapse: collapse;
+        color: #888888;
+        margin: 0;
+        padding: 0;
+
+        td {
+            word-break: break-all;
+            padding: 7px 10px 7px 10px;
+        }
+        
+        .right_align {
+            text-align: right;
+        }
+        
+        .center_align {
+            text-align: center;
+        }
+
+    }
+}
+/*====== end dashed_line_table ======*/

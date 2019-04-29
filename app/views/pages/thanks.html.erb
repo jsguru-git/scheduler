@@ -1,0 +1,49 @@
+<% @page_title = 'Thanks for signing up' -%>
+
+<div class="grid_container" id="blank_outer_container">
+    <div class="grid_container_inner">
+        
+        <div class="blank_name_container">
+            <h1>Thanks for signing up</h1>
+        </div>
+        
+        <div class="middle_container">
+            <div class="inner_middle_container">
+                <p class="text_intro">Your new account is being created at<br/>
+	<%=link_to root_url(:subdomain => @account.site_address), root_url(:subdomain => @account.site_address)%>.</p>
+				<p class="second_text_intro">You will be redirected in a few seconds.</p>
+
+              	<%=image_tag 'front/pages/thanks/ajax_loader.gif', alt: 'Waiting', size: '220x19'%>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<%if Rails.env.production?%>
+<!-- Google Code for Signup Conversion Page -->
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 1002346553;
+var google_conversion_language = "en";
+var google_conversion_format = "3";
+var google_conversion_color = "ffffff";
+var google_conversion_label = "sDxHCNfXrgUQubD63QM";
+var google_conversion_value = 0;
+var google_remarketing_only = false;
+/* ]]> */
+</script>
+<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="//www.googleadservices.com/pagead/conversion/1002346553/?value=0&amp;label=sDxHCNfXrgUQubD63QM&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>
+<%end-%>
+
+<script type="text/javascript">
+window.setTimeout(function() {
+window.location.href = '<%=root_url(:subdomain => @account.site_address)%>';
+}, 5000);
+</script>

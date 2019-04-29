@@ -1,0 +1,69 @@
+---
+quotes_001:
+  id: 1
+  project_id: 1
+  title: My quote
+  vat_rate: 20.0
+  discount_percentage: 0.0
+  new_quote: 1
+  quote_id: !!null 
+  created_at: 2013-06-27 11:45:12
+  updated_at: 2013-06-27 11:45:46
+  po_number: ''
+  quote_status: 0
+  currency: gbp
+  user_id: 1
+  extra_cost_cents: 0
+  extra_cost_title:
+  draft: 0
+quotes_002:
+  id: 2
+  project_id: 1
+  title: !!null 
+  vat_rate: 20.0
+  discount_percentage: 10.0
+  new_quote: 0
+  quote_id: 1
+  created_at: 2013-06-27 11:46:02
+  updated_at: 2013-06-27 11:46:28
+  po_number: ''
+  quote_status: 0
+  currency: usd
+  user_id: 1
+  extra_cost_cents: 0
+  extra_cost_title:
+  draft: 0
+quotes_003:
+  id: 3
+  project_id: 1
+  title: Title here 
+  vat_rate: 20.0
+  discount_percentage: 10.0
+  new_quote: 1
+  quote_id:
+  created_at: 2013-06-27 11:46:02
+  updated_at: 2013-06-27 11:46:28
+  po_number: ''
+  quote_status: 0
+  currency: usd
+  user_id: 1
+  extra_cost_cents: 0
+  extra_cost_title:
+  draft: 0
+quotes_004:
+  id: 4
+  project_id: 1
+  title: Title here for new quote
+  vat_rate: 20.0
+  discount_percentage: 0
+  new_quote: 1
+  quote_id:
+  created_at: 2013-06-27 11:46:02
+  updated_at: 2013-06-27 11:46:28
+  po_number: ''
+  quote_status: 0
+  currency: usd
+  user_id: 1
+  extra_cost_cents: 0
+  extra_cost_title:
+  draft: 1

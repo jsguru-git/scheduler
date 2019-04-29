@@ -1,0 +1,10 @@
+<h2>Edit service</h2>
+<%=form_for rate_card, :remote => true, :html => {'data-spinner' => 'edit_rate_card_form_spinner'} do |f|%>
+    <%=render :partial => 'shared/notifications/error_messages', :object => rate_card%>
+
+    <%=render :partial => 'form', :locals => {:f => f}%>
+
+    <div class="submit_container">
+        <%= f.submit 'Save changes', :class => 'submit' %> <span class="small_text">or <%=link_to 'Cancel', rate_cards_path, :class => 'lightbox_close'%></span>&nbsp;<%=spinner_tag('edit_rate_card_form_spinner')%>
+    </div>
+<% end -%>

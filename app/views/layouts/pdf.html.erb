@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title><%=tool_metadata_title%></title>
+        <meta name="description" content="<%=metadata_description%>"/>  
+        <%= wicked_pdf_stylesheet_link_tag "pdf" %>
+        <%= wicked_pdf_javascript_include_tag "pdf" %>
+    </head>
+    <body id="<%=body_id%>">
+        <%= yield %>
+    </body>
+</html>

@@ -1,0 +1,80 @@
+/*====== form_row ======*/
+.form_row   {
+    padding: 0 0 15px 10px;
+    
+    .form_text {
+        color: #51494B;
+        font-size: 1.3em;
+        float: left;
+        padding: 2px 0 0 0;
+        width: 180px;
+    }
+    
+    .short_label {
+        width: 60px;
+    }
+    
+    .form_field {
+        float: left;
+        width: 500px;
+    }
+}
+/*====== end form_row ======*/
+
+
+/* error_explanation */
+.error_explanation {
+    border: 1px solid #CCCCCC;
+    background: url("front/pages/tour/core_content_background.png") repeat-x left top;
+    margin: 0 0 20px 0;
+    padding: 10px 20px;
+    
+    p {
+        color: #6C88A6;
+        font-size: 1.3em;
+        margin: 0;
+        padding: 0 0 6px 0;
+    }
+    
+    ul {
+        margin: 0;
+        padding: 0;
+        
+        li {
+            background: url(tool/icons/error_explanation_13.png) no-repeat left 6px;
+            color: #E68A8B;
+            font-size: 1.2em;
+            margin: 0;
+            padding: 0 0 8px 20px;
+        }
+    }
+    
+}
+/* end error_explanation */
+
+.explicit_text {
+    color: #8A8A8A;
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0;
+    
+}
+
+input.text {
+    border: 1px solid #CCCCCC;
+    color: #51494B;
+    font-size: 1.2em;
+    padding: 5px 10px;
+}
+
+.field_with_errors input,
+.field_with_errors textarea,
+.field_with_errors select {
+    border-color: #E68A8B;
+    border-style: solid;
+    border-width: 1px;
+}
+
+.required {
+    color: #E68A8B;
+}

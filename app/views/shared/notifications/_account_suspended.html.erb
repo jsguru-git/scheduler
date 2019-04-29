@@ -1,0 +1,11 @@
+<%if @account.account_suspended? && logged_in? -%>
+    <div class="flash_notification">
+        <div class="bad">
+            <%if has_permission?('account_holder') -%>
+                <p>Your account has been suspended, please get in <%=link_to 'touch', 'http://help.fleetsuite.com'%> if you have any questions.</p>
+            <%else-%>
+                <p>Unfortunately this account has been suspended, to re-enable it, please contact the account holder.</p>
+            <%end-%>
+        </div>
+    </div>
+<%end-%>

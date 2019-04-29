@@ -1,0 +1,73 @@
+<% @page_title = 'Next Available' %>
+<%if has_permission?('account_holder || administrator') -%>
+    <% @second_nav = time_management_second_nav(params[:action]) %>
+<%end-%>
+
+<div class="standard_one_col">
+    <div class="cell_1">
+        <%=render :partial => 'shared/page_heading'%>
+        
+        <div id="lead_filter" class="simple_tabs">
+    
+            <div class="lead_filter_label label_text red_text">
+            View:
+            </div>
+            <%= form_tag lead_time_schedule_entries_path, method: :get, id: :team_form do %>
+                <%= select_tag 'team_id', 
+                    options_from_collection_for_select(@account.teams, "id", "name", params['team_id'].to_i), 
+                    :class => 'select2',
+                    :include_blank => true %>
+            <% end %>
+        </div>
+
+        <div class="clearing"></div>
+
+        <div id="lead_time_people">
+            <%if @lead_time_users.blank? -%>
+                <div class="no_free_users">
+                    <span class="large_blue_narrow">Everyone is busy</span>
+                    <p class="no_alerts_description">Sorry, we couldn't find a date when someone suitable is next available.</p>
+                </div>
+            <%else-%>
+                <div class="inner_lead_time_people">
+                    <ul class="inline_content_list">
+                        <% @lead_time_users.each_with_index do |free_slot, index| %>
+                            <%= content_tag_for(:li, free_slot[1][:user]) do %>
+                                <%= avatar(free_slot[1][:user], 80) %>
+                                <div class="inner_user_container">
+                                    <span class="name"><%=link_to truncate(free_slot[1][:user].name, :length => 20), user_path(free_slot[1][:user]), :class => 'grey_link'%></span>
+                                    <div class="info">
+                                        <%= pluralize(free_slot[1][:user].teams.count, 'Team').split(' ')[1] %>:
+                                        <span class="dark_green">
+                                            <%= free_slot[1][:user].teams.map(&:name).to_sentence %>
+                                        </span><br />
+                                        Next available:
+                                        <span class="<%= free_slot[1][:start_date].today? ? 'red_text' : 'dark_green' %>"><%=next_available_in_words free_slot[1][:start_date]%></span><br/>
+                                        Available for: <span class="dark_green"> <%=available_for_in_words(free_slot[1][:start_date], free_slot[1][:end_date])%></span>
+                                    </div>
+                                </div>
+                            <% end %>
+                        <% end %>
+                    </ul>
+                    <div class="clearing"></div>
+                </div>
+            <%end-%>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function(){
+        $('.select2#team_id').select2({
+            allowClear: true,
+            placeholder: 'People available this week'
+        });
+        $('.select2').css({
+            'float':'left',
+            'margin-bottom':'20px;',
+            'width': '200px'
+        });
+        $('#team_form').change(function() {
+            $('#team_form').submit();
+        });
+    });
+</script>

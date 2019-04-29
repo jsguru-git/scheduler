@@ -1,0 +1,6 @@
+// Replace content in lightbox div
+$("#main_lightbox_content").html("<%= escape_javascript(render(:partial => 'features/new_feature', :locals => {:feature => @feature, :project => @project})) %>");
+
+// Open lightbox
+main_lightbox.change_height_to(300);
+main_lightbox.open();

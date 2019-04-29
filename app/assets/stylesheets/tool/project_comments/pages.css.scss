@@ -1,0 +1,30 @@
+/*====== project_comments_index ======*/
+#project_comment_list {
+    
+    .action_links {
+        padding: 0 0 20px 0;
+        
+        a {
+            display: inline-block;
+        }
+    }
+    
+    ul.comment_list {
+        
+        li.no_comments {
+            background: whitesmoke;
+            padding: 30px;
+            text-align:center;
+        }
+
+		.inner_comment_text {
+			padding: 0 0 0 21px;
+		}
+    }
+    
+    .new_comment_container {
+        margin-bottom: 20px;
+    }
+    
+}
+/*====== end project_comments_index ======*/

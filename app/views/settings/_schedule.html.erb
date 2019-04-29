@@ -1,0 +1,46 @@
+<div class="padding_bottom_30">
+    <p>When an opportunity becomes stale, the project manager will be emailed. If you would like additional people to receive all these alerts, please enter their email address below.</p>
+    <div class="form_row">
+        <div class="form_text">
+            <%=f.label :stale_opportunity_email, 'Email address'%>
+        </div>
+        <div class="form_field">
+            <%=f.text_field :stale_opportunity_email, :class => 'text'%>
+            <p class="explicit_text">Comma separated email list.</p>
+        </div>
+        <div class="clearing"></div>
+    </div>
+</div>
+
+<p>If you would like someone to receive an email outlining the schedule for teams, please complete the details below.</p>
+
+<div class="form_row">
+    <div class="form_text">
+        <%=f.label :schedule_mail_frequency, 'Frequency'%>
+    </div>
+    <div class="form_field">
+		<%= f.select :schedule_mail_frequency, SELECTIONS['mail_frequency'].sort.collect  {|key, value| [ value, key ] }, { :include_blank => false } %>
+		
+		<div class="explicit_text">
+			<%if f.object.schedule_mail_frequency == 0 -%>
+				Currently set to send every day.
+			<%elsif f.object.schedule_mail_frequency == 1 -%>
+				Currently set to send at the beginning of every week.
+			<%elsif f.object.schedule_mail_frequency == 2 -%>
+				Currently set to send at the beginning of every month.
+			<%end-%>
+		</div>
+    </div>
+    <div class="clearing"></div>
+</div>
+
+<div class="form_row">
+    <div class="form_text">
+        <%=f.label :schedule_mail_email, 'Email address'%>
+    </div>
+    <div class="form_field">
+        <%=f.text_field :schedule_mail_email, :class => 'text'%>
+        <p class="explicit_text">Comma separated email list.</p>
+    </div>
+    <div class="clearing"></div>
+</div>

@@ -1,0 +1,257 @@
+/*====== documents_index ======*/
+#documents_index {
+    
+    .action_links {
+        padding: 0 0 30px 0;
+        
+        a {
+            display: inline-block;
+            margin-right: 20px;
+            width: 200px;
+        }
+    }
+    
+    ul#attached_docuemnt_list {
+        
+        li.no_content {
+            background: whitesmoke;
+            padding: 30px;
+            text-align:center;
+        }
+        
+        li.document {
+            padding: 0 0 30px 0;
+            
+            .doc_heading_outer {
+                position: relative;
+            
+                .doc_heading {
+                    background: url(tool/icons/file_icons.png) no-repeat left top;
+                    padding: 0 65px 30px 100px;
+                
+                    a {
+                        display: block;
+                    	overflow: hidden;
+                    	text-overflow: ellipsis;
+                    	white-space: nowrap;
+                    	width: 100%;
+                    }
+                    
+                    .doc_summary {
+                        color: #999999;
+                        padding: 5px 0 0 0;
+                    }
+                }
+                
+                .document {
+                    background-position: left -200px;
+                }
+                
+                .pdf {
+                    background-position: left -800px;
+                }
+                
+                .presentation {
+                    background-position: left -600px;
+                }
+                
+                .spreadsheet {
+                    background-position: left -400px;
+                }
+                
+                .image {
+                    background-position: left -1000px;
+                }
+                
+                .zip {
+                    background-position: left -1200px;
+                }
+                
+                .doc_actions {
+                    position: absolute;
+                    right: 0;
+                    top: 23px;
+                }
+            }
+
+            .action_links {
+                padding: 0 0 30px 0;
+
+                a {
+                    display: inline-block;
+                    width: auto;
+                }
+            }
+            
+        }
+        
+    }
+    
+}
+/*====== end documents_index ======*/
+
+
+/*====== file_chooser ======*/
+#provider_cont {
+    position: relative;
+
+    #provider_switch_link {
+        position: absolute;
+        right: 10px;
+        top: 0;
+    }
+}
+
+#file_chooser {
+    
+    .list_cont {
+        margin: 0 0 20px 0;
+        overflow-y: auto;
+    
+        ul.item_list {
+        
+            li {
+                padding: 0 0 6px 0;
+                
+                .checkbox_cont {
+                    float: left;
+                    display: block;
+                    padding: 3px 0 0 0;
+                    width: 30px;
+                }
+            
+                .name_cont {
+                    background: url(tool/icons/file_icons_small.png) no-repeat left top;
+                    display: block;
+                    float: left;
+                    padding: 6px 0 6px 30px;
+                    
+                    label {
+                        display: block;
+                        line-height: 1;
+                        overflow: hidden;
+                        white-space: nowrap;
+                        -o-text-overflow: ellipsis;
+                        -ms-text-overflow: ellipsis;
+                        text-overflow: ellipsis;
+                    }
+                }
+                
+                .document {
+                    background-position: left -100px;
+                }
+                
+                .pdf {
+                    background-position: left -400px;
+                }
+                
+                .presentation {
+                    background-position: left -300px;
+                }
+                
+                .spreadsheet {
+                    background-position: left -200px;
+                }
+                
+                .image {
+                    background-position: left -500px;
+                }
+                
+                .zip {
+                    background-position: left -600px;
+                }
+                
+                .folder {
+                    background-position: left -795px;
+                }
+                
+                .back {
+                    background-position: left -895px;
+                }
+            }
+        }
+    }
+    
+    #tab_cont {
+        margin-bottom: 20px;
+    }
+    
+    .tab_spinner_cont {
+        position: relative;
+        
+        img {
+            position: absolute;
+            right: 0;
+            top: -61px;
+        }
+    }
+    
+    .title_search_form {
+        padding-bottom: 10px;
+        
+        .search_col_1 {
+            float: left;
+            padding: 3px 0 0 0;
+            width: 100px;
+        }
+        
+        .search_col_2 {
+            float: left;
+            width: 490px;
+            
+            input.text {
+                width: 93%;
+            }
+        }
+        
+        .search_col_3 {
+            float: left;
+            width: 100px;
+            
+            input.submit {
+                padding-bottom: 4px;
+                padding-top: 4px;
+            }
+        }
+    }
+    
+    .list_cont {
+        height: 220px;
+    }
+    
+    .search_list_cont {
+        height: 170px;
+    }
+    
+    .small_folder_list_cont {
+        height: 160px;
+    }
+    
+    .small_search_list_cont {
+        height: 110px;
+    }
+    
+    .no_content {
+        text-align: center;
+    }
+    
+	.file_attach_button {
+		text-align: right;
+
+		.left_text {
+			float: left;
+			font-size: 0.9em;
+			text-align: left;
+			width: 50%;
+		}
+
+		.right_text {
+			float: right;
+			text-align: right;
+			width: 50%;
+		}
+	}
+
+    
+}
+/*====== end file_chooser ======*/

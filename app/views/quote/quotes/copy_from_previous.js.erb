@@ -1,0 +1,17 @@
+// Remove all existing activities
+$("ul#activity_list li:not(:first-child)").remove();
+
+// Add new ones
+<%@quote.quote_activities.position_ordered.each do |quote_activity| -%>
+    $("#activity_list").append("<%= escape_javascript(render(:partial => 'quote/quote_activities/display_activity', :locals => {:quote_activity => quote_activity})) %>");
+    
+    $('#<%=dom_id(quote_activity)%>').delay(200).effect("highlight", {}, 3000);
+<%end-%>
+
+// Update total cost
+$('#total_cost_excl_cont').replaceWith("<%= escape_javascript(render(:partial => 'quote/quotes/total_cost_excl', :locals => {:quote => @quote})) %>");
+$('#total_cost_incl_cont').replaceWith("<%= escape_javascript(render(:partial => 'quote/quotes/total_cost_incl', :locals => {:quote => @quote})) %>");
+$('#total_report_currency_cont').replaceWith("<%= escape_javascript(render(:partial => 'quote/quotes/total_report_currency', :locals => {:quote => @quote})) %>");
+
+// Show message
+main_notification.display_message('<%=SELECTIONS["quote_copy_reasons"][@copied]%>');

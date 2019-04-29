@@ -1,0 +1,21 @@
+#notificaiton_container {
+    position: fixed;
+    top: 0px;
+    border-bottom: 1px solid rgba(200,200,200,0.5);
+    background: rgba(255,255,255,0.8);
+    width: 100%;
+    z-index:1004;
+
+    p {
+        color: #93A54F;
+        display: block;
+        opacity: 0.8;
+        filter:alpha(opacity=80); /* For IE8 and earlier */
+        font-weight: bold;
+        line-height: 1.2;
+        margin: auto;
+        padding: 15px;
+        text-align: center;
+        width: 700px;
+    }
+}

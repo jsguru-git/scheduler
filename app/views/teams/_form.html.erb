@@ -1,0 +1,18 @@
+<div class="form_row">
+    <div class="form_text">
+        <%=f.label :name, 'Team name'%>
+    </div>
+    <div class="form_field">
+        <%=f.text_field :name, :class => 'text'%><span class="required"> *</span>
+    </div>
+    <div class="clearing"></div>
+</div>
+<div class="form_row">
+    <div class="form_text">
+        <%= label_tag 'Team'%>
+    </div>
+    <div id="users" class="form_field">
+        <%= select_tag :users, options_for_select(@account.users.map { |u| [u.name, u.id] }, disabled: @team.users.map(&:id)), include_blank: true %>
+    </div>
+    <div class="clearing"></div>
+</div>

@@ -1,0 +1,539 @@
+@mixin no-select {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+@mixin border-radius ($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  -o-border-radius: $radius;
+  border-radius: $radius;
+}
+
+@mixin transition($property: all, $duration: 0.5s, $function: ease-in-out) {
+  -moz-transition: $property $duration $function;
+  -o-transition: $property $duration $function;
+  -webkit-transition: $property $duration $function;
+  transition: $property $duration $function;
+}
+
+@mixin box-shadow($shadow: 0 1px 3px rgba(0, 0, 0, 0.25)) {
+  -webkit-box-shadow: $shadow;
+  -moz-box-shadow: $shadow;
+  box-shadow: $shadow;
+}
+
+@mixin elipsis() {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  -ms-text-overflow: ellipsis;
+}
+
+// MODAL OVERLAYS
+
+.ui-datepicker {
+  height: 200px ;
+  width: 200px;
+  font-size:12px;
+  float:left;
+}
+
+#main_lightbox_content {
+
+  .actions {
+    clear:both;padding:20px 0;
+    input { margin-right:5px; }
+  }
+
+  .span-block {
+    width:40px;
+    float:left;
+    text-align:center;
+
+  }
+}
+
+// END MODAL
+
+
+#tracktimings_index #outer_container:not(textarea, input, .time-editor) {
+  @include no-select;
+}
+
+body#tracktimings_index {
+  @include no-select();
+}
+
+.csv_link {
+  margin: 20px 30px 20px 20px;
+  font-weight: bold;
+  padding-right: 10px;
+  position: relative;
+  top: -7px;
+}
+
+.time_display {
+  color: #FFF;
+  background: rgba(0,0,0,0.5);
+  padding: 5px 10px;
+  @include border-radius(5px);
+}
+
+.time_indicator {
+  @extend .time_display;
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  display: none;
+  z-index: 99999999999999999;
+}
+
+.current_time {
+  @extend .time_display;
+  position: absolute;
+  right: 0px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.noise {
+  position: relative;
+  z-index: 1;
+}
+
+.ghost {
+  width: 90%;
+  max-width: 90%;
+  min-width: 90%;
+  margin: 0 5%;
+  height: 3px;
+  background: rgba(155,155,155,0.2);
+  position: absolute;
+  border: 1px dotted #aaa;
+  @include border-radius(5px);
+}
+
+#tracktimings_index {
+
+  #inner_timing_grid {
+    margin-top: 20px;
+    cursor: crosshair;
+    @include no-select;
+  }
+
+  #inner_timing_grid .day_container:nth-child(odd) {
+    background: rgba(200,200,200,0.1);
+  }
+
+  #timer-toggle {
+    cursor: pointer;
+    float: left;
+    margin: 10px 0 0 200px;
+  }
+
+  #timer-toggle #status.on {
+    color: #398610;
+  }
+
+  #timer-toggle #status.off {
+    color: #E11500;
+  }
+
+  #timer-toggle #duration {
+    text-align: left;
+  }
+
+  .entry {
+    min-height: 4px;
+    background-color: #ccc;
+    border-radius: 3px;
+    position: absolute;
+    overflow: visible;
+    width: 90%;
+    max-width: 90%;
+    min-width: 90%;
+    margin: 0 5%;
+    cursor: move;
+    @include no-select;
+    color: #333;
+    a {
+      color: #FFF ;
+    }
+
+    .tooltip {
+      display: none;
+      position: absolute;
+      bottom: -40px;
+      left: 0px;
+      width: 100%;
+      background-color: #eee;
+      color: #fff;
+      height: 40px;
+      z-index: 999;
+      @include box-shadow();
+
+      .opt {
+        display: block !important;
+      }
+    }
+
+    .ui-resizable-s {
+      height: 20px;
+      width: 25%;
+      left: 25%;
+      bottom: 5px;
+      background: url("tool/track/icon2.png") no-repeat center;
+    }
+
+    .opt {
+      display: block;
+      width: 25%;
+      height: 20px;
+      float: left;
+      color: rgba(0,0,0,0.3);
+      position: absolute;
+      bottom: 5px;
+    }
+
+    .border-dotted {
+      background: url("tool/track/border.png") repeat-x;
+      height: 2px;
+      width: 100%;
+      margin-top: 20px;
+    }
+
+    .edit-entry {
+      left: 0;
+      background: url("tool/track/icon1.png") no-repeat center;
+    }
+
+    .duplicate-entry {
+      left: 50%;
+      background: url("tool/track/icon4.png") no-repeat center;
+    }
+
+    .remove-entry {
+      left: 75%;
+      background: url("tool/track/icon3.png") no-repeat center;
+    }
+
+    .actions {
+      margin-top: 10px;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      position: absolute;
+      bottom: 5px;
+      left: 10px;
+      width: 100%;
+    }
+
+    .project_title {
+      margin: 10px 0 0 10px;
+      text-transform: uppercase;
+      color: rgba(0,0,0,0.4);
+      font-weight: bold;
+      word-break: hyphenate;
+      @include elipsis();
+    }
+
+    .task_title {
+      font-weight: bold;
+      margin-left: 10px;
+      color: rgba(0,0,0,0.4);
+      word-break: hyphenate;
+      @include elipsis();
+    }
+  }
+
+  .entry.minimize {
+    .border-dotted, .task_title {
+      display: none;
+    }
+  }
+
+  .entry.minimize-half {
+    .border-dotted, .inner_content {
+      display: none;
+    }
+  }
+
+  .entry.minimize-full {
+    .border-dotted, .opt, .inner_content {
+      display: none;
+    }
+    .ui-resizable-handle {
+      background: none;
+    }
+  }
+
+  .entry.submitted {
+    cursor: auto;
+    opacity: 0.4;
+    filter: alpha(opacity=40);
+    .remove-entry {
+      display: none;
+    }
+  }
+
+  .day_container {
+    position: relative;
+    max-width: 187px;
+  }
+
+  .day_container[data-submitted=true] { cursor: auto; }
+  *[data-admin=true] .day_container { cursor: crosshair; }
+
+  .submit-loader {
+    background: url("tool/ajax/ajax_spinner.gif") no-repeat center 40%;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    position: relative;
+    top: 6px;
+    display: none;
+  }
+  
+  .time-editor {
+    position: absolute;
+    background: #fff;
+    border: 1px solid #ccc;
+    @include border-radius(10px);
+    padding: 20px;
+    min-height: 265px;
+    width: 260px;
+    top: 50%;
+    left: 50%;
+    z-index: 99999;
+    cursor: move;
+
+    #quick_links {
+      margin: 0 0 20px 0;
+      height: 32px;
+
+      &:after {
+        clear: both;
+      }
+
+      li {
+        display: inline;
+      }
+
+      a {
+        display: block;
+        width: 32px;
+        height: 32px;
+        background: url("tool/track/icons.png") no-repeat 0 0;
+        float: left;
+        opacity: 0.5;
+        margin-right: 20px;
+        @include transition();
+      }
+
+      a:hover {
+        opacity: 1
+      }
+
+      /* Icon sprite */
+
+      #link_break {
+        background-position: -80px -8px;
+        width: 30px;
+      }
+
+      #link_lunch {
+        background-position: -30px -8px;
+        width: 30px;
+      }
+
+      #link_leave {
+        background-position: -137px -7px;
+        width: 30px;
+      }
+
+      #link_absence {
+        background-position: -195px -7px;
+        width: 30px;
+      }
+
+      #link_sick {
+        background-position: -240px -7px;
+        margin-right: 0;
+      }
+    }
+
+    .time-editor-field {
+      padding: 2px;
+
+      select {
+        height: 26px;
+      }
+    }
+
+    .to_field label { margin-right: 37px; }
+
+    .arrow {
+      background: url("tool/track/box-top.png") no-repeat center;
+      width: 100%;
+      height: 40px;
+      position: absolute;
+      top: -32px;
+      left: 0;
+      z-index: 9999999999999;
+    }
+
+    #tracktimings_index .time-editor .select_time {
+      width: 100%;
+      margin: 15px 0;
+      clear: both;
+      height: 20px;
+
+      label {
+        float: left;
+        margin-right: 10px;
+      }
+    }
+
+    .minute_select, .hour_select {
+      width: 50px;
+      float: left;
+      margin-right: 5px;
+      padding:3px;
+    }
+
+    h2 {
+      color: #777;
+      margin-top: 10px;
+      margin-bottom: 0;
+    }
+
+    select {
+      width: 100%;
+      padding: 5px;
+      @include elipsis();
+      text-overflow: elipsis;
+      option {
+        text-overflow: elipsis;
+      }
+    }
+
+    select.project {
+      float: left;
+    }
+
+    .select2-container {
+      width: 232px;
+    }
+
+    #all_projects {
+      height: 26px;
+      margin: 0;
+      position: relative;
+      top: -1px;
+      display: block;
+      font-weight: bold;
+      float: right;
+      width: 26px;
+      background: #eee url(tool/track/folder.png) no-repeat center;
+      border: 1px solid #ccc;
+      @include transition(opacity, 0.3);
+      opacity: 0.5;
+      @include border-radius(5px);
+
+      &:hover {
+        opacity: 1
+      }
+    }
+
+    .inner {
+      background: #f0f0f0;
+      padding: 10px;
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    .notes {
+      clear: both;
+      width: 226px;
+      height: 50px;
+      padding: 2px;
+      border: 1px solid #ccc;
+    }
+
+    #time-errors {
+      background: #eee;
+      margin: 10px 0;
+      h4 {
+        margin-left: 10px;
+      }
+      li {
+        color: #C33;
+        list-style: none;
+        margin-left: 10px;
+      }
+    }
+
+    #loading {
+      width: 16px;
+      height: 16px;
+      margin: 0 0 10px;
+      position: absolute;
+      right: 40px;
+      top: 40px;
+      background: url("/assets/tool/ajax/ajax_spinner.gif");
+    }
+
+    .time-editor-field {
+      clear: both;
+      margin-bottom: 10px;
+      overflow: hidden;
+      label {
+        position:relative;
+        top:2px;
+      }
+    }
+
+    .half {
+      label, input {
+        float: left;
+        margin: 0 0 0 5px;
+        position: relative;
+        top: 3px;
+      }
+      input {
+        width: 40px;
+        padding: 7px;
+        border: 1px solid #ccc;
+        -webkit-focus-ring-color: auto 1px;
+      }
+      label {
+        margin-top: 4px;
+      }
+      margin:10px 0;
+      background: url(tool/layout/dashed_heading.png) repeat-x left bottom;
+      padding-bottom: 20px;
+      overflow: hidden;
+    }
+
+    label {
+      float: left;
+      margin-right: 20px;
+    }
+  }
+
+  .time-editor.submitted {
+    #quick_links, .time-editor-submit {
+      display: none;
+    }
+  }
+}
+

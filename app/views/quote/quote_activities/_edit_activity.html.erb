@@ -1,0 +1,10 @@
+<h2>Edit activity</h2>
+<%=form_for [:quote, project, quote, quote_activity], :remote => true, :html => {'data-spinner' => 'edit_activity_spinner'} do |f|%>
+    <%=render :partial => 'shared/notifications/error_messages', :object => quote_activity%>
+
+    <%=render :partial => 'form', :locals => {:f => f, :project => project}%>
+
+    <div class="submit_container">
+        <%= f.submit 'Save changes', :class => 'submit' %>&nbsp;<%=spinner_tag('edit_activity_spinner')%>
+    </div>
+<% end -%>

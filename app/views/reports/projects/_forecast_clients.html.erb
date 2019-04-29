@@ -1,0 +1,26 @@
+<% client_results.each do |month| %>
+  <td>
+    <% totals = { expected:  { amount: 0, incl_prepaid: false },
+                  requested: { amount: 0, incl_prepaid: false },
+                  sent:      { amount: 0, incl_prepaid: false } } %>
+    <% month.each do |report| %>
+      <% if report[:client_name] == client.name %>
+        <% totals.keys.each do |key| %>
+          <% totals[key][:amount] += report[key] %>
+          <% totals[key][:incl_prepaid] = true if report["#{ key }_incl_pre_payment".to_sym] %>
+        <% end %>
+      <% end %>
+    <% end %>
+    <% totals.keys.each do |key| %>
+      <div class="<%= "#{ key }_amount" %>">
+        <span class="result_row"><strong><%= key.capitalize %>:</strong></span>
+        <span class="result_row">
+          <%= formated_in_default_currency totals[key][:amount] %>
+          <%= '*' if totals[key][:incl_prepaid] %>
+        </span>
+      </div>
+    <div class="clearing"></div>
+    <% end %>
+
+  </td>
+<% end %>

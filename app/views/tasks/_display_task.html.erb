@@ -1,0 +1,44 @@
+<%= content_tag_for(:li, task) do %>
+    <div class="area_1">
+        <% if policy(task).update? %>
+            <div class="move_handle"></div>
+        <% end %>
+    </div>
+    <div class="content_areas">
+        <div class="area_2">
+            <span class="title_text">
+              <% if task.quote_activity.nil? && policy(task).update? %>
+                  <%= link_to (truncate task.name, :length => 120), edit_project_task_path(task.project, task), remote: true %>
+              <% else %>
+                  <%= truncate task.name %>
+              <% end %>
+            </span>
+        </div>
+
+        <div class="area_3">
+            <span class='detail'><%= task.rate_card.service_type rescue '' %></span>
+            <span class='detail'><%= minute_duration_scale_days(task.estimated_minutes, @account, 2) %></span>
+            <span class='detail'><%= minute_duration_scale_days task.submitted_time_tracked_minutes, @account, 2%></span>
+            <span class='detail'>
+                <%= form_for [task.project, task], url: archive_project_task_path(task.project, task), remote: true do |f| %>
+                    <%= f.check_box :archived %>
+                <% end %>
+            </span>
+        </div>
+        <div class="clearing"></div>
+    </div>
+
+    <div class="area_4">
+        <%if @account.account_setting.common_project_id != task.project.id -%>
+            <%= link_to 'Remove', project_task_path(task.project, task), :class => 'small_remove_button', :method => :delete, :data => {:confirm => 'Are you sure you want to remove this task?'}, :remote => true if policy(task).destroy? %>
+        <%end-%>
+    </div>
+
+    <div class="clearing"></div>
+<% end %>
+
+<script>
+    $('input#task_archived').unbind().change(function(){
+        $(this).parent('form').submit();
+    });
+</script>

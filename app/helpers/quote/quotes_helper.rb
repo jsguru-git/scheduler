@@ -1,0 +1,2 @@
+module Quote::QuotesHelper
+end

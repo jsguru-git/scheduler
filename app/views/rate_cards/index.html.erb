@@ -1,0 +1,32 @@
+<%@page_title = 'Default rate card'%>
+<%@second_nav = settings_second_nav('index')%>
+
+<div class="standard_two_col">
+    <div class="cell_1">
+        <%=render :partial => 'shared/page_heading'%>
+        
+        <div class="outer_table">
+            <ul class="service_type_list">
+                <%if @rate_cards.present? -%>
+                    <%for rate_card in @rate_cards -%>
+                        <%=render(:partial => 'display_rate_card', :locals => {:rate_card => rate_card})%>
+                    <%end-%>
+                <%end-%>
+            </ul>
+        </div>
+        <%if @rate_cards.blank? -%>
+            <div class="no_rate_card">
+                <span class="large_blue_narrow">No service types yet</span>
+                <p class="no_members">FleetSuite allows you to create a rate card detailing how much each service type should typically cost. If a certain client then has a specific non-standard rate, this can then be added under the clients section.</p>
+            </div>
+        <%end-%>
+       
+    </div>
+
+    <div class="cell_2">
+        <div id="action_links">
+            <%=link_to raw('<span class="add">New service</span>'), new_rate_card_path, :remote => :true%>
+            <div class="clearing"></div>
+        </div>
+    </div>
+</div>

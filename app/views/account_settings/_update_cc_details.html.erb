@@ -1,0 +1,8 @@
+<%# currently need to manually reactive suspended accounts, until chargify's hosted payment pages do this automatically%>
+<div class="indent_container">
+    <%if account.account_suspended -%>
+        <p class="padding_0">Your account has been suspended, please <%=link_to 'contact us', support_link%> to re-active it.</p>
+    <%else -%>
+        <p class="padding_0">You can update your payment details at any time, once updated the new details will then be used for all future payments.<br/><br/> Please visit our <%=link_to 'secure payments page', account.chargify_hosted_signup_link%> to do this now.</p>
+    <%end-%>
+</div>

@@ -1,0 +1,135 @@
+<% @page_title = 'Payment predictions' %>
+
+<div class="standard_one_col">
+    <div class="cell_1">
+        <%= render :partial => 'shared/page_heading' %>
+        
+        <div class="search_container">
+            <h3>Filter results</h3>
+
+            <%=form_tag payment_predictions_reports_invoices_path, :method => :get  do %>
+                <div class="form_row">
+                    <div class="form_text">
+                        <%=label_tag :start_date%>
+                    </div>
+                    <div class="form_field date_cal_field_container">
+                        <%=text_field_tag :start_date, @cal.start_date, :class => 'datepicker number'%>
+                        <%=image_tag '/assets/tool/icons/calendar_32.png', :size => '32x32', :class => 'cal_icon', :alt => 'Select start date'%>
+                    </div>
+                    <div class="clearing"></div>
+                </div>
+                
+                <div class="form_row">
+                    <div class="form_text">
+                        <%=label_tag :end_date%>
+                    </div>
+                    <div class="form_field date_cal_field_container">
+                        <%=text_field_tag :end_date, @cal.end_date, :class => 'datepicker number'%>
+                        <%=image_tag '/assets/tool/icons/calendar_32.png', :size => '32x32', :class => 'cal_icon', :alt => 'Select end date'%>
+                    </div>
+                    <div class="clearing"></div>
+                </div>
+                
+                <div class="form_row">
+                    <div class="form_text">
+                        <%=label_tag :team_id%>
+                    </div>
+                    <div class="form_field date_cal_field_container">
+                        <%=select_tag :team_id, options_for_select(@account.teams.name_ordered.collect {|p| [ p.name, p.id.to_s ] }, params[:team_id]), :include_blank => true%>
+                    </div>
+                    <div class="clearing"></div>
+                </div>
+                
+                <div class="submit_container">
+                    <%= submit_tag 'Search now', :class => 'submit' %>
+                </div>
+                
+                <div class="month_switch">
+                    <div class="left">
+                        <%=link_to 'Previous month', payment_predictions_reports_invoices_path(:team_id => params[:team_id], :start_date => (@cal.start_date - 1.month).beginning_of_month, :end_date => (@cal.start_date - 1.month).end_of_month)%> 
+                    </div>
+                    <div class="right">
+                        <%=link_to 'Next month', payment_predictions_reports_invoices_path(:team_id=> params[:team_id], :start_date => (@cal.start_date + 1.month).beginning_of_month, :end_date => (@cal.start_date + 1.month).end_of_month)%>
+                    </div>
+                    <div class="clearing"></div>
+                </div>
+                
+            <%end-%>
+        </div>
+        
+        <%=render :partial => 'payment_prediction_totals', :locals => {:totals => @totals}%>
+        
+        <div class="outline_container">
+            <table class="results_table">
+                <tr class="heading_table">
+                    <th>Client</th>
+                    <th>Project</th>
+                    <th>Team</th>
+                    <th>Account Owner</th>
+                    <th>Expected</th>
+                    <th>Expected Date</th>
+                    <th>Requested</th>
+                    <th>Sent</th>
+                </tr>
+                <%if @results.present? -%>
+                    <%@results.each do |key, result| -%>
+                        <tr>
+                            <td><%=result[:client_name]%></td>
+                            <td><%=link_to result[:project_name], invoice_project_invoices_path(result[:id])%> <%= content_tag :em, '(Opportunity)' if result[:project_status] == 'opportunity' %></td>
+                            <td>
+                                <%if result[:team_name].present? -%>
+                                    <%=result[:team_name]%>
+                                <%end-%>
+                            </td>
+                            <td>
+                                <%if result[:account_owner].present? -%>
+                                    <%=result[:account_owner]%>
+                                <%end-%>
+                            </td>
+                            <td>
+                                <%if result[:expected] != 0%>
+                                    <%=formated_in_default_currency(result[:expected])%>
+                                <%end-%>
+                            </td>
+                            <td>
+                                <% if result[:expected_payment_date].present? %>
+                                    <% class_colour = Date.parse(result[:expected_payment_date].to_s) < Date.today ? 'red' : '' %>
+                                    <%= content_tag :span, fmt_long_date(result[:expected_payment_date]), class: class_colour %>
+                                <% end %>
+                            </td>
+                            <td>
+                                <%if result[:requested] != 0%>
+                                    <%=formated_in_default_currency(result[:requested])%>
+                                    <%='*' if result[:requested_incl_pre_payment]%>
+                                <%end-%>
+                            </td>
+                            <td>
+                                <%if result[:sent] != 0%>
+                                    <%=formated_in_default_currency(result[:sent])%>
+                                    <%='*' if result[:sent_incl_pre_payment]%>
+                                <%end-%>
+                            </td>
+                        </tr>
+                    <%end-%>
+                <%end-%>
+            </table>
+        </div>
+        <p class="light_text padding_top_10">* = Includes one or more pre-payment invoice.</p>
+        
+        <%if @results.blank? -%>
+            <p class="no_content">No payment profiles have been found for the given time period.</p>
+        <%end-%>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    // Datepicker for invoice cration
+    $( "#invoicereports_payment_predictions .datepicker" ).datepicker({ dateFormat: 'yy-mm-dd' });
+
+    $('#invoicereports_payment_predictions .cal_icon').click(function() {
+        var idx = $('#invoicereports_payment_predictions .cal_icon').index(this);
+        $('#invoicereports_payment_predictions .datepicker').eq(idx).trigger('focus');
+        return false;
+    });
+</script>

@@ -1,0 +1,25 @@
+<%if @saved -%>
+  // Remove error spans if there are any
+  new_quote_creation.clear_all_error_alerts();
+  
+  // Update total cost
+  $('#total_cost_excl_cont').replaceWith("<%= escape_javascript(render(:partial => 'quote/quotes/total_cost_excl', :locals => {:quote => @quote})) %>");
+  $('#total_cost_incl_cont').replaceWith("<%= escape_javascript(render(:partial => 'quote/quotes/total_cost_incl', :locals => {:quote => @quote})) %>");
+  $('#total_report_currency_cont').replaceWith("<%= escape_javascript(render(:partial => 'quote/quotes/total_report_currency', :locals => {:quote => @quote})) %>");
+  
+  // Display notification
+  main_notification.display_message('Changes saved');
+<%else-%>
+  // Remove error spans if there are any
+  new_quote_creation.clear_all_error_alerts();
+
+  // Add new messages and hightlight fields
+  <%@quote.errors.each do |attribute, errors| -%>
+      <%human_error = attribute.to_s.humanize + ' ' +  errors%>
+	  new_quote_creation.highlight_failed_reason('quote', '<%=attribute.to_s%>', '<%=escape_javascript(human_error)%>');
+  <%end-%>
+  
+  <%unless @quote.editable? -%>
+     new_quote_creation.highlight_failed_reason('quote', 'base', 'Quote is no longer editable as there is either a new version or the status is no longer in-progress');
+  <%end-%>
+<%end-%>

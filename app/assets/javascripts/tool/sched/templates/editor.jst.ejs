@@ -1,0 +1,81 @@
+<div class="calendar-editor ui-draggable">
+  <div class="inner">
+    <div class="errors">
+      <div class="info"></div>
+      <ul></ul>
+      </div>
+      <% if(this.model.get('project_id')) { %>
+        <h3>Edit Schedule Entry</h3>
+      <% } else { %>
+        <h3>New Schedule Entry</h3>
+      <% } %>
+      <div class="row">
+        <div class="label"> Client (optional)</div>
+        <select class="select2 clients" id="client" style="width:100%;">
+        <option></option>
+        <% this.clients.each(function(client){ %>
+           <option value="<%= client.get('id') %>"><%= client.get('name') %></option>
+        <% }); %>
+      </select>
+      </div>
+      <div class="row">
+        <div class="float_right"><a href="/projects/new">Add new project</a></div>
+        <div class="label">Project</div>
+      <select class="select2 projects" name="project_id" style="width:100%;">
+        <option></option>
+        <% if(this.filteredRecentProjects.length > 0) { %>
+          <optgroup label="Recent Projects">
+            <% this.filteredRecentProjects.each(function(entry) { %>
+               <option value="<%= entry.get('name') %>"><%= entry.get('name') %></option>
+            <% }); %>
+          </optgroup>
+        <% } %>
+        <optgroup label="All Projects">
+          <% for(var i=0; i < this.filteredProjects.length; i++) {%>
+             <option value="<%= this.filteredProjects[i].attributes.name %>"><%= this.filteredProjects[i].attributes.name %></option>
+          <% } %>
+        </optgroup>
+      </select>
+      <div class="opportunity-dialog" style="background-color:#F7F7BE;margin:10px;">
+          <p>This project will become scheduled. Would you like to keep it as an opportunity?</p>
+          <div id="opportunity-radio" style="float:left;padding-right:5px;">
+            <label for="opportunity">Opportunity</label>
+            <input type="radio" name="status" id="opportunity" value="opportunity">
+          </div>
+          <div>
+            <label for="scheduled">Scheduled</label>
+            <input type="radio" name="status" id="scheduled" value="scheduled" checked>
+          </div>
+      </div>
+      </div>
+      <div class="row">
+        <div class="date-field">
+          <div class="label">From:</div>
+          <input type="text" class="text date date-start" />
+        </div>
+
+        <div class="date-field">
+          <div class="label"> To:</div>
+          <input type="text" class="text date date-end" />
+        </div>
+
+        <div class="date-field">
+          <div class="label">&nbsp;</div>
+          Exclude non-working days: 
+          <input type="checkbox" name='exclude_non_working_days' checked />
+        </div>
+      </div>
+      <div class="row row-submit float_right">
+        <input type="button" class="submit create" value="Save Changes" />
+         or
+        <input type="button" class="cancel" value="Cancel" />
+      </div>
+      <% if(this.model.get('project_id')) { %>
+        <div class="float_left padding_top_15">
+          <input type="button" class="delete" value="Delete" />
+        </div>
+      <% } %>
+    </div>
+  <div class="mask"></div>
+</div>
+

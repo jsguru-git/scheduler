@@ -1,0 +1,59 @@
+---
+index:
+  steps:
+    - title: Create A Project
+      content: "Click here to add your first project."
+      target: new_project_link
+      placement: left
+      yOffset: -20
+new:
+  steps:
+    - title: Basic Project Details
+      target: project_name
+      content: Fill in the project details, providing as much information as possible.
+      placement: top
+
+    - title: Add a Client
+      target: new_client_button
+      content: Click to add the client that this project will be associated with.
+      placement: right
+      yOffset: -20
+      nextOnTargetClick: true
+      onNext: 
+        - show
+
+    - title: Client Details
+      target: main_lightbox_content
+      content: Who is the client on this project? This could be an external organisation, a department within your organisation, ‘internal’ or similar.
+      placement: right
+
+    - title: Assigning Projects
+      target: project_business_owner_id
+      content: Once you’ve added more users to your account you can assign projects to individual teams and team members. This information is not mandatory, and can also be added in at a later date.
+      placement: right
+      yOffset: -20
+
+    - title: Further Details
+      target: project_current_rag_status
+      content: You can provide extra detail about the project if required. If nothing is specified default choices will be applied to the project, which can be updated at any time.
+      placement: right
+      yOffset: -20
+
+    - title: Save Your Project
+      target: submit_button
+      content: Click here to create your project!  
+      placement: right
+      yOffset: -15
+
+show:
+  steps:
+    - title: Add Activities
+      target: activities_tab
+      content: Now you’ve created a project, add its component activities by clicking on this tab.
+      placement: bottom
+
+track:
+  steps:
+    - title: Create an Entry
+      content: Click on the timesheet to create your first tracking entry using drag-and-drop – don’t worry if it’s not accurate, the details can always be updated later.
+      placement: left

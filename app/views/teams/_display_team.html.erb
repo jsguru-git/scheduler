@@ -1,0 +1,41 @@
+<%=content_tag_for(:li, team) do%>
+    <div class="point_container">
+        <div class="point_container_left">
+            <div class="inner_container_bottom">
+                <div class="inner_point_container_right">
+                    <%if team.users.present? -%>
+                        <%for user in team.users.not_archived.limit(20) -%>
+                            <div class="point user">
+                                <%= avatar(user, 80) %>
+                                <span class="name">
+                                    <%= user.firstname %>
+                                    <span class="left-fade"></span>
+                                </span>
+                            </div>
+                        <%end-%>
+                        <div class="clearing"></div>
+                    <%else-%>
+                        <span class="large_blue_narrow">No team members</span>
+                        <p class="no_members">Add some people to this team now, <%=link_to 'edit', users_path%> their profiles and select the teams that they belong to.</p>
+                    <%end-%>
+                </div>
+            </div>
+        </div>
+        <div class="point_container_right">
+            <h3 class="larger"><%=truncate team.name, :length => 16%></h3>
+            <span class="large_blue_narrow"><%=pluralize team.users.length, 'Team member'%></span>
+            <p class="team_intro"><%=team.name%> was created on <%=fmt_long_date team.created_at%> and has <%=pluralize team.users.length, 'team member'%>.</p>
+            
+                <% if policy(Team).update? %>
+                    <%=link_to 'Edit team', edit_team_path(team), :remote => true, 'data-spinner' => "#{dom_id(team)}_spinner", :class => 'edit_button'%>
+                <% end %>
+                <% if policy(team).destroy? %>
+                    <%=link_to 'Remove team', team_path(team), :method => :delete, :data => {:confirm => 'Are you sure you want to remove this team?'}, :class => 'remove_button'%>
+                <% end %>
+                &nbsp;<%=spinner_tag("#{dom_id(team)}_spinner")%>
+            <div class="clearing"></div>
+
+        </div>
+        <div class="clearing"></div>
+    </div>
+<%end%>

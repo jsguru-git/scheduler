@@ -1,0 +1,31 @@
+<div class="float_right">
+  <% if @account.account_setting.common_project_id != @project.id %>
+    <% if policy(Task).create? %>
+      <%= link_to new_project_feature_path(@project), remote: true, class: 'new_feature standard_button_link' do %>
+        <%= content_tag :span, 'Add category', class: 'add_color' %>
+      <% end %>
+      <%= link_to new_project_task_path(@project), remote: true, class: 'new_task standard_button_link', id: "add_activity_button" do %>
+        <%= content_tag :span, 'Add activity', class: 'add_color' %>
+      <% end %>
+    <% end %>
+
+    <% if policy(Task).create? %>
+      <%= link_to new_import_quote_project_tasks_path(@project), remote: true, class: 'new_task standard_button_link' do %>
+        <%= content_tag :span, 'Import from quote', class: 'add_color' %>
+      <% end %>
+    <% end %>
+
+  <% end %>
+</div>
+
+<script>
+  hopscotch.registerHelper('show', function() {
+    hopscotch.endTour(false);
+    setTimeout(function() {
+      hopscotch.startTour(tour);
+      hopscotch.showStep(1);
+      debugger
+      $('.hopscotch-bubble-arrow-container').removeClass('left right up down');
+    }, 200);
+  });
+</script>

@@ -1,0 +1,25 @@
+<%=content_tag_for :li, quote_default_section do%>
+    <div class="outline_container">
+        <div class="section_container">
+            <div class="drag">
+                <div class="move_handle"></div>
+            </div>
+            <div class="content">
+				<%if quote_default_section.cost_section? -%>
+                    <div class="cost_text">&nbsp;</div>
+                <%else-%>
+       	    	 	<%=form_for quote_default_section, url: quote_default_section_path(quote_default_section) do |fs| -%>
+		                <%=fs.text_field :title, class: 'text', placeholder: 'Title'%>
+		                <%=fs.text_area :content, rows: 5, class: 'text', placeholder: 'Content'%>
+		                <%=fs.submit 'Save changes', class: 'submit'%>
+		            <%end-%>
+				<%end -%>
+            </div>
+            <div class="delete">
+				<%unless quote_default_section.cost_section? -%>
+					<%=link_to 'Remove', quote_default_section_path(quote_default_section), remote: true, method: :delete, class: 'remove_button', confirm: 'Are you sure?', data: {spinner: "#{dom_id quote_default_section}_remove_spinner"}%>&nbsp;<%=spinner_tag("#{dom_id quote_default_section}_remove_spinner")%>
+				<%end-%>
+            </div>
+        </div>
+    </div>
+<%end-%>

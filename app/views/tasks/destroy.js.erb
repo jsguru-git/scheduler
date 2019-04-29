@@ -1,0 +1,12 @@
+<%if @destroyed -%>
+	$('#<%=dom_id(@task)%>').remove()
+<%else-%>
+	alert('Task has some time entries so can not be removed');
+<%end-%>
+task_header_bar_visibility();
+
+<% if @project.tasks.empty? %>
+  $('.empty').show();
+  $('.task_list.header').hide();
+  $('.placeholder').hide();
+<% end %>

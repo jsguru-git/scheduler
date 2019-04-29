@@ -1,0 +1,29 @@
+/*====== grey_button ======*/
+a.grey_button,
+a.grey_button:link,
+a.grey_button:visited,
+a.grey_button:active {
+    background: #DDDDDD;
+    border-color: #C7C7C7 #DDDDDD #DDDDDD #C7C7C7;
+    border-radius:0.3em;
+    -moz-border-radius:0.3em;
+    -webkit-border-radius:0.3em;
+    border-style: solid;
+    border-width: 1px;
+    color: #949494;
+    display: block;
+    font-size: 1.4em;
+    line-height: 1;
+    margin: 0;
+    padding: 7px 0;
+    text-shadow: 0 1px #FFFFFF;
+    text-transform: uppercase;
+}
+
+a.grey_button:hover {
+    background: #DEDEDE;
+    border-color: #CDCDCD #DEDEDE #DEDEDE #CDCDCD;
+    color: #AAAAAA;
+    text-decoration: none;
+}
+/*====== end grey_button ======*/

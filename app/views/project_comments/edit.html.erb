@@ -1,0 +1,37 @@
+<% @page_title = 'Edit comment' %>
+<% @second_nav = project_second_nav(@project, 'project_comments') -%>
+
+<div class="standard_one_col">
+    <div class="cell_1">
+        <%=render :partial => 'shared/page_heading'%>
+        <ul class="edit_comment">
+			<%background_image = @project_comment.user.present? ? @project_comment.user.gravatar_url(:size => 69, :secure => request.ssl?, :default => APP_CONFIG['gravatar']['default_asset_ssl_domain']+'/assets/tool/icons/user_69.png') : '/assets/tool/icons/user_69.png'%>
+			
+			<%=content_tag_for(:li, @project_comment, :style => "background-image: url(#{background_image});") do %>
+				<div class="edit_comment_container">
+			        <div class="name">
+			            <%if @project_comment.user.present? -%>
+			                <span><%=@project_comment.user.firstname%></span>
+			                <span><%=@project_comment.user.lastname%></span>
+			            <%else-%>
+			                <span>Person</span>
+			                <span>Removed</span>
+			            <%end-%>
+					</div>
+
+	            	<%=render :partial => 'project_comments/edit_comment_form', :locals => {:project => @project, :project_comment => @project_comment}%>
+				</div>
+			<%end-%>
+				
+        </ul>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,22 @@
+<tr>
+  <td class="align_left">
+    <strong>Total Cash</strong>
+  </td>
+  <% client_results.each do |month| %>
+    <td>
+      <% total_expected = 0 %>
+      <% total_sent = 0 %>
+      <% total_requested = 0 %>
+      <% month.each do |report| %>
+        <% total_expected += report[:expected] %>
+        <% total_requested += report[:requested] %>
+        <% total_sent += report[:sent] %>
+      <% end %>
+      <span class="result_row"><strong>Expected:</strong></span> <span class="result_row"><%= formated_in_default_currency total_expected %></span>
+      <div class="clearing"></div>
+      <span class="result_row"><strong>Requested:</strong></span> <span class="result_row"><%= formated_in_default_currency total_requested %></span>
+      <div class="clearing"></div>
+      <span class="result_row"><strong>Sent:</strong></span> <span class="result_row"><%= formated_in_default_currency total_sent %></span>
+    </td>
+  <% end %>
+</tr>

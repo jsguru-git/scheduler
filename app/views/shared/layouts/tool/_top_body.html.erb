@@ -1,0 +1,104 @@
+<div id="outer_container">
+  <div id="util_container">
+    <a href="/">
+      <%= content_tag(:div, content_tag(:h1, @account.site_address.capitalize), :id => 'left_util', :style => "background: url(#{ @account.account_setting.logo(:thumb, :protocol => request.protocol) }) no-repeat left top;") %>
+    </a>
+    <div id="right_util">
+      <div class="util_container">
+        <div class="inner_util">
+          <div class="user_link_container">
+            <%= avatar(current_user, 30) %>
+            <%= link_to (logged_in? ? current_user.name : 'Welcome'), edit_user_url(:id => current_user, :protocol => ssl_link), :class => 'current_name' %>
+          </div>
+          <div class="drop_down_button"></div>
+            <ul class="util_dropdown">
+              <% if policy(@account).update? %>
+                <li>
+                  <%= link_to 'Settings', settings_url(:protocol => ssl_link), :title => 'Settings', :class => "setting" %>
+                </li>
+              <% end %>
+
+              <% restrict_to 'account_holder' do %>
+                <li>
+                  <%= link_to 'Your account', account_settings_url(:protocol => ssl_link), :title => 'Your account', :class => "account"%>
+                </li>
+              <% end %>
+
+              <% if logged_in? %>
+                <li><%= link_to 'Logout', session_url(:protocol => ssl_link), :method => :delete, :class => "logout" %></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="clearing"></div>
+    </div>
+
+    <div id="nav_container">
+      <div id="menu_tabs">
+        <ul>
+          <li class="first <%= tab_class('dashboard', true) %>">
+            <%= link_to root_url(protocol: 'http') do %>
+              <% content_tag :span, class: :level_1 do %>
+                <% content_tag :span, class: :level_2, id: :dashboard_button do %>
+                  Dashboard
+                <% end %>
+              <% end %>
+            <% end %>
+          </li>
+
+          <li class="first <%= tab_class('projects', true) %>">
+            <%= link_to projects_url(protocol: 'http') do %>
+              <% content_tag :span, class: :level_1 do %>
+                <% content_tag :span, class: :level_2, id: :projects_button do %>
+                  Projects
+                <% end %>
+              <% end %>
+            <% end %>
+          </li>
+
+          <li class="first <%= tab_class('time', true) %>">
+            <%= link_to track_timings_url(user_view: current_user.id, protocol: 'http') do %>
+              <% content_tag :span, class: :level_1 do %>
+                <% content_tag :span, class: :level_2 do %>
+                  Time
+                <% end %>
+              <% end %>
+            <% end %>
+          </li>
+
+          <li class="first <%= tab_class('people', true) %>">
+            <%= link_to users_url(protocol: 'http') do %>
+              <% content_tag :span, class: :level_1 do %>
+                <% content_tag :span, class: :level_2, id: :people_button do %>
+                  People
+                <% end %>
+              <% end %>
+            <% end %>
+          </li>
+
+          <% if @account.component_enabled?(4) && (current_user.roles.map(&:title) & ['account_holder', 'administrator', 'leader']).present? %>
+            <li class="first <%= tab_class('reports', true) %>">
+              <%= link_to reports_url(:protocol => 'http') do %>
+                <% content_tag :span, class: :level_1 do %>
+                  <% content_tag :span, class: :level_2, id: :reports_button do %>
+                    Reports
+                  <% end %>
+                <% end %>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+          <% if logged_in? && current_user.account.account_setting.hopscotch_enabled? %>
+          <div id="cancel_tour_link">
+            <span class="red_text">Cancel tour</span>
+          </div>
+        <% end %>
+      </div>
+      <div class="clearing"></div>
+    </div>
+
+    <div id="content">
+      <%= render :partial => 'shared/layouts/tool/second_nav' %>
+      <div id="inner_content" class="<%=inner_content_class%>">
+            

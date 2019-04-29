@@ -1,0 +1,21 @@
+
+
+<h2>Here are the recent changes to your schedule</h2>
+<div id="alert_container">
+    <%if my_alerts.present? -%>
+        <div class="inner_alert">
+        <ul class="alert_list">
+            <%for entry in my_alerts%>
+                <%=render :partial  => 'dashboards/display_alert_entry', :locals => {:entry => entry}%>
+            <%end-%>
+        </ul>
+        
+        <div class="clearing"></div>
+        </div>
+    <%else-%>
+        <div class="info_box">
+            <span class="large_blue_narrow">No recent alerts</span>
+            <p class="no_alerts_description">Sorry, there are are no alerts for you yet, as soon as you are added to a schedule, you will start to see recent alerts here.</p>
+        </div>
+    <%end-%>
+</div>

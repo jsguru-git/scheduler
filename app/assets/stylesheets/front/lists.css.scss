@@ -1,0 +1,64 @@
+/*====== feature_list ======*/
+ul.feature_list {
+
+    li {
+        background-repeat: no-repeat;
+        float: left;
+        margin: 0;
+        text-align: center;
+        width: 370px;
+        
+        h2 {
+            padding-bottom: 10px;
+        }
+        
+        p   {
+            color: #8A8A8A;
+            font-size: 1.1em;
+        }
+    }
+    
+    li:nth-child(even) {
+        padding: 250px 50px 0 100px;
+    }
+    
+    li:nth-child(odd) {
+        padding: 250px 0 0 50px;
+    }
+}
+
+.ie7 ul.feature_list,
+.ie8 ul.feature_list {
+    li.pos_1,
+    li.pos_3,
+    li.pos_5    {
+        padding: 250px 0 0 50px;
+    }
+    
+    li.pos_2,
+    li.pos_4,
+    li.pos_6    {
+        padding: 250px 50px 0 100px;
+    }
+}
+/*====== end feature_list ======*/
+
+
+/*====== four_col_list ======*/
+ul.four_col_list {
+    
+    li  {
+        float: left;
+        text-align: center;
+        width: 220px;
+    }
+    
+    li:nth-child(2) {
+        padding: 0 20px;
+    }
+    
+    li:nth-child(3) {
+        padding: 0 20px 0 0;
+    }
+}
+/*====== end four_col_list ======*/

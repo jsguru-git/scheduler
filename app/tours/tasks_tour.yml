@@ -1,0 +1,20 @@
+---
+index:
+  steps:
+    - title: Add Activity Button
+      content: Click here to add an activity for this project.
+      target: add_activity_button
+      placement: top
+      nextOnTargetClick: true
+      onNext:
+        - show
+
+    - title: Activity Details
+      content: 'Give your activity a name, for example ‘Administration’ or ‘Meeting’. You can also provide extra detail such as service type and time estimated, but this isn’t mandatory.'
+      target: main_lightbox
+      placement: bottom
+
+    - title: Track Your Time
+      content: Once you’ve created your projects and activities, you can start recording your time against them. Click here to access your timesheet.
+      target: time_button
+      placement: right

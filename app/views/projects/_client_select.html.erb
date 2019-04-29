@@ -1,0 +1,1 @@
+<%= select :project, :client_id, @account.clients.name_ordered.collect {|p| [ p.name, p.id ] }, { :include_blank => true } %>

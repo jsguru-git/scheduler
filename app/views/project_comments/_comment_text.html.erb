@@ -1,0 +1,15 @@
+<div class="comment_text">
+
+	<div class="comment_container_top">
+	    <div class="comment_container_bottom">
+	        <%=simple_format project_comment.comment%>
+	        <p class="padding_0 light_green">Created <%=distance_of_time_in_words_to_now project_comment.created_at%> ago</p>
+	    </div>
+	</div>
+
+	<div class="comment_reply comment_reply_<%=project_comment.id%>">
+		<%=link_to 'Reply to this comment', reply_project_project_comment_path(project, project_comment), :remote => true, :class => 'reply_comment_link', :style => 'display: none;'%>
+	</div>
+	<%=render :partial => 'project_comments/reply_comment_form', :locals => {:project => project, :project_comment => project_comment, :new_project_comment => project.project_comments.new(:project_comment_id => project_comment.id)}%>
+
+</div>

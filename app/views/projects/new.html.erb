@@ -1,0 +1,29 @@
+<%@page_title = 'New project'%>
+
+
+<div class="standard_one_col">
+    <div class="cell_1">
+        <%=render :partial => 'shared/page_heading'%>
+        
+        <%=form_for @project do |f|%>
+            <%=render :partial => 'shared/notifications/error_messages', :object => @project%>
+
+            <%=render :partial => 'form', :locals => {:f => f}%>
+
+            <div class="submit_container">
+                <%= f.submit 'Add this project', :class => 'submit', :id => 'submit_button' %> <span class="small_text">or <%=link_to 'Cancel', projects_path%></span>
+            </div>
+        <% end -%>
+    </div>
+
+</div>
+<script>
+    hopscotch.registerHelper('show', function() {
+        hopscotch.endTour(false);
+        setTimeout(function() {
+            hopscotch.startTour(tour);
+            hopscotch.showStep(2);
+            $('.hopscotch-bubble-arrow-container').removeClass('left right up down');
+        }, 200);
+    });
+</script>

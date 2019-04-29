@@ -1,0 +1,8 @@
+// Replace content in lightbox div
+$('#<%=dom_id(@rate_card)%>').replaceWith("<%= escape_javascript(render(:partial => 'display_rate_card', :locals => {:rate_card => @rate_card})) %>");
+
+// Close lightbox
+main_lightbox.close();
+
+// Highlight
+$('#<%=dom_id(@rate_card)%>').effect("highlight", {}, 3000);

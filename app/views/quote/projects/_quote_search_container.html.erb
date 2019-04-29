@@ -1,0 +1,35 @@
+<div class="search_container">
+    <h3>Filter quotes</h3>
+    
+    <%=form_tag search_quote_projects_path, :method => :get  do %>
+        
+        <% if !@account.clients.name_ordered.blank? %>
+            <div class="form_row">
+                <div class="form_text">
+                    <%= label_tag 'client_id' %>
+                </div>
+                <div class="form_field">
+                    <%= select_tag :client_id, 
+                                   options_for_select(@account.clients.name_ordered.collect {|p| [ p.name, p.id ] }, 
+                                   params[:client_id]), 
+                                   :prompt => 'Select client...' %>
+                </div>
+                <div class="clearing"></div>
+            </div>
+        <%end-%>
+        
+        <div class="form_row">
+            <div class="form_text">
+                <%=label_tag 'title'%>
+            </div>
+            <div class="form_field">
+                <%=text_field_tag :title, params[:title], :class => 'text'%>
+            </div>
+            <div class="clearing"></div>
+        </div>
+        
+        <div class="submit_container">
+            <%= submit_tag 'Search now', :class => 'submit' %>
+        </div>
+    <%end-%>
+</div>

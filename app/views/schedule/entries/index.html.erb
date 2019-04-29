@@ -1,0 +1,20 @@
+<%@page_title = 'Schedule'%>
+<% @second_nav = time_management_second_nav(params[:action]) %>
+
+
+<div class="standard_one_col">
+    <div class="cell_1">
+        <%=render :partial => 'shared/page_heading'%>        
+        <%=render :partial => 'schedule/entries/calendar_filters', 
+                  :locals => { :team_select => true } %>
+        
+        <%=render :partial => 'shared/calendar', :locals => { :team_id => params[:team_id], 
+                                                              :project_id => '',
+                                                              :user_id => '',
+                                                              :show_type => '',
+                                                              :start_date => @cal.start_date, 
+                                                              :end_date => @cal.end_date } %>
+
+    </div>
+</div>
+

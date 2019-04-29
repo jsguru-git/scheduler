@@ -1,0 +1,95 @@
+<div class="form_row_v2">
+    <div class="form_text">
+        <%=f.label :name%>
+    </div>
+    <div class="form_field">
+        <%=f.text_field :name, :class => 'text'%><span class="required"> *</span>
+    </div>
+    <div class="clearing"></div>
+</div>
+
+<div class="form_row_v2">
+    <div class="form_text">
+        <%=f.label :expected_payment_date, 'Payment date'%>
+    </div>
+    <div class="form_field">
+        <%=f.date_select :expected_payment_date, :class => 'number'%><span class="required"> *</span>
+    </div>
+    <div class="clearing"></div>
+</div>
+
+<%if !f.object.new_record? -%>
+	<div class="form_row_v2" id="reason_for_change_cont" data-original-month="<%=data_attr_for_ori_month f.object%>" data-original-year="<%=data_attr_for_ori_year f.object%>">
+	    <div class="form_text">
+	        <%= f.label :reason_for_date_change, 'Reason for change' %>
+	    </div>
+	    <div class="form_field">
+	        <%= f.text_field :reason_for_date_change, :class => 'text' %>
+            <br /><span>Provide a reason for the date change. It can be later edited on the Payment stage rollovers report</span>
+	    </div>
+	    <div class="clearing"></div>
+	</div>
+<%end-%>
+
+<div class="form_row_v2">
+    <div class="form_text">
+        <%=f.label :generate_cost_from_time, 'Add cost'%>
+    </div>
+    <div class="form_field">
+        <%=f.select :generate_cost_from_time,  [['Manually', false], ['Calculated by expected days entered', true]]%>
+        <p class="explicit_text">Select if the cost should be entered based on the expected days entered per service type or entered manually.</p>
+    </div>
+    <div class="clearing"></div>
+</div>
+
+<div class="form_row_v2">
+    <div class="form_text">
+        <%=f.label :expected_days, 'Expected days'%> 
+    </div>
+    <div class="form_field">
+        <%=f.text_field :expected_days, :class => 'number'%>
+    </div>
+    <div class="clearing"></div>
+</div>
+
+<div class="form_row_v2" id="cost_field" style="<%='display: none;' if f.object.generate_cost_from_time?%>">
+    <div class="form_text">
+        <%=f.label :expected_cost%>
+    </div>
+    <div class="form_field">
+       <span class=""><%=Money.default_currency.symbol%></span> <%=f.text_field :expected_cost, :class => 'number'%>
+    </div>
+    <div class="clearing"></div>
+</div>
+
+<script type="text/javascript">
+    $('#payment_profile_generate_cost_from_time').change(function() {
+        var genearte_cost = $('option:selected', this).val();
+        if (genearte_cost == 'true') {
+            $('#cost_field').hide();
+        } else {
+            $('#cost_field').show();
+        }
+    });
+
+<%if !f.object.new_record? -%>
+	check_if_date_has_changed();
+	
+	$('#payment_profile_expected_payment_date_2i, #payment_profile_expected_payment_date_1i').change(function() {
+		check_if_date_has_changed();
+	});
+	
+	function check_if_date_has_changed() {
+		var ori_month = $('#reason_for_change_cont').data('original-month');
+		var ori_year = $('#reason_for_change_cont').data('original-year');
+		var cur_month = $('#payment_profile_expected_payment_date_2i').val();
+		var cur_year = $('#payment_profile_expected_payment_date_1i').val();
+
+		if (ori_month == cur_month && ori_year == cur_year) {
+			$('#reason_for_change_cont').hide();
+		} else {
+			$('#reason_for_change_cont').show();
+		}
+	}
+<%end-%>
+</script>

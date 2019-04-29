@@ -1,0 +1,28 @@
+<div class="subtotal">
+    <div class="left">
+        Subtotal:
+    </div>
+    <div class="right">
+        <span class="currency_code"><%=f.object.currency_code%></span>
+        <span class="currency_amount"><%=number_with_precision f.object.total_amount_exc_vat, :precision => 2%></span>
+    </div>
+</div>
+<div classs="clearing"></div>
+<div class="vat">
+    <div class="left">
+        VAT: <%=f.text_field :vat_rate, :class => 'number'%> %
+    </div>
+    <div class="right">
+        <span class="currency_code"><%=f.object.currency_code%></span>
+        <span class="currency_amount"><%=number_with_precision f.object.vat_amount, :precision => 2%></span>
+    </div>
+</div>
+<div class="total">
+    <div class="left">
+        Total:
+    </div>
+    <div class="right">
+        <span class="currency_code"><%=f.object.currency_code%></span>
+        <span class="currency_amount"><%=number_with_precision f.object.total_amount_inc_vat, :precision => 2%></span>
+    </div>
+</div>

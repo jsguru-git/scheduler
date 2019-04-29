@@ -1,0 +1,18 @@
+<p>Hi <%=@user.firstname%></p>
+
+<p>We’ve noticed that you haven’t used your FleetSuite account since signing up for a free trial on <%=@account.created_at.strftime("%d %B")%>. This means you're missing out on a whole host of great features and functionality that can help you improve your business processes.</p>
+
+<p>Your trial is currently due to expire in <%=distance_of_time_in_words_to_now @account.trial_expires_at%>. However, we’re extending this for you by an additional 2 weeks.</p>
+
+<p>It’s easy to get started with FleetSuite; simply visit <%= root_url(:subdomain => @account.site_address) %> to login.</p>
+
+<p>Don’t forget, should you have any questions regarding using FleetSuite, our team are on hand to help. You can get in touch by emailing info@fleetsuite.com or via our Twitter account, http://www.twitter.com/fleet_suite.</p>
+
+<p>Thanks,<br/>
+Scott<br/>
+The FleetSuite Team<br/>
+---<br/>
+Get support: http://help.fleetsuite.com<br/>
+Follow us: https://twitter.com/fleet_suite<br/>
+Suggest new features: http://help.fleetsuite.com/forums</p>
+

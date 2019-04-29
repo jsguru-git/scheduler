@@ -1,0 +1,12 @@
+<% @page_title = 'Quote profit and loss' %>
+
+<div class="standard_one_col">
+
+    <div class="cell_1">
+        <%= render :partial => 'shared/page_heading' %>
+        
+        <%=render :partial => 'quote_project_profit_and_loss', :locals => {:projects => @projects, :client => @client}%>
+    </div>
+</div>
+
+

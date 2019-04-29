@@ -1,0 +1,9 @@
+// Add comment to list
+$("#<%=dom_id @project_comment%> > .comment_text").replaceWith("<%= escape_javascript(render(:partial => 'comment_text', :locals => {:project => @project, :project_comment => @project_comment})) %>");
+
+
+// Hide all forms and show links
+new_project_comment_creation.show_hide_reply_comments("#<%=dom_id @project_comment%>");
+
+// Re-apply observers
+new_project_comment_creation.observe_comment_links();

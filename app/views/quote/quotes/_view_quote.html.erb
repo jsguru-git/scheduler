@@ -1,0 +1,16 @@
+<div class="view_quote">
+    <%=render :partial => 'core_details_view', :locals => {:project => project, :quote => quote, :v1_quotes => v1_quotes}%>
+
+    <%=render :partial => 'activity_details_view', :locals => {:project => project, :quote => quote, :v1_quotes => v1_quotes}%>
+    
+    <%=render :partial => 'total_cost_view', :locals => {:project => project, :quote => quote}%>
+    
+    <%=render :partial => 'further_details_view', :locals => {:project => project, :quote => quote}%>
+</div>
+
+<div class="action_links export_links">
+    <%=link_to raw('<span class="pdf_color">Export as pdf</span>'), quote_project_quote_path(:project_id => project, :id => quote, :format => 'pdf'), :target => '_blank'%>
+    <%=link_to raw('<span class="pdf_color">Export as rtf</span>'), quote_project_quote_path(:project_id => project, :id => quote, :format => 'rtf'), :target => '_blank'%>
+</div>
+
+<div class='clearing'></div>

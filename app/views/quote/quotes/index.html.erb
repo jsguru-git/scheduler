@@ -1,0 +1,38 @@
+<%@page_title = 'Quotes' %>
+
+<%@second_nav = project_second_nav(@project, 'quote')%>
+
+<div class="standard_one_col">
+    <div class="cell_1">
+        <%=render :partial => 'shared/page_heading'%>
+        
+        <div class="action_links">
+            <%= link_to raw('<span class="add_color">Create new quote</span>'), quote_project_quotes_path(@project), :method => :post if policy(Quote).create? %>
+        </div>
+        
+        <div class="outline_container">
+            <table class="results_table">
+                <tr class="heading_table">
+                    <th>Title</th>
+                    <th class="align_center">Version</th>
+                    <th>Updated</th>
+                    <th class="align_center">Cost (Incl vat)</th>
+                    <th class="align_center">PO number</th>
+                    <th>Status</th>
+                    <th></th>
+                </tr>
+                <%@quotes.each do |quote| -%>
+                    <%=render :partial => 'display_quote', :locals => {:project => @project, :quote => quote}%>
+                    <%quote.version_quotes.date_created_ordered.each do |quote| -%>
+                        <%=render :partial => 'display_quote', :locals => {:project => @project, :quote => quote}%>
+                    <%end-%>
+                <%end-%>
+            </table>
+        
+            <%if @quotes.blank? -%>
+                <div class="no_content"><p>No quotes have been created for this project yet.</p></div>
+            <%end-%>
+        </div>
+        
+    </div>
+</div>

@@ -1,0 +1,25 @@
+<% @page_title = 'Projects' %>
+<div class="standard_one_col">
+
+    <div class="cell_1">
+        <%= render :partial => 'shared/page_heading' %>
+
+        <%= render :partial => 'projects/search_container', :locals => {:search_link => ''} %>
+
+        <%=render :partial => 'shared/pagination/paginate', :object => @projects %>
+
+        <% if @projects.present? -%>
+            <ul class="inline_content_list">
+                <% @projects.each do |project|%>
+                    <%= render :partial => 'display_project_list', :locals => {:project => project} %>
+                <% end -%>
+            </ul>
+            <div class="clearing"></div>
+        <% else -%>
+            <p>No projects found.</p>
+        <% end -%>
+
+        <%=render :partial => 'shared/pagination/paginate', :object => @projects%>
+    </div>
+</div>
+

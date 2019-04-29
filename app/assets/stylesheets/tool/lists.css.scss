@@ -1,0 +1,251 @@
+/*====== standard_full_list ======*/
+ul.standard_full_list {
+  li {
+    border-bottom: 1px solid #CCCCCC;
+    margin: 0;
+    padding: 10px 5px;
+  }
+
+}
+/*====== end standard_full_list ======*/
+
+
+/*====== inline_content_list ======*/
+ul.inline_content_list {
+  li {
+    background: url("tool/backgrounds/dotted_line.png") repeat-x scroll left bottom transparent;
+    float: left;
+    margin: 0 30px 22px 0;
+    padding: 0 0 22px 0;
+    width: 360px;
+
+    .name {
+      display: block;
+      font-family: 'Oswald','arial narrow',arial,helvetica,sans-serif;
+      font-size: 1.8em;
+      font-weight: 300;
+      position: relative;
+      text-transform: uppercase;
+      top: -3px;
+    }
+
+    .info {
+      display: block;
+      padding-bottom: 9px;
+    }
+
+    .edit_button,
+    .remove_button,
+    .archive_button {
+      float: left;
+      padding: 0 14px 0 0;
+    }
+
+  }
+
+}
+/*====== end inline_content_list ======*/
+
+
+/*====== standard_full_list ======*/
+ul.checkbox_list {
+  li {
+    margin: 0;
+    padding: 0 0 6px 0;
+  }
+
+}
+/*====== end standard_full_list ======*/
+
+
+/*====== alert_list ======*/
+ul.alert_list {
+
+  li {
+    background: url(tool/backgrounds/dotted_line.png) repeat-x left bottom;
+    float: left;
+    height: 100px;
+    margin: 0 30px 20px 0;
+    padding: 0 0 0 0;
+    width: 450px;
+
+    div.content_display {
+      float: left;
+      margin: 0;
+      padding: 0 0 0 0;
+      width: 360px;
+
+      .added {
+        display: block;
+        position: relative;
+        top: -3px;
+      }
+
+      .name {
+        display: block;
+        font-family: 'Oswald', 'arial narrow', arial, helvetica, sans-serif;
+        font-weight: 300;
+        font-size: 1.8em;
+        position: relative;
+        text-transform: uppercase;
+        top: -3px;
+      }
+
+      .duration {
+        display: block;
+      }
+
+      .client {
+        display: block;
+      }
+    }
+  }
+}
+/*====== end alert_list ======*/
+
+
+/*====== simple_tabs ======*/
+.simple_tabs {
+  ul.options {
+    li {
+    }
+  }
+
+  div.simple_tabs_content_container {
+
+    .inner_simple_tabs_content {
+      display: none;
+    }
+
+    .selected {
+      display: block;
+    }
+
+  }
+
+}
+/*====== end simple_tabs ======*/
+
+
+/* inline_tabbed_area_style_1 */
+.inline_tabbed_area_style_1 {
+    ul {
+        background: url("tool/pages/dashboard/tab_bottom_border.gif") repeat-x left bottom;
+        height: 60px;
+        width: 100%;
+
+        li {
+            float: left;
+            width: 290px;
+            
+            a,
+            a:visited{
+                background: url(tool/pages/projects_track/chart_icon_sprite.png) no-repeat left top;
+                color: #C9C9C9;
+                display: block;
+                font-family: 'Oswald','arial narrow',arial,helvetica,sans-serif;
+                font-size: 2.1em;
+                font-weight: 300;
+                line-height: 1;
+                margin: 0;
+                padding: 8px 0 25px 55px;
+                text-decoration: none;
+                text-transform: uppercase;
+            }
+            
+            a.item_2,
+            a.item_2:visited {
+                background-position: left -200px;
+            }
+        }
+        
+
+        a:hover,
+        li.selected a,
+        li.selected a:link,
+        li.selected a:visited,
+        li.selected a:active {
+            background-position: left -100px;
+            color: #E17B7B;
+        }
+        
+        a.item_2:hover,
+        li.selected a.link_2,
+        li.selected a.item_2:link,
+        li.selected a.item_2:visited,
+        li.selected a.item_2:active {
+            background-position: left -300px;
+            color: #E17B7B;
+        }
+    }
+}
+/* end inline_tabbed_area_style_1 */
+
+
+/* inline_tabbed_area_style_lightbox */
+.inline_tabbed_area_style_lightbox {
+    ul {
+        background: url("tool/pages/dashboard/tab_bottom_border.gif") repeat-x left bottom;
+        height: 50px;
+        width: 100%;
+
+        li {
+            float: left;
+            width: 240px;
+            
+            a,
+            a:visited{
+                background: url(tool/pages/documents_index/tabs.png) no-repeat left top;
+                color: #C9C9C9;
+                display: block;
+                font-family: 'Oswald','arial narrow',arial,helvetica,sans-serif;
+                font-size: 1.9em;
+                font-weight: 300;
+                line-height: 1;
+                margin: 0;
+                padding: 4px 0 25px 45px;
+                text-decoration: none;
+                text-transform: uppercase;
+            }
+            
+            a.item_2,
+            a.item_2:visited {
+                background-position: left -200px;
+            }
+        }
+        
+
+        a:hover,
+        li.selected a,
+        li.selected a:link,
+        li.selected a:visited,
+        li.selected a:active {
+            background-position: left -100px;
+            color: #E17B7B;
+        }
+        
+        a.item_2:hover,
+        li.selected a.link_2,
+        li.selected a.item_2:link,
+        li.selected a.item_2:visited,
+        li.selected a.item_2:active {
+            background-position: left -300px;
+            color: #E17B7B;
+        }
+    }
+}
+/* end inline_tabbed_area_style_1 */
+
+
+/*====== bullet_list ======*/
+ul.bullet_list {
+    list-style-type: circle;
+    padding-left: 20px;
+    
+    li {
+        list-style-type: circle;
+        padding-bottom: 3px;
+        
+    }
+}
+/*====== end bullet_list ======*/

@@ -1,0 +1,9 @@
+$("#layout_list").append("<%= escape_javascript(render(partial: 'quote_default_sections/display_section', locals: {account: @account, quote_default_section: @quote_default_section})) %>");
+$('#<%=dom_id(@quote_default_section)%> input.submit').hide();
+
+// Show message
+main_notification.display_message('New section added');
+
+$("html, body").animate({ scrollTop: $(document).height() }, 1000);
+
+$('#<%=dom_id(@quote_default_section)%> .outline_container').delay(500).effect("highlight", {}, 3000);

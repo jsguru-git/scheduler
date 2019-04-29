@@ -1,0 +1,357 @@
+/*====== reportspages_index ======*/
+#reportspages_index {
+	
+	.cell_1 {
+		padding-bottom: 10px;
+		position: relative;
+			
+		#select_section {
+			position: absolute;
+			right: 30px;
+			top: 70px;
+			width: 230px;
+			
+			label {
+				float: right;
+				margin: 0 10px 0 0;
+				position: relative;
+				top: 5px;
+			}
+			
+			.select_container {
+				float: right;
+			}
+		}
+	}
+    
+	.section {
+		background: url("tool/backgrounds/dotted_line.png") repeat-x left bottom;
+		margin: 0 0 50px 0;
+		padding: 0 0 10px 0;
+		
+		a {
+			font-size: 1.4em;
+		}
+		
+		h3 {
+			padding-bottom: 20px;
+		}
+	}
+
+    .report_container {
+        
+        float: left;
+        margin: 0 15px 20px 15px;
+        padding: 0;
+        width: 330px;
+        
+        .inner {
+            background: #FFFFFF;
+            border: 1px solid #F0F0F0;
+			height: 65px;
+            padding: 20px;
+            
+            h3 {
+                padding: 0 0 5px 0;
+            }
+            
+            p {
+                padding-bottom: 0; 
+            }
+            
+        }
+    }
+    
+    #project_select select {
+        max-width: 400px;
+    }
+}
+/*====== end reportspages_index ======*/
+
+
+/*====== reportsclients_profit_and_loss ======*/
+#reportsclients_profit_and_loss {
+    
+    .outline_container {
+        margin-bottom: 20px;
+    }
+
+}
+/*====== end reportsclients_profit_and_loss ======*/
+
+
+/*====== reportsprojects_overview ======*/
+#reportsprojects_overview {
+    
+    .outline_container {
+        margin-bottom: 20px;
+    }
+    
+    .reply_comment_container form {
+        display: none;
+    }
+    
+    .search_container {
+        
+        select {
+            width: 450px;
+        }
+    }
+}
+/*====== end reportsprojects_overview ======*/
+
+
+/*====== reportsinvoices_deletions ======*/
+#reportsinvoices_deletions {
+    
+    .cell_1 {
+        padding-bottom: 20px;
+    }
+ 
+    .no_content {
+        text-align: center;
+        padding: 20px 0 10px 0;
+    }
+}
+/*====== end reportsinvoices_deletions ======*/
+
+
+/*====== reportsinvoices_combined_pre_payments ======*/
+#reportsinvoices_combined_pre_payments {
+    
+    .cell_1 {
+        padding-bottom: 20px;
+    }
+ 
+    .no_content {
+        text-align: center;
+        padding: 20px 0 10px 0;
+    }
+}
+/*====== end reportsinvoices_combined_pre_payments ======*/
+
+
+/*====== reportsinvoices_payment_predictions ======*/
+#reportsinvoices_payment_predictions {
+    
+    .cell_1 {
+        padding-bottom: 20px;
+    }
+    
+    .totals {
+        padding: 0 0 30px 0;
+        
+        .stat {
+            float: left;
+            font-family: 'Oswald','arial narrow',arial,helvetica,sans-serif;
+            font-weight: 300;
+            line-height: 1;
+            position: relative;
+            text-transform: uppercase;
+            width: 33%;
+            
+            .figure {
+                color: #CCDB81;
+                display: inline-block;
+                font-size: 3.2em;
+                margin: 0 10px 0 0;
+            }
+            
+            .desc {
+                display: inline-block;
+                font-size: 1.4em;
+                margin: 0 10px 0 0;
+            }
+        }
+    }
+    
+    .no_content {
+        text-align: center;
+        padding: 10px 0 0 0;
+    }
+}
+/*====== end reportsinvoices_payment_predictions ======*/
+
+
+/*====== reportsinvoices_invoice_status ======*/
+#reportsinvoices_invoice_status {
+    
+    .cell_1 {
+        padding-bottom: 20px;
+    }
+    
+    .results_table {
+        
+        .status_0 {
+            background: url(tool/icons/invoice_status.png) no-repeat left 7px;
+            display: block;
+            margin: 0;
+            padding: 7px 0 7px 30px;
+        }
+
+        .status_1 {
+            background: url(tool/icons/invoice_status.png) no-repeat left -43px;
+            display: block;
+            margin: 0;
+            padding: 7px 0 7px 30px;
+        }
+
+        .status_2 {
+            background: url(tool/icons/invoice_status.png) no-repeat left -92px;
+            display: block;
+            margin: 0;
+            padding: 7px 0 7px 30px;
+        }
+    }
+}
+/*====== end reportsinvoices_invoice_status ======*/
+
+/*====== reportsprojects_client_utilisation ======*/
+h2.client_name {
+  margin: 20px 0 0 0;
+}
+
+table.results_table.client_utilisation {
+  table-layout: fixed;
+  text-align: center;
+}
+td.comparison.positive {
+  color: #ACBC76;
+}
+
+td.comparison.negative {
+  color: #E17B7B;
+}
+/*====== end reportsprojects_client_utilisation ======*/
+
+/*====== reportsprojects_percentage_time_spent ======*/
+#reportsprojects_percentage_time_spent {
+		
+	.standard_one_col {
+		min-height: 0;
+		padding-bottom: 20px;
+	
+		.cell_1 {
+			min-height: 0;
+			padding-bottom: 20px;
+		}
+	}
+
+	#team_selection_cont {
+		background: url(tool/layout/white_background.png) repeat left top;
+	    padding: 30px;
+		
+		h3 {
+			padding-bottom: 17px;
+		}
+		
+		.team_select_cont {
+			padding: 0 0 10px 0;
+			
+			.checkbox_cont {
+				float: left;
+				width: 40px;
+			}
+
+			.label_cont {
+				float: left;
+				width: 200px;
+
+				label {
+					display: block;
+					white-space: nowrap;
+					overflow: hidden;
+					text-overflow: ellipsis;
+				}
+			}
+		}
+
+	}
+	
+	#results_cont {
+		
+		.team {
+			padding: 0 0 40px 0;
+			
+			.team_name {
+				color: #606060;
+			    display: block;
+			    font-family: 'Oswald', 'arial narrow', arial, helvetica, sans-serif;
+			    font-weight: 300;
+			    font-size: 1.8em;
+			    line-height: 1;
+			    margin: 0;
+			    padding: 0 0 10px 0;
+			    position: relative;
+			    text-transform: uppercase;
+			}
+			
+			.number_desc_container {
+				height: 50px;
+			}
+
+			.css_bar {
+				background: url(tool/backgrounds/time_tracking_lines.png) repeat-x left -20px;
+			}
+		}
+		
+		.totals {
+			position: relative;
+			
+			.total_number {
+				color: #CCCCCC;
+			    font-family: 'Oswald', 'arial narrow', arial, helvetica, sans-serif;
+			    font-weight: 300;
+			    font-size: 3.4em;
+			    line-height: 1;
+			    position: absolute;
+			    text-transform: uppercase;
+				top: 0;
+			}
+			
+			.number_desc_container {
+				display: block;
+				text-align: right;
+				
+				.desc {
+					text-align: left;
+				}
+			}
+		}
+	}
+		
+}
+/*====== end reportsprojects_percentage_time_spent ======*/
+
+
+/*====== reportsprojects_qa_stats ======*/
+#reportsprojects_qa_stats {
+    
+    .outline_container {
+        overflow-y: auto;
+        
+        .results_table {
+
+            .date_col {
+                min-width: 100px;
+            }
+        }
+    }
+}
+/*====== end reportsprojects_qa_stats ======*/
+
+/*====== reportsprojects_forecast =======*/
+#reportsprojects_forecast {
+
+  .outline_container {
+
+    .result_row {
+      float: left;
+      text-align: left;
+      width: 50%;
+    }
+
+  }
+
+}
+/*====== end reportsprojects_forecast =======*/

@@ -1,0 +1,14 @@
+one:
+    tweet_id_ref: 1265688496
+    title: test in cardiff, uk
+    user_name: scottsherwood (Scott Sherwood)
+    published_at: <%= 5.days.ago %>
+    active: true
+    
+    
+two:
+    tweet_id_ref: 1265688497
+    title: test in cardiff, uk
+    user_name: scottsherwood (Scott Sherwood)
+    published_at: <%= 4.days.ago %>
+    active: false

@@ -1,0 +1,18 @@
+<p>Hi <%=@new_user.firstname%></p>
+
+<p><%=@added_by_user.firstname%> has just invited you to start using <%=@site_name%>.</p>
+
+<p>To get started, go to <%= root_url(:subdomain => @account.site_address, :protocol => Rails.env.production? ? 'https://' : 'http://') %> and login using the credentials shown below.</p>
+
+<p>Account address: <%= root_url(:subdomain => @account.site_address, :protocol => Rails.env.production? ? 'https://' : 'http://') %><br/>
+Email: <%=@new_user.email%><br/>
+Password: <%=@new_user.password%></p>
+
+Once you have logged in, we recommend that you update your password.
+
+<p>Thanks,<br/>
+The FleetSuite Team<br/>
+---<br/>
+Get support: http://help.fleetsuite.com<br/>
+Follow us: https://twitter.com/fleet_suite<br/>
+Suggest new features: http://help.fleetsuite.com/forums</p>

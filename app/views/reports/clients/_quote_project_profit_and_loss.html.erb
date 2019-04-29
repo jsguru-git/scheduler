@@ -1,0 +1,59 @@
+<h2><%=client.name%> projects - profit and loss</h2>
+
+<div class="padding_bottom_20">
+    <table class="results_table">
+        <tr class="heading_table">
+            <th>Project</th>
+            <th class="align_center">P &amp; L (Days)</th>
+            <th class="align_center">P &amp; L (<%=Money.default_currency.symbol%>)</th>
+            <th class="align_center">P &amp; L (%)</th>
+        </tr>
+		<%day_rate = client.avg_rate_card_amount_cents.round(2)%>
+		
+		<%projects.each do |project| -%>
+			<%mins_tracked = project.total_tracked%>
+			<%days_tracked = (mins_tracked.to_s.to_d / @account.account_setting.working_day_duration_minutes).round(2)%>
+			
+			<%task_estimate_mins = project.total_estimate%>
+			<%task_estimate_days = (task_estimate_mins.to_s.to_d / @account.account_setting.working_day_duration_minutes).round(2)%>
+			
+			<%p_l_days = (days_tracked - task_estimate_days).round(2)%>
+			<%p_l_cost = ((task_estimate_days * day_rate.to_s.to_d) - (days_tracked*day_rate.to_s.to_d)).round(2)%>
+			
+			<%if task_estimate_days == 0 && days_tracked != 0 -%>
+                <%p_l_percent = -100%>
+            <%elsif task_estimate_days != 0 && days_tracked == 0 -%>
+                <%p_l_percent = 100%>
+            <%elsif task_estimate_days == 0 -%>
+                <%p_l_percent = 0%>
+            <%else-%>
+                <%p_l_percent = ((p_l_cost/(task_estimate_days * day_rate.to_s.to_d))*100).round(2)%>
+            <%end-%>
+
+			<%total_project_potential = (days_tracked*day_rate).round(2)%>
+    		
+			<%if task_estimate_days == 0 && days_tracked != 0 -%>
+                <%day_rate_after_p_l = 0%>
+            <%elsif task_estimate_days != 0 && days_tracked == 0 -%>
+                <%day_rate_after_p_l = (task_estimate_days * day_rate.to_s.to_d).round(2)%>
+            <%elsif task_estimate_days == 0 -%>
+                <%day_rate_after_p_l = day_rate%>
+            <%else-%>
+                <%day_rate_after_p_l = (((task_estimate_days * day_rate.to_s.to_d)/total_project_potential)*day_rate).round(2)%>
+            <%end-%>
+			
+			<tr>
+				<td><%=link_to project.name, project_path(project)%></td>
+                <td class="align_center <%=p_l_days > 0 ? 'red_text' : 'green_text'%>">
+                    <%=p_l_days%>
+                </td>
+                <td class="align_center <%=p_l_days > 0 ? 'red_text' : 'green_text'%>">
+                    <%=formated_in_default_currency p_l_cost%>
+                </td>
+                <td class="align_center <%=p_l_days > 0 ? 'red_text' : 'green_text'%>">
+                    <%=number_to_percentage p_l_percent, :precision => 2%>
+                </td>
+			</tr>
+		<%end-%>
+	</table>
+</div>

@@ -1,0 +1,71 @@
+<div class="form_row">
+    <div class="form_text">
+        <%=f.label :name%><span class="required"> *</span>
+    </div>
+    <div class="form_field">
+        <%=f.text_field :name, :class => 'text'%>
+    </div>
+    <div class="clearing"></div>
+</div>
+
+<div class="form_row">
+    <div class="form_text">
+        <%=f.label :address%>
+    </div>
+    <div class="form_field">
+        <%=f.text_area :address, :class => 'text', :rows => 6%>
+    </div>
+    <div class="clearing"></div>
+</div>
+
+<div class="form_row">
+    <div class="form_text">
+        <%=f.label :zipcode, 'Zip or post code'%>
+    </div>
+    <div class="form_field">
+        <%=f.text_field :zipcode, :class => 'text'%>
+    </div>
+    <div class="clearing"></div>
+</div>
+
+<div class="form_row">
+    <div class="form_text">
+        <%=f.label :email%>
+    </div>
+    <div class="form_field">
+        <%=f.text_field :email, :class => 'text'%>
+    </div>
+    <div class="clearing"></div>
+</div>
+
+<div class="form_row">
+    <div class="form_text">
+        <%=f.label :phone%>
+    </div>
+    <div class="form_field">
+        <%=f.text_field :phone, :class => 'text'%>
+    </div>
+    <div class="clearing"></div>
+</div>
+
+<div class="form_row">
+    <div class="form_text">
+        <%=f.label :fax%>
+    </div>
+    <div class="form_field">
+        <%=f.text_field :fax, :class => 'text'%>
+    </div>
+    <div class="clearing"></div>
+</div>
+
+<%unless f.object.new_record? -%>
+    <div class="form_row">
+        <div class="form_text">
+            <%=f.label :archived%>
+        </div>
+        <div class="form_field">
+            <%=f.check_box :archived%>
+        </div>
+        <div class="clearing"></div>
+    </div>
+<%end-%>

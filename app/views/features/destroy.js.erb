@@ -1,0 +1,6 @@
+$('#<%=dom_id(@feature)%>').remove();
+
+<% @tasks.each do |task| %>
+    $("ul[data-feature-id='']").append("<%= escape_javascript(render(:partial => 'tasks/display_task', :locals => { :task => task })) %>");
+    $('#<%=dom_id(task)%>').delay(300).effect("highlight", {}, 3000);
+<% end %>

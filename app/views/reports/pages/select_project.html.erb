@@ -1,0 +1,13 @@
+<%@page_title = 'Select project'%>
+
+<div class="standard_two_col">
+    <div class="cell_1">
+        <%=render :partial => 'shared/page_heading'%>
+        <%= render :partial => 'select_project', :locals => {:clients => @clients, :projects => @projects} %>
+    </div>
+    <div class="cell_2">
+
+    </div>
+    <div class="clearing"></div>
+</div>
+

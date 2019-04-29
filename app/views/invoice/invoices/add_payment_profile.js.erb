@@ -1,0 +1,6 @@
+// Replace content in lightbox div
+$("#main_lightbox_content").html("<%= escape_javascript(render(:partial => 'payment_profile_list', :locals => {:project => @project, :payment_profiles => @payment_profiles})) %>");
+
+// Open lightbox
+main_lightbox.change_height_to(410);
+main_lightbox.open();

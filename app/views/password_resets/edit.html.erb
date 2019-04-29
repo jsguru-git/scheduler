@@ -1,0 +1,40 @@
+<% @page_title = 'Reset your password?' -%>
+<%
+    @user.password = nil
+    @user.password_confirmation = nil
+%>
+
+<div class="grid_container" id="blank_outer_container">
+    <div class="grid_container_inner">
+        
+        <div class="blank_name_container">
+            <h1>Reset your password</h1>
+        </div>
+        
+        <div class="middle_container">
+            <div class="inner_middle_container">
+                <%= render(:partial => 'shared/notifications/flash', :locals => {:flash => flash }) if flash[:notice] || flash[:alert] %>
+
+                <%=render :partial => 'shared/notifications/error_messages', :object => @user%>
+                <p class="text_intro">Please enter your new password below.</p>
+
+                <%= form_for @user, :url => password_reset_path(params[:id]), :method => :put do |f| %>
+                    <div class="blank_form_row">
+                        <div class="form_text"><label for="user_password">Password</label></div>
+                        <div class="form_field"><%= f.password_field :password, :class => 'text' %></div>
+                        <div class="clearing"></div>
+                    </div>
+                        <div class="blank_form_row">
+                        <div class="form_text"><label for="user_password_confirmation">Confirm password</label></div>
+                        <div class="form_field"><%= f.password_field :password_confirmation, :class => 'text' %></div>
+                        <div class="clearing"></div>
+                    </div>
+
+                    <div class="blank_form_row">
+                        <%=f.submit 'Reset password', :class => 'submit'%> <span class="small_text">or <%=link_to 'Cancel', new_session_path%></span>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>

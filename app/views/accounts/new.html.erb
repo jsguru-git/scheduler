@@ -1,0 +1,113 @@
+<%@page_title = @account_plan.name.downcase + ' plan signup'%>
+<% @account.users.first.password = nil %>
+<% @account.users.first.password_confirmation = nil %>
+
+<% content_for :title_bar do %>
+    <h1>Create Your Suite</h1>
+    <h2>Please complete the form below and we will setup your chosen suite straight away</h2>
+<%end-%>
+
+<div class="outer_contaner" id="new_account_background">
+    <div class="inner_container" id="new_account_inner">
+        <div id="plan_container">
+
+            <%=form_for @account do |f|%>
+            
+                <%=render :partial => 'shared/notifications/error_messages', :object => @account%>
+            
+                <h3 class="stage_1 blue_med_oswald_text">Enter your details</h3>
+                <%= f.fields_for :users do |fu| -%>
+            
+                    <div class="form_row">
+                        <div class="form_text">
+                                <%=fu.label :firstname, 'First name' %>
+                        </div>
+                        <div class="form_field">
+                                <%=fu.text_field :firstname, :class => 'text'%>
+                        </div>
+                        <div class="clearing"></div>
+                    </div>
+            
+                    <div class="form_row">
+                        <div class="form_text">
+                                <%=fu.label :lastname, 'Last name' %>
+                        </div>
+                        <div class="form_field">
+                                <%=fu.text_field :lastname, :class => 'text'%>
+                        </div>
+                        <div class="clearing"></div>
+                    </div>
+            
+                    <div class="form_row">
+                        <div class="form_text">
+                                <%=fu.label :email %>
+                        </div>
+                        <div class="form_field">
+                                <%=fu.text_field :email, :class => 'text'%>
+                        </div>
+                        <div class="clearing"></div>
+                    </div>
+            
+                    <div class="form_row indent_row">
+                        <div class="form_text">
+                            <%=fu.label :password %>
+                        </div>
+                        <div class="form_field">
+                            <%if fu.object.errors[:password_digest].present?%><span class="field_with_errors"><%end-%>
+                            <%=fu.password_field :password, :class => 'text'%>
+                            <%if fu.object.errors[:password_digest].present?%></span><%end-%>
+                            <p class="explicit_text">6 characters or longer.</p>
+                        </div>
+                        <div class="clearing"></div>
+                    </div>
+            
+                    <div class="form_row indent_row">
+                        <div class="form_text">
+                            <%=fu.label :password_confirmation, 'Re-type password'%>
+                        </div>
+                        <div class="form_field">
+                            <%if fu.object.errors[:password_digest].present?%><span class="field_with_errors"><%end-%>
+                            <%=fu.password_field :password_confirmation, :class => 'text'%>
+                            <%if fu.object.errors[:password_digest].present?%></span><%end-%>
+                        </div>
+                        <div class="clearing"></div>
+                    </div>
+                <% end -%>
+            
+                <h3 class="stage_2 blue_med_oswald_text">Choose your <%=h APP_CONFIG['env_config']['site_name']%> site address</h3>
+            
+                <div class="main_form_instructions"> Every <%=h APP_CONFIG['env_config']['site_name']%> site has its own web address, choose yours. <span class="strong_text">Letters &amp; numbers only.</span></div>
+                        
+                <div class="form_row url_row">
+                    <div class="form_text short_label">
+                            http://
+                    </div>
+                    <div class="form_field">
+                        <%=f.text_field :site_address, :class => 'text'%>
+                        <span class="end_text">
+                            &nbsp;&nbsp;.<%=APP_CONFIG['env_config']['site_host']%>
+                        </span>
+                    </div>
+                    <div class="clearing"></div>
+                </div>
+
+                <%=hidden_field_tag 'plan_name', @account_plan.name.downcase%>
+            
+                <div class="account_info">
+                        By clicking ‘Create my account’ you are agreeing to our <%=link_to 'Terms of Use', terms_path, :target => '_blank', :rel => 'nofollow'%> and <%=link_to 'Privacy & Cookie Policy', privacy_path, :target => '_blank', :rel => 'nofollow'%>.
+                </div>
+                
+                <%=hidden_field_tag :plan_id, @account_plan.id%>
+                <%if @account_components.present? -%>
+                    <%for componenet in @account_components -%>
+                        <%=hidden_field_tag 'component_id[]', componenet.id%>
+                    <%end-%>
+                <%end-%>
+                <div class="submit_container">
+                    <%= f.submit 'Create my account' %>
+                </div>
+            <% end -%>
+        </div>
+    </div>
+</div>
+

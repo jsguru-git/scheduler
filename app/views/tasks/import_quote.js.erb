@@ -1,0 +1,13 @@
+// Add content to page
+<% @new_tasks.each do |task| %>
+    $("#no_associated_features #task_list").append("<%= escape_javascript(render(:partial => 'tasks/display_task', :locals => {:task => task})) %>");
+<% end %>
+
+// Open lightbox
+main_lightbox.close();
+
+// Highlight
+<% @new_tasks.each do |task| %>
+    $('#<%=dom_id(task)%>').delay(300).effect("highlight", {}, 3000);
+<% end %>
+task_header_bar_visibility();

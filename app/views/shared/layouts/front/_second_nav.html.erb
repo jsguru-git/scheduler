@@ -1,0 +1,10 @@
+<%if @second_nav -%>
+    <div class="second_nav_container">
+        <ul id="second_nav">
+            <%for nav in @second_nav -%>
+                <li><%=link_to nav[:title], nav[:url], :class => nav[:class]%></li>
+            <%end-%>
+         </ul>
+         <div class="clearing"></div>
+     </div>
+<%end-%>

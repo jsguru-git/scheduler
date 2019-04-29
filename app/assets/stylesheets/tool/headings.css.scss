@@ -1,0 +1,106 @@
+h1, h2,h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0 0 10px 0;
+}
+
+
+#blank_outer_container h1 {
+    color: #606060;
+    display: block;
+    font-family: 'Oswald', 'arial narrow', arial, helvetica, sans-serif;
+    font-weight: 300;
+    font-size: 70px;
+    line-height: 1;
+    margin: 0;
+    padding: 0 0 0 90px;
+    position: relative;
+    text-transform: uppercase;
+    top: -4px;
+}
+
+h1 {
+    color: #606060;
+    display: block;
+    font-family: 'Oswald', 'arial narrow', arial, helvetica, sans-serif;
+    font-weight: 300;
+    font-size: 35px;
+    line-height: 1;
+    margin: 0;
+    padding: 0 0 0 90px;
+    position: relative;
+    text-transform: uppercase;
+    top: 12px;
+}
+
+/* IE fix */
+.ie h1 {
+    font-size: 67px;
+    top: -5px;
+}
+
+h2 {
+    color: #606060;
+    background: url(tool/layout/dashed_heading.png) repeat-x left bottom;
+    display: block;
+    font-family: 'Oswald', 'arial narrow', arial, helvetica, sans-serif;
+    font-weight: 300;
+    font-size: 1.8em;
+    line-height: 1;
+    margin: 0 0 28px 0;
+    overflow: hidden;
+    padding: 0 0 8px 0;
+    position: relative;
+    text-overflow: ellipsis;
+    text-transform: uppercase;
+    top: -2px;
+    white-space: nowrap;
+}
+
+h3 {
+    color: #606060;
+    display: block;
+    font-family: 'Oswald', 'arial narrow', arial, helvetica, sans-serif;
+    font-weight: 300;
+    font-size: 1.8em;
+    line-height: 1;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    text-transform: uppercase;
+    top: -1px;
+}
+
+h4 {
+    color: #606060;
+    display: block;
+    font-family: 'Oswald', 'arial narrow', arial, helvetica, sans-serif;
+    font-weight: 300;
+    font-size: 1.6em;
+    line-height: 1;
+    margin: 0;
+    padding: 0;
+    text-transform: uppercase;
+}
+
+
+h3.underline {
+    background: url(tool/layout/dashed_heading.png) repeat-x left bottom;
+    padding: 0 0 8px 0;
+}
+
+h3.blue_heading,
+.search_container h3 {
+    color: #8DAACC;
+}
+
+h3.red_heading {
+    color: #E17B7B;
+}
+
+h3.sub_heading {
+    padding-bottom: 33px;
+}
+
+h3.larger {
+    font-size: 2.4em;
+}

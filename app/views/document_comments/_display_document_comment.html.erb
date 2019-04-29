@@ -1,0 +1,30 @@
+<%background_image = document_comment.user.present? ? document_comment.user.gravatar_url(:size => 69, :secure => request.ssl?, :default => APP_CONFIG['gravatar']['default_asset_ssl_domain']+'/assets/tool/icons/user_69.png') : '/assets/tool/icons/user_69.png'%>
+
+<%= content_tag_for(:li, document_comment) do %>
+
+    <div class="name">
+        <%= avatar(document_comment.user, 80) %>
+        <%if document_comment.user.present? -%>
+            <span><%=document_comment.user.firstname%></span>
+            <span><%=document_comment.user.lastname%></span>
+        <%else-%>
+            <span>Person</span>
+            <span>Removed</span>
+        <%end-%>
+    </div>
+    <div class="comment_text">
+        <div class="comment_container_top">
+            <div class="comment_container_bottom">
+                <%=simple_format document_comment.comment%>
+                <p class="padding_0 light_green">Created <%=distance_of_time_in_words_to_now document_comment.created_at%> ago</p>
+            </div>
+        </div>
+        
+    </div>
+    <div class="comment_links">
+        <%if can_edit?(document_comment)%>
+            <%=link_to 'Edit', edit_project_document_document_comment_path(project, document, document_comment), :remote => true, 'data-spinner' => "link_spinner_#{dom_id document_comment}", :class => 'small_edit_button'%> 
+            <%=link_to 'Remove', project_document_document_comment_path(project, document, document_comment), :method => :delete, :remote => true, :confirm => 'Are you sure you want to remove this comment?', 'data-spinner' => "link_spinner_#{dom_id document_comment}", :class => 'small_remove_button'%>&nbsp;<%=spinner_tag("link_spinner_#{dom_id document_comment}",)%>
+        <%end-%>
+    </div>
+<%end-%>

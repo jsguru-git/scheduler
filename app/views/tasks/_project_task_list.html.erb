@@ -1,0 +1,14 @@
+  <div class="outer_table">
+    <%= render partial: 'tasks/header_task_row' %>
+    <ul id="task_list" class="<%= policy(Feature).update? ? 'sortable' : '' %>"
+                       data-update-url="<%= sort_project_tasks_url %>"
+                       data-feature-id="<%=feature.present? ? feature.id : ''%>">
+      <% unless feature.present? %>
+        <li class="placeholder <%= (tasks.any? || @project.tasks.empty?) ? 'hidden' : '' %>">Drag to remove category</li>
+      <% end %>
+      <% tasks.name_ordered.each do |task| %>
+        <%= render partial: 'tasks/display_task',
+                   locals: { task: task } %>
+      <% end %>
+    </ul>
+  </div>

@@ -1,0 +1,23 @@
+<% first_title = 'Scheduled this week' if local_assigns[:first_title].nil? %>
+
+<div class="people_involved_container" name="people_involved">
+    <div class="col_1">
+        <span class="large_blue_narrow"><%=first_title%></span>
+        <%if people_in_next_week.present? -%>
+            <%for user in people_in_next_week -%><%= avatar(user, 80) %><%end-%>
+        <%else-%>
+        <p>No one is involved in this <%=display_type%> in the next 7 days.</p>
+        <%end-%>
+    </div>
+    <div class="col_2">
+        <span class="large_blue_narrow">Everyone scheduled</span>
+        <%if people_scheduled.present? -%>
+            <%for user in people_scheduled -%>
+                <%= avatar(user, 80) %>
+            <%end-%>
+        <%else-%>
+        <p>No one has yet been assigned to this <%=display_type%>.</p>
+        <%end-%>
+    </div>
+    <div class="clearing"></div>
+</div>

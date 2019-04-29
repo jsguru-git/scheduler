@@ -1,0 +1,72 @@
+<% @page_title = "Deleted invoices" %>
+
+<div class="standard_one_col">
+
+    <div class="cell_1">
+        <%= render :partial => 'shared/page_heading' %>
+
+        <div class='statistics'>
+            <div class='statistic'>
+                <div class='figure green'><%= formated_in_default_currency @all_invoice_deletions.sum(&:default_currency_total_amount_cents_exc_vat) %></div>
+                <div class='desc'>Total deleted amount</div>
+            </div>
+        </div>
+        <div class='clearing'></div>
+
+        <%=render :partial => 'shared/pagination/paginate', :object => @invoice_deletions%>
+        
+        <div class="outline_container">
+            <table class="results_table">
+                <tr class="heading_table">
+                    <th>Project</th>
+                    <th class="align_center">Deleted by</th>
+                    <th class="align_center">Deleted on</th>
+                    <th class="align_center">Invoice date</th>
+                    <th class="align_center">Invoice number</th>
+                    <th class="align_center">Invoice amount</th>
+                </tr>
+                <%if @invoice_deletions.present? -%>
+                    <% @invoice_deletions.each do |invoice_deletion| -%>
+                        <tr>
+                            <td>
+                                <%if invoice_deletion.project.present? -%>
+                                    <%=link_to invoice_deletion.project.name, project_path(invoice_deletion.project)%>
+                                <%else-%>
+                                    <span class="light_text">Project delete</span>
+                                <%end-%>
+                            </td>
+                            <td class="align_center">
+                                <%if invoice_deletion.user.present? -%>
+                                    <%=invoice_deletion.user.name%>
+                                <%else-%>
+                                    <span class="light_text">User delete</span>
+                                <%end-%>
+                            </td>
+                            <td class="align_center">
+                                <%=fmt_long_date invoice_deletion.created_at%>
+                            </td>
+                            <td class="align_center">
+                                <%=fmt_long_date invoice_deletion.invoice_date%>
+                            </td>
+                            <td class="align_center">
+                                <%=invoice_deletion.invoice_number%>
+                            </td>
+                            <td class="align_center">
+                                <%=formated_in_default_currency invoice_deletion.default_currency_total_amount_cents_exc_vat%>
+                            </td>
+                        </tr>
+                    <% end -%>
+                <%end-%>
+            </table>
+            
+            <%if @invoice_deletions.blank? -%>
+                <p class="no_content">There have been no deleted invoices yet.</p>
+            <%end-%>
+        </div>
+        
+        <%=render :partial => 'shared/pagination/paginate', :object => @invoice_deletions%>
+    </div>
+</div>
+
+
+

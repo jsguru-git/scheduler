@@ -1,0 +1,10 @@
+<h2>Edit activity</h2>
+<%=form_for [project, task], :remote => true, :html => { 'data-spinner' => 'edit_task_form_spinner'} do |f|%>
+    <%=render :partial => 'shared/notifications/error_messages', :object => task%>
+
+    <%=render :partial => 'form', :locals => {:f => f}%>
+
+    <div class="submit_container">
+        <%= f.submit 'Save changes', :class => 'submit' %> <span class="small_text">or <%=link_to 'Cancel', cancel_project_tasks_path(project), :remote => true, 'data-spinner' => 'edit_task_form_spinner'%></span>&nbsp;<%=spinner_tag('edit_task_form_spinner')%>
+    </div>
+<% end -%>

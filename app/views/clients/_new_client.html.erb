@@ -1,0 +1,26 @@
+<h2>New client</h2>
+<%=form_for client, :remote => true, :html => { 'data-spinner' => 'new_client_form_spinner'} do |f|%>
+    <%=render :partial => 'shared/notifications/error_messages', :object => client%>
+
+    <div class="form_row">
+        <div class="form_text">
+            <%=f.label :name%><span class="required"> *</span>
+        </div>
+        <div class="form_field">
+            <%=f.text_field :name, :class => 'text'%>
+        </div>
+        <div class="clearing"></div>
+    </div>
+    
+    <div class="submit_container">
+        <%= f.submit 'Add this client', :class => 'submit' %> <span class="small_text">or <%=link_to 'Cancel', cancel_clients_path, :remote => true, 'data-spinner' => 'new_client_form_spinner'%></span>&nbsp;<%=spinner_tag('new_client_form_spinner')%>
+    </div>
+<% end -%>
+<script>
+    $('.submit').click(function() {
+        hopscotch.nextStep();
+    });
+    $('#main_lightbox_close').click(function() {
+        hopscotch.nextStep();
+    });
+</script>

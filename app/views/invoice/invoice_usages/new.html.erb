@@ -1,0 +1,13 @@
+<%@page_title = 'Allocate amount'%>
+<% @second_nav = project_second_nav(@project, 'invoice') %>
+
+<div class="standard_two_col">
+    <div class="cell_1">
+        <%=render :partial => 'shared/page_heading'%>
+        <%= render :partial => 'new_form', :locals => {:project => @project, :invoice => @invoice, :invoice_usage => @invoice_usage}%>
+    </div>
+    <div class="cell_2">
+    </div>
+    <div class="clearing"></div>
+</div>
+

@@ -1,0 +1,32 @@
+<% if @project.archived? %>
+    <% @page_title = 'Discussion (Archived)' %>
+<% else %>
+    <% @page_title = 'Discussion' %>
+<% end %>
+
+<% @second_nav = project_second_nav(@project, 'project_comments') -%>
+
+<div id="project_comment_list" class="standard_one_col">
+    <div class="cell_1">
+        <%=render :partial => 'shared/page_heading'%>
+
+        <div class="document_comment_cont">
+            <div class="action_links">
+              <%= link_to 'Post a new comment', nil, :class => 'new_comment_link', :style => 'display: none;' %>
+            </div>
+
+            <%= render :partial => 'project_comments/comment_form', :locals => { :project => @project, :project_comment => @project.project_comments.new } %>
+
+            <ul class="comment_list">
+                <%if @project_comments.blank? -%>
+                    <li class="no_comments">No comments have been posted to this project</li>
+                <%else-%>
+                    <% @project_comments.each do |project_comment| -%>
+                        <%=render :partial => 'project_comments/display_project_comment', :locals => {:project => @project, :project_comment => project_comment, :editable => true}%>
+                    <%end-%>
+                <%end-%>
+            </ul>
+
+        </div>
+    </div>
+</div>

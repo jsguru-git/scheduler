@@ -1,0 +1,85 @@
+<%= render :partial => 'shared/pagination/paginate', :object => @teams %>
+<% @teams.order(:name).each do |team| %>
+  <h2 class="client_name"><%= link_to team.name, project_utilisation_reports_projects_path(params.merge!({ team_id: team.id })) %></h2>
+  <div class="outline_container">
+    <table class="results_table client_utilisation">
+      <tr class="heading_table">
+        <th class="align_center">User</th>
+        <th class="align_center">Chargable time (Days)</th>
+        <th class="align_center">Internal project time (Days)</th>
+        <th class="align_center">Non-chargable time (Days)</th>
+        <th class="align_center">Total time (Days)</th>
+        <th class="align_center">Utilisation</th>
+        <th class="align_center">Billable</th>
+      </tr>
+      <% team.users.each do |user| %>
+        <% user_timings = user.timings.submitted_timings.where(started_at: @time_filters[:start_date]...@time_filters[:end_date]).joins(:project) %>
+        <% if user_timings.present? %>
+          <tr>
+            <td class="align_left">
+              <%= link_to user.name, track_timings_path(user_id: user.id, user_view: 1) %>
+            </td>
+            <td>
+              <%= Timings::convert_minutes_to_days(user_timings.where(clients: { internal: false }).joins(project: :client).sum(&:duration_minutes), @account) %> days
+            </td>
+            <td>
+              <%= Timings::convert_minutes_to_days(user_timings.where(clients: { internal: true }).joins(project: :client).sum(&:duration_minutes), @account) %> days
+            </td>
+            <td>
+              <%= Timings::convert_minutes_to_days(user_timings.submitted_timings.where(tasks: { count_towards_time_worked: false }).joins(:task).sum(&:duration_minutes), @account) %> days
+            </td>
+            <td>
+              <%= Timings::convert_minutes_to_days(user_timings.submitted_timings.sum(&:duration_minutes).to_s.to_d, @account) %> days
+            </td>
+            <td>
+              <%= user.utilisation(@time_filters[:start_date], @time_filters[:end_date]) %>%
+            </td>
+            <td>
+              <%= formated_in_default_currency user.billable_amount_cents %>
+            </td>
+          </tr>
+        <% end %>
+      <% end %>
+      <tr>
+        <% team_timings = team.timings.submitted_timings.where(started_at: @time_filters[:start_date]...@time_filters[:end_date]) %>
+        <td class="align_left"><strong>Totals</strong></td>
+        <td>
+          <strong>
+            <%= Timings::convert_minutes_to_days(team_timings.where(clients: { internal: false }).joins(project: :client).sum(&:duration_minutes), @account) %> days
+          </strong>
+        </td>
+        <td>
+          <strong>
+            <%= Timings::convert_minutes_to_days(team_timings.where(clients: { internal: true }).joins(project: :client).sum(&:duration_minutes), @account) %> days
+          </strong>
+        </td>
+        <td>
+          <strong>
+            <%= Timings::convert_minutes_to_days(team_timings.submitted_timings.where(tasks: { count_towards_time_worked: false }).joins(:task).sum(&:duration_minutes), @account) %> days
+          </strong>
+        </td>
+        <td>
+          <strong>
+            <%= Timings::convert_minutes_to_days(team_timings.submitted_timings.sum(&:duration_minutes).to_s.to_d, @account) %> days
+          </strong>
+        </td>
+        <td>
+          <strong>
+            <% current_users = team.users.joins(:timings).group(:firstname).where(timings: { started_at: @time_filters[:start_date]...@time_filters[:end_date] }) %>
+            <% total_utilisation = 0 %>
+            <% current_users.each{ |user| total_utilisation += user.utilisation } %>
+            <%= current_users.to_a.count > 0 ? "#{ (total_utilisation / current_users.to_a.count).round(2) }%" : '0%'  %>
+          </strong>
+        </td>
+        <td>
+          <strong>
+            <% total_billable = 0 %>
+            <% current_users.each{ |user| total_billable += user.billable_amount_cents } %>
+            <%= formated_in_default_currency total_billable %>
+          </strong>
+        </td>
+      </tr>
+    </table>
+  </div>
+<% end %>
+<%= render :partial => 'shared/pagination/paginate', :object => @teams %>

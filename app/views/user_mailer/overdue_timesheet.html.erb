@@ -1,0 +1,18 @@
+<p>Hi <%= @user.firstname %>,</p>
+
+
+<p>Fleetsuite is missing the following data:</p>
+<ul>
+  <% @dates.compact.each do |date| %>
+    <li><%= date.strftime('%A, %b %d') %></li>
+  <% end %>
+</ul>
+
+<p>Please <%= link_to 'update your timesheet', track_timings_url(subdomain: @account.site_address, user_view: 1, user_id: @user.id) %> urgently.</p>
+
+<p>Thanks,<br/>
+The FleetSuite Team<br/>
+---<br/>
+Get support: http://help.fleetsuite.com<br/>
+Follow us: https://twitter.com/fleet_suite<br/>
+Suggest new features: http://help.fleetsuite.com/forums</p>

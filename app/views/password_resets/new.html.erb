@@ -1,0 +1,28 @@
+<% @page_title = 'Forgotten your password?' -%>
+
+<div class="grid_container" id="blank_outer_container">
+    <div class="grid_container_inner">
+        
+        <div class="blank_name_container">
+            <h1>Forgotten password?</h1>
+        </div>
+        
+        <div class="middle_container">
+            <div class="inner_middle_container">
+                <%= render(:partial => 'shared/notifications/flash', :locals => {:flash => flash }) if flash[:notice] || flash[:alert] %>
+                <p class="text_intro">Please enter your email address below. We will then send you an email with a link to reset your password.</p>
+
+                <%= form_for :user, :url => password_resets_path do |f| %>
+                    <div class="blank_form_row">
+                        <div class="form_text"><label for="user_email">Email address</label></div>
+                        <div class="form_field"><%= f.text_field :email, :class => 'text' %></div>
+                        <div class="clearing"></div>
+                    </div>
+                    <div class="blank_form_row">
+                        <%=f.submit 'Send reset link', :class => 'submit'%> <span class="small_text">or <%=link_to 'Back to login', new_session_path%></span>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>

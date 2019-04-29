@@ -1,0 +1,2 @@
+module Invoice::ProjectsHelper
+end

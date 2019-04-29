@@ -1,0 +1,54 @@
+<% @page_title = 'Issue tracker settings' %>
+<% @second_nav = settings_second_nav('issue_tracker') %>
+
+<div class="standard_one_col">
+    <div class="cell_1">
+        <%= render :partial => 'shared/page_heading' %>
+        
+        <div class="search_container">
+            
+            <%= render :partial => 'shared/notifications/error_messages', :object => @account_setting %>
+
+            <%= form_for @account_setting, :url => update_issue_tracker_setting_path(@account_setting), html: {  autocomplete: "off" } do |f| %>
+                
+                <p>Fleetsuite can connect to Jira to pull across defect counts on a weekly basis, to enable this, please enter your Jira details below and also edit your FleetSuite projects to enter the associated Jira key.</p>
+                
+                <div class="form_row">
+            	    <div class="form_text">
+            	        <%= f.label :issue_tracker_url, 'Url' %>
+            	    </div>
+            	    <div class="form_field">
+            	        <%= f.text_field :issue_tracker_url, :class => 'text' %>
+            	        <p class="explicit_text">e.g. https://company.atlassian.net</p>
+            	    </div>
+            	    <div class="clearing"></div>
+            	</div>
+                
+                <div class="form_row">
+            	    <div class="form_text">
+            	        <%= f.label :issue_tracker_username, 'Username' %>
+            	    </div>
+            	    <div class="form_field">
+            	        <%= f.text_field :issue_tracker_username, :class => 'text' %>
+            	    </div>
+            	    <div class="clearing"></div>
+            	</div>
+            	
+            	<div class="form_row">
+            	    <div class="form_text">
+            	        <%= f.label :issue_tracker_password, 'Password' %>
+            	    </div>
+            	    <div class="form_field">
+            	        <%= f.password_field :issue_tracker_password, :class => 'text' %>
+            	    </div>
+            	    <div class="clearing"></div>
+            	</div>
+                
+                <div class="submit_container">
+                    <%= submit_tag 'Save changes', :class => 'submit' %>
+                </div>
+            <% end -%>
+        </div>
+    </div>
+
+</div>

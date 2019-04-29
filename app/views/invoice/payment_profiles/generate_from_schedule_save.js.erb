@@ -1,0 +1,19 @@
+<%if @payment_profiles.present? -%>
+  <%@payment_profiles.each do |payment_profile|%>
+    $("table.results_table").append("<%= escape_javascript(render(:partial => 'display_payment_profile', :locals => {:display_payment_profile => payment_profile, :project => @project})) %>");
+  <%end-%>
+  
+  $('#totals_cont').replaceWith("<%= escape_javascript(render(:partial => 'totals', :locals => {:project => @project})) %>");
+  
+  $('.no_payment_stages').remove();
+<%end-%>
+
+// Open lightbox
+main_lightbox.close();
+
+// Highlight
+<%if @payment_profiles.present? -%>
+  <%@payment_profiles.each do |payment_profile|%>
+    $('#<%=dom_id(payment_profile)%>').effect("highlight", {}, 3000);
+  <%end-%>
+<%end-%>

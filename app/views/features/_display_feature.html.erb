@@ -1,0 +1,17 @@
+<%= content_tag_for(:li, feature) do %>
+    <div class="underline_heading">
+        <h3 class="red_heading" style='float:left;'>
+            <%= link_to feature.name, edit_project_feature_path(feature.project.id, feature.id), class: 'red_link', remote: true %>
+        </h3>
+        <%= link_to 'Remove', project_feature_path(feature.project.id, feature.id), :class => 'small_remove_button',
+                                                                                    :method => :delete,
+                                                                                    :data => { :confirm => 'Are you sure you want to remove this feature?' },
+                                                                                    :remote => true if policy(feature).destroy? %>
+        <div class='clearing'></div>
+    </div>
+
+    <%= render partial: 'tasks/project_task_list',
+               locals:  { tasks:   feature.tasks.position_ordered,
+                          project: feature.project,
+                          feature: feature } %>
+<% end %>

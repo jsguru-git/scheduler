@@ -1,0 +1,22 @@
+<%if @project.archived? -%>
+    <%@page_title = 'Edit (Archived)'%>
+<%else-%>
+    <%@page_title = 'Edit' %>
+<%end-%>
+
+<div class="standard_one_col">
+    <div class="cell_1">
+        <%=render :partial => 'shared/page_heading'%>
+        
+        <%=form_for @project do |f|%>
+            <%=render :partial => 'shared/notifications/error_messages', :object => @project%>
+
+            <%=render :partial => 'form', :locals => {:f => f}%>
+            
+            <div class="submit_container">
+                <%= f.submit 'Save changes', :class => 'submit' %> <span class="small_text">or <%=link_to 'Cancel', project_path(@project)%></span>
+            </div>
+        <% end -%>
+    </div>
+
+</div>

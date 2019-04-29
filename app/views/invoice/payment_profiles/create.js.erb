@@ -1,0 +1,12 @@
+// Replace content in lightbox div
+$("table.results_table").append("<%= escape_javascript(render(:partial => 'display_payment_profile', :locals => {:display_payment_profile => @payment_profile, :project => @project})) %>");
+
+$('#totals_cont').replaceWith("<%= escape_javascript(render(:partial => 'totals', :locals => {:project => @project})) %>");
+
+$('.no_payment_stages').remove();
+
+// Show form to edit service types
+$("#main_lightbox_content").html("<%= escape_javascript(render(:partial => 'edit_service_types', :locals => {:project => @project, :payment_profile => @payment_profile, :from_create => true})) %>");
+
+// Open lightbox
+main_lightbox.change_height_to(300);

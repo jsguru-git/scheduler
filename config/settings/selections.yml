@@ -1,0 +1,46 @@
+# Selections File
+# -------------------------------------
+#
+# These values can be referred to in the code as follows:
+#
+# SELECTIONS['section-name']['setting-name']
+#
+
+project_event_type:
+    0: Standard
+    1: Non billable
+
+estimation_scale:
+    1: Days
+    2: Weeks
+    3: Months
+
+invoice_status:
+  0: Unsent
+  1: Sent
+  2: Paid
+
+quote_status:
+  0: In-progress
+  1: Sent to client
+  2: Approved
+  3: Declined
+  
+quote_copy_reasons:
+  0: Please make sure you have selected a previous quote
+  1: Previous quote does not have any existing activities to copy
+  2: Quote activities have been successfully copied
+  
+estimate_type:
+  0: Exact estimate
+  1: Range estimate
+  
+rag_status:
+  0: Green
+  1: Orange
+  2: Red
+  
+mail_frequency:
+  0: Daily
+  1: Weekly
+  2: Monthly

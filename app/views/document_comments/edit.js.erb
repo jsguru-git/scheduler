@@ -1,0 +1,1 @@
+$("#<%=dom_id @document_comment%>").replaceWith("<%= escape_javascript(render(:partial => 'document_comments/edit_comment_form', :locals => {:project => @project, :document => @document, :document_comment => @document_comment})) %>");

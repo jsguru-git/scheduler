@@ -1,0 +1,12 @@
+<%@page_title = 'Update ' + params[:field].humanize%>
+<%@second_nav = project_second_nav(@project, 'quote')%>
+
+<div class="standard_two_col">
+    <div class="cell_1">
+        <%=render :partial => 'shared/page_heading'%>
+        <%= render :partial => 'edit_single_field', :locals => {:project => @project, :quote => @quote}%>
+    </div>
+    <div class="cell_2"></div>
+    <div class="clearing"></div>
+</div>
+

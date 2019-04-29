@@ -1,0 +1,10 @@
+// Remove no-content message if its present
+new_invoice_creation.remove_no_item_message();
+
+$("#payment_profile_list").append("<%= escape_javascript(render(:partial => 'invoice_item_additional', :object => @invoice)) %>");
+
+new_invoice_creation.update_multiple_nested_id();
+
+new_invoice_creation.observe_remove_links();
+
+new_invoice_creation.observe_amount_change();

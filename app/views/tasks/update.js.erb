@@ -1,0 +1,26 @@
+// Replace data on page
+var element = $('#<%=dom_id(@task)%>');
+<% if @task.feature_id.nil? %>
+  var featureID = '';
+<% else %>
+  var featureID = <%= @task.feature_id %>;
+<% end %>
+
+if (element.parent().data('feature-id') == featureID ){
+    $('#<%=dom_id(@task)%>').replaceWith("<%= escape_javascript(render(:partial => 'tasks/display_task', :locals => {:task => @task})) %>");
+}
+else {
+    $('#<%=dom_id(@task)%>').remove();
+    if(featureID == '') {
+        $("ul[data-feature-id='']").append("<%= escape_javascript(render(:partial => 'tasks/display_task', :locals => {:task => @task})) %>");
+    } else {
+        $("ul[data-feature-id='" + featureID + "']").append("<%= escape_javascript(render(:partial => 'tasks/display_task', :locals => {:task => @task})) %>");
+    }
+}
+
+// Open lightbox
+main_lightbox.close();
+
+// Highlight
+$('#<%=dom_id(@task)%>').delay(300).effect("highlight", {}, 3000);
+task_header_bar_visibility();

@@ -1,0 +1,29 @@
+<% @page_title = 'Payment stage rollovers' %>
+
+<div class="standard_one_col">
+    <div class="cell_1">
+        <%= render :partial => 'shared/page_heading' %>
+
+		<%=render :partial => 'shared/pagination/paginate', :object => @payment_profile_rollovers %>
+		
+		<div class="outline_container">
+            <table class="results_table">
+                <tr class="heading_table">
+					<th>Date changed</th>
+					<th>Changed by</th>
+					<th>Payment stage</th>
+					<th>Changed from</th>
+					<th>Changed to</th>
+					<th>Reason for change</th>
+				</tr>
+				
+				<% @payment_profile_rollovers.each do |payment_profile_rollover| %>
+					<%= render partial: 'rollover_row', locals: { payment_profile_rollover: payment_profile_rollover } %>
+				<%end-%>
+				
+			</table>
+		</div>
+		
+		<%=render :partial => 'shared/pagination/paginate', :object => @payment_profile_rollovers %>
+	</div>
+</div>

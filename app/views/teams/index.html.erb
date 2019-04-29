@@ -1,0 +1,37 @@
+<%@page_title = 'Teams'%>
+<% @second_nav = people_second_nav(params[:action]) %>
+
+<div class="standard_two_col">
+    <div class="cell_1">
+        <%=render :partial => 'shared/page_heading'%>
+        
+        <%=render :partial => 'shared/pagination/paginate', :object => @teams%>
+        
+
+        <ul id="team_list">
+            <%@teams.each do |team|%>
+                <%=render :partial => 'display_team', :locals => {:team => team}%>
+            <%end-%>
+        </ul>
+        <div class="clearing"></div>
+        <%if @teams.blank? -%>
+            <div class="no_team info_box">
+                <span class="large_blue_narrow">No teams yet</span>
+                <p class="no_members">FleetSuite allows you to assign people to teams allowing you to easily select these groups of people throughout the tool. Add your first team using the link in the right column.</p>
+            </div>
+        <%end-%>
+        
+        <%=render :partial => 'shared/pagination/paginate', :object => @teams%>
+
+    </div>
+    <% if policy(Team).create? %>
+        <div class="cell_2">
+            <div id="action_links">
+                
+                <%= link_to raw('<span class="add_color">Add team</span>'), new_team_url(:protocol => ssl_link), :remote => true %>
+                
+                <div class="clearing"></div>
+            </div>
+        </div>
+    <% end %>
+</div>

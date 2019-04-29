@@ -1,0 +1,20 @@
+<div class="search_container">
+    <h3>Filter results</h3>
+    
+    <%=form_tag search_link, :method => :get  do %>
+        
+        <div class="form_row">
+            <div class="form_text">
+                <%=label_tag 'archived'%>
+            </div>
+            <div class="form_field">
+                <%=select_tag :archived, options_for_select( [['All', 2], ['No', 0], ['Yes', 1]], params[:archived])%>
+            </div>
+            <div class="clearing"></div>
+        </div>
+        
+        <div class="submit_container">
+            <%= submit_tag 'Search now', :class => 'submit' %>
+        </div>
+    <%end-%>
+</div>

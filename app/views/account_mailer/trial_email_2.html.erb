@@ -1,0 +1,16 @@
+<p>Hi <%=@user.firstname%></p>
+
+<p>You’re coming to the end of your FleetSuite free trial period, and our records indicate that you haven't yet updated the payment details in your account. This means that currently your account will be automatically cancelled in <%=distance_of_time_in_words_to_now @account.trial_expires_at%>, and your content will be scheduled for deletion.</p>
+
+<p>It’s easy to upgrade your account and continue using the Suite. Simply click on the account tab within your account at <%= root_url(:subdomain => @account.site_address) %> and select the option to update your card details.</p>
+
+<p>If you experience any problems with this process please get in touch. We'd also love to hear your thoughts about the product; please visit our dedicated feature forum to submit your feedback and suggestions for improvements.</p>
+
+<p>Thanks,<br/>
+Scott<br/>
+The FleetSuite Team<br/>
+---<br/>
+Get support: http://help.fleetsuite.com<br/>
+Follow us: https://twitter.com/fleet_suite<br/>
+Suggest new features: http://help.fleetsuite.com/forums</p>
+

@@ -1,0 +1,30 @@
+---
+index:
+  steps:
+    - title: Welcome to Fleetsuite
+      content: "Welcome. Click 'Next' to take a tour of FleetSuite and learn how to add projects and activities, as well as track your time."
+      target: left_util
+      placement: right
+
+    - title: Dashboard
+      content: "Your dashboard brings together all your FleetSuite information to provide a high-level overview of activity."
+      target: dashboard_button
+      placement: right
+
+    - title: People
+      content: "This is where you can add employees, teams and clients to provide valuable extra detail for tracking and reporting."
+      target: people_button
+      placement: right
+
+    - title: Reports
+      content: "Dig deeper into your data with a range of reports that are updated in real-time."
+      target: reports_button
+      placement: right
+
+    - title: Projects
+      content: "This is where you'll add projects and get started with FleetSuite. Click the tab and we'll show you how..."
+      target: projects_button
+      placement: bottom
+      yOffset: -30
+
+

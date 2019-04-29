@@ -1,0 +1,49 @@
+<div class="form_row">
+    <div class="form_text">
+        <%=f.label :name%><span class="required"> *</span>
+    </div>
+    <div class="form_field">
+        <%=f.text_field :name, :class => 'text'%>
+    </div>
+    <div class="clearing"></div>
+</div>
+
+<%unless f.object.new_record? -%>
+    <div class="form_row">
+        <div class="form_text">
+            <%=f.label :allocated_at %><span class="required"> *</span>
+        </div>
+        <div class="form_field date_cal_field_container">
+            <%=f.text_field :allocated_at, :class => 'datepicker number'%>
+            <%=image_tag '/assets/tool/icons/calendar_32.png', :size => '32x32', :class => 'cal_icon', :alt => 'Select date'%>
+        </div>
+        <div class="clearing"></div>
+    </div>
+    
+    <script type="text/javascript">
+        // Datepicker for invoice cration
+      $( ".usage_form .datepicker" ).datepicker({
+        dateFormat: 'yy-mm-dd',
+        firstDay: 1
+      });
+
+      $('.usage_form .cal_icon').click(function() {
+          var idx = $('.usage_form .cal_icon').index(this);
+          $('.usage_form .datepicker').eq(idx).trigger('focus');
+          return false;
+      });
+    </script>
+<%end-%>
+
+<div class="form_row">
+    <div class="form_text">
+        <%=f.label :amount%><span class="required"> *</span>
+    </div>
+    <div class="form_field">
+        <%=invoice.currency_symbol%> <%=f.text_field :amount, :class => 'number'%>
+    </div>
+    <div class="clearing"></div>
+</div>
+
+<%=hidden_field_tag :invoice_id, invoice.id%>
+<%=hidden_field_tag :from, params[:from]%>

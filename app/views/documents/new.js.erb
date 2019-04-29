@@ -1,0 +1,6 @@
+// Replace content in lightbox div
+$("#main_lightbox_content").html("<%= escape_javascript(render(:partial => 'documents/choose_file', :locals => {:storage => @storage, :results => @results})) %>");
+
+// Open lightbox
+main_lightbox.change_height_to(415);
+main_lightbox.open();

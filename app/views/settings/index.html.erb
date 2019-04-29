@@ -1,0 +1,33 @@
+<% @page_title = 'System settings' %>
+<%@second_nav = settings_second_nav('index')%>
+
+<div class="standard_one_col">
+    <div class="cell_1">
+        <%= render :partial => 'shared/page_heading' %>
+        
+        <div class="search_container">
+            
+            <%= render :partial => 'shared/notifications/error_messages', :object => @account_setting %>
+
+            <%= form_for @account_setting, :url => setting_path(@account_setting) do |f| %>
+            
+                <%= render partial: 'settings/working_hours', locals: { f: f } %>
+                <%= render partial: 'settings/default_currency', locals: { f: f } %>
+                <%= render partial: 'settings/company_logo', locals: { f: f } %>
+                <%= render partial: 'settings/product_tour', locals: { f: f } %>
+                
+                <div class="submit_container">
+                    <%= submit_tag 'Save changes', :class => 'submit' %>
+                </div>
+            <% end %>
+            <div class="phases_container">
+                <%= render partial: 'settings/phases' %>
+            </div>
+            <div class="time_track_container">
+                <%= render partial: 'settings/late_time_tracking' %>
+            </div>
+
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,117 @@
+<% @page_title = 'Estimate client profit and loss' %>
+
+<div class="standard_one_col">
+
+    <div class="cell_1">
+        <%= render :partial => 'shared/page_heading' %>
+
+        <div class='statistics'>
+            <div class='statistic'>
+                <% average_day_rate = @all_clients.collect { |c| c.avg_rate_card_amount_cents }.sum.to_f / @all_clients.size %>
+                <div class='figure red'><%= formated_in_default_currency average_day_rate %></div>
+                <div class='desc'>Average Day Rate</div>
+            </div>
+            <div class='statistic'>
+                <% total_profit = @all_clients.collect { |c| c.estimated_profit }.sum %>
+                <div class='figure orange'><%= formated_in_default_currency total_profit %></div>
+                <div class='desc'>Total profit</div>
+            </div>
+            <div class='statistic'>
+                <% average_profit_day_rate = @all_clients.collect { |c| c.estimated_profit_day_rate }.sum.to_f / @all_clients.size %>
+                <div class='figure freen'><%= formated_in_default_currency average_profit_day_rate %></div>
+                <div class='desc'>Average profit day rate</div>
+            </div>
+        </div>
+        <div class='clearing'></div>
+
+        <%=render :partial => 'shared/pagination/paginate', :object => @clients%>
+        
+        <div class="outline_container">
+            <table class="results_table">
+                <tr class="heading_table">
+                    <th>Client</th>
+                    <th class="align_center">Avg day rate</th>
+                    <th class="align_center">Tracked days</th>
+                    <th class="align_center">Task estimate days</th>
+                    <th class="align_center">P &amp; L (Days)</th>
+                    <th class="align_center">P &amp; L (<%=Money.default_currency.symbol%>)</th>
+                    <th class="align_center">P &amp; L (%)</th>
+                    <th class="align_center">Day rate after P &amp; L</th>
+                </tr>
+                <%@clients.each do |client| -%>
+                	<%day_rate = client.avg_rate_card_amount_cents.round(2)%>
+                    <%mins_tracked = Timing.minute_duration_submitted_for_client(client.id)%>
+					<%days_tracked = (mins_tracked.to_s.to_d / @account.account_setting.working_day_duration_minutes).round(2)%>
+					<%task_estimate_mins = Task.total_estimated_minutes_for_client(client.id)%>
+					<%task_estimate_days = (task_estimate_mins.to_s.to_d / @account.account_setting.working_day_duration_minutes).round(2)%>
+					<%p_l_days = (days_tracked - task_estimate_days).round(2)%>
+					<%p_l_cost = ((task_estimate_days * day_rate.to_s.to_d) - (days_tracked*day_rate.to_s.to_d)).round(2)%>
+					
+					<%if task_estimate_days == 0 && days_tracked != 0 -%>
+                        <%p_l_percent = -100%>
+                    <%elsif task_estimate_days != 0 && days_tracked == 0 -%>
+                        <%p_l_percent = 100%>
+                    <%elsif task_estimate_days == 0 -%>
+                        <%p_l_percent = 0%>
+                    <%else-%>
+                        <%p_l_percent = ((p_l_cost/(task_estimate_days * day_rate.to_s.to_d))*100).round(2)%>
+                    <%end-%>
+
+					<%total_project_potential = (days_tracked*day_rate).round(2)%>
+            		
+					<%if task_estimate_days == 0 && days_tracked != 0 -%>
+                        <%day_rate_after_p_l = 0%>
+                    <%elsif task_estimate_days != 0 && days_tracked == 0 -%>
+                        <%day_rate_after_p_l = (task_estimate_days * day_rate.to_s.to_d).round(2)%>
+                    <%elsif task_estimate_days == 0 -%>
+                        <%day_rate_after_p_l = day_rate%>
+                    <%else-%>
+                        <%day_rate_after_p_l = (((task_estimate_days * day_rate.to_s.to_d)/total_project_potential)*day_rate).round(2)%>
+                    <%end-%>
+					
+                    <tr>
+                        <td>
+							<%=link_to client.name, quote_project_profit_and_loss_reports_client_path(:id => client.id), :remote => true%>
+                        </td>
+                        <td class="align_center">
+                            <%=formated_in_default_currency day_rate%>
+                        </td>
+                        <td class="align_center">
+                            <%=days_tracked%>
+                        </td>
+                  		<td class="align_center">
+                    		<%=task_estimate_days%>
+                        </td>
+						<td class="align_center <%=p_l_days > 0 ? 'red_text' : 'green_text'%>">
+                            <%=p_l_days%>
+                        </td>
+						<td class="align_center <%=p_l_days > 0 ? 'red_text' : 'green_text'%>">
+                            <%=formated_in_default_currency p_l_cost%>
+                        </td>
+						<td class="align_center <%=p_l_days > 0 ? 'red_text' : 'green_text'%>">
+                            <%=number_to_percentage p_l_percent, :precision => 2%>
+                        </td>
+						<td class="align_center">
+                            <%=formated_in_default_currency day_rate_after_p_l%>
+                        </td>
+                    </tr>
+                <%end-%>
+            </table>
+        </div>
+        
+        <%=render :partial => 'shared/pagination/paginate', :object => @clients%>
+        
+    </div>
+</div>
+
+<script type="text/javascript">
+    // Datepicker for invoice cration
+    $( "#clients_quote_profit_and_loss .datepicker" ).datepicker({ dateFormat: 'yy-mm-dd' });
+
+    $('#clients_quote_profit_and_loss .cal_icon').click(function() {
+        var idx = $('#clients_quote_profit_and_loss .cal_icon').index(this);
+        $('#clients_quote_profit_and_loss .datepicker').eq(idx).trigger('focus');
+        return false;
+    });
+</script>
+

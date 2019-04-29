@@ -1,0 +1,41 @@
+<p>Hi</p>
+
+<p>A payment profile has just had its expected payment date changed into a different month, here is a summary of the changes:</p>
+
+<table>
+	<tr>
+		<td>Project:</td>
+		<td><%=@rollover.project.name%></td>
+	</tr>
+	<tr>
+		<td>Payment stage:</td>
+		<td><%=@rollover.payment_profile.name%></td>
+	</tr>
+	<tr>
+		<td>Changed by:</td>
+		<td><%=@rollover.user.name%></td>
+	</tr>
+	<tr>
+		<td>Reason:</td>
+		<td><%=@rollover.reason_for_date_change%></td>
+	</tr>
+	<tr>
+		<td>Changed from:</td>
+		<td><%=@rollover.old_expected_payment_date%></td>
+	</tr>
+	<tr>
+		<td>Changed to:</td>
+		<td><%=@rollover.new_expected_payment_date%></td>
+	</tr>
+</table>
+
+<p>If you would like to un-subscribe form these emails, you may remove your email address from your FleetSuite settings.</p>
+
+<p>Thanks,<br/>
+Scott<br/>
+The FleetSuite Team<br/>
+---<br/>
+Get support: http://help.fleetsuite.com<br/>
+Follow us: https://twitter.com/fleet_suite<br/>
+Suggest new features: http://help.fleetsuite.com/forums</p>
+
